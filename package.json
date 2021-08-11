@@ -195,6 +195,7 @@
       "Yup",
       "formurai",
       "hydration",
+      "serializers",
       "validation"
     ]
   },
