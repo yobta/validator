@@ -193,7 +193,9 @@
       "anyOf",
       "Ajv",
       "Yup",
-      "formurai"
+      "formurai",
+      "hydration",
+      "validation"
     ]
   },
   "sharec": {
