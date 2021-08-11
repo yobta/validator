@@ -14,14 +14,8 @@ We want to fulfill the front-end needs and create functional promise-based valid
 - Coercion (https://ajv.js.org/coercion.html)
 
 ## Functional requirements
-- Validate maps
-- Validate arrays
-- Validate strings
-- Validate numbers
-- Validate booleans
-- Validate dates
-- Validate FormData
-- Validate URLSearchParams
+- Validate: maps, arrays, strings, numbers, booleans, dates, FormData, URLSearchParams
+- Flow control: fall-backs, side effects, logic operators, serializers
 
 ## API proposals
 
@@ -87,6 +81,7 @@ const validate = asyncYobta(
       sameYobta('newPassword', 'Should match new password')
     ],
   }),
+  constraintYobta(),
   serializeYobta(),
 )
 
@@ -98,33 +93,33 @@ const [formData, errors] = await validate(myForm)
 ## Roadmap
 
 ### Types
-- [-] Async validator
-- [-] Sync validator
-- [-] Map validator
-- [-] Array validator
-- [-] String validator
-  - [-] email
-  - [-] url
-- [-] Number validator
-  - [-] int
-- [-] Boolean validator
-- [-] Date validator
-- [-] FormData validator
-- [-] URLSearchParams validator
+-[-] Async validator
+-[-] Sync validator
+-[-] Map validator
+-[-] Array validator
+-[-] String validator
+  -[-] email
+  -[-] url
+-[-] Number validator
+  -[-] int
+-[-] Boolean validator
+-[-] Date validator
+-[-] FormData validator
+-[-] URLSearchParams validator
 
 ### Type Utilities
-- [-] minDate
-- [-] maxDate
-- [-] minLength
-- [-] maxLength
-- [-] matches
+-[-] minDate
+-[-] maxDate
+-[-] minLength
+-[-] maxLength
+-[-] matches
 ### Flow Utilities
-- [-] required
-- [-] fallback
-- [-] is
-- [-] isNot
-- [-] oneOf
-- [-] anyOf
+-[-] required
+-[-] fallback
+-[-] is
+-[-] isNot
+-[-] oneOf
+-[-] anyOf
 
 ## Samples
 - Ajv — Follows [json-schema.org](https://json-schema.org) specs, great choice for a back-end
