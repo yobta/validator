@@ -174,7 +174,26 @@
       "es6",
       "validator",
       "Sitnik",
-      "Versioning"
+      "Versioning",
+      "async",
+      "ajv",
+      "js",
+      "booleans",
+      "FormData",
+      "URLSearchParams",
+      "Roadmap",
+      "Async",
+      "int",
+      "minDate",
+      "maxDate",
+      "minLength",
+      "maxLength",
+      "isNot",
+      "oneOf",
+      "anyOf",
+      "Ajv",
+      "Yup",
+      "formurai"
     ]
   },
   "sharec": {
