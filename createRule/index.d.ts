@@ -1,21 +1,7 @@
-export type Await<T> = T extends {
-  then(onfulfilled?: (value: infer U) => unknown): unknown
-}
-  ? U
-  : T
+import { ValidationContext } from '../createSyncValidator/index.js'
 
-export type TestFunction<I, O> = (data: I) => Promise<O | I> | O | I
+export type ValidateRule<I, O> = (input: I, context: ValidationContext) => O
 
-export type RuleInput<I> = {
-  data: I
-  path: string[]
-  pushError(message: string, path: string[]): void
-}
+export type SyncRule<I, O> = (context: ValidationContext) => (input: I) => O
 
-export type Rule<I, O> = (input: RuleInput<I>) => Promise<O | I>
-
-export function createRule<
-  T extends TestFunction,
-  I = Parameters<T>[0],
-  O = Await<ReturnType<T>>
->(testFunction: T): Rule<I, O>
+export function createRule<I, O>(validate: ValidateRule<I, O>): SyncRule<I, O>

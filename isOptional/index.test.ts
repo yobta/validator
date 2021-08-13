@@ -1,7 +1,7 @@
-import { isOptional, optionalList } from './index.js'
+import { isOptional, optionalSet } from './index.js'
 
 it('accepts valid', () => {
-  optionalList.forEach(validVariant => {
+  optionalSet.forEach(validVariant => {
     let result = isOptional(validVariant)
     expect(result).toBe(true)
   })

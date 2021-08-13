@@ -11,7 +11,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage && eslint . && check-dts && size-limit && yaspeller *.md"
   },
-  "author": "Sergei Droganov <sergey@droganov.ru>",
+  "author": "Sergei Droganov <serge@droganov.ru>",
   "license": "MIT",
   "repository": "yobta/yobta",
   "sideEffects": false,
@@ -106,6 +106,7 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config/esm",
     "rules": {
+      "@typescript-eslint/no-explicit-any": "off"
     },
     "globals": {
       "jsdom": false
@@ -120,42 +121,34 @@
       "import": {
         "./index.js": "{ createRule }"
       },
-      "limit": "62 B"
+      "limit": "10 B"
     },
     {
       "name": "Validator factory",
       "import": {
-        "./index.js": "{ createValidator }"
+        "./index.js": "{ createSyncValidator }"
       },
-      "limit": "51 B"
-    },
-    {
-      "name": "invariant",
-      "import": {
-        "./index.js": "{ invariant }"
-      },
-      "limit": "18 B"
+      "limit": "86 B"
     },
     {
       "name": "isOptional",
       "import": {
         "./index.js": "{ isOptional }"
       },
-      "limit": "23 B"
+      "limit": "24 B"
     },
     {
       "name": "stringType",
       "import": {
         "./index.js": "{ stringType }"
       },
-      "limit": "149 B"
+      "limit": "122 B"
     },
     {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
-        "./createValidator/index.js": "{ createValidator }",
-        "./invariant/index.js": "{ invariant }",
+        "./createSyncValidator/index.js": "{ createSyncValidator }",
         "./isOptional/index.js": "{ isOptional }",
         "./stringType/index.js": "{ stringType }"
       },

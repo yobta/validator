@@ -1,40 +1,53 @@
 import { jest } from '@jest/globals'
 
-import { invariant } from '../invariant/index.js'
+import { ValidationContext } from '../createSyncValidator/index.js'
 import { createRule } from './index.js'
 
-function validateNumber<I>(input: I): I {
-  invariant(typeof input === 'number', 'please enter a number')
-  return input
+function validateNumber<I>(input: I): number {
+  let number = Number(input)
+  if (isNaN(number)) throw new Error('youbta!')
+  return number
 }
 
-it('accepts', async () => {
+it('validates input', () => {
   let pushError = jest.fn()
   let testNumber = createRule(validateNumber)
-  let result = await testNumber({ data: 1, path: ['price'], pushError })
-  expect(result).toBe(1)
+  let result = testNumber({ isAsync: false, path: ['price'], pushError })(1)
+  expect(result).toEqual(1)
   expect(pushError).toHaveBeenCalledTimes(0)
 })
 
-it('rejects', async () => {
-  let pushError = jest.fn()
-  let testNumber = createRule(validateNumber)
-  let result = await testNumber({ data: '1', path: ['price'], pushError })
-  expect(result).toBe('1')
-  expect(pushError).toHaveBeenCalledTimes(1)
-})
-
-it('catches', async () => {
+it('does not intercept errors', () => {
   let pushError = jest.fn()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let simulateUnexpectedException = createRule((data: number) => {
-    throw new Error('')
+    throw new Error('yobta!')
   })
-  let result = await simulateUnexpectedException({
-    data: 1,
+  expect(() =>
+    simulateUnexpectedException({
+      isAsync: false,
+      path: ['price'],
+      pushError
+    })(1)
+  ).toThrow('yobta!')
+  expect(pushError).toHaveBeenCalledTimes(0)
+})
+
+it('gets both data and context', () => {
+  let pushError = jest.fn()
+  let spy = jest.fn()
+  let validationContext: ValidationContext = {
+    isAsync: false,
     path: ['price'],
     pushError
-  })
-  expect(result).toBe(1)
-  expect(pushError).toHaveBeenCalledTimes(1)
+  }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let simulateUnexpectedException = createRule(
+    (data: number, context: ValidationContext) => {
+      spy(data, context)
+      return data
+    }
+  )
+  simulateUnexpectedException(validationContext)(1)
+  expect(spy).toHaveBeenCalledWith(1, validationContext)
 })

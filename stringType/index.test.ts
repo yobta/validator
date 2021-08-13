@@ -1,53 +1,59 @@
-import { createValidator } from '../createValidator/index.js'
-import { optionalList } from '../isOptional/index.js'
+import { createSyncValidator } from '../createSyncValidator/index.js'
 import { stringType, stringTypeMessage } from './index.js'
 
-const customMessage = 'string type error'
+const customMessage = 'yobta!'
 const stringRule = stringType(customMessage)
-const validate = createValidator(stringRule)
+const validate = createSyncValidator(stringRule)
 
-const validVariants = ['piu', '1', '', String('')]
-const invalidVariants = [
-  [],
-  {},
-  0,
-  new Date(),
-  Symbol('y'),
-  new Set(),
-  new Map()
-]
-
-it('accepts valid', async () => {
-  let tests = validVariants.map(async variant => {
-    let [result, errors] = await validate(variant)
-    expect(result).toBe(variant)
-    expect(errors).toEqual([])
-  })
-  await Promise.all(tests)
+it('accepts strings', () => {
+  let result = validate('yobta')
+  expect(result).toEqual(['yobta', null])
 })
 
-it('accepts optional', async () => {
-  let tests = optionalList.map(async variant => {
-    let [result, errors] = await validate(variant)
-    expect(result).toBe(variant)
-    expect(errors).toEqual([])
-  })
-  await Promise.all(tests)
+it('accepts undefined', () => {
+  let result = validate(undefined)
+  expect(result).toEqual([undefined, null])
 })
 
-it('rejects invalid', async () => {
-  let tests = invalidVariants.map(async variant => {
-    let [result, errors] = await validate(variant)
-    expect(result).toBe(variant)
-    expect(errors).toEqual([{ message: customMessage, path: [] }])
-  })
-  await Promise.all(tests)
+it('coerces null', () => {
+  let result = validate(null)
+  expect(result).toEqual(['', null])
 })
 
-it('has default error message', async () => {
+it('coerces number', () => {
+  let result = validate(1)
+  expect(result).toEqual(['1', null])
+})
+
+it('coerces booelan', () => {
+  let result = validate(true)
+  expect(result).toEqual(['true', null])
+})
+
+it('coerces string object', () => {
+  // eslint-disable-next-line no-new-wrappers
+  let result = validate(new String('yobta'))
+  expect(result).toEqual(['yobta', null])
+})
+
+it('rejects invalid', () => {
+  ;[
+    [],
+    {},
+    new Date(),
+    Symbol('y'),
+    new Set(),
+    new Map(),
+    () => 'yobta'
+  ].forEach(variant => {
+    let result = validate(variant)
+    expect(result).toEqual([null, [{ message: customMessage, path: [] }]])
+  })
+})
+
+it('has default error message', () => {
   let defaultString = stringType()
-  let validateDefault = createValidator(defaultString)
-  let [result, errors] = await validateDefault(1)
-  expect(result).toBe(1)
-  expect(errors).toEqual([{ message: stringTypeMessage, path: [] }])
+  let validateDefault = createSyncValidator(defaultString)
+  let result = validateDefault([])
+  expect(result).toEqual([null, [{ message: stringTypeMessage, path: [] }]])
 })

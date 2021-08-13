@@ -41,8 +41,7 @@ const getInitialState = syncYobta(
         minYobta(16),
         maxYobta(150),
       )
-  }),
-  serializeYobta(),
+  })
 )
 
 const [initialState] = getInitialState()
@@ -80,9 +79,7 @@ const validate = asyncYobta(
     passwordRetype: [
       sameYobta('newPassword', 'Should match new password')
     ],
-  }),
-  constraintYobta(),
-  serializeYobta(),
+  })
 )
 
 const myForm = window.getElementByID('myForm')

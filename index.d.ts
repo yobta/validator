@@ -13,5 +13,11 @@ export {
   createStore
 } from './createRule/index.js'
 
-export { Transition, TransitionTrigger } from './createValidator/index.js'
+export {
+  createSyncValidator,
+  ValidationError,
+  ValidationContext,
+  SyncValidator
+} from './createSyncValidator/index.js'
+
 export { isOptional } from './isOptional/index.js'

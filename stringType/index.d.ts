@@ -1,5 +1,5 @@
-import { Rule } from '../createRule/index.js'
+import { SyncRule } from '../createRule/index.js'
 
 export const stringTypeMessage: string
 
-export function stringType(message?: string): Rule
+export function stringType<I>(message?: string): SyncRule<I, string | undefined>

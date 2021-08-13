@@ -1,3 +1,3 @@
-export const optionalList = [undefined, null, '']
+export const optionalSet = new Set([undefined, null, ''])
 
-export const isOptional = value => optionalList.includes(value)
+export const isOptional = value => optionalSet.has(value)
