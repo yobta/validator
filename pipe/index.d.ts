@@ -1,3 +1,26 @@
+export type Factory = (config: any) => (arg: any) => any
+export type Factories = [Factory, ...Factory[]]
+
+export type PipedFactories<F extends Factories> = F & AsFactoryChain<F>
+type AsFactoryChain<F extends Factories, T extends Factory[] = Tail<F>> = {
+  [K in keyof F]: (
+    arg: ArgType<FactoryProduct<F, T, K>>
+  ) => FactoryProduct<F, T, K>
+}
+type FactoryProduct<
+  F extends Factories,
+  T extends Factory[],
+  K extends keyof F
+> = (arg: ArgType<F>) => ArgType<Lookup<ExtractReturnTypes<T>, K, any>, any>
+
+type ExtractReturnTypes<T extends Func1[]> = {
+  [P in keyof T]: T[P] extends (a: ArgType<T[P]>) => infer R ? R : never
+}
+
+export type PipeFactoryResult<F extends Factories> = LaxReturnType<
+  Last<ExtractReturnTypes<F>>
+>
+
 type Lookup<T, K extends keyof any, Else = never> = K extends keyof T
   ? T[K]
   : Else

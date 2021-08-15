@@ -1,16 +1,18 @@
 import { SyncRule } from '../createRule/index.js'
-import { Funtions, PipedFunctions, PipeResult } from '../pipe/index.js'
+import { PipeFactoryResult, Factories, PipedFactories } from '../pipe/index.js'
 
-type Result<R extends Record<string, Funtions>> = {
-  [Property in keyof R]: PipeResult<R[Property]>
+type Result<R extends Record<string, Factories>> = {
+  [Property in keyof R]: PipeFactoryResult<R[Property]>
 }
 
-type Config<R extends Record<string, Funtions>> = {
-  [Property in keyof R]: PipedFunctions<R[Property]>
+type Config<R extends Record<string, Factories>> = {
+  [K in keyof R]: PipedFactories<R[K]>
 }
+
+export const plainObjectTypeMessage: string
 
 export function plainObjectType<
-  R extends Record<string, Funtions>,
+  R extends Record<string, Factories>,
   I,
   C extends string
->(rulesSet: Config<R>, message?: C): SyncRule<I, Result<R>>
+>(config: Config<R>, message?: C): SyncRule<I, Result<R>>

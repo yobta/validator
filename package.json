@@ -128,7 +128,7 @@
       "import": {
         "./index.js": "{ createSyncValidator }"
       },
-      "limit": "86 B"
+      "limit": "98 B"
     },
     {
       "name": "isOptional",
@@ -136,6 +136,27 @@
         "./index.js": "{ isOptional }"
       },
       "limit": "24 B"
+    },
+    {
+      "name": "isPlainObject",
+      "import": {
+        "./index.js": "{ isPlainObject }"
+      },
+      "limit": "191 B"
+    },
+    {
+      "name": "pipe",
+      "import": {
+        "./index.js": "{ pipe }"
+      },
+      "limit": "20 B"
+    },
+    {
+      "name": "plainObjectType",
+      "import": {
+        "./index.js": "{ plainObjectType }"
+      },
+      "limit": "375 B"
     },
     {
       "name": "stringType",
@@ -150,9 +171,12 @@
         "./createRule/index.js": "{ createRule }",
         "./createSyncValidator/index.js": "{ createSyncValidator }",
         "./isOptional/index.js": "{ isOptional }",
+        "./isPlainObject/index.js": "{ isPlainObject }",
+        "./pipe/index.js": "{ pipe }",
+        "./plainObjectType/index.js": "{ plainObjectType }",
         "./stringType/index.js": "{ stringType }"
       },
-      "limit": "527 B"
+      "limit": "1000 B"
     }
   ],
   "yaspeller": {
@@ -189,6 +213,8 @@
       "formurai",
       "hydration",
       "serializers",
+      "Calzaretta",
+      "Schlinkert",
       "validation"
     ]
   },

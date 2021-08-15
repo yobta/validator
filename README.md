@@ -129,3 +129,5 @@ Docs coming soon
 
 ###### Kudos:
 [Andrey Sitnik](https://sitnik.ru)
+[Joe Calzaretta](https://github.com/jcalz)
+[Jon Schlinkert](https://github.com/jonschlinkert)

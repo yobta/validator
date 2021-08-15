@@ -1,3 +1,5 @@
+const field = '@root'
+
 export const createSyncValidator = validate => input => {
   let errors = []
   let pushError = error => errors.push(error)
@@ -7,11 +9,12 @@ export const createSyncValidator = validate => input => {
   try {
     result = validate({
       async: false,
+      field,
       path: [],
       pushError
     })(input)
   } catch (error) {
-    pushError({ message: error.message, path: [] })
+    pushError({ field, message: error.message, path: [] })
   }
 
   return errors.length ? [null, errors] : [result, null]

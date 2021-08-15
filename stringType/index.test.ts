@@ -47,7 +47,10 @@ it('rejects invalid', () => {
     () => 'yobta'
   ].forEach(variant => {
     let result = validate(variant)
-    expect(result).toEqual([null, [{ message: customMessage, path: [] }]])
+    expect(result).toEqual([
+      null,
+      [{ field: '@root', message: customMessage, path: [] }]
+    ])
   })
 })
 
@@ -55,5 +58,8 @@ it('has default error message', () => {
   let defaultString = stringType()
   let validateDefault = createSyncValidator(defaultString)
   let result = validateDefault([])
-  expect(result).toEqual([null, [{ message: stringTypeMessage, path: [] }]])
+  expect(result).toEqual([
+    null,
+    [{ field: '@root', message: stringTypeMessage, path: [] }]
+  ])
 })

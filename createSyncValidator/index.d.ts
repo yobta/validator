@@ -1,7 +1,7 @@
 import { SyncRule } from '../createRule/index.js'
 
 export type ValidationError = {
-  field?: string
+  field: string
   message: string
   path: string[]
 }

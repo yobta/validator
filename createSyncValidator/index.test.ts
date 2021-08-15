@@ -15,5 +15,8 @@ it('accepts valid', () => {
 
 it('rejects invalid', () => {
   let result = validate('1')
-  expect(result).toEqual([null, [{ message: 'yobta!', path: [] }]])
+  expect(result).toEqual([
+    null,
+    [{ field: '@root', message: 'yobta!', path: [] }]
+  ])
 })
