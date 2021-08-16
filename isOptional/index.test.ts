@@ -8,8 +8,9 @@ it('accepts valid', () => {
 })
 
 it('rejects invalid', () => {
-  ;['piu', 1, new Date(), String('s'), Symbol('y')].forEach(validVariant => {
-    let result = isOptional(validVariant)
+  let options = ['piu', 1, new Date(), String('s'), Symbol('y')]
+  options.forEach(option => {
+    let result = isOptional(option)
     expect(result).toBe(false)
   })
 })
