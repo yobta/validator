@@ -264,6 +264,13 @@
       "limit": "80 B"
     },
     {
+      "name": "RegExp test rule",
+      "import": {
+        "./index.js": "{ testYobta }"
+      },
+      "limit": "56 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -286,7 +293,8 @@
         "./minimumYobta/index.js": "{ minimumYobta }",
         "./maximumYobta/index.js": "{ maximumYobta }",
         "./minDateYobta/index.js": "{ minDateYobta }",
-        "./maxDateYobta/index.js": "{ maxDateYobta }"
+        "./maxDateYobta/index.js": "{ maxDateYobta }",
+        "./testYobta/index.js": "{ testYobta }"
       },
       "limit": "1500 B"
     }
