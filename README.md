@@ -106,7 +106,7 @@ const [formData, errors] = await validate(myForm)
   - [+] maximum
 - [+] Boolean validator
 - [+] Date validator
-  - [-] minDate
+  - [+] minDate
   - [-] maxDate
 - [-] FormData validator
 - [-] URLSearchParams validator

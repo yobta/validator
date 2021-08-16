@@ -250,6 +250,13 @@
       "limit": "63 B"
     },
     {
+      "name": "Minimum date rule",
+      "import": {
+        "./index.js": "{ minDateYobta }"
+      },
+      "limit": "82 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -270,9 +277,10 @@
         "./minCharactersYobta/index.js": "{ minCharactersYobta }",
         "./maxCharactersYobta/index.js": "{ maxCharactersYobta }",
         "./minimumYobta/index.js": "{ minimumYobta }",
-        "./maximumYobta/index.js": "{ maximumYobta }"
+        "./maximumYobta/index.js": "{ maximumYobta }",
+        "./minDateYobta/index.js": "{ minDateYobta }"
       },
-      "limit": "1000 B"
+      "limit": "1500 B"
     }
   ],
   "yaspeller": {
