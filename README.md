@@ -96,9 +96,9 @@ const [formData, errors] = await validate(myForm)
 - [+] Array validator
   - [-] items
   - [+] minItems
-  - [-] maxItems
+  - [+] maxItems
 - [+] String validator
-  - [-] minCharacters
+  - [+] minCharacters
   - [-] maxCharacters
 - [+] Number validator
   - [+] int

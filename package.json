@@ -222,6 +222,13 @@
       "limit": "99 B"
     },
     {
+      "name": "Minimum characters rule",
+      "import": {
+        "./index.js": "{ minCharactersYobta }"
+      },
+      "limit": "105 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -238,7 +245,8 @@
         "./dateYobta/index.js": "{ dateYobta }",
         "./booleanYobta/index.js": "{ booleanYobta }",
         "./minItemsYobta/index.js": "{ minItemsYobta }",
-        "./maxItemsYobta/index.js": "{ maxItemsYobta }"
+        "./maxItemsYobta/index.js": "{ maxItemsYobta }",
+        "./minCharactersYobta/index.js": "{ minCharactersYobta }"
       },
       "limit": "1000 B"
     }
