@@ -1,9 +1,9 @@
-import { createSyncValidator } from '../createSyncValidator/index.js'
-import { stringType, stringTypeMessage } from './index.js'
+import { syncYobta } from '../syncYobta/index.js'
+import { stringYobta, stringMessage } from './index.js'
 
 const customMessage = 'yobta!'
-const stringRule = stringType(customMessage)
-const validate = createSyncValidator(stringRule)
+const stringRule = stringYobta(customMessage)
+const validate = syncYobta(stringRule)
 
 it('accepts strings', () => {
   let result = validate('yobta')
@@ -55,11 +55,11 @@ it('rejects invalid', () => {
 })
 
 it('has default error message', () => {
-  let defaultString = stringType()
-  let validateDefault = createSyncValidator(defaultString)
+  let defaultString = stringYobta()
+  let validateDefault = syncYobta(defaultString)
   let result = validateDefault([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: stringTypeMessage, path: [] }]
+    [{ field: '@root', message: stringMessage, path: [] }]
   ])
 })

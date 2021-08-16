@@ -2,9 +2,9 @@ import { createRule } from '../createRule/index.js'
 import { isPlainObject } from '../isPlainObject/index.js'
 import { pipe } from '../pipe/index.js'
 
-export const plainObjectTypeMessage = 'Should be a plain object'
+export const shapeMessage = 'Should be a plain object'
 
-export const plainObjectType = (rulesSet, message = plainObjectTypeMessage) =>
+export const shapeYobta = (rulesSet, message = shapeMessage) =>
   createRule((input, context) => {
     if (!isPlainObject(input)) throw new Error(message)
     return Object.entries(rulesSet).reduce((acc, [field, rules]) => {

@@ -126,7 +126,7 @@
     {
       "name": "Validator factory",
       "import": {
-        "./index.js": "{ createSyncValidator }"
+        "./index.js": "{ syncYobta }"
       },
       "limit": "98 B"
     },
@@ -152,16 +152,16 @@
       "limit": "20 B"
     },
     {
-      "name": "plainObjectType",
+      "name": "shapeYobta",
       "import": {
-        "./index.js": "{ plainObjectType }"
+        "./index.js": "{ shapeYobta }"
       },
       "limit": "375 B"
     },
     {
-      "name": "stringType",
+      "name": "stringYobta",
       "import": {
-        "./index.js": "{ stringType }"
+        "./index.js": "{ stringYobta }"
       },
       "limit": "122 B"
     },
@@ -169,12 +169,12 @@
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
-        "./createSyncValidator/index.js": "{ createSyncValidator }",
+        "./syncYobta/index.js": "{ syncYobta }",
         "./isOptional/index.js": "{ isOptional }",
         "./isPlainObject/index.js": "{ isPlainObject }",
         "./pipe/index.js": "{ pipe }",
-        "./plainObjectType/index.js": "{ plainObjectType }",
-        "./stringType/index.js": "{ stringType }"
+        "./shapeYobta/index.js": "{ shapeYobta }",
+        "./stringYobta/index.js": "{ stringYobta }"
       },
       "limit": "1000 B"
     }

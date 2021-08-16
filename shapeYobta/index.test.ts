@@ -1,11 +1,11 @@
-import { createSyncValidator } from '../createSyncValidator/index.js'
-import { stringType, stringTypeMessage } from '../stringType/index.js'
-import { plainObjectType, plainObjectTypeMessage } from './index.js'
+import { syncYobta } from '../syncYobta/index.js'
+import { stringYobta, stringMessage } from '../stringYobta/index.js'
+import { shapeYobta, shapeMessage } from './index.js'
 
 // const customMessage = 'yobta!'
-const validate = createSyncValidator(
-  plainObjectType({
-    name: [stringType()]
+const validate = syncYobta(
+  shapeYobta({
+    name: [stringYobta()]
   })
 )
 
@@ -20,15 +20,15 @@ it('rejects invalid input', () => {
   let result = validate([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: plainObjectTypeMessage, path: [] }]
+    [{ field: '@root', message: shapeMessage, path: [] }]
   ])
 })
 
 it('has custom error messages', () => {
-  let result = createSyncValidator(
-    plainObjectType(
+  let result = syncYobta(
+    shapeYobta(
       {
-        name: [stringType()]
+        name: [stringYobta()]
       },
       'yobta!'
     )
@@ -45,6 +45,6 @@ it('captures errors from field validators', () => {
   })
   expect(result).toEqual([
     null,
-    [{ field: 'name', message: stringTypeMessage, path: ['name'] }]
+    [{ field: 'name', message: stringMessage, path: ['name'] }]
   ])
 })

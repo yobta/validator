@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals'
 
-import { ValidationContext } from '../createSyncValidator/index.js'
+import { ValidationContext } from '../syncYobta/index.js'
 import { createRule } from './index.js'
 
 function validateNumber<I>(input: I): number {

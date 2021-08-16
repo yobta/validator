@@ -9,9 +9,9 @@ type Config<R extends Record<string, Factories>> = {
   [K in keyof R]: PipedFactories<R[K]>
 }
 
-export const plainObjectTypeMessage: string
+export const shapeMessage: string
 
-export function plainObjectType<
+export function shapeYobta<
   R extends Record<string, Factories>,
   I,
   C extends string

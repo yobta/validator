@@ -1,4 +1,4 @@
-import { ValidationContext } from '../createSyncValidator/index.js'
+import { ValidationContext } from '../syncYobta/index.js'
 
 export type ValidateRule<I, O> = (input: I, context: ValidationContext) => O
 

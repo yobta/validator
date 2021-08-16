@@ -90,33 +90,33 @@ const [formData, errors] = await validate(myForm)
 ## Roadmap
 
 ### Types
--[-] Async validator
--[-] Sync validator
--[-] Map validator
--[-] Array validator
--[-] String validator
-  -[-] email
-  -[-] url
--[-] Number validator
-  -[-] int
--[-] Boolean validator
--[-] Date validator
--[-] FormData validator
--[-] URLSearchParams validator
+- [-] Async validator
+- [+] Sync validator
+- [+] Shape validator
+- [-] Array validator
+- [+] String validator
+  - [-] email
+  - [-] url
+- [-] Number validator
+  - [-] int
+- [-] Boolean validator
+- [-] Date validator
+- [-] FormData validator
+- [-] URLSearchParams validator
 
 ### Type Utilities
--[-] minDate
--[-] maxDate
--[-] minLength
--[-] maxLength
--[-] matches
+- [-] minDate
+- [-] maxDate
+- [-] minLength
+- [-] maxLength
+- [-] matches
 ### Flow Utilities
--[-] required
--[-] fallback
--[-] is
--[-] isNot
--[-] oneOf
--[-] anyOf
+- [-] required
+- [-] fallback
+- [-] is
+- [-] isNot
+- [-] oneOf
+- [-] anyOf
 
 ## Samples
 - Ajv — Follows [json-schema.org](https://json-schema.org) specs, great choice for a back-end

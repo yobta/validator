@@ -17,6 +17,4 @@ export type SyncValidator<D, O> = (
   data: D
 ) => [O, null] | [null, ValidationError[]]
 
-export function createSyncValidator<I, O>(
-  rule: SyncRule<I, O>
-): SyncValidator<I, O>
+export function syncYobta<I, O>(rule: SyncRule<I, O>): SyncValidator<I, O>

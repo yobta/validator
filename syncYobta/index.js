@@ -1,6 +1,6 @@
 const field = '@root'
 
-export const createSyncValidator = validate => input => {
+export const syncYobta = validate => input => {
   let errors = []
   let pushError = error => errors.push(error)
 
