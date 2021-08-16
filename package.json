@@ -180,6 +180,13 @@
       "limit": "133 B"
     },
     {
+      "name": "Integer validator",
+      "import": {
+        "./index.js": "{ integerYobta }"
+      },
+      "limit": "75 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -190,7 +197,8 @@
         "./shapeYobta/index.js": "{ shapeYobta }",
         "./stringYobta/index.js": "{ stringYobta }",
         "./arrayYobta/index.js": "{ arrayYobta }",
-        "./numberYobta/index.js": "{ numberYobta }"
+        "./numberYobta/index.js": "{ numberYobta }",
+        "./integerYobta/index.js": "{ integerYobta }"
       },
       "limit": "1000 B"
     }
