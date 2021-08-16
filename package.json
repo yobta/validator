@@ -240,7 +240,14 @@
       "import": {
         "./index.js": "{ minimumYobta }"
       },
-      "limit": "62 B"
+      "limit": "64 B"
+    },
+    {
+      "name": "Maximum rule",
+      "import": {
+        "./index.js": "{ maximumYobta }"
+      },
+      "limit": "63 B"
     },
     {
       "name": "All",
@@ -262,7 +269,8 @@
         "./maxItemsYobta/index.js": "{ maxItemsYobta }",
         "./minCharactersYobta/index.js": "{ minCharactersYobta }",
         "./maxCharactersYobta/index.js": "{ maxCharactersYobta }",
-        "./minimumYobta/index.js": "{ minimumYobta }"
+        "./minimumYobta/index.js": "{ minimumYobta }",
+        "./maximumYobta/index.js": "{ maximumYobta }"
       },
       "limit": "1000 B"
     }

@@ -103,7 +103,7 @@ const [formData, errors] = await validate(myForm)
 - [+] Number validator
   - [+] int
   - [+] minimum
-  - [-] maximum
+  - [+] maximum
 - [+] Boolean validator
 - [+] Date validator
   - [-] minDate

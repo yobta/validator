@@ -1,6 +1,6 @@
 import { createRule } from '../createRule/index.js'
 
-export const minimumYobtaMessage = limit => `Should be least ${limit}`
+export const minimumYobtaMessage = limit => `Should be at least ${limit}`
 
 export const minimumYobta = (limit, message = minimumYobtaMessage) =>
   createRule(input => {
