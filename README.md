@@ -102,8 +102,8 @@ const [formData, errors] = await validate(myForm)
   - [+] maxCharacters
 - [+] Number validator
   - [+] int
-  - [-] minValue
-  - [-] maxValue
+  - [+] minimum
+  - [-] maximum
 - [+] Boolean validator
 - [+] Date validator
   - [-] minDate
@@ -117,7 +117,7 @@ const [formData, errors] = await validate(myForm)
   - [-] url
 ### Flow Utilities
 - [-] required
-- [-] fallback
+- [-] catch
 - [-] is
 - [-] isNot
 - [-] oneOf
@@ -136,3 +136,5 @@ Docs coming soon
 [Andrey Sitnik](https://sitnik.ru)
 [Joe Calzaretta](https://github.com/jcalz)
 [Jon Schlinkert](https://github.com/jonschlinkert)
+###### Pokes:
+[YoptaScript](github.com/samgozman/YoptaScript)

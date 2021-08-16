@@ -236,6 +236,13 @@
       "limit": "102 B"
     },
     {
+      "name": "Minimum rule",
+      "import": {
+        "./index.js": "{ minimumYobta }"
+      },
+      "limit": "62 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -254,7 +261,8 @@
         "./minItemsYobta/index.js": "{ minItemsYobta }",
         "./maxItemsYobta/index.js": "{ maxItemsYobta }",
         "./minCharactersYobta/index.js": "{ minCharactersYobta }",
-        "./maxCharactersYobta/index.js": "{ maxCharactersYobta }"
+        "./maxCharactersYobta/index.js": "{ maxCharactersYobta }",
+        "./minimumYobta/index.js": "{ minimumYobta }"
       },
       "limit": "1000 B"
     }
@@ -301,6 +309,7 @@
       "maxCharacters",
       "minValue",
       "maxValue",
+      "YoptaScript",
       "validation"
     ]
   },
