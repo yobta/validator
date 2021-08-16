@@ -95,12 +95,10 @@ const [formData, errors] = await validate(myForm)
 - [+] Shape validator
 - [+] Array validator
 - [+] String validator
-  - [-] email
-  - [-] url
 - [+] Number validator
   - [+] int
 - [-] Boolean validator
-- [-] Date validator
+- [+] Date validator
 - [-] FormData validator
 - [-] URLSearchParams validator
 
@@ -110,6 +108,8 @@ const [formData, errors] = await validate(myForm)
 - [-] minLength
 - [-] maxLength
 - [-] matches
+  - [-] email
+  - [-] url
 ### Flow Utilities
 - [-] required
 - [-] fallback

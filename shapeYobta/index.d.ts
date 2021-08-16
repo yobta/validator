@@ -15,4 +15,4 @@ export function shapeYobta<
   R extends Record<string, Factories>,
   I,
   C extends string
->(config: Config<R>, message?: C): SyncRule<I, Result<R>>
+>(config: Config<R>, message?: C): SyncRule<I, Result<R> | undefined>

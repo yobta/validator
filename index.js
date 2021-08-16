@@ -4,6 +4,7 @@ export { isPlainObject } from './isPlainObject/index.js'
 export { pipe } from './pipe/index.js'
 
 export { arrayYobta } from './arrayYobta/index.js'
+export { dateYobta } from './dateYobta/index.js'
 export { integerYobta } from './integerYobta/index.js'
 export { numberYobta } from './numberYobta/index.js'
 export { shapeYobta } from './shapeYobta/index.js'

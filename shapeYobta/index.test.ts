@@ -24,6 +24,11 @@ it('rejects invalid input', () => {
   ])
 })
 
+it('can be undefined', () => {
+  let result = validate(undefined)
+  expect(result).toEqual([undefined, null])
+})
+
 it('has custom error messages', () => {
   let result = syncYobta(
     shapeYobta(
