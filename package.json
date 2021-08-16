@@ -215,6 +215,13 @@
       "limit": "102 B"
     },
     {
+      "name": "Maximum items rule",
+      "import": {
+        "./index.js": "{ maxItemsYobta }"
+      },
+      "limit": "99 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -230,7 +237,8 @@
         "./integerYobta/index.js": "{ integerYobta }",
         "./dateYobta/index.js": "{ dateYobta }",
         "./booleanYobta/index.js": "{ booleanYobta }",
-        "./minItemsYobta/index.js": "{ minItemsYobta }"
+        "./minItemsYobta/index.js": "{ minItemsYobta }",
+        "./maxItemsYobta/index.js": "{ maxItemsYobta }"
       },
       "limit": "1000 B"
     }
