@@ -194,6 +194,13 @@
       "limit": "83 B"
     },
     {
+      "name": "Boolean rule",
+      "import": {
+        "./index.js": "{ booleanYobta }"
+      },
+      "limit": "154 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -206,7 +213,8 @@
         "./arrayYobta/index.js": "{ arrayYobta }",
         "./numberYobta/index.js": "{ numberYobta }",
         "./integerYobta/index.js": "{ integerYobta }",
-        "./dateYobta/index.js": "{ dateYobta }"
+        "./dateYobta/index.js": "{ dateYobta }",
+        "./booleanYobta/index.js": "{ booleanYobta }"
       },
       "limit": "1000 B"
     }

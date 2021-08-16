@@ -2,8 +2,7 @@ import { syncYobta } from '../syncYobta/index.js'
 import { stringYobta, stringMessage } from './index.js'
 
 const customMessage = 'yobta!'
-const stringRule = stringYobta(customMessage)
-const validate = syncYobta(stringRule)
+const validate = syncYobta(stringYobta(customMessage))
 
 it('accepts strings', () => {
   let result = validate('yobta')
