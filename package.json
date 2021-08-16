@@ -152,18 +152,25 @@
       "limit": "20 B"
     },
     {
-      "name": "shapeYobta",
+      "name": "Shape validator",
       "import": {
         "./index.js": "{ shapeYobta }"
       },
       "limit": "375 B"
     },
     {
-      "name": "stringYobta",
+      "name": "String validator",
       "import": {
         "./index.js": "{ stringYobta }"
       },
       "limit": "122 B"
+    },
+    {
+      "name": "Array validator",
+      "import": {
+        "./index.js": "{ arrayYobta }"
+      },
+      "limit": "69 B"
     },
     {
       "name": "All",
@@ -174,7 +181,8 @@
         "./isPlainObject/index.js": "{ isPlainObject }",
         "./pipe/index.js": "{ pipe }",
         "./shapeYobta/index.js": "{ shapeYobta }",
-        "./stringYobta/index.js": "{ stringYobta }"
+        "./stringYobta/index.js": "{ stringYobta }",
+        "./arrayYobta/index.js": "{ arrayYobta }"
       },
       "limit": "1000 B"
     }
