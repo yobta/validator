@@ -173,6 +173,13 @@
       "limit": "69 B"
     },
     {
+      "name": "Number validator",
+      "import": {
+        "./index.js": "{ numberYobta }"
+      },
+      "limit": "133 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -182,7 +189,8 @@
         "./pipe/index.js": "{ pipe }",
         "./shapeYobta/index.js": "{ shapeYobta }",
         "./stringYobta/index.js": "{ stringYobta }",
-        "./arrayYobta/index.js": "{ arrayYobta }"
+        "./arrayYobta/index.js": "{ arrayYobta }",
+        "./numberYobta/index.js": "{ numberYobta }"
       },
       "limit": "1000 B"
     }

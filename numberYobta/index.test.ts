@@ -1,13 +1,12 @@
 import { syncYobta } from '../syncYobta/index.js'
-import { stringYobta, stringMessage } from './index.js'
+import { numberYobta, numberMessage } from './index.js'
 
 const customMessage = 'yobta!'
-const stringRule = stringYobta(customMessage)
-const validate = syncYobta(stringRule)
+const validate = syncYobta(numberYobta(customMessage))
 
-it('accepts strings', () => {
-  let result = validate('yobta')
-  expect(result).toEqual(['yobta', null])
+it('accepts numbers', () => {
+  let result = validate(1)
+  expect(result).toEqual([1, null])
 })
 
 it('accepts undefined', () => {
@@ -17,27 +16,23 @@ it('accepts undefined', () => {
 
 it('coerces null', () => {
   let result = validate(null)
-  expect(result).toEqual(['', null])
+  expect(result).toEqual([0, null])
 })
 
-it('coerces number', () => {
-  let result = validate(1)
-  expect(result).toEqual(['1', null])
+it('coerces string', () => {
+  let result = validate('1')
+  expect(result).toEqual([1, null])
 })
 
 it('coerces booelan', () => {
   let result = validate(true)
-  expect(result).toEqual(['true', null])
-})
-
-it('coerces string object', () => {
-  // eslint-disable-next-line no-new-wrappers
-  let result = validate(new String('yobta'))
-  expect(result).toEqual(['yobta', null])
+  expect(result).toEqual([1, null])
 })
 
 it('rejects invalid', () => {
   let variants = [
+    NaN,
+    Infinity,
     [],
     {},
     new Date(),
@@ -56,11 +51,10 @@ it('rejects invalid', () => {
 })
 
 it('has default error message', () => {
-  let rule = stringYobta()
-  let validateDefault = syncYobta(rule)
+  let validateDefault = syncYobta(numberYobta())
   let result = validateDefault([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: stringMessage, path: [] }]
+    [{ field: '@root', message: numberMessage, path: [] }]
   ])
 })

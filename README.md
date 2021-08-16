@@ -93,11 +93,11 @@ const [formData, errors] = await validate(myForm)
 - [-] Async validator
 - [+] Sync validator
 - [+] Shape validator
-- [-] Array validator
+- [+] Array validator
 - [+] String validator
   - [-] email
   - [-] url
-- [-] Number validator
+- [+] Number validator
   - [-] int
 - [-] Boolean validator
 - [-] Date validator
