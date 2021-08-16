@@ -257,6 +257,13 @@
       "limit": "82 B"
     },
     {
+      "name": "Maximum date rule",
+      "import": {
+        "./index.js": "{ maxDateYobta }"
+      },
+      "limit": "80 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -278,7 +285,8 @@
         "./maxCharactersYobta/index.js": "{ maxCharactersYobta }",
         "./minimumYobta/index.js": "{ minimumYobta }",
         "./maximumYobta/index.js": "{ maximumYobta }",
-        "./minDateYobta/index.js": "{ minDateYobta }"
+        "./minDateYobta/index.js": "{ minDateYobta }",
+        "./maxDateYobta/index.js": "{ maxDateYobta }"
       },
       "limit": "1500 B"
     }
@@ -326,6 +334,7 @@
       "minValue",
       "maxValue",
       "YoptaScript",
+      "JSDoc",
       "validation"
     ]
   },

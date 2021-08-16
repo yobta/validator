@@ -10,10 +10,10 @@ it('accepts exact date', () => {
   expect(result).toEqual([minDate, null])
 })
 
-it('accepts greater date', () => {
-  let greaterDate = new Date('15 Jun 2017 00:00:00 PDT')
-  let result = validate(greaterDate)
-  expect(result).toEqual([greaterDate, null])
+it('accepts longer date', () => {
+  let longerDate = new Date('15 Jun 2017 00:00:00 PDT')
+  let result = validate(longerDate)
+  expect(result).toEqual([longerDate, null])
 })
 
 it('regects shorter date lenght', () => {

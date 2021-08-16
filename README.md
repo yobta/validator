@@ -107,7 +107,7 @@ const [formData, errors] = await validate(myForm)
 - [+] Boolean validator
 - [+] Date validator
   - [+] minDate
-  - [-] maxDate
+  - [+] maxDate
 - [-] FormData validator
 - [-] URLSearchParams validator
 
@@ -122,6 +122,10 @@ const [formData, errors] = await validate(myForm)
 - [-] isNot
 - [-] oneOf
 - [-] anyOf
+
+### Docs
+- [-] Readme for all
+- [-] JSDoc for all
 
 ## Samples
 - Ajv — Follows [json-schema.org](https://json-schema.org) specs, great choice for a back-end
