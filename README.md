@@ -101,7 +101,9 @@ const [formData, errors] = await validate(myForm)
   - [+] minimum characters
   - [+] maximum characters
   - [+] email
+  - [-] href
   - [-] identical
+  - [-] different
   - [-] credit card number
   - [-] phone number
   - [-] base64

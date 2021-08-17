@@ -1,4 +1,5 @@
 import { SyncRule } from '../createRule/index.js'
+import { Factories, PipedFactories, PipeFactoryResult } from '../pipe/index.js'
 
 export type ValidationError = {
   field: string
@@ -13,8 +14,12 @@ export type ValidationContext = {
   pushError(error: ValidationError): void
 }
 
-export type SyncValidator<D, O> = (
-  data: D
-) => [O, null] | [null, ValidationError[]]
+type RuleFactories<I, O> = [SyncRule<I, O>, ...SyncRule<I, O>[]]
 
-export function syncYobta<I, O>(rule: SyncRule<I, O>): SyncValidator<I, O>
+export type SyncValidator<I, O, R extends RuleFactories<I, O>> = (
+  input: I
+) => [PipeFactoryResult<R>, null] | [null, ValidationError[]]
+
+export function syncYobta<R extends Factories, I, O>(
+  ...rules: PipedFactories<R>
+): SyncValidator<I, O, R>

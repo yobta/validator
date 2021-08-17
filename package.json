@@ -128,7 +128,7 @@
       "import": {
         "./index.js": "{ syncYobta }"
       },
-      "limit": "98 B"
+      "limit": "129 B"
     },
     {
       "name": "Is optional utility",
