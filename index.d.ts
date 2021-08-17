@@ -1,5 +1,4 @@
 export * from './createRule/index.js'
-export * from './isOptional/index.js'
 export * from './isPlainObject/index.js'
 export * from './pipe/index.js'
 export * from './pluralizeEn/index.js'

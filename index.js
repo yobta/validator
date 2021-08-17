@@ -1,5 +1,4 @@
 export { createRule } from './createRule/index.js'
-export { isOptional } from './isOptional/index.js'
 export { isPlainObject } from './isPlainObject/index.js'
 export { pipe } from './pipe/index.js'
 export { pluralizeEn } from './pluralizeEn/index.js'

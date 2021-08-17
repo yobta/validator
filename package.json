@@ -131,13 +131,6 @@
       "limit": "129 B"
     },
     {
-      "name": "Is optional utility",
-      "import": {
-        "./index.js": "{ isOptional }"
-      },
-      "limit": "24 B"
-    },
-    {
       "name": "Is plain object utility",
       "import": {
         "./index.js": "{ isPlainObject }"
@@ -282,7 +275,6 @@
       "import": {
         "./createRule/index.js": "{ createRule }",
         "./syncYobta/index.js": "{ syncYobta }",
-        "./isOptional/index.js": "{ isOptional }",
         "./isPlainObject/index.js": "{ isPlainObject }",
         "./pipe/index.js": "{ pipe }",
         "./pluralizeEn/index.js": "{ pluralizeEn }",
