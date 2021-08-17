@@ -11,6 +11,11 @@ it('accepts if mathed', () => {
   expect(result).toEqual(['table football', null])
 })
 
+it('accepts undefined', () => {
+  let result = validate(undefined)
+  expect(result).toEqual([undefined, null])
+})
+
 it('regects if not matched', () => {
   let result = validate('yobta')
   expect(result).toEqual([

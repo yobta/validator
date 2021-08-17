@@ -268,7 +268,14 @@
       "import": {
         "./index.js": "{ testYobta }"
       },
-      "limit": "56 B"
+      "limit": "63 B"
+    },
+    {
+      "name": "Email rule",
+      "import": {
+        "./index.js": "{ emailYobta }"
+      },
+      "limit": "167 B"
     },
     {
       "name": "All",
@@ -294,7 +301,8 @@
         "./maximumYobta/index.js": "{ maximumYobta }",
         "./minDateYobta/index.js": "{ minDateYobta }",
         "./maxDateYobta/index.js": "{ maxDateYobta }",
-        "./testYobta/index.js": "{ testYobta }"
+        "./testYobta/index.js": "{ testYobta }",
+        "./emailYobta/index.js": "{ emailYobta }"
       },
       "limit": "1500 B"
     }
@@ -343,6 +351,8 @@
       "maxValue",
       "YoptaScript",
       "JSDoc",
+      "base64",
+      "RegExp",
       "validation"
     ]
   },

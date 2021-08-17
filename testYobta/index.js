@@ -4,6 +4,6 @@ export const testMessage = 'Invalid format'
 
 export const testYobta = (expression, message = testMessage) =>
   createRule(input => {
-    if (expression.test(input)) return input
+    if (typeof input === 'undefined' || expression.test(input)) return input
     throw new Error(message)
   })

@@ -95,26 +95,29 @@ const [formData, errors] = await validate(myForm)
 - [+] Shape validator
 - [+] Array validator
   - [-] items
-  - [+] minItems
-  - [+] maxItems
+  - [+] minimum items
+  - [+] maximum items
 - [+] String validator
-  - [+] minCharacters
-  - [+] maxCharacters
+  - [+] minimum characters
+  - [+] maximum characters
+  - [+] email
+  - [-] identical
+  - [-] credit card number
+  - [-] phone number
+  - [-] base64
 - [+] Number validator
   - [+] int
   - [+] minimum
   - [+] maximum
 - [+] Boolean validator
 - [+] Date validator
-  - [+] minDate
-  - [+] maxDate
+  - [+] minimum date
+  - [+] maximum date
+- [+] RegExp test
 - [-] FormData validator
+- [-] URL
 - [-] URLSearchParams validator
 
-### Type Utilities
-- [-] matches
-  - [-] email
-  - [-] url
 ### Flow Utilities
 - [-] required
 - [-] catch
