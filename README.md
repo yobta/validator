@@ -121,7 +121,7 @@ const [formData, errors] = await validate(myForm)
 - [-] URLSearchParams validator
 
 ### Flow Utilities
-- [-] required
+- [+] required
 - [-] catch
 - [-] is
 - [-] isNot
