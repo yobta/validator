@@ -271,6 +271,13 @@
       "limit": "167 B"
     },
     {
+      "name": "Required rule",
+      "import": {
+        "./index.js": "{ requiredYobta }"
+      },
+      "limit": "64 B"
+    },
+    {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
@@ -294,7 +301,8 @@
         "./minDateYobta/index.js": "{ minDateYobta }",
         "./maxDateYobta/index.js": "{ maxDateYobta }",
         "./testYobta/index.js": "{ testYobta }",
-        "./emailYobta/index.js": "{ emailYobta }"
+        "./emailYobta/index.js": "{ emailYobta }",
+        "./requiredYobta/index.js": "{ requiredYobta }"
       },
       "limit": "1500 B"
     }
