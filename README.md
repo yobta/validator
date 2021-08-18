@@ -87,7 +87,16 @@ const myForm = window.getElementByID('myForm')
 const [formData, errors] = await validate(myForm)
 ```
 
-## Roadmap
+## Problems and Limitations
+
+Due to typescript design [limitation](https://github.com/microsoft/TypeScript/issues/25256) the `required` rule needs an explicit type when chained (`requiredYobta<string>('My error')`). To avoid manual errors I decided to chose the wrapping approach:
+
+```js
+requiredYobta(
+  stringYobta('String type error message'),
+  'Required error message'
+)
+```
 
 ### Types
 - [-] Async validator
