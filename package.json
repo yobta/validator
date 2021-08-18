@@ -13,7 +13,8 @@
     "lint": "eslint src",
     "yaspeller": "yaspeller *.md",
     "size-limit": "size-limit",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest src --coverage"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest src --coverage",
+    "typecheck": "tsc --noEmit"
   },
   "author": "Sergei Droganov <serge@droganov.ru>",
   "license": "MIT",

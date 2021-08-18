@@ -12,9 +12,9 @@ function coerce(input: any): boolean {
 
 export const booleanMessage = 'Should be a boolean'
 
-export const booleanYobta = <I>(
+export const booleanYobta = (
   message = booleanMessage
-): SyncRule<I, boolean | undefined> =>
+): SyncRule<any, boolean | undefined> =>
   createRule(input => {
     let value = coerce(input)
 

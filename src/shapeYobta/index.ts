@@ -18,10 +18,10 @@ type Config<R extends Record<string, Factories>> = {
 
 export const shapeMessage = 'Should be a plain object'
 
-export const shapeYobta = <R extends Record<string, Factories>, D extends any>(
+export const shapeYobta = <R extends Record<string, Factories>>(
   rulesSet: Config<R>,
   message = shapeMessage
-): SyncRule<D, Result<R> | undefined> =>
+): SyncRule<any, Result<R> | undefined> =>
   createRule((input, context) => {
     if (!isPlainObject(input) && typeof input !== 'undefined') {
       throw new Error(message)

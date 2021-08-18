@@ -6,3 +6,6 @@ lint:
 
 size-limit: build
 	npm run size-limit
+
+typecheck:
+	npm run typecheck

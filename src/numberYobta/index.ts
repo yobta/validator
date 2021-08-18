@@ -10,17 +10,18 @@ function coerce<I>(input: I): number | I {
 
 export const numberMessage = 'Should be a number'
 
-export const numberYobta = <I>(
+export const numberYobta = (
   message = numberMessage
-): SyncRule<I, number | undefined> =>
+): SyncRule<any, number | undefined> =>
   createRule(input => {
     let value = coerce(input)
 
     if (
       (typeof value === 'number' && !isNaN(value) && Number.isFinite(value)) ||
       typeof value === 'undefined'
-    )
-      {return value}
+    ) {
+      return value
+    }
 
     throw new Error(message)
   })
