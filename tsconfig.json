@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "allowJs": false,
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
+    "outDir": "lib",
     "skipLibCheck": true,
-    "allowJs": true,
     "strict": true,
-    "noEmit": true,
-    "jsx": "react"
+    "target": "es2018"
   },
-  "exclude": [
-    "**/errors.ts"
-  ]
+  "include": ["src"],
+  "exclude": ["**/errors.ts"]
 }
