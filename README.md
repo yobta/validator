@@ -41,8 +41,7 @@ const getInitialState = syncYobta(
         minYobta(16),
         maxYobta(150),
       )
-  }),
-  serializeYobta(),
+  })
 )
 
 const [initialState] = getInitialState()
@@ -80,9 +79,7 @@ const validate = asyncYobta(
     passwordRetype: [
       sameYobta('newPassword', 'Should match new password')
     ],
-  }),
-  constraintYobta(),
-  serializeYobta(),
+  })
 )
 
 const myForm = window.getElementByID('myForm')
@@ -93,33 +90,47 @@ const [formData, errors] = await validate(myForm)
 ## Roadmap
 
 ### Types
--[-] Async validator
--[-] Sync validator
--[-] Map validator
--[-] Array validator
--[-] String validator
-  -[-] email
-  -[-] url
--[-] Number validator
-  -[-] int
--[-] Boolean validator
--[-] Date validator
--[-] FormData validator
--[-] URLSearchParams validator
+- [-] Async validator
+- [+] Sync validator
+- [+] Shape validator
+- [+] Array validator
+  - [-] items
+  - [+] minimum items
+  - [+] maximum items
+- [+] String validator
+  - [+] minimum characters
+  - [+] maximum characters
+  - [+] email
+  - [-] href
+  - [-] identical
+  - [-] different
+  - [-] credit card number
+  - [-] phone number
+  - [-] base64
+- [+] Number validator
+  - [+] int
+  - [+] minimum
+  - [+] maximum
+- [+] Boolean validator
+- [+] Date validator
+  - [+] minimum date
+  - [+] maximum date
+- [+] RegExp test
+- [-] FormData validator
+- [-] URL
+- [-] URLSearchParams validator
 
-### Type Utilities
--[-] minDate
--[-] maxDate
--[-] minLength
--[-] maxLength
--[-] matches
 ### Flow Utilities
--[-] required
--[-] fallback
--[-] is
--[-] isNot
--[-] oneOf
--[-] anyOf
+- [+] required
+- [-] catch
+- [-] is
+- [-] isNot
+- [-] oneOf
+- [-] anyOf
+
+### Docs
+- [-] Readme for all
+- [-] JSDoc for all
 
 ## Samples
 - Ajv — Follows [json-schema.org](https://json-schema.org) specs, great choice for a back-end
@@ -132,3 +143,7 @@ Docs coming soon
 
 ###### Kudos:
 [Andrey Sitnik](https://sitnik.ru)
+[Joe Calzaretta](https://github.com/jcalz)
+[Jon Schlinkert](https://github.com/jonschlinkert)
+###### Pokes:
+[YoptaScript](github.com/samgozman/YoptaScript)

@@ -11,7 +11,7 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage && eslint . && check-dts && size-limit && yaspeller *.md"
   },
-  "author": "Sergei Droganov <sergey@droganov.ru>",
+  "author": "Sergei Droganov <serge@droganov.ru>",
   "license": "MIT",
   "repository": "yobta/yobta",
   "sideEffects": false,
@@ -28,16 +28,9 @@
     "@logux/eslint-config": "^45.4.6",
     "@logux/sharec-config": "^0.10.2",
     "@size-limit/preset-small-lib": "^5.0.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/preact": "^2.0.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/vue": "^6.4.0",
     "@types/jest": "^26.0.24",
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.4.2",
-    "@types/react": "^17.0.15",
-    "@types/react-dom": "^17.0.9",
-    "@types/ws": "^7.4.7",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "@vue/compiler-sfc": "^3.1.5",
@@ -106,6 +99,7 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config/esm",
     "rules": {
+      "@typescript-eslint/no-explicit-any": "off"
     },
     "globals": {
       "jsdom": false
@@ -120,46 +114,190 @@
       "import": {
         "./index.js": "{ createRule }"
       },
-      "limit": "62 B"
+      "limit": "10 B"
     },
     {
       "name": "Validator factory",
       "import": {
-        "./index.js": "{ createValidator }"
+        "./index.js": "{ syncYobta }"
       },
-      "limit": "51 B"
+      "limit": "129 B"
     },
     {
-      "name": "invariant",
+      "name": "Is plain object utility",
       "import": {
-        "./index.js": "{ invariant }"
+        "./index.js": "{ isPlainObject }"
       },
-      "limit": "18 B"
+      "limit": "191 B"
     },
     {
-      "name": "isOptional",
+      "name": "Pipe utility",
       "import": {
-        "./index.js": "{ isOptional }"
+        "./index.js": "{ pipe }"
       },
-      "limit": "23 B"
+      "limit": "20 B"
     },
     {
-      "name": "stringType",
+      "name": "Pluralization utility for English",
       "import": {
-        "./index.js": "{ stringType }"
+        "./index.js": "{ pluralizeEn }"
       },
-      "limit": "149 B"
+      "limit": "26 B"
+    },
+    {
+      "name": "Shape rule",
+      "import": {
+        "./index.js": "{ shapeYobta }"
+      },
+      "limit": "381 B"
+    },
+    {
+      "name": "String rule",
+      "import": {
+        "./index.js": "{ stringYobta }"
+      },
+      "limit": "122 B"
+    },
+    {
+      "name": "Array rule",
+      "import": {
+        "./index.js": "{ arrayYobta }"
+      },
+      "limit": "69 B"
+    },
+    {
+      "name": "Number rule",
+      "import": {
+        "./index.js": "{ numberYobta }"
+      },
+      "limit": "133 B"
+    },
+    {
+      "name": "Integer rule",
+      "import": {
+        "./index.js": "{ integerYobta }"
+      },
+      "limit": "75 B"
+    },
+    {
+      "name": "Date rule",
+      "import": {
+        "./index.js": "{ dateYobta }"
+      },
+      "limit": "83 B"
+    },
+    {
+      "name": "Boolean rule",
+      "import": {
+        "./index.js": "{ booleanYobta }"
+      },
+      "limit": "154 B"
+    },
+    {
+      "name": "Minimum items rule",
+      "import": {
+        "./index.js": "{ minItemsYobta }"
+      },
+      "limit": "102 B"
+    },
+    {
+      "name": "Maximum items rule",
+      "import": {
+        "./index.js": "{ maxItemsYobta }"
+      },
+      "limit": "99 B"
+    },
+    {
+      "name": "Minimum characters rule",
+      "import": {
+        "./index.js": "{ minCharactersYobta }"
+      },
+      "limit": "105 B"
+    },
+    {
+      "name": "Maximum characters rule",
+      "import": {
+        "./index.js": "{ maxCharactersYobta }"
+      },
+      "limit": "102 B"
+    },
+    {
+      "name": "Minimum rule",
+      "import": {
+        "./index.js": "{ minimumYobta }"
+      },
+      "limit": "64 B"
+    },
+    {
+      "name": "Maximum rule",
+      "import": {
+        "./index.js": "{ maximumYobta }"
+      },
+      "limit": "63 B"
+    },
+    {
+      "name": "Minimum date rule",
+      "import": {
+        "./index.js": "{ minDateYobta }"
+      },
+      "limit": "82 B"
+    },
+    {
+      "name": "Maximum date rule",
+      "import": {
+        "./index.js": "{ maxDateYobta }"
+      },
+      "limit": "80 B"
+    },
+    {
+      "name": "RegExp test rule",
+      "import": {
+        "./index.js": "{ testYobta }"
+      },
+      "limit": "63 B"
+    },
+    {
+      "name": "Email rule",
+      "import": {
+        "./index.js": "{ emailYobta }"
+      },
+      "limit": "167 B"
+    },
+    {
+      "name": "Required rule",
+      "import": {
+        "./index.js": "{ requiredYobta }"
+      },
+      "limit": "64 B"
     },
     {
       "name": "All",
       "import": {
         "./createRule/index.js": "{ createRule }",
-        "./createValidator/index.js": "{ createValidator }",
-        "./invariant/index.js": "{ invariant }",
-        "./isOptional/index.js": "{ isOptional }",
-        "./stringType/index.js": "{ stringType }"
+        "./syncYobta/index.js": "{ syncYobta }",
+        "./isPlainObject/index.js": "{ isPlainObject }",
+        "./pipe/index.js": "{ pipe }",
+        "./pluralizeEn/index.js": "{ pluralizeEn }",
+        "./shapeYobta/index.js": "{ shapeYobta }",
+        "./stringYobta/index.js": "{ stringYobta }",
+        "./arrayYobta/index.js": "{ arrayYobta }",
+        "./numberYobta/index.js": "{ numberYobta }",
+        "./integerYobta/index.js": "{ integerYobta }",
+        "./dateYobta/index.js": "{ dateYobta }",
+        "./booleanYobta/index.js": "{ booleanYobta }",
+        "./minItemsYobta/index.js": "{ minItemsYobta }",
+        "./maxItemsYobta/index.js": "{ maxItemsYobta }",
+        "./minCharactersYobta/index.js": "{ minCharactersYobta }",
+        "./maxCharactersYobta/index.js": "{ maxCharactersYobta }",
+        "./minimumYobta/index.js": "{ minimumYobta }",
+        "./maximumYobta/index.js": "{ maximumYobta }",
+        "./minDateYobta/index.js": "{ minDateYobta }",
+        "./maxDateYobta/index.js": "{ maxDateYobta }",
+        "./testYobta/index.js": "{ testYobta }",
+        "./emailYobta/index.js": "{ emailYobta }",
+        "./requiredYobta/index.js": "{ requiredYobta }"
       },
-      "limit": "527 B"
+      "limit": "1500 B"
     }
   ],
   "yaspeller": {
@@ -196,6 +334,18 @@
       "formurai",
       "hydration",
       "serializers",
+      "Calzaretta",
+      "Schlinkert",
+      "minItems",
+      "maxItems",
+      "minCharacters",
+      "maxCharacters",
+      "minValue",
+      "maxValue",
+      "YoptaScript",
+      "JSDoc",
+      "base64",
+      "RegExp",
       "validation"
     ]
   },
