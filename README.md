@@ -112,8 +112,6 @@ requiredYobta(
   - [+] maximum characters
   - [+] email
   - [-] href
-  - [-] identical
-  - [-] different
   - [-] credit card number
   - [-] phone number
   - [-] base64
@@ -133,9 +131,9 @@ requiredYobta(
 ### Flow Utilities
 - [+] required
 - [+] default
-- [-] catch
-- [-] is
-- [-] isNot
+- [+] catch
+- [-] identical
+- [-] different
 - [-] oneOf
 - [-] anyOf
 

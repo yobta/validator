@@ -6,6 +6,7 @@ export * from './pluralizeEn'
 
 export * from './arrayYobta'
 export * from './booleanYobta'
+export * from './catchYobta'
 export * from './dateYobta'
 export * from './defaultYobta'
 export * from './emailYobta'

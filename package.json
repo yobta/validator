@@ -290,6 +290,13 @@
       "limit": "68 B"
     },
     {
+      "name": "Catch rule",
+      "import": {
+        "lib/index.js": "{ catchYobta }"
+      },
+      "limit": "72 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -316,7 +323,8 @@
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/isVoid/index.js": "{ isVoid }",
-        "lib/defaultYobta/index.js": "{ defaultYobta }"
+        "lib/defaultYobta/index.js": "{ defaultYobta }",
+        "lib/catchYobta/index.js": "{ catchYobta }"
       },
       "limit": "1500 B"
     }
