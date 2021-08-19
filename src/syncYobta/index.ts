@@ -5,12 +5,12 @@ import { pipe, Factories, PipedFactories, PipeFactoryResult } from '../pipe'
 export type ValidationError = {
   field: string
   message: string
-  path: string[]
+  path: (string | number)[]
 }
 
 export type ValidationContext = {
   isAsync: boolean
-  field?: string
+  field: string
   path: string[]
   pushError(error: ValidationError): void
 }

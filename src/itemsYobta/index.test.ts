@@ -1,0 +1,46 @@
+import { stringYobta } from '../stringYobta'
+import { syncYobta } from '../syncYobta'
+import { itemsYobta } from '.'
+import { requiredYobta } from '../requiredYobta'
+import { minCharactersYobta } from '../minCharactersYobta'
+import { arrayYobta } from '../arrayYobta'
+
+const validate = syncYobta(
+  arrayYobta(),
+  requiredYobta<any[]>(),
+  itemsYobta(stringYobta(), requiredYobta<string>(), minCharactersYobta(5))
+)
+
+it('accepts empty array', () => {
+  let result = validate([])
+  expect(result).toEqual([[], null])
+})
+
+it('accepts array of strings', () => {
+  let result = validate(['yobta'])
+  expect(result).toEqual([['yobta'], null])
+})
+
+it('rejects all invalid items', () => {
+  let result = validate([[], '', 'yobt', 'yobta'])
+  expect(result).toEqual([
+    null,
+    [
+      {
+        field: '@root',
+        message: 'Should be a string',
+        path: [0]
+      },
+      {
+        field: '@root',
+        message: 'Required',
+        path: [1]
+      },
+      {
+        field: '@root',
+        message: 'Should have at least 5 characters',
+        path: [2]
+      }
+    ]
+  ])
+})

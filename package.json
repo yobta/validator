@@ -297,6 +297,13 @@
       "limit": "72 B"
     },
     {
+      "name": "Items rule",
+      "import": {
+        "lib/index.js": "{ itemsYobta }"
+      },
+      "limit": "115 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -324,7 +331,8 @@
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/isVoid/index.js": "{ isVoid }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
-        "lib/catchYobta/index.js": "{ catchYobta }"
+        "lib/catchYobta/index.js": "{ catchYobta }",
+        "lib/itemsYobta/index.js": "{ itemsYobta }"
       },
       "limit": "1500 B"
     }

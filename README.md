@@ -104,7 +104,7 @@ requiredYobta(
 - [+] Sync validator
 - [+] Shape validator
 - [+] Array validator
-  - [-] items
+  - [+] items
   - [+] minimum items
   - [+] maximum items
 - [+] String validator
