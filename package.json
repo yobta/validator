@@ -136,11 +136,11 @@
       "limit": "191 B"
     },
     {
-      "name": "Has value utility",
+      "name": "Is void utility",
       "import": {
         "lib/index.js": "{ isVoid }"
       },
-      "limit": "47 B"
+      "limit": "46 B"
     },
     {
       "name": "Pipe utility",
@@ -280,7 +280,14 @@
       "import": {
         "lib/index.js": "{ requiredYobta }"
       },
-      "limit": "102 B"
+      "limit": "92 B"
+    },
+    {
+      "name": "Default rule",
+      "import": {
+        "lib/index.js": "{ defaultYobta }"
+      },
+      "limit": "68 B"
     },
     {
       "name": "All",
@@ -308,7 +315,8 @@
         "lib/testYobta/index.js": "{ testYobta }",
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
-        "lib/isVoid/index.js": "{ isVoid }"
+        "lib/isVoid/index.js": "{ isVoid }",
+        "lib/defaultYobta/index.js": "{ defaultYobta }"
       },
       "limit": "1500 B"
     }

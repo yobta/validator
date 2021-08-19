@@ -3,7 +3,7 @@ import { syncYobta } from '../syncYobta'
 import { requiredYobta, requiredMessage } from './'
 
 const customMessage = 'yobta!'
-const validate = syncYobta(requiredYobta(stringYobta(), customMessage))
+const validate = syncYobta(stringYobta(), requiredYobta<string>(customMessage))
 
 it('accepts value', () => {
   let result = validate('yobta')
@@ -19,8 +19,7 @@ it('rejects undefined', () => {
 })
 
 it('has default error message', () => {
-  let rule = requiredYobta(stringYobta())
-  let validateDefault = syncYobta(rule)
+  let validateDefault = syncYobta(stringYobta(), requiredYobta<string>())
   let result = validateDefault(undefined)
   expect(result).toEqual([
     null,

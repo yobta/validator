@@ -13,7 +13,8 @@ it('accepts valid', () => {
 
 it('can pipe rules', () => {
   let validateMultiple = syncYobta(
-    requiredYobta(stringYobta()),
+    stringYobta(),
+    requiredYobta<string>(),
     minCharactersYobta(5)
   )
   let result = validateMultiple('yobta')
