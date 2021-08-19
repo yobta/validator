@@ -136,6 +136,13 @@
       "limit": "191 B"
     },
     {
+      "name": "Has value utility",
+      "import": {
+        "lib/index.js": "{ isVoid }"
+      },
+      "limit": "47 B"
+    },
+    {
       "name": "Pipe utility",
       "import": {
         "lib/index.js": "{ pipe }"
@@ -273,7 +280,7 @@
       "import": {
         "lib/index.js": "{ requiredYobta }"
       },
-      "limit": "64 B"
+      "limit": "102 B"
     },
     {
       "name": "All",
@@ -300,7 +307,8 @@
         "lib/maxDateYobta/index.js": "{ maxDateYobta }",
         "lib/testYobta/index.js": "{ testYobta }",
         "lib/emailYobta/index.js": "{ emailYobta }",
-        "lib/requiredYobta/index.js": "{ requiredYobta }"
+        "lib/requiredYobta/index.js": "{ requiredYobta }",
+        "lib/isVoid/index.js": "{ isVoid }"
       },
       "limit": "1500 B"
     }

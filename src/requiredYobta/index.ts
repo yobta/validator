@@ -1,4 +1,5 @@
 import { createRule, SyncRule } from '../createRule'
+import { isVoid } from '../isVoid'
 
 export const requiredMessage = 'Required'
 
@@ -10,7 +11,7 @@ export const requiredYobta = <I, O>(
 ): SyncRule<I, Required<O>> =>
   createRule((input, context) => {
     let next = rule(context)(input)
-    if (typeof next === 'undefined') throw new Error(message)
+    if (isVoid(next)) throw new Error(message)
     return next as Required<O>
   })
 
@@ -18,8 +19,6 @@ export const requiredYobta = <I, O>(
 // import { createRule, SyncRule } from '../createRule'
 
 // export const requiredMessage = 'Required'
-
-// type Required<T> = T extends undefined ? never : T
 
 // export function requiredYobta<I>(
 //   message = requiredMessage

@@ -9,3 +9,8 @@ size-limit: build
 
 typecheck:
 	npm run typecheck
+
+test:
+	npm run test
+	npm run build
+	npm run size-limit

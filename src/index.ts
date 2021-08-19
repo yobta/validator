@@ -1,5 +1,6 @@
 export * from './createRule'
 export * from './isPlainObject'
+export * from './isVoid'
 export * from './pipe'
 export * from './pluralizeEn'
 

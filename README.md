@@ -25,7 +25,8 @@ the operation should be sync and silent (no errors).
 
 ```js
 const getInitialState = syncYobta(
-  urlParamsYobta({
+  URLSearchParamsYobta(),
+  shapeYobta({
     name:
       catchYobta(
         'A hacker, yobta!',
@@ -41,7 +42,7 @@ const getInitialState = syncYobta(
         minYobta(16),
         maxYobta(150),
       )
-  })
+  }),
 )
 
 const [initialState] = getInitialState()
@@ -56,9 +57,9 @@ can produce errors and we need human friendly error messages.
 
 ```js
 async function confirmPassword (password) (
-  const { result } = await fetch(`/api/my-endpoint?password=${password}`)
-  if (!result) throw new Error('Wrong password')
-  return password
+  const response = await fetch(`/api/my-endpoint?password=${password}`)
+  if (!response.ok) throw new Error('Wrong password')
+  return password.data.password
 )
 
 const validate = asyncYobta(
@@ -131,6 +132,7 @@ requiredYobta(
 
 ### Flow Utilities
 - [+] required
+- [+] default
 - [-] catch
 - [-] is
 - [-] isNot

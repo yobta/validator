@@ -41,7 +41,7 @@ export const shapeYobta = <R extends Record<string, Factories>>(
         let prev = input[field]
         let next
         try {
-          next = pipe(tests)(prev)
+          next = pipe(...tests)(prev)
         } catch (error) {
           context.pushError({ message: error.message, field, path })
           next = error
