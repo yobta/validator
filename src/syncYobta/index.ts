@@ -2,14 +2,16 @@ import { SyncRule } from '../createRule'
 import { pipe, Factories, PipedFactories, PipeFactoryResult } from '../pipe'
 
 //#region Types
+export type Path = (string | number)[]
+
 export type ValidationError = {
   field: string
   message: string
-  path: (string | number)[]
+  path: Path
 }
 
 export type ValidationContext = {
-  isAsync: boolean
+  data: any
   field: string
   path: string[]
   pushError(error: ValidationError): void
@@ -28,10 +30,10 @@ export const syncYobta =
   <R extends Factories, I, O>(
     ...rules: PipedFactories<R>
   ): SyncValidator<I, O, R> =>
-  input => {
+  data => {
     let errors: ValidationError[] = []
-    let context = {
-      async: false,
+    let context: ValidationContext = {
+      data,
       field,
       path: [],
       pushError(error: ValidationError) {
@@ -42,7 +44,7 @@ export const syncYobta =
     let validators = rules.map(next => next(context)) as Factories
 
     try {
-      let result: PipeFactoryResult<R> = pipe(...validators)(input)
+      let result: PipeFactoryResult<R> = pipe(...validators)(data)
       return errors.length ? [null, errors] : [result, null]
     } catch (error) {
       context.pushError({ field, message: error.message, path: [] })

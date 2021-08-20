@@ -311,6 +311,13 @@
       "limit": "75 B"
     },
     {
+      "name": "Identical rule",
+      "import": {
+        "lib/index.js": "{ identicalYobta }"
+      },
+      "limit": "132 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -340,7 +347,8 @@
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/catchYobta/index.js": "{ catchYobta }",
         "lib/itemsYobta/index.js": "{ itemsYobta }",
-        "lib/uniqueYobta/index.js": "{ uniqueYobta }"
+        "lib/uniqueYobta/index.js": "{ uniqueYobta }",
+        "lib/identicalYobta/index.js": "{ identicalYobta }"
       },
       "limit": "1500 B"
     }

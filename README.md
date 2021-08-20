@@ -135,7 +135,7 @@ requiredYobta(
 - [+] required
 - [+] default
 - [+] catch
-- [-] identical
+- [+] identical
 - [-] different
 - [-] oneOf
 - [-] anyOf

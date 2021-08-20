@@ -13,7 +13,7 @@ it('validates input', () => {
   let pushError = jest.fn()
   let testNumber = createRule(validateNumber)
   let result = testNumber({
-    isAsync: false,
+    data: 1,
     path: ['price'],
     pushError,
     field: 'f'
@@ -30,8 +30,8 @@ it('does not intercept errors', () => {
   })
   expect(() =>
     simulateUnexpectedException({
+      data: 1,
       field: 'f',
-      isAsync: false,
       path: ['price'],
       pushError
     })(1)
@@ -43,8 +43,8 @@ it('gets both data and context', () => {
   let pushError = jest.fn()
   let spy = jest.fn()
   let validationContext: ValidationContext = {
+    data: 1,
     field: 'f',
-    isAsync: false,
     path: ['price'],
     pushError
   }
