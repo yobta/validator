@@ -392,6 +392,7 @@
       "base64",
       "RegExp",
       "validation",
+      "Dalton",
       "Enum"
     ]
   },

@@ -157,5 +157,6 @@ Docs coming soon
 [Andrey Sitnik](https://sitnik.ru)
 [Joe Calzaretta](https://github.com/jcalz)
 [Jon Schlinkert](https://github.com/jonschlinkert)
+[John-David Dalton](https://github.com/jdalton)
 ###### Pokes:
 [YoptaScript](github.com/samgozman/YoptaScript)
