@@ -103,8 +103,11 @@ requiredYobta(
 - [-] Async validator
 - [+] Sync validator
 - [+] Shape validator
+- [-] Enum validator
 - [+] Array validator
   - [+] items
+  - [-] contains
+  - [+] unique
   - [+] minimum items
   - [+] maximum items
 - [+] String validator

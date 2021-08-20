@@ -304,6 +304,13 @@
       "limit": "115 B"
     },
     {
+      "name": "Unique rule",
+      "import": {
+        "lib/index.js": "{ uniqueYobta }"
+      },
+      "limit": "75 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -332,7 +339,8 @@
         "lib/isVoid/index.js": "{ isVoid }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/catchYobta/index.js": "{ catchYobta }",
-        "lib/itemsYobta/index.js": "{ itemsYobta }"
+        "lib/itemsYobta/index.js": "{ itemsYobta }",
+        "lib/uniqueYobta/index.js": "{ uniqueYobta }"
       },
       "limit": "1500 B"
     }
@@ -383,7 +391,8 @@
       "JSDoc",
       "base64",
       "RegExp",
-      "validation"
+      "validation",
+      "Enum"
     ]
   },
   "sharec": {
