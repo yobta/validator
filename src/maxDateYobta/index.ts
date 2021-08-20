@@ -1,7 +1,7 @@
 import { createRule, SyncRule } from '../createRule'
 
 export const maxDateMessage = (limit: Date): string =>
-  `Should be within ${limit.toUTCString()}`
+  `It should be within ${limit.toUTCString()}`
 
 export const maxDateYobta = (
   limit: Date,

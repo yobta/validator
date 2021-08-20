@@ -10,7 +10,7 @@ function coerce(input: any): boolean {
   return input
 }
 
-export const booleanMessage = 'Should be a boolean'
+export const booleanMessage = 'It should be a boolean'
 
 export const booleanYobta = (
   message = booleanMessage

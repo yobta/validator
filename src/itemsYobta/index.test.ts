@@ -28,7 +28,7 @@ it('rejects all invalid items', () => {
     [
       {
         field: '@root',
-        message: 'Should be a string',
+        message: 'It should be a string',
         path: [0]
       },
       {
@@ -38,7 +38,7 @@ it('rejects all invalid items', () => {
       },
       {
         field: '@root',
-        message: 'Should have at least 5 characters',
+        message: 'It should have at least 5 characters',
         path: [2]
       }
     ]

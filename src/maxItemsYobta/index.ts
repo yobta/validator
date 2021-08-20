@@ -2,7 +2,7 @@ import { createRule, SyncRule } from '../createRule'
 import { pluralizeEn } from '../pluralizeEn'
 
 export const maxItemsMessage = (limit: number): string =>
-  `Should be within ${pluralizeEn(limit, 'item')}`
+  `It should be within ${pluralizeEn(limit, 'item')}`
 
 export const maxItemsYobta = <I extends any[]>(
   limit: number,

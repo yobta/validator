@@ -1,6 +1,6 @@
 import { createRule, SyncRule } from '../createRule'
 
-export const uniqueMessage = 'Should contain unique items'
+export const uniqueMessage = 'It should contain unique items'
 
 export function uniqueYobta(message = uniqueMessage): SyncRule<any[], any[]> {
   return createRule(input => {

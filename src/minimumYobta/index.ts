@@ -1,7 +1,7 @@
 import { createRule, SyncRule } from '../createRule'
 
 export const minimumYobtaMessage = (limit: number): string =>
-  `Should be at least ${limit}`
+  `It should be at least ${limit}`
 
 export const minimumYobta = (
   limit: number,

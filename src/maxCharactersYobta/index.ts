@@ -2,7 +2,7 @@ import { createRule, SyncRule } from '../createRule'
 import { pluralizeEn } from '../pluralizeEn'
 
 export const maxCharactersMessage = (limit: number): string =>
-  `Should be within ${pluralizeEn(limit, 'character')}`
+  `It should be within ${pluralizeEn(limit, 'character')}`
 
 export const maxCharactersYobta = (
   limit: number,

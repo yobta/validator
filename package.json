@@ -126,7 +126,7 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "133 B"
+      "limit": "132 B"
     },
     {
       "name": "Is plain object utility",
@@ -161,105 +161,105 @@
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "380 B"
+      "limit": "382 B"
     },
     {
       "name": "String rule",
       "import": {
         "lib/index.js": "{ stringYobta }"
       },
-      "limit": "122 B"
+      "limit": "126 B"
     },
     {
       "name": "Array rule",
       "import": {
         "lib/index.js": "{ arrayYobta }"
       },
-      "limit": "69 B"
+      "limit": "72 B"
     },
     {
       "name": "Number rule",
       "import": {
         "lib/index.js": "{ numberYobta }"
       },
-      "limit": "133 B"
+      "limit": "137 B"
     },
     {
       "name": "Integer rule",
       "import": {
         "lib/index.js": "{ integerYobta }"
       },
-      "limit": "75 B"
+      "limit": "77 B"
     },
     {
       "name": "Date rule",
       "import": {
         "lib/index.js": "{ dateYobta }"
       },
-      "limit": "90 B"
+      "limit": "95 B"
     },
     {
       "name": "Boolean rule",
       "import": {
         "lib/index.js": "{ booleanYobta }"
       },
-      "limit": "154 B"
+      "limit": "157 B"
     },
     {
       "name": "Minimum items rule",
       "import": {
         "lib/index.js": "{ minItemsYobta }"
       },
-      "limit": "102 B"
+      "limit": "107 B"
     },
     {
       "name": "Maximum items rule",
       "import": {
         "lib/index.js": "{ maxItemsYobta }"
       },
-      "limit": "99 B"
+      "limit": "103 B"
     },
     {
       "name": "Minimum characters rule",
       "import": {
         "lib/index.js": "{ minCharactersYobta }"
       },
-      "limit": "105 B"
+      "limit": "110 B"
     },
     {
       "name": "Maximum characters rule",
       "import": {
         "lib/index.js": "{ maxCharactersYobta }"
       },
-      "limit": "102 B"
+      "limit": "106 B"
     },
     {
       "name": "Minimum rule",
       "import": {
         "lib/index.js": "{ minimumYobta }"
       },
-      "limit": "64 B"
+      "limit": "68 B"
     },
     {
       "name": "Maximum rule",
       "import": {
         "lib/index.js": "{ maximumYobta }"
       },
-      "limit": "63 B"
+      "limit": "66 B"
     },
     {
       "name": "Minimum date rule",
       "import": {
         "lib/index.js": "{ minDateYobta }"
       },
-      "limit": "82 B"
+      "limit": "87 B"
     },
     {
       "name": "Maximum date rule",
       "import": {
         "lib/index.js": "{ maxDateYobta }"
       },
-      "limit": "80 B"
+      "limit": "84 B"
     },
     {
       "name": "RegExp test rule",
@@ -273,7 +273,7 @@
       "import": {
         "lib/index.js": "{ emailYobta }"
       },
-      "limit": "167 B"
+      "limit": "172 B"
     },
     {
       "name": "Required rule",
@@ -308,14 +308,21 @@
       "import": {
         "lib/index.js": "{ uniqueYobta }"
       },
-      "limit": "75 B"
+      "limit": "79 B"
     },
     {
       "name": "Identical rule",
       "import": {
         "lib/index.js": "{ identicalYobta }"
       },
-      "limit": "132 B"
+      "limit": "136 B"
+    },
+    {
+      "name": "Different rule",
+      "import": {
+        "lib/index.js": "{ differentYobta }"
+      },
+      "limit": "139 B"
     },
     {
       "name": "All",
@@ -348,7 +355,8 @@
         "lib/catchYobta/index.js": "{ catchYobta }",
         "lib/itemsYobta/index.js": "{ itemsYobta }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
-        "lib/identicalYobta/index.js": "{ identicalYobta }"
+        "lib/identicalYobta/index.js": "{ identicalYobta }",
+        "lib/differentYobta/index.js": "{ differentYobta }"
       },
       "limit": "1500 B"
     }

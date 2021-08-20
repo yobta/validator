@@ -8,7 +8,7 @@ function coerce<I>(input: I): number | I {
   return input
 }
 
-export const numberMessage = 'Should be a number'
+export const numberMessage = 'It should be a number'
 
 export const numberYobta = (
   message = numberMessage

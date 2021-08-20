@@ -1,7 +1,7 @@
 import { createRule, SyncRule } from '../createRule'
 
 export const minDateMessage = (limit: Date): string =>
-  `Should be at least ${limit.toUTCString()}`
+  `It should be at least ${limit.toUTCString()}`
 
 export const minDateYobta = (
   limit: Date,

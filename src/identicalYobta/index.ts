@@ -3,7 +3,7 @@ import { getIn } from '../getIn'
 import { Path } from '../syncYobta'
 
 export const identicalMessage = (path: Path): string =>
-  `Should be identical to "${path.join('.')}"`
+  `It should be identical to "${path.join('.')}"`
 
 export function identicalYobta<I>(
   path: Path,

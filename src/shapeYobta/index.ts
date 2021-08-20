@@ -16,7 +16,7 @@ type Config<R extends Record<string, Factories>> = {
   [K in keyof R]: PipedFactories<R[K]>
 }
 
-export const shapeMessage = 'Should be a plain object'
+export const shapeMessage = 'It should be a plain object'
 
 export const shapeYobta = <R extends Record<string, Factories>>(
   rulesSet: Config<R>,

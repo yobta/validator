@@ -2,7 +2,7 @@ import { createRule, SyncRule } from '../createRule'
 import { pluralizeEn } from '../pluralizeEn'
 
 export const minItemsMessage = (limit: number): string =>
-  `Should have at least ${pluralizeEn(limit, 'item')}`
+  `It should have at least ${pluralizeEn(limit, 'item')}`
 
 export const minItemsYobta = <I extends any[]>(
   limit: number,

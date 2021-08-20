@@ -1,6 +1,6 @@
 import { createRule, SyncRule } from '../createRule'
 
-export const dateMessage = 'Should be a date'
+export const dateMessage = 'It should be a date'
 
 export const dateYobta = (
   message = dateMessage

@@ -1,6 +1,6 @@
 import { createRule, SyncRule } from '../createRule'
 
-export const arrayMessage = 'Should be an array'
+export const arrayMessage = 'It should be an array'
 
 export const arrayYobta = (
   message: string = arrayMessage

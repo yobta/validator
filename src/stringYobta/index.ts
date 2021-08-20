@@ -10,7 +10,7 @@ function coerce<I>(input: I): string | I {
   return input
 }
 
-export const stringMessage = 'Should be a string'
+export const stringMessage = 'It should be a string'
 
 export const stringYobta = (
   message = stringMessage

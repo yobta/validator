@@ -73,8 +73,8 @@ const validate = asyncYobta(
       stringYobta('No hacking yobta!'),
       requiredYobta('Please enter new password'),
       trim, // take it from lodash
-      minYobta(6, 'Should be at least 6 characters'),
-      maxYobta(16, 'Should be within 16 characters'),
+      minYobta(6, 'It should be at least 6 characters'),
+      maxYobta(16, 'It should be within 16 characters'),
       matchYobta(passwordRegExp), // pease make your own RegExp
     ],
     passwordRetype: [
@@ -104,13 +104,13 @@ requiredYobta(
 - [+] Sync validator
 - [+] Shape validator
 - [-] Enum validator
-- [+] Array validator
+- [-] Array validator
   - [+] items
   - [-] contains
   - [+] unique
   - [+] minimum items
   - [+] maximum items
-- [+] String validator
+- [-] String validator
   - [+] minimum characters
   - [+] maximum characters
   - [+] email
@@ -136,7 +136,7 @@ requiredYobta(
 - [+] default
 - [+] catch
 - [+] identical
-- [-] different
+- [+] different
 - [-] oneOf
 - [-] anyOf
 

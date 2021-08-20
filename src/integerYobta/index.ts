@@ -1,6 +1,6 @@
 import { createRule, SyncRule } from '../createRule'
 
-export const integerMessage = 'Should be an integer'
+export const integerMessage = 'It should be an integer'
 
 export const integerYobta = (
   message = integerMessage
