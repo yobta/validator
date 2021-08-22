@@ -20,32 +20,29 @@ We want to fulfill the front-end needs and create functional promise-based valid
 ## API proposals
 
 ### Case 1: Store hydration
-We need to get a type-safe initial state (map) from the URL,
-the operation should be sync and silent (no errors).
+We need to get a predictable initial state from the URL, the operation
+should be sync and silent (no errors) and the state should be a plain
+object.
 
 ```js
 const getInitialState = syncYobta(
-  URLSearchParamsYobta(),
+  urlSearchParamsYobta(),
+  objectFromEntriesYobta(),
   shapeYobta({
-    name:
+    currentTab:
       catchYobta(
-        'A hacker, yobta!',
-        stringYobta(),
-        defaultYobta('Anonymous'),
-        minYobta(2),
-        maxYobta(160),
+        'tab-1',
+        enumYobta('tab-1', 'tab-2', 'tab-3'),
       ),
-    age:
+    myModalIsOpen:
       catchYobta(
-        NaN,
-        numberYobta(),
-        minYobta(16),
-        maxYobta(150),
+        false,
+        booleanYobta(),
       )
   }),
 )
 
-const [initialState] = getInitialState()
+const initialState = getInitialState(location.search)
 
 const myStore = createStore('name', initialState)
 ```
@@ -63,7 +60,8 @@ async function confirmPassword (password) (
 )
 
 const validate = asyncYobta(
-  formYobta({
+  effectYobta(setMyFormBusy),
+  formDataYobta({
     password: [
       stringYobta('No hacking yobta!'),
       requiredYobta('Please enter password'),
@@ -72,7 +70,7 @@ const validate = asyncYobta(
     newPassword: [
       stringYobta('No hacking yobta!'),
       requiredYobta('Please enter new password'),
-      trim, // take it from lodash
+      () => trim, // take it from lodash
       minYobta(6, 'It should be at least 6 characters'),
       maxYobta(16, 'It should be within 16 characters'),
       matchYobta(passwordRegExp), // pease make your own RegExp
@@ -81,6 +79,7 @@ const validate = asyncYobta(
       sameYobta('newPassword', 'Should match new password')
     ],
   })
+  effectYobta(setMyFormReadyAgain),
 )
 
 const myForm = window.getElementByID('myForm')
@@ -106,7 +105,7 @@ requiredYobta(
 - [-] Enum validator
 - [-] Array validator
   - [+] items
-  - [-] contains
+  - [-] contains (do later)
   - [+] unique
   - [+] minimum items
   - [+] maximum items
@@ -114,10 +113,10 @@ requiredYobta(
   - [+] minimum characters
   - [+] maximum characters
   - [+] email
-  - [-] href
-  - [-] credit card number
-  - [-] phone number
-  - [-] base64
+  - [-] href (do later)
+  - [-] credit card number (do later)
+  - [-] phone number (do later)
+  - [-] base64 (do later)
 - [+] Number validator
   - [+] int
   - [+] minimum

@@ -9,7 +9,7 @@
     "query"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build tsconfig.build.json",
     "lint": "eslint src",
     "yaspeller": "yaspeller *.md",
     "size-limit": "size-limit",
