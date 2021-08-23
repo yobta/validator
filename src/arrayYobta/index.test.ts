@@ -1,5 +1,4 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { arrayYobta, arrayMessage } from './'
 
 const customMessage = 'yobta!'
@@ -8,12 +7,12 @@ const validate = syncYobta(stringRule)
 
 it('accepts array', () => {
   let result = validate(['yobta'])
-  expect(result).toEqual([['yobta'], null])
+  expect(result).toEqual(['yobta'])
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('rejects non-arrays', () => {
@@ -27,20 +26,14 @@ it('rejects non-arrays', () => {
   ]
 
   variants.forEach(variant => {
-    let result = validate(variant)
-    expect(result).toEqual([
-      null,
-      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-    ])
+    let attempt = (): any => validate(variant)
+    expect(attempt).toThrow(customMessage)
   })
 })
 
 it('has default error message', () => {
   let rule = arrayYobta()
   let validateDefault = syncYobta(rule)
-  let result = validateDefault('yobta')
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: arrayMessage, path: [] })]
-  ])
+  let attempt = (): any => validateDefault('yobta')
+  expect(attempt).toThrow(arrayMessage)
 })

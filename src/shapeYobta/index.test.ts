@@ -1,7 +1,8 @@
+import { jest } from '@jest/globals'
+
 import { syncYobta } from '../syncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
-import { YobtaError } from '../YobtaError'
 
 // const customMessage = 'yobta!'
 const validate = syncYobta(
@@ -14,43 +15,48 @@ it('accepts valid shapes', () => {
   let result = validate({
     name: 'yobta'
   })
-  expect(result).toEqual([{ name: 'yobta' }, null])
+  expect(result).toEqual({ name: 'yobta' })
 })
 
 it('rejects invalid input', () => {
-  let result = validate([])
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: shapeMessage, path: [] })]
-  ])
+  let attempt = (): any => validate([])
+  expect(attempt).toThrow(shapeMessage)
 })
 
 it('can be undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('has custom error messages', () => {
-  let result = syncYobta(
-    shapeYobta(
-      {
-        name: [stringYobta()]
-      },
-      'yobta!'
-    )
-  )([])
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: 'yobta!', path: [] })]
-  ])
+  let attempt = (): any =>
+    syncYobta(
+      shapeYobta(
+        {
+          name: [stringYobta()]
+        },
+        'yobta!'
+      )
+    )([])
+  expect(attempt).toThrow('yobta!')
 })
 
 it('captures errors from field validators', () => {
-  let result = validate({
-    name: []
+  let attempt = (): any =>
+    validate({
+      name: []
+    })
+  expect(attempt).toThrow(stringMessage)
+})
+
+it('returns errors for invalid keys', () => {
+  let pushError = jest.fn()
+  let validateCustom = shapeYobta({
+    name: [stringYobta()]
   })
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: 'name', message: stringMessage, path: ['name'] })]
-  ])
+  let result = validateCustom({ path: [], field: '', pushError, data: '' })({
+    name: {}
+  })
+  expect(result).toEqual({ name: {} })
+  expect(pushError).toHaveBeenCalledWith(new Error('It should be a string'))
 })

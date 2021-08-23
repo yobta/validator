@@ -39,15 +39,13 @@ export const shapeYobta = <R extends Record<string, Factories>>(
           })
         )
         // @ts-ignore
-        let prev = input[field]
-        let next
+        let next = input[field]
         try {
-          next = pipe(...tests)(prev)
+          next = pipe(...tests)(next)
         } catch (error) {
           context.pushError(
             new YobtaError({ message: error.message, field, path })
           )
-          next = error
         }
         return { ...acc, [field]: next }
       }, {})) as Result<R>

@@ -1,5 +1,4 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { booleanYobta, booleanMessage } from './'
 
 const customMessage = 'yobta!'
@@ -9,7 +8,7 @@ it('accepts truthy', () => {
   let variants = ['yes', 'true', 'Yes', 'tRue', true, 1, '1']
   variants.forEach(variant => {
     let result = validate(variant)
-    expect(result).toEqual([true, null])
+    expect(result).toBe(true)
   })
 })
 
@@ -17,13 +16,13 @@ it('accepts falsy', () => {
   let variants = ['no', 'false', 'No', 'FALSE', false, null, 'null', 0, '0']
   variants.forEach(variant => {
     let result = validate(variant)
-    expect(result).toEqual([false, null])
+    expect(result).toBe(false)
   })
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('rejects invalid', () => {
@@ -38,20 +37,14 @@ it('rejects invalid', () => {
     () => 'yobta'
   ]
   variants.forEach(variant => {
-    let result = validate(variant)
-    expect(result).toEqual([
-      null,
-      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-    ])
+    let attemt = (): any => validate(variant)
+    expect(attemt).toThrow(customMessage)
   })
 })
 
 it('has default error message', () => {
   let rule = booleanYobta()
   let validateDefault = syncYobta(rule)
-  let result = validateDefault('yobta')
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: booleanMessage, path: [] })]
-  ])
+  let attemt = (): any => validateDefault('yobta')
+  expect(attemt).toThrow(booleanMessage)
 })

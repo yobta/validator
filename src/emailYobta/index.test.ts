@@ -1,6 +1,5 @@
 /* eslint-disable no-useless-escape */
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'
@@ -26,18 +25,18 @@ let validEmails = [
 validEmails.forEach(option => {
   it(`accepts ${option}`, () => {
     let result = validate(option)
-    expect(result).toEqual([option, null])
+    expect(result).toBe(option)
   })
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('trims whitespace', () => {
   let result = validate(' bill@microsoft.com ')
-  expect(result).toEqual(['bill@microsoft.com', null])
+  expect(result).toBe('bill@microsoft.com')
 })
 
 let invalidEmails = [
@@ -54,20 +53,14 @@ let invalidEmails = [
 ]
 invalidEmails.forEach(option => {
   it(`rejects ${option}`, () => {
-    let result = validate(option)
-    expect(result).toEqual([
-      null,
-      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-    ])
+    let attempt = (): any => validate(option)
+    expect(attempt).toThrow(customMessage)
   })
 })
 
 it('has default error message', () => {
   let rule = emailYobta()
   let validateDefault = syncYobta(rule)
-  let result = validateDefault('yobta')
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: emailMessage, path: [] })]
-  ])
+  let attempt = (): any => validateDefault('yobta')
+  expect(attempt).toThrow(emailMessage)
 })

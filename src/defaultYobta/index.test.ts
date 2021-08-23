@@ -10,7 +10,7 @@ let voidValues = ['', '   ', undefined, null, NaN]
 voidValues.forEach(value => {
   it(`sets default for ${value}`, () => {
     let result = validate(value)
-    expect(result).toEqual(['yobta', null])
+    expect(result).toEqual('yobta')
   })
 })
 
@@ -18,7 +18,7 @@ const values = [' a', 0, [], {}, new Date(), new Set(), new URLSearchParams('')]
 values.forEach(value => {
   it(`does not change ${value}`, () => {
     let result = validate(value)
-    expect(result).toEqual([value, null])
+    expect(result).toEqual(value)
   })
 })
 
@@ -29,5 +29,5 @@ it('pipes', () => {
     requiredYobta<string>()
   )
   let result = validateMultiple(null)
-  expect(result).toEqual(['yobta', null])
+  expect(result).toEqual('yobta')
 })

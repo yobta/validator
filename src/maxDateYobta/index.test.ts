@@ -1,6 +1,5 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
-import { maxDateYobta, maxDateMessage } from './'
+import { maxDateYobta } from './'
 
 const maxDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`
@@ -8,43 +7,24 @@ const validate = syncYobta(maxDateYobta(maxDate, customMessage))
 
 it('accepts exact date', () => {
   let result = validate(maxDate)
-  expect(result).toEqual([maxDate, null])
+  expect(result).toEqual(maxDate)
 })
 
 it('accepts shorter date', () => {
   let shorterDate = new Date('13 Jun 2017 00:00:00 PDT')
   let result = validate(shorterDate)
-  expect(result).toEqual([shorterDate, null])
+  expect(result).toEqual(shorterDate)
 })
 
 it('regects longer date lenght', () => {
   let longerDate = new Date('15 Jun 2017 00:00:00 PDT')
-  let result = validate(longerDate)
-  expect(result).toEqual([
-    null,
-    [
-      new YobtaError({
-        field: '@root',
-        message: customMessage(maxDate),
-        path: []
-      })
-    ]
-  ])
+  let attemt = (): any => validate(longerDate)
+  expect(attemt).toThrow('Wed, 14 Jun 2017 07:00:00 GMT yobta!')
 })
 
 it('has default error message', () => {
   let longerDate = new Date('15 Jun 2017 00:00:00 PDT')
+  let attempt = (): any => syncYobta(maxDateYobta(maxDate))(longerDate)
 
-  let validateDefault = syncYobta(maxDateYobta(maxDate))
-  let result = validateDefault(longerDate)
-  expect(result).toEqual([
-    null,
-    [
-      new YobtaError({
-        field: '@root',
-        message: maxDateMessage(maxDate),
-        path: []
-      })
-    ]
-  ])
+  expect(attempt).toThrow('It should be within Wed, 14 Jun 2017 07:00:00 GMT')
 })

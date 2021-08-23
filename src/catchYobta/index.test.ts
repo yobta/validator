@@ -15,10 +15,10 @@ const validate = syncYobta(
 
 it('does not catch when no errors', () => {
   let result = validate('yobta')
-  expect(result).toEqual(['yobta', null])
+  expect(result).toEqual('yobta')
 })
 
 it('catches when errors', () => {
   let result = validate('')
-  expect(result).toEqual(['catched yobta!', null])
+  expect(result).toEqual('catched yobta!')
 })

@@ -25,7 +25,7 @@ export function itemsYobta<F extends Factories>(
             path: [...context.path, index]
           })
         )
-        return error
+        return item
       }
     })
   })

@@ -1,5 +1,4 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { numberYobta, numberMessage } from './'
 
 const customMessage = 'yobta!'
@@ -7,27 +6,27 @@ const validate = syncYobta(numberYobta(customMessage))
 
 it('accepts numbers', () => {
   let result = validate(1)
-  expect(result).toEqual([1, null])
+  expect(result).toBe(1)
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('coerces null', () => {
   let result = validate(null)
-  expect(result).toEqual([0, null])
+  expect(result).toBe(0)
 })
 
 it('coerces string', () => {
   let result = validate('1')
-  expect(result).toEqual([1, null])
+  expect(result).toBe(1)
 })
 
 it('coerces booelan', () => {
   let result = validate(true)
-  expect(result).toEqual([1, null])
+  expect(result).toBe(1)
 })
 
 it('rejects invalid', () => {
@@ -43,19 +42,13 @@ it('rejects invalid', () => {
     () => 'yobta'
   ]
   variants.forEach(variant => {
-    let result = validate(variant)
-    expect(result).toEqual([
-      null,
-      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-    ])
+    let attempt = (): any => validate(variant)
+    expect(attempt).toThrow(customMessage)
   })
 })
 
 it('has default error message', () => {
   let validateDefault = syncYobta(numberYobta())
-  let result = validateDefault([])
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: numberMessage, path: [] })]
-  ])
+  let attempt = (): any => validateDefault([])
+  expect(attempt).toThrow(numberMessage)
 })

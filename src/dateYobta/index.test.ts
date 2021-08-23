@@ -1,5 +1,4 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { dateYobta, dateMessage } from './'
 
 const customMessage = 'yobta!'
@@ -8,42 +7,35 @@ const validate = syncYobta(dateYobta(customMessage))
 it('accepts valid dates', () => {
   let date = new Date()
   let result = validate(date)
-  expect(result).toEqual([date, null])
+  expect(result).toEqual(date)
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('accepts timestamps', () => {
   let now = Date.now()
   let result = validate(now)
-  expect(result).toEqual([new Date(now), null])
+  expect(result).toEqual(new Date(now))
 })
 
 it('accepts stringified dates', () => {
   let string = '2021-08-16T13:16:32.000Z'
   let result = validate(string)
-  expect(result).toEqual([new Date(string), null])
+  expect(result).toEqual(new Date(string))
 })
 
 it('rejects invalid dates', () => {
   let variants = [null, 'yobta', [], {}, new Set(), new Map()]
   variants.forEach(variant => {
-    let result = validate(variant)
-    expect(result).toEqual([
-      null,
-      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-    ])
+    let attempt = (): any => validate(variant)
+    expect(attempt).toThrow(customMessage)
   })
 })
 
 it('has default error message', () => {
-  let validateDefault = syncYobta(dateYobta())
-  let result = validateDefault(null)
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: dateMessage, path: [] })]
-  ])
+  let validateDefault = (): any => syncYobta(dateYobta())(null)
+  expect(validateDefault).toThrow(dateMessage)
 })

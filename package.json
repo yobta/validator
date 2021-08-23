@@ -126,7 +126,7 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "201 B"
+      "limit": "172 B"
     },
     {
       "name": "YobtaError",
@@ -168,7 +168,7 @@
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "445 B"
+      "limit": "441 B"
     },
     {
       "name": "String rule",
@@ -217,7 +217,7 @@
       "import": {
         "lib/index.js": "{ minItemsYobta }"
       },
-      "limit": "184 B"
+      "limit": "107 B"
     },
     {
       "name": "Maximum items rule",

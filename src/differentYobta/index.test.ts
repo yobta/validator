@@ -2,7 +2,6 @@ import { syncYobta } from '../syncYobta'
 import { shapeYobta } from '../shapeYobta'
 import { numberYobta } from '../numberYobta'
 import { differentYobta, differentMessage } from '.'
-import { YobtaError } from '../YobtaError'
 
 const customMessage = (): string => 'yobta!'
 
@@ -14,7 +13,7 @@ it('accepts when different', () => {
     })
   )
   let result = validate({ a: 1, b: 2 })
-  expect(result).toEqual([{ a: 1, b: 2 }, null])
+  expect(result).toEqual({ a: 1, b: 2 })
 })
 
 it('regects when not different', () => {
@@ -24,17 +23,8 @@ it('regects when not different', () => {
       b: [differentYobta(['a'], customMessage)]
     })
   )
-  let result = validate({ a: 1, b: 1 })
-  expect(result).toEqual([
-    null,
-    [
-      new YobtaError({
-        field: 'b',
-        message: 'yobta!',
-        path: ['b']
-      })
-    ]
-  ])
+  let attempt = (): any => validate({ a: 1, b: 1 })
+  expect(attempt).toThrow('yobta!')
 })
 
 it('has default error mesage', () => {
@@ -44,15 +34,6 @@ it('has default error mesage', () => {
       b: [differentYobta(['a'])]
     })
   )
-  let result = validate({ a: 1, b: 1 })
-  expect(result).toEqual([
-    null,
-    [
-      new YobtaError({
-        field: 'b',
-        message: differentMessage(['a']),
-        path: ['b']
-      })
-    ]
-  ])
+  let attempt = (): any => validate({ a: 1, b: 1 })
+  expect(attempt).toThrow(differentMessage(['a']))
 })

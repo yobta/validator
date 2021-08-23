@@ -1,5 +1,4 @@
 import { syncYobta } from '../syncYobta'
-import { YobtaError } from '../YobtaError'
 import { testYobta, testMessage } from './'
 
 const regExp = /fo*/
@@ -9,27 +8,21 @@ const validate = syncYobta(testYobta(regExp, customMessage))
 
 it('accepts if mathed', () => {
   let result = validate('table football')
-  expect(result).toEqual(['table football', null])
+  expect(result).toBe('table football')
 })
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toEqual([undefined, null])
+  expect(result).toBeUndefined()
 })
 
 it('regects if not matched', () => {
-  let result = validate('yobta')
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: customMessage, path: [] })]
-  ])
+  let attempt = (): any => validate('yobta')
+  expect(attempt).toThrow(customMessage)
 })
 
 it('has default error message', () => {
   let validateDefault = syncYobta(testYobta(regExp))
-  let result = validateDefault('yobta')
-  expect(result).toEqual([
-    null,
-    [new YobtaError({ field: '@root', message: testMessage, path: [] })]
-  ])
+  let attempt = (): any => validateDefault('yobta')
+  expect(attempt).toThrow(testMessage)
 })
