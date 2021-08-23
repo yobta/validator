@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { testYobta, testMessage } from './'
 
 const regExp = /fo*/
@@ -20,7 +21,7 @@ it('regects if not matched', () => {
   let result = validate('yobta')
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: customMessage, path: [] }]
+    [new YobtaError({ field: '@root', message: customMessage, path: [] })]
   ])
 })
 
@@ -29,6 +30,6 @@ it('has default error message', () => {
   let result = validateDefault('yobta')
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: testMessage, path: [] }]
+    [new YobtaError({ field: '@root', message: testMessage, path: [] })]
   ])
 })

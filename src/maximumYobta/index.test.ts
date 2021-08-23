@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { maximumYobta, maximumYobtaMessage } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
@@ -18,7 +19,7 @@ it('regects greater number', () => {
   let result = validate(2)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: customMessage(1), path: [] }]
+    [new YobtaError({ field: '@root', message: customMessage(1), path: [] })]
   ])
 })
 
@@ -27,6 +28,12 @@ it('has default error message', () => {
   let result = validateDefault(2)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: maximumYobtaMessage(1), path: [] }]
+    [
+      new YobtaError({
+        field: '@root',
+        message: maximumYobtaMessage(1),
+        path: []
+      })
+    ]
   ])
 })

@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'
@@ -56,7 +57,7 @@ invalidEmails.forEach(option => {
     let result = validate(option)
     expect(result).toEqual([
       null,
-      [{ field: '@root', message: customMessage, path: [] }]
+      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
     ])
   })
 })
@@ -67,6 +68,6 @@ it('has default error message', () => {
   let result = validateDefault('yobta')
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: emailMessage, path: [] }]
+    [new YobtaError({ field: '@root', message: emailMessage, path: [] })]
   ])
 })

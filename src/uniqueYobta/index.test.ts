@@ -2,6 +2,7 @@ import { syncYobta } from '../syncYobta'
 import { requiredYobta } from '../requiredYobta'
 import { arrayYobta } from '../arrayYobta'
 import { uniqueYobta, uniqueMessage } from '.'
+import { YobtaError } from '../YobtaError'
 
 const customMesage = 'yobta'
 
@@ -26,11 +27,11 @@ it('rejects duplicate items', () => {
   expect(result).toEqual([
     null,
     [
-      {
+      new YobtaError({
         field: '@root',
         message: customMesage,
         path: []
-      }
+      })
     ]
   ])
 })
@@ -45,11 +46,11 @@ it('has default error message', () => {
   expect(result).toEqual([
     null,
     [
-      {
+      new YobtaError({
         field: '@root',
         message: uniqueMessage,
         path: []
-      }
+      })
     ]
   ])
 })

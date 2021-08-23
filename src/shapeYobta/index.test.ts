@@ -1,6 +1,7 @@
 import { syncYobta } from '../syncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
+import { YobtaError } from '../YobtaError'
 
 // const customMessage = 'yobta!'
 const validate = syncYobta(
@@ -20,7 +21,7 @@ it('rejects invalid input', () => {
   let result = validate([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: shapeMessage, path: [] }]
+    [new YobtaError({ field: '@root', message: shapeMessage, path: [] })]
   ])
 })
 
@@ -40,7 +41,7 @@ it('has custom error messages', () => {
   )([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: 'yobta!', path: [] }]
+    [new YobtaError({ field: '@root', message: 'yobta!', path: [] })]
   ])
 })
 
@@ -50,6 +51,6 @@ it('captures errors from field validators', () => {
   })
   expect(result).toEqual([
     null,
-    [{ field: 'name', message: stringMessage, path: ['name'] }]
+    [new YobtaError({ field: 'name', message: stringMessage, path: ['name'] })]
   ])
 })

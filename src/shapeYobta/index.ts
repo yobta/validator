@@ -7,6 +7,7 @@ import {
   PipedFactories,
   Factory
 } from '../pipe'
+import { YobtaError } from '../YobtaError'
 
 type Result<R extends Record<string, Factories>> = {
   [Property in keyof R]: PipeFactoryResult<R[Property]>
@@ -43,7 +44,9 @@ export const shapeYobta = <R extends Record<string, Factories>>(
         try {
           next = pipe(...tests)(prev)
         } catch (error) {
-          context.pushError({ message: error.message, field, path })
+          context.pushError(
+            new YobtaError({ message: error.message, field, path })
+          )
           next = error
         }
         return { ...acc, [field]: next }

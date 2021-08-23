@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { maxDateYobta, maxDateMessage } from './'
 
 const maxDate = new Date('14 Jun 2017 00:00:00 PDT')
@@ -21,7 +22,13 @@ it('regects longer date lenght', () => {
   let result = validate(longerDate)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: customMessage(maxDate), path: [] }]
+    [
+      new YobtaError({
+        field: '@root',
+        message: customMessage(maxDate),
+        path: []
+      })
+    ]
   ])
 })
 
@@ -32,6 +39,12 @@ it('has default error message', () => {
   let result = validateDefault(longerDate)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: maxDateMessage(maxDate), path: [] }]
+    [
+      new YobtaError({
+        field: '@root',
+        message: maxDateMessage(maxDate),
+        path: []
+      })
+    ]
   ])
 })

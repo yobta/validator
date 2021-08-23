@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { minDateYobta, minDateMessage } from './'
 
 const minDate = new Date('14 Jun 2017 00:00:00 PDT')
@@ -21,7 +22,13 @@ it('regects shorter date lenght', () => {
   let result = validate(shorterDate)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: customMessage(minDate), path: [] }]
+    [
+      new YobtaError({
+        field: '@root',
+        message: customMessage(minDate),
+        path: []
+      })
+    ]
   ])
 })
 
@@ -32,6 +39,12 @@ it('has default error message', () => {
   let result = validateDefault(shorterDate)
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: minDateMessage(minDate), path: [] }]
+    [
+      new YobtaError({
+        field: '@root',
+        message: minDateMessage(minDate),
+        path: []
+      })
+    ]
   ])
 })

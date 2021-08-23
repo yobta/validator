@@ -126,7 +126,14 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "132 B"
+      "limit": "201 B"
+    },
+    {
+      "name": "YobtaError",
+      "import": {
+        "lib/index.js": "{ YobtaError }"
+      },
+      "limit": "73 B"
     },
     {
       "name": "Is plain object utility",
@@ -161,7 +168,7 @@
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "382 B"
+      "limit": "445 B"
     },
     {
       "name": "String rule",
@@ -210,7 +217,7 @@
       "import": {
         "lib/index.js": "{ minItemsYobta }"
       },
-      "limit": "107 B"
+      "limit": "184 B"
     },
     {
       "name": "Maximum items rule",
@@ -301,7 +308,7 @@
       "import": {
         "lib/index.js": "{ itemsYobta }"
       },
-      "limit": "115 B"
+      "limit": "184 B"
     },
     {
       "name": "Unique rule",
@@ -356,9 +363,10 @@
         "lib/itemsYobta/index.js": "{ itemsYobta }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
-        "lib/differentYobta/index.js": "{ differentYobta }"
+        "lib/differentYobta/index.js": "{ differentYobta }",
+        "lib/YobtaError/index.js": "{ YobtaError }"
       },
-      "limit": "1500 B"
+      "limit": "2000 B"
     }
   ],
   "yaspeller": {

@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals'
 
-import { ValidationContext } from '../syncYobta'
+import { YobtaContext } from '../YobtaContext'
 import { createRule } from './'
 
 function validateNumber<I>(input: I): number {
@@ -42,7 +42,7 @@ it('does not intercept errors', () => {
 it('gets both data and context', () => {
   let pushError = jest.fn()
   let spy = jest.fn()
-  let validationContext: ValidationContext = {
+  let contextMock: YobtaContext = {
     data: 1,
     field: 'f',
     path: ['price'],
@@ -50,11 +50,11 @@ it('gets both data and context', () => {
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let simulateUnexpectedException = createRule(
-    (data: number, context: ValidationContext) => {
+    (data: number, context: YobtaContext) => {
       spy(data, context)
       return data
     }
   )
-  simulateUnexpectedException(validationContext)(1)
-  expect(spy).toHaveBeenCalledWith(1, validationContext)
+  simulateUnexpectedException(contextMock)(1)
+  expect(spy).toHaveBeenCalledWith(1, contextMock)
 })

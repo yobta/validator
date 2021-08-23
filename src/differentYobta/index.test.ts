@@ -2,6 +2,7 @@ import { syncYobta } from '../syncYobta'
 import { shapeYobta } from '../shapeYobta'
 import { numberYobta } from '../numberYobta'
 import { differentYobta, differentMessage } from '.'
+import { YobtaError } from '../YobtaError'
 
 const customMessage = (): string => 'yobta!'
 
@@ -27,11 +28,11 @@ it('regects when not different', () => {
   expect(result).toEqual([
     null,
     [
-      {
+      new YobtaError({
         field: 'b',
         message: 'yobta!',
         path: ['b']
-      }
+      })
     ]
   ])
 })
@@ -47,11 +48,11 @@ it('has default error mesage', () => {
   expect(result).toEqual([
     null,
     [
-      {
+      new YobtaError({
         field: 'b',
         message: differentMessage(['a']),
         path: ['b']
-      }
+      })
     ]
   ])
 })

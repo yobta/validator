@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { stringYobta, stringMessage } from './'
 
 const customMessage = 'yobta!'
@@ -49,7 +50,7 @@ it('rejects invalid', () => {
     let result = validate(variant)
     expect(result).toEqual([
       null,
-      [{ field: '@root', message: customMessage, path: [] }]
+      [new YobtaError({ field: '@root', message: customMessage, path: [] })]
     ])
   })
 })
@@ -60,6 +61,6 @@ it('has default error message', () => {
   let result = validateDefault([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: stringMessage, path: [] }]
+    [new YobtaError({ field: '@root', message: stringMessage, path: [] })]
   ])
 })

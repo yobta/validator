@@ -2,6 +2,7 @@ import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
 import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
+import { YobtaError } from '../YobtaError'
 import { syncYobta } from './'
 
 let validate = syncYobta(numberYobta('yobta!'))
@@ -25,6 +26,6 @@ it('rejects invalid', () => {
   let result = validate([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: 'yobta!', path: [] }]
+    [new YobtaError({ field: '@root', message: 'yobta!', path: [] })]
   ])
 })

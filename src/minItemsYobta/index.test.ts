@@ -1,4 +1,5 @@
 import { syncYobta } from '../syncYobta'
+import { YobtaError } from '../YobtaError'
 import { minItemsYobta, minItemsMessage } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
@@ -18,7 +19,7 @@ it('regects insufficient lenght', () => {
   let result = validate([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: customMessage(1), path: [] }]
+    [new YobtaError({ field: '@root', message: customMessage(1), path: [] })]
   ])
 })
 
@@ -27,6 +28,6 @@ it('has default error message', () => {
   let result = validateDefault([])
   expect(result).toEqual([
     null,
-    [{ field: '@root', message: minItemsMessage(1), path: [] }]
+    [new YobtaError({ field: '@root', message: minItemsMessage(1), path: [] })]
   ])
 })

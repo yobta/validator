@@ -6,6 +6,7 @@ import {
   PipedFactories,
   PipeFactoryResult
 } from '../pipe'
+import { YobtaError } from '../YobtaError'
 
 export function itemsYobta<F extends Factories>(
   ...rules: PipedFactories<F>
@@ -17,11 +18,13 @@ export function itemsYobta<F extends Factories>(
       try {
         return pipe(...next)(item)
       } catch (error) {
-        context.pushError({
-          message: error.message,
-          field: context.field,
-          path: [...context.path, index]
-        })
+        context.pushError(
+          new YobtaError({
+            message: error.message,
+            field: context.field,
+            path: [...context.path, index]
+          })
+        )
         return error
       }
     })
