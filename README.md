@@ -69,8 +69,8 @@ const validate = asyncYobta(
     ],
     newPassword: [
       stringYobta('No hacking yobta!'),
-      requiredYobta('Please enter new password'),
       () => trim, // take it from lodash
+      requiredYobta('Please enter new password'),
       minYobta(6, 'It should be at least 6 characters'),
       maxYobta(16, 'It should be within 16 characters'),
       matchYobta(passwordRegExp), // pease make your own RegExp
@@ -79,7 +79,10 @@ const validate = asyncYobta(
       sameYobta('newPassword', 'Should match new password')
     ],
   })
-  effectYobta(setMyFormReadyAgain),
+  objectFromEntriesYobta(),
+  successYobta(sendMyFormAsJSON),
+  failureYobta(),
+  effectYobta(setMyFormReady),
 )
 
 const myForm = window.getElementByID('myForm')

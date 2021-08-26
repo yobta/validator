@@ -51,7 +51,6 @@
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-unicorn": "^34.0.1",
     "jest": "^27.0.6",
-    "jest-localstorage-mock": "^2.4.14",
     "lint-staged": "^11.1.1",
     "nanodelay": "^2.0.0",
     "prettier": "^2.3.2",
@@ -155,6 +154,13 @@
         "lib/index.js": "{ pipe }"
       },
       "limit": "20 B"
+    },
+    {
+      "name": "Async pipe utility",
+      "import": {
+        "lib/index.js": "{ asyncPipe }"
+      },
+      "limit": "32 B"
     },
     {
       "name": "Pluralization utility for English",
@@ -338,6 +344,7 @@
         "lib/syncYobta/index.js": "{ syncYobta }",
         "lib/isPlainObject/index.js": "{ isPlainObject }",
         "lib/pipe/index.js": "{ pipe }",
+        "lib/asyncPipe/index.js": "{ asyncPipe }",
         "lib/pluralizeEn/index.js": "{ pluralizeEn }",
         "lib/shapeYobta/index.js": "{ shapeYobta }",
         "lib/stringYobta/index.js": "{ stringYobta }",
