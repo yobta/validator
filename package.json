@@ -338,6 +338,13 @@
       "limit": "139 B"
     },
     {
+      "name": "UrlSearchParams rule",
+      "import": {
+        "lib/index.js": "{ urlSearchParamsYobta }"
+      },
+      "limit": "37 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -371,7 +378,8 @@
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
-        "lib/YobtaError/index.js": "{ YobtaError }"
+        "lib/YobtaError/index.js": "{ YobtaError }",
+        "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }"
       },
       "limit": "2000 B"
     }
