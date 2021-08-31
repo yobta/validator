@@ -9,7 +9,7 @@
     "outDir": "lib",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2018"
+    "target": "es2019"
   },
   "include": ["src"],
   "exclude": []

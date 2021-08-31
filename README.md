@@ -27,7 +27,7 @@ object.
 ```js
 const getInitialState = syncYobta(
   urlSearchParamsYobta(),
-  objectFromEntriesYobta(),
+  fromEntriesYobta(),
   shapeYobta({
     currentTab:
       catchYobta(
@@ -130,8 +130,6 @@ requiredYobta(
   - [+] maximum date
 - [+] RegExp test
 - [-] FormData validator
-- [-] URL
-- [-] URLSearchParams validator
 
 ### Flow Utilities
 - [+] required
@@ -139,6 +137,8 @@ requiredYobta(
 - [+] catch
 - [+] identical
 - [+] different
+- [+] URLSearchParams
+- [+] from Entries
 - [-] oneOf
 - [-] anyOf
 
