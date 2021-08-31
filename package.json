@@ -345,6 +345,13 @@
       "limit": "37 B"
     },
     {
+      "name": "From Entries rule",
+      "import": {
+        "lib/index.js": "{ fromEntriesYobta }"
+      },
+      "limit": "31 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -379,7 +386,8 @@
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
         "lib/YobtaError/index.js": "{ YobtaError }",
-        "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }"
+        "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
+        "lib/fromEntriesYobta/index.js": "{ fromEntriesYobta }"
       },
       "limit": "2000 B"
     }
