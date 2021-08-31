@@ -105,7 +105,7 @@ requiredYobta(
 - [-] Async validator
 - [+] Sync validator
 - [+] Shape validator
-- [-] Enum validator
+- [+] Enum validator (one of)
 - [-] Array validator
   - [+] items
   - [-] contains (do later)
@@ -139,7 +139,6 @@ requiredYobta(
 - [+] different
 - [+] URLSearchParams
 - [+] from Entries
-- [-] oneOf
 - [-] anyOf
 
 ### Docs
