@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { createRule, Rule } from '../createRule'
 import {
   Factories,
   Functions,
@@ -10,7 +10,7 @@ import {
 export function catchYobta<F extends Factories, I extends PipeFactoryResult<F>>(
   fallbackValue: I,
   ...rules: PipedFactories<F>
-): SyncRule<any, PipeFactoryResult<F>> {
+): Rule<any, PipeFactoryResult<F>> {
   return createRule((input, context) => {
     let next = rules.map(rule => rule(context)) as Functions
     try {

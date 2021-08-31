@@ -1,4 +1,4 @@
-import { SyncRule } from '../createRule'
+import { Rule } from '../createRule'
 import { pipe, Factories, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
@@ -6,7 +6,7 @@ import { YobtaError } from '../YobtaError'
 //#region Types
 export type Path = (string | number)[]
 
-type RuleFactories<I, O> = [SyncRule<I, O>, ...SyncRule<I, O>[]]
+type RuleFactories<I, O> = [Rule<I, O>, ...Rule<I, O>[]]
 
 export type SyncValidator<I, O, R extends RuleFactories<I, O>> = (
   input: I

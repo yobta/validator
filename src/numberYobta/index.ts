@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { createRule, Rule } from '../createRule'
 
 let coercedTypes = new Set(['string', 'boolean'])
 
@@ -12,7 +12,7 @@ export const numberMessage = 'It should be a number'
 
 export const numberYobta = (
   message = numberMessage
-): SyncRule<any, number | undefined> =>
+): Rule<any, number | undefined> =>
   createRule(input => {
     let value = coerce(input)
 

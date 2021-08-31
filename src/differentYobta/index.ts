@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { createRule, Rule } from '../createRule'
 import { getIn } from '../getIn'
 import { Path } from '../syncYobta'
 
@@ -8,7 +8,7 @@ export const differentMessage = (path: Path): string =>
 export function differentYobta<I>(
   path: Path,
   message = differentMessage
-): SyncRule<any, I> {
+): Rule<any, I> {
   return createRule((input, { data }) => {
     if (input === getIn(data, path)) throw new Error(message(path))
     return input

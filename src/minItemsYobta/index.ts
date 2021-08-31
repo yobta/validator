@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { createRule, Rule } from '../createRule'
 import { pluralizeEn } from '../pluralizeEn'
 
 export const minItemsMessage = (limit: number): string =>
@@ -7,7 +7,7 @@ export const minItemsMessage = (limit: number): string =>
 export const minItemsYobta = <I extends any[]>(
   limit: number,
   message = minItemsMessage
-): SyncRule<I, I> =>
+): Rule<I, I> =>
   createRule(input => {
     if (input.length < limit) throw new Error(message(limit))
 
