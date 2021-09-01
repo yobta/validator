@@ -29,17 +29,11 @@ const getInitialState = syncYobta(
   urlSearchParamsYobta(),
   fromEntriesYobta(),
   shapeYobta({
-    currentTab:
-      catchYobta(
-        'tab-1',
-        enumYobta('tab-1', 'tab-2', 'tab-3'),
-      ),
-    myModalIsOpen:
-      catchYobta(
-        false,
-        booleanYobta(),
-      )
-  }),
+    currentTab: [
+      catchYobta('tab-1', oneOfYobta<string[]>(['tab-1', 'tab-2', 'tab-3']))
+    ],
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta<boolean>())]
+  })
 )
 
 const initialState = getInitialState(location.search)
