@@ -1,10 +1,10 @@
 import { YobtaContext } from '../YobtaContext'
 
 type Validate<I, O> = (input: I, context: YobtaContext) => O
-export type Rule<I, O> = (context: YobtaContext) => (input: I) => O
+export type SyncRule<I, O> = (context: YobtaContext) => (input: I) => O
 
 export const createRule =
-  <I, O>(validate: Validate<I, O>): Rule<I, O> =>
+  <I, O>(validate: Validate<I, O>): SyncRule<I, O> =>
   context =>
   input =>
     validate(input, context)

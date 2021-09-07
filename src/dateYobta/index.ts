@@ -1,8 +1,10 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
 export const dateMessage = 'It should be a date'
 
-export const dateYobta = (message = dateMessage): Rule<any, Date | undefined> =>
+export const dateYobta = (
+  message = dateMessage
+): SyncRule<any, Date | undefined> =>
   createRule(input => {
     if (typeof input === 'undefined') return input
 

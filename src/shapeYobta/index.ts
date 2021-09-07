@@ -1,4 +1,4 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 import { isPlainObject } from '../isPlainObject'
 import {
   pipe,
@@ -22,7 +22,7 @@ export const shapeMessage = 'It should be a plain object'
 export const shapeYobta = <R extends Record<string, Factories>>(
   rulesSet: Config<R>,
   message = shapeMessage
-): Rule<any, Result<R> | undefined> =>
+): SyncRule<any, Result<R> | undefined> =>
   createRule((input, context) => {
     if (!isPlainObject(input) && typeof input !== 'undefined') {
       throw new Error(message)

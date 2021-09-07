@@ -1,4 +1,4 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
 type TrustedItems = (string | number | symbol)[]
 
@@ -8,7 +8,7 @@ export const oneOfMessage = (items: TrustedItems): string =>
 export const oneOfYobta = <T extends TrustedItems>(
   items: T,
   message = oneOfMessage
-): Rule<any, T[number]> =>
+): SyncRule<any, T[number]> =>
   createRule(input => {
     if (items.includes(input)) return input
     throw new Error(message(items))

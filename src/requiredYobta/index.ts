@@ -1,4 +1,4 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 import { isVoid } from '../isVoid'
 
 export const requiredMessage = 'Required'
@@ -7,7 +7,7 @@ export type Required<O> = O extends undefined ? never : O
 
 export function requiredYobta<I>(
   message = requiredMessage
-): Rule<I | undefined, Required<I>> {
+): SyncRule<I | undefined, Required<I>> {
   return createRule(input => {
     if (isVoid(input)) throw new Error(message)
     return input as Required<I>

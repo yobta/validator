@@ -1,6 +1,6 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
-export const fromEntriesYobta = (): Rule<
+export const fromEntriesYobta = (): SyncRule<
   Iterable<readonly [PropertyKey, any]>,
   { [k: string]: any }
 > => createRule(input => Object.fromEntries(input))

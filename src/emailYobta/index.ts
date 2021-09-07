@@ -1,6 +1,6 @@
 /* eslint-disable security/detect-unsafe-regex */
 /* eslint-disable unicorn/better-regex */
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
 // RFC 5322
 export const EMAIL =
@@ -10,7 +10,7 @@ export const emailMessage = 'It should be an email'
 
 export const emailYobta = (
   message = emailMessage
-): Rule<string | undefined, string | undefined> =>
+): SyncRule<string | undefined, string | undefined> =>
   createRule(input => {
     if (typeof input === 'undefined') return input
 
