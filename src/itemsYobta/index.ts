@@ -1,6 +1,7 @@
 import {
   createRule,
   SyncRule,
+  SyncRules,
   SyncRulesChain1,
   SyncRulesChain2,
   SyncRulesChain3,
@@ -11,7 +12,7 @@ import {
   SyncRulesChain8,
   SyncRulesChain9
 } from '../createRule'
-import { Functions, pipe } from '../pipe'
+import { Functions, pipe, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaError } from '../YobtaError'
 
 export interface ItemsYobta {
@@ -38,9 +39,15 @@ export interface ItemsYobta {
   <R1, R2, R3>(...rules: SyncRulesChain3<R1, R2, R3>): SyncRule<any[], R3[]>
   <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncRule<any[], R2[]>
   <R1>(...rules: SyncRulesChain1<R1>): SyncRule<any[], R1[]>
+  <F extends SyncRules>(...rules: PipedFactories<F>): SyncRule<
+    any[],
+    PipeFactoryResult<F>[]
+  >
 }
 
-export const itemsYobta: ItemsYobta = (...rules: SyncRule<any[], any>[]) => {
+export const itemsYobta: ItemsYobta = <R extends SyncRules>(
+  ...rules: R
+): SyncRule<any[], PipeFactoryResult<R>[]> => {
   return createRule((input: any[], context) => {
     let next = rules.map(rule => rule(context)) as Functions
 
