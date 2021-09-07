@@ -3,12 +3,14 @@ import { jest } from '@jest/globals'
 import { syncYobta } from '../syncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
+import { requiredYobta } from '../requiredYobta'
 
 // const customMessage = 'yobta!'
 const validate = syncYobta(
   shapeYobta({
-    name: [stringYobta()]
-  })
+    name: [stringYobta(), requiredYobta<string>()]
+  }),
+  requiredYobta()
 )
 
 it('accepts valid shapes', () => {

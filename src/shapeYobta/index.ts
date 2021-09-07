@@ -3,20 +3,20 @@ import { isPlainObject } from '../isPlainObject'
 import { pipe, PipeFactoryResult, PipedFactories } from '../pipe'
 import { YobtaError } from '../YobtaError'
 
-type Result<R extends Record<string, SyncRules>> = {
-  [Property in keyof R]: PipeFactoryResult<R[Property]>
+type Result<F extends Record<string, SyncRules>> = {
+  [Property in keyof F]: PipeFactoryResult<F[Property]>
 }
 
-type Config<R extends Record<string, SyncRules>> = {
-  [K in keyof R]: PipedFactories<R[K]>
+type Config<F extends Record<string, SyncRules>> = {
+  [K in keyof F]: PipedFactories<F[K]>
 }
 
 export const shapeMessage = 'It should be a plain object'
 
-export const shapeYobta = <R extends Record<string, SyncRules>>(
-  rulesSet: Config<R>,
+export const shapeYobta = <F extends Record<string, SyncRules>>(
+  rulesSet: Config<F>,
   message = shapeMessage
-): SyncRule<any, Result<R> | undefined> =>
+): SyncRule<any, Result<F> | undefined> =>
   createRule((input, context) => {
     if (!isPlainObject(input) && typeof input !== 'undefined') {
       throw new Error(message)
@@ -42,5 +42,5 @@ export const shapeYobta = <R extends Record<string, SyncRules>>(
           )
         }
         return { ...acc, [field]: next }
-      }, {})) as Result<R>
+      }, {})) as Result<F>
   })
