@@ -1,5 +1,4 @@
 import {
-  SyncRule,
   SyncRules,
   SyncRulesChain1,
   SyncRulesChain2,
@@ -11,14 +10,13 @@ import {
   SyncRulesChain8,
   SyncRulesChain9
 } from '../createRule'
-import { pipe } from '../pipe'
+import { pipe, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
 
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O
 export interface SyncYobta {
-  <R1>(...rules: SyncRulesChain1<R1>): SyncYobtaRule<any, R1>
   <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
     ...rules: SyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
   ): SyncYobtaRule<any, R9>
@@ -40,13 +38,17 @@ export interface SyncYobta {
   >
   <R1, R2, R3>(...rules: SyncRulesChain3<R1, R2, R3>): SyncYobtaRule<any, R3>
   <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncYobtaRule<any, R2>
+  <R1>(...rules: SyncRulesChain1<R1>): SyncYobtaRule<any, R1>
+  <R extends SyncRules>(...rules: PipedFactories<R>): (
+    input: any
+  ) => PipeFactoryResult<R>
 }
 //#endregion
 
 const field = '@root'
 
 export const syncYobta: SyncYobta =
-  (...rules: SyncRule<any, any>[]) =>
+  <R extends SyncRules>(...rules: R) =>
   (data: any) => {
     let context: YobtaContext = {
       data,
