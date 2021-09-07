@@ -1,6 +1,6 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 import { getIn } from '../getIn'
-import { Path } from '../syncYobta'
+import { Path } from '../YobtaContext'
 
 export const identicalMessage = (path: Path): string =>
   `It should be identical to "${path.join('.')}"`
@@ -8,7 +8,7 @@ export const identicalMessage = (path: Path): string =>
 export function identicalYobta<I>(
   path: Path,
   message = identicalMessage
-): Rule<any, I> {
+): SyncRule<any, I> {
   return createRule((input, { data }) => {
     if (input === getIn(data, path)) return input
     throw new Error(message(path))

@@ -20,7 +20,7 @@ it('accepts valid', () => {
 it('can pipe rules', () => {
   let validateMultiple = syncYobta(
     stringYobta(),
-    requiredYobta<string>(),
+    requiredYobta(),
     minCharactersYobta(5)
   )
   let result = validateMultiple('yobta')
@@ -36,10 +36,8 @@ let validateSearch = syncYobta(
   urlSearchParamsYobta(),
   fromEntriesYobta(),
   shapeYobta({
-    currentTab: [
-      catchYobta('tab-1', oneOfYobta<string[]>(['tab-1', 'tab-2', 'tab-3']))
-    ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta<boolean>())]
+    currentTab: [catchYobta('tab-1', oneOfYobta(['tab-1', 'tab-2', 'tab-3']))],
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())]
   })
 )
 

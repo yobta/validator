@@ -9,8 +9,8 @@ import { arrayYobta } from '../arrayYobta'
 
 const validate = syncYobta(
   arrayYobta(),
-  requiredYobta<any[]>(),
-  itemsYobta(stringYobta(), requiredYobta<string>(), minCharactersYobta(5))
+  requiredYobta(),
+  itemsYobta(stringYobta(), requiredYobta(), minCharactersYobta(5))
 )
 
 it('accepts empty array', () => {

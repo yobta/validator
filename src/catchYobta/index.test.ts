@@ -8,7 +8,7 @@ const validate = syncYobta(
   catchYobta(
     'catched yobta!',
     stringYobta(),
-    requiredYobta<string>(),
+    requiredYobta(),
     minCharactersYobta(5)
   )
 )

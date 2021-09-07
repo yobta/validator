@@ -1,4 +1,4 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
-export const urlSearchParamsYobta = (): Rule<any, URLSearchParams> =>
+export const urlSearchParamsYobta = (): SyncRule<any, URLSearchParams> =>
   createRule(input => new URLSearchParams(input))

@@ -30,9 +30,9 @@ const getInitialState = syncYobta(
   fromEntriesYobta(),
   shapeYobta({
     currentTab: [
-      catchYobta('tab-1', oneOfYobta<string[]>(['tab-1', 'tab-2', 'tab-3']))
+      catchYobta('tab-1', oneOfYobta(['tab-1', 'tab-2', 'tab-3']))
     ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta<boolean>())]
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())]
   })
 )
 

@@ -26,7 +26,7 @@ it('pipes', () => {
   let validateMultiple = syncYobta(
     stringYobta(),
     defaultYobta('yobta'),
-    requiredYobta<string>()
+    requiredYobta()
   )
   let result = validateMultiple(null)
   expect(result).toEqual('yobta')

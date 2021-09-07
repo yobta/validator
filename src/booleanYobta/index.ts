@@ -1,4 +1,4 @@
-import { createRule, Rule } from '../createRule'
+import { createRule, SyncRule } from '../createRule'
 
 const truthySet = new Set([1, '1', 'yes', 'true'])
 const falsySet = new Set([0, '0', 'no', 'false', 'null', null])
@@ -14,7 +14,7 @@ export const booleanMessage = 'It should be a boolean'
 
 export const booleanYobta = (
   message = booleanMessage
-): Rule<any, boolean | undefined> =>
+): SyncRule<any, boolean | undefined> =>
   createRule(input => {
     let value = coerce(input)
 
