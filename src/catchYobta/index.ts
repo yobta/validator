@@ -1,6 +1,7 @@
 import {
   createRule,
   SyncRule,
+  SyncRules,
   SyncRulesChain1,
   SyncRulesChain2,
   SyncRulesChain3,
@@ -11,7 +12,7 @@ import {
   SyncRulesChain8,
   SyncRulesChain9
 } from '../createRule'
-import { Functions, pipe } from '../pipe'
+import { Functions, pipe, PipedFactories } from '../pipe'
 
 // export type SyncRule<I, O> = (input: I) => O
 export interface CatchYobta {
@@ -48,6 +49,10 @@ export interface CatchYobta {
     R2
   >
   <R1>(fallbackValue: R1, ...rules: SyncRulesChain1<R1>): SyncRule<any, R1>
+  <F extends SyncRules, R>(
+    fallbackValue: R,
+    ...rules: PipedFactories<F>
+  ): SyncRule<any, R>
 }
 
 export const catchYobta: CatchYobta = (

@@ -1,5 +1,6 @@
 import {
   SyncRule,
+  SyncRules,
   SyncRulesChain1,
   SyncRulesChain2,
   SyncRulesChain3,
@@ -10,7 +11,7 @@ import {
   SyncRulesChain8,
   SyncRulesChain9
 } from '../createRule'
-import { pipe, Factories } from '../pipe'
+import { pipe } from '../pipe'
 import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
 
@@ -56,7 +57,7 @@ export const syncYobta: SyncYobta =
       }
     }
 
-    let validators = rules.map(next => next(context)) as Factories
+    let validators = rules.map(next => next(context)) as SyncRules
 
     try {
       return pipe(...validators)(data)

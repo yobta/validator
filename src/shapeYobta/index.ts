@@ -1,25 +1,19 @@
-import { createRule, SyncRule } from '../createRule'
+import { createRule, SyncRule, AnySyncRule, SyncRules } from '../createRule'
 import { isPlainObject } from '../isPlainObject'
-import {
-  pipe,
-  PipeFactoryResult,
-  Factories,
-  PipedFactories,
-  Factory
-} from '../pipe'
+import { pipe, PipeFactoryResult, PipedFactories } from '../pipe'
 import { YobtaError } from '../YobtaError'
 
-type Result<R extends Record<string, Factories>> = {
+type Result<R extends Record<string, SyncRules>> = {
   [Property in keyof R]: PipeFactoryResult<R[Property]>
 }
 
-type Config<R extends Record<string, Factories>> = {
+type Config<R extends Record<string, SyncRules>> = {
   [K in keyof R]: PipedFactories<R[K]>
 }
 
 export const shapeMessage = 'It should be a plain object'
 
-export const shapeYobta = <R extends Record<string, Factories>>(
+export const shapeYobta = <R extends Record<string, SyncRules>>(
   rulesSet: Config<R>,
   message = shapeMessage
 ): SyncRule<any, Result<R> | undefined> =>
@@ -31,7 +25,7 @@ export const shapeYobta = <R extends Record<string, Factories>>(
     return (input &&
       Object.entries(rulesSet).reduce((acc, [field, rules]) => {
         let path = [...context.path, field]
-        let tests = rules.map((rule: Factory) =>
+        let tests = rules.map((rule: AnySyncRule) =>
           rule({
             ...context,
             field,

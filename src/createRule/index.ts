@@ -2,6 +2,8 @@ import { YobtaContext } from '../YobtaContext'
 
 type Validate<I, O> = (input: I, context: YobtaContext) => O
 export type SyncRule<I, O> = (context: YobtaContext) => (input: I) => O
+export type AnySyncRule = SyncRule<any, any>
+export type SyncRules = [AnySyncRule, ...AnySyncRule[]]
 
 export type SyncRulesChain1<R1> = [SyncRule<any, R1>]
 export type SyncRulesChain2<R1, R2> = [SyncRule<any, R1>, SyncRule<R1, R2>]

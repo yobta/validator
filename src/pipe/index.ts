@@ -1,15 +1,14 @@
-export type Factory = (config: any) => (arg: any) => any
-export type Factories = [Factory, ...Factory[]]
+import { AnySyncRule, SyncRules } from '../createRule'
 
-export type PipedFactories<F extends Factories> = F & AsFactoryChain<F>
-type AsFactoryChain<F extends Factories, T extends Factory[] = Tail<F>> = {
+export type PipedFactories<F extends SyncRules> = F & AsFactoryChain<F>
+type AsFactoryChain<F extends SyncRules, T extends AnySyncRule[] = Tail<F>> = {
   [K in keyof F]: (
     arg: ArgType<FactoryProduct<F, T, K>>
   ) => FactoryProduct<F, T, K>
 }
 type FactoryProduct<
-  F extends Factories,
-  T extends Factory[],
+  F extends SyncRules,
+  T extends AnySyncRule[],
   K extends keyof F
 > = (arg: ArgType<F>) => ArgType<Lookup<ExtractReturnTypes<T>, K, any>, any>
 
@@ -17,7 +16,7 @@ export type ExtractReturnTypes<T extends Func1[]> = {
   [P in keyof T]: T[P] extends (a: ArgType<T[P]>) => infer R ? R : never
 }
 
-export type PipeFactoryResult<F extends Factories> = LaxReturnType<
+export type PipeFactoryResult<F extends SyncRules> = LaxReturnType<
   Last<ExtractReturnTypes<F>>
 >
 
