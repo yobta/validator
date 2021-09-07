@@ -8,22 +8,12 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7,
-  SyncRulesChain8,
-  SyncRulesChain9
+  SyncRulesChain7
 } from '../createRule'
 import { Functions, pipe, PipedFactories } from '../pipe'
 
 // export type SyncRule<I, O> = (input: I) => O
 export interface CatchYobta {
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
-    fallbackValue: R9,
-    ...rules: SyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
-  ): SyncRule<any, R9>
-  <R1, R2, R3, R4, R5, R6, R7, R8>(
-    fallbackValue: R8,
-    ...rules: SyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8>
-  ): SyncRule<any, R8>
   <R1, R2, R3, R4, R5, R6, R7>(
     fallbackValue: R7,
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>

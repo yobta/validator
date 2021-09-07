@@ -42,27 +42,6 @@ export type SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7> = [
   SyncRule<R5, R6>,
   SyncRule<R6, R7>
 ]
-export type SyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-  SyncRule<R4, R5>,
-  SyncRule<R5, R6>,
-  SyncRule<R6, R7>,
-  SyncRule<R7, R8>
-]
-export type SyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-  SyncRule<R4, R5>,
-  SyncRule<R5, R6>,
-  SyncRule<R6, R7>,
-  SyncRule<R7, R8>,
-  SyncRule<R8, R9>
-]
 
 export type SyncRulesChain<
   R1,
@@ -71,9 +50,7 @@ export type SyncRulesChain<
   R4 = undefined,
   R5 = undefined,
   R6 = undefined,
-  R7 = undefined,
-  R8 = undefined,
-  R9 = undefined
+  R7 = undefined
 > =
   | SyncRulesChain1<R1>
   | SyncRulesChain2<R1, R2>
@@ -82,8 +59,6 @@ export type SyncRulesChain<
   | SyncRulesChain5<R1, R2, R3, R4, R5>
   | SyncRulesChain6<R1, R2, R3, R4, R5, R6>
   | SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
-  | SyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8>
-  | SyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
 
 export const createRule =
   <I, O>(validate: Validate<I, O>): SyncRule<I, O> =>

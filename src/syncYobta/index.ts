@@ -6,9 +6,7 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7,
-  SyncRulesChain8,
-  SyncRulesChain9
+  SyncRulesChain7
 } from '../createRule'
 import { pipe, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaContext } from '../YobtaContext'
@@ -17,12 +15,6 @@ import { YobtaError } from '../YobtaError'
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O
 export interface SyncYobta {
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
-    ...rules: SyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
-  ): SyncYobtaRule<any, R9>
-  <R1, R2, R3, R4, R5, R6, R7, R8>(
-    ...rules: SyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8>
-  ): SyncYobtaRule<any, R8>
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
   ): SyncYobtaRule<any, R7>
