@@ -8,6 +8,7 @@ import {
   SyncRulesChain6,
   SyncRulesChain7
 } from '../createRule'
+import { parseUnknownError } from '../parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
@@ -44,6 +45,7 @@ export const syncYobta: SyncYobta =
   (data: any) => {
     let context: YobtaContext = {
       data,
+      errors: [],
       field,
       path: [],
       pushError(error: YobtaError) {
@@ -56,6 +58,7 @@ export const syncYobta: SyncYobta =
     try {
       return pipe(...validators)(data)
     } catch (error) {
-      throw new YobtaError({ field, message: error.message, path: [] })
+      let { message } = parseUnknownError(error)
+      throw new YobtaError({ field, message, path: [] })
     }
   }

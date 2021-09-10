@@ -7,6 +7,7 @@ export * from './pluralizeEn'
 export * from './YobtaError'
 
 export * from './arrayYobta'
+export * from './asyncYobta'
 export * from './booleanYobta'
 export * from './catchYobta'
 export * from './dateYobta'
