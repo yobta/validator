@@ -3,58 +3,86 @@ import { jest } from '@jest/globals'
 import { YobtaContext } from '../YobtaContext'
 import { createRule } from './'
 
-function validateNumber<I>(input: I): number {
-  let number = Number(input)
-  if (isNaN(number)) throw new Error('youbta!')
-  return number
-}
+describe('sinc rule', () => {
+  function validateNumber<I>(input: I): number {
+    let number = Number(input)
+    if (isNaN(number)) throw new Error('youbta!')
+    return number
+  }
 
-it('validates input', () => {
-  let pushError = jest.fn()
-  let testNumber = createRule(validateNumber)
-  let result = testNumber({
-    data: 1,
-    path: ['price'],
-    pushError,
-    field: 'f'
-  })(1)
-  expect(result).toEqual(1)
-  expect(pushError).toHaveBeenCalledTimes(0)
-})
-
-it('does not intercept errors', () => {
-  let pushError = jest.fn()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let simulateUnexpectedException = createRule((data: number) => {
-    throw new Error('yobta!')
-  })
-  expect(() =>
-    simulateUnexpectedException({
+  it('validates input', () => {
+    let pushError = jest.fn()
+    let testNumber = createRule(validateNumber)
+    let context: YobtaContext = {
       data: 1,
+      errors: [],
       field: 'f',
       path: ['price'],
       pushError
-    })(1)
-  ).toThrow('yobta!')
-  expect(pushError).toHaveBeenCalledTimes(0)
+    }
+    let result = testNumber(context)(1)
+    expect(result).toEqual(1)
+    expect(pushError).toHaveBeenCalledTimes(0)
+  })
+
+  it('does not intercept errors', () => {
+    let pushError = jest.fn()
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    let simulateUnexpectedException = createRule((data: number) => {
+      throw new Error('yobta!')
+    })
+    let context: YobtaContext = {
+      data: 1,
+      errors: [],
+      field: 'f',
+      path: ['price'],
+      pushError
+    }
+    expect(() => simulateUnexpectedException(context)(1)).toThrow('yobta!')
+    expect(pushError).toHaveBeenCalledTimes(0)
+  })
+
+  it('gets both data and context', () => {
+    let pushError = jest.fn()
+    let spy = jest.fn()
+    let contextMock: YobtaContext = {
+      data: 1,
+      errors: [],
+      field: 'f',
+      path: ['price'],
+      pushError
+    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    let simulateUnexpectedException = createRule(
+      (data: number, context: YobtaContext) => {
+        spy(data, context)
+        return data
+      }
+    )
+    simulateUnexpectedException(contextMock)(1)
+    expect(spy).toHaveBeenCalledWith(1, contextMock)
+  })
 })
 
-it('gets both data and context', () => {
-  let pushError = jest.fn()
-  let spy = jest.fn()
-  let contextMock: YobtaContext = {
-    data: 1,
-    field: 'f',
-    path: ['price'],
-    pushError
+describe('asinc rule', () => {
+  function validateNumber<I>(input: I): Promise<number> {
+    let number = Number(input)
+    if (isNaN(number)) throw new Error('youbta!')
+    return Promise.resolve(number)
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let simulateUnexpectedException = createRule(
-    (data: number, context: YobtaContext) => {
-      spy(data, context)
-      return data
+
+  it('validates input', async () => {
+    let pushError = jest.fn()
+    let testNumber = createRule(validateNumber)
+    let context: YobtaContext = {
+      data: 1,
+      errors: [],
+      field: 'f',
+      path: ['price'],
+      pushError
     }
-  )
-  simulateUnexpectedException(contextMock)(1)
-  expect(spy).toHaveBeenCalledWith(1, contextMock)
+    let result = await testNumber(context)(1)
+    expect(result).toEqual(1)
+    expect(pushError).toHaveBeenCalledTimes(0)
+  })
 })

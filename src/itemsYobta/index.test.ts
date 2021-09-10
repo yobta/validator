@@ -6,6 +6,7 @@ import { itemsYobta } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { arrayYobta } from '../arrayYobta'
+import { YobtaContext } from '../YobtaContext'
 
 const validate = syncYobta(
   arrayYobta(),
@@ -41,9 +42,14 @@ it('rejects array with invalid item', () => {
 it('returns original item when gets an error', () => {
   let pushError = jest.fn()
   let customValidate = itemsYobta(stringYobta())
-  let result = customValidate({ path: [], field: '', pushError, data: '' })([
-    {}
-  ])
+  let context: YobtaContext = {
+    path: [],
+    field: '',
+    pushError,
+    data: '',
+    errors: []
+  }
+  let result = customValidate(context)([{}])
   expect(result).toEqual([{}])
   expect(pushError).toHaveBeenCalledWith(new Error('It should be a string'))
 })

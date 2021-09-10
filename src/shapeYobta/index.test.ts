@@ -4,13 +4,12 @@ import { syncYobta } from '../syncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
 import { requiredYobta } from '../requiredYobta'
+import { YobtaContext } from '../YobtaContext'
 
-// const customMessage = 'yobta!'
 const validate = syncYobta(
   shapeYobta({
     name: [stringYobta(), requiredYobta<string>()]
-  }),
-  requiredYobta()
+  })
 )
 
 it('accepts valid shapes', () => {
@@ -56,7 +55,14 @@ it('returns errors for invalid keys', () => {
   let validateCustom = shapeYobta({
     name: [stringYobta()]
   })
-  let result = validateCustom({ path: [], field: '', pushError, data: '' })({
+  let context: YobtaContext = {
+    path: [],
+    field: '',
+    pushError,
+    data: '',
+    errors: []
+  }
+  let result = validateCustom(context)({
     name: {}
   })
   expect(result).toEqual({ name: {} })

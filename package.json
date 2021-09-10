@@ -125,7 +125,14 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "172 B"
+      "limit": "219 B"
+    },
+    {
+      "name": "Async validator factory",
+      "import": {
+        "lib/index.js": "{ asyncYobta }"
+      },
+      "limit": "206 B"
     },
     {
       "name": "YobtaError",
@@ -314,7 +321,7 @@
       "import": {
         "lib/index.js": "{ itemsYobta }"
       },
-      "limit": "184 B"
+      "limit": "180 B"
     },
     {
       "name": "Unique rule",
@@ -395,7 +402,8 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/fromEntriesYobta/index.js": "{ fromEntriesYobta }",
-        "lib/oneOfYobta/index.js": "{ oneOfYobta }"
+        "lib/oneOfYobta/index.js": "{ oneOfYobta }",
+        "lib/asyncYobta/index.js": "{ asyncYobta }"
       },
       "limit": "2000 B"
     }
