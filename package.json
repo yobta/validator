@@ -125,14 +125,14 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "219 B"
+      "limit": "216 B"
     },
     {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
       },
-      "limit": "206 B"
+      "limit": "203 B"
     },
     {
       "name": "YobtaError",

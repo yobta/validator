@@ -37,10 +37,9 @@ export interface AsyncYobta {
     input: any
   ) => Promise<Success<R> | Failure>
 }
-//#endregion
-
 type Success<R extends AsyncRules> = [PipeFactoryResult<R>, null]
 type Failure = [null, YobtaError[]]
+//#endregion
 
 const field = '@'
 
