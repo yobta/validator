@@ -42,7 +42,7 @@ export interface AsyncYobta {
 type Success<R extends AsyncRules> = [PipeFactoryResult<R>, null]
 type Failure = [null, YobtaError[]]
 
-const field = '@root'
+const field = '@'
 
 export const asyncYobta: AsyncYobta =
   <R extends AsyncRules>(...rules: R) =>

@@ -35,7 +35,7 @@ it('rejects invalid', async () => {
     null,
     [
       {
-        field: '@root',
+        field: '@',
         message: 'yobta!',
         name: 'Error',
         path: []
