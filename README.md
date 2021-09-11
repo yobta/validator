@@ -25,7 +25,7 @@ should be sync and silent (no errors) and the state should be a plain
 object.
 
 ```js
-const getInitialState = syncYobta(
+const getInitialState = createYobta(
   urlSearchParamsYobta(),
   fromEntriesYobta(),
   shapeYobta({
@@ -53,30 +53,30 @@ async function confirmPassword (password) (
   return password.data.password
 )
 
-const validate = asyncYobta(
-  effectYobta(setMyFormBusy),
+const validate = createAsyncYobta(
+  asyncEffectYobta(toggleFormLock),
   formDataYobta({
     password: [
-      stringYobta('No hacking yobta!'),
-      requiredYobta('Please enter password'),
-      awaitYobta(confirmPassword),
+      stringYobta(),
+      requiredYobta(),
+      awaitYobta(verifyPassword),
     ],
-    newPassword: [
-      stringYobta('No hacking yobta!'),
-      () => trim, // take it from lodash
-      requiredYobta('Please enter new password'),
-      minYobta(6, 'It should be at least 6 characters'),
-      maxYobta(16, 'It should be within 16 characters'),
-      matchYobta(passwordRegExp), // pease make your own RegExp
+    new: [
+      stringYobta(),
+      requiredYobta(),
+      minYobta(6),
+      maxYobta(16),
+      matchYobta(passwordRegExp), // make your own RegExp
     ],
-    passwordRetype: [
-      sameYobta('newPassword', 'Should match new password')
+    repeat: [
+      sameYobta('newPassword')
     ],
   })
-  objectFromEntriesYobta(),
-  successYobta(sendMyFormAsJSON),
-  failureYobta(),
-  effectYobta(setMyFormReady),
+  fromEntriesYobta(),
+  submitYobta(sendMyFormAsJSON),
+  errorsYobta(),
+  reportValidityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
+  asyncEffectYobta(toggleFormLock),
 )
 
 const myForm = window.getElementByID('myForm')
@@ -96,7 +96,7 @@ requiredYobta(
 ```
 
 ### Types
-- [-] Async validator
+- [+] Async validator
 - [+] Sync validator
 - [+] Shape validator
 - [+] Enum validator (one of)
@@ -133,6 +133,7 @@ requiredYobta(
 - [+] different
 - [+] URLSearchParams
 - [+] from Entries
+- [+] side effect
 - [-] anyOf
 
 ### Docs

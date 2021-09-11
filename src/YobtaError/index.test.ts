@@ -1,7 +1,7 @@
 import { YobtaError } from '.'
 
 it('extends Error', () => {
-  let error = new YobtaError({ field: '@root', message: 'yobta', path: [] })
+  let error = new YobtaError({ field: '@', message: 'yobta', path: [] })
   expect(error instanceof Error).toBe(true)
 })
 

@@ -38,7 +38,7 @@ export interface SyncYobta {
 }
 //#endregion
 
-const field = '@root'
+export const field = '@'
 
 export const syncYobta: SyncYobta =
   <R extends SyncRules>(...rules: R) =>

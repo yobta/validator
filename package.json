@@ -125,14 +125,14 @@
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "219 B"
+      "limit": "216 B"
     },
     {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
       },
-      "limit": "206 B"
+      "limit": "203 B"
     },
     {
       "name": "YobtaError",
@@ -366,6 +366,13 @@
       "limit": "82 B"
     },
     {
+      "name": "Effect rule",
+      "import": {
+        "lib/index.js": "{ effectYobta }"
+      },
+      "limit": "22 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -403,7 +410,8 @@
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/fromEntriesYobta/index.js": "{ fromEntriesYobta }",
         "lib/oneOfYobta/index.js": "{ oneOfYobta }",
-        "lib/asyncYobta/index.js": "{ asyncYobta }"
+        "lib/asyncYobta/index.js": "{ asyncYobta }",
+        "lib/effectYobta/index.js": "{ effectYobta }"
       },
       "limit": "2000 B"
     }
