@@ -359,11 +359,11 @@
       "limit": "31 B"
     },
     {
-      "name": "One of rule",
+      "name": "Enum rule",
       "import": {
-        "lib/index.js": "{ oneOfYobta }"
+        "lib/index.js": "{ enumYobta }"
       },
-      "limit": "82 B"
+      "limit": "89 B"
     },
     {
       "name": "Effect rule",
@@ -409,7 +409,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/fromEntriesYobta/index.js": "{ fromEntriesYobta }",
-        "lib/oneOfYobta/index.js": "{ oneOfYobta }",
+        "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }"
       },
