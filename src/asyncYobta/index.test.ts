@@ -5,7 +5,7 @@ import { catchYobta } from '../catchYobta'
 import { fromEntriesYobta } from '../fromEntriesYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
-import { oneOfYobta } from '../oneOfYobta'
+import { enumYobta } from '../enumYobta'
 import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
@@ -48,13 +48,20 @@ let validateSearch = asyncYobta(
   urlSearchParamsYobta(),
   fromEntriesYobta(),
   shapeYobta({
-    currentTab: [catchYobta('tab-1', oneOfYobta(['tab-1', 'tab-2', 'tab-3']))],
+    currentTab: [
+      catchYobta(
+        'tab-1',
+        enumYobta(['tab-1', 'tab-2', 'tab-3']),
+        requiredYobta()
+      )
+    ],
     myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())]
   })
 )
 
 it("creates default state when can't extract it from url", async () => {
-  expect(await validateSearch('')).toEqual([
+  let result = await validateSearch('')
+  expect(result).toEqual([
     {
       currentTab: 'tab-1',
       myModalIsOpen: false
