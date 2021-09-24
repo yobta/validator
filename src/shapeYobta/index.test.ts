@@ -19,6 +19,14 @@ it('accepts valid shapes', () => {
   expect(result).toEqual({ name: 'yobta' })
 })
 
+it('accepts valid shapes with overload', () => {
+  let result = validate({
+    name: 'yobta',
+    age: 0
+  })
+  expect(result).toEqual({ name: 'yobta', age: 0 })
+})
+
 it('rejects invalid input', () => {
   let attempt = (): any => validate([])
   expect(attempt).toThrow(shapeMessage)

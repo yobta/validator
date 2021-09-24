@@ -10,6 +10,7 @@ import {
   SyncRulesChain6,
   SyncRulesChain7
 } from '../createRule'
+import { parseUnknownError } from '../parseUnknownError'
 import { Functions, pipe, PipedFactories, PipeFactoryResult } from '../pipe'
 import { YobtaError } from '../YobtaError'
 
@@ -47,9 +48,10 @@ export const itemsYobta: ItemsYobta = <R extends SyncRules>(
       try {
         return pipe(...next)(item)
       } catch (error) {
+        let { message } = parseUnknownError(error)
         context.pushError(
           new YobtaError({
-            message: error.message,
+            message,
             field: context.field,
             path: [...context.path, index]
           })

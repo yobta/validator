@@ -27,7 +27,6 @@ object.
 ```js
 const getInitialState = createYobta(
   urlSearchParamsYobta(),
-  fromEntriesYobta(),
   shapeYobta({
     currentTab: [
       catchYobta('tab-1', enumYobta(['tab-1', 'tab-2', 'tab-3']))
@@ -55,7 +54,8 @@ async function confirmPassword (password) (
 
 const validate = createAsyncYobta(
   asyncEffectYobta(toggleFormLock),
-  formDataYobta({
+  formDataYobta()
+  asyncShapeYobta({
     password: [
       stringYobta(),
       requiredYobta(),
@@ -71,8 +71,7 @@ const validate = createAsyncYobta(
     repeat: [
       sameYobta('newPassword')
     ],
-  })
-  fromEntriesYobta(),
+  }),
   submitYobta(sendMyFormAsJSON),
   errorsYobta(),
   reportValidityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples

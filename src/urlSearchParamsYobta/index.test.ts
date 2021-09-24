@@ -4,6 +4,6 @@ import { urlSearchParamsYobta } from '.'
 const validate = syncYobta(urlSearchParamsYobta())
 
 it('creates params from string', () => {
-  let result = validate('?yobta=param')
-  expect(result.get('yobta')).toBe('param')
+  let result = validate('?param=yobta')
+  expect(result).toEqual({ param: 'yobta' })
 })
