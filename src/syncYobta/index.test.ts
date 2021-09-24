@@ -1,6 +1,5 @@
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
-import { fromEntriesYobta } from '../fromEntriesYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
 import { enumYobta } from '../enumYobta'
@@ -34,7 +33,6 @@ it('rejects invalid', () => {
 
 let validateSearch = syncYobta(
   urlSearchParamsYobta(),
-  fromEntriesYobta(),
   shapeYobta({
     currentTab: [
       catchYobta(

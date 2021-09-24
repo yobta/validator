@@ -57,7 +57,7 @@
     "simple-git-hooks": "^2.5.1",
     "size-limit": "^5.0.1",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.3.5",
+    "typescript": "^4.4.3",
     "yaspeller": "^7.0.0"
   },
   "simple-git-hooks": {
@@ -94,10 +94,7 @@
       "global": {
         "statements": 100
       }
-    },
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
+    }
   },
   "eslintConfig": {
     "extends": "@logux/eslint-config/esm",
@@ -181,7 +178,7 @@
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "441 B"
+      "limit": "481 B"
     },
     {
       "name": "String rule",
@@ -321,7 +318,7 @@
       "import": {
         "lib/index.js": "{ itemsYobta }"
       },
-      "limit": "180 B"
+      "limit": "220 B"
     },
     {
       "name": "Unique rule",
@@ -349,14 +346,14 @@
       "import": {
         "lib/index.js": "{ urlSearchParamsYobta }"
       },
-      "limit": "37 B"
+      "limit": "93 B"
     },
     {
-      "name": "From Entries rule",
+      "name": "Form Data rule",
       "import": {
-        "lib/index.js": "{ fromEntriesYobta }"
+        "lib/index.js": "{ formDataYobta }"
       },
-      "limit": "31 B"
+      "limit": "208 B"
     },
     {
       "name": "Enum rule",
@@ -408,7 +405,7 @@
         "lib/differentYobta/index.js": "{ differentYobta }",
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
-        "lib/fromEntriesYobta/index.js": "{ fromEntriesYobta }",
+        "lib/formDataYobta/index.js": "{ formDataYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }"

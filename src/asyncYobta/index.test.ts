@@ -2,7 +2,6 @@ import { asyncYobta } from '.'
 import { YobtaError } from '..'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
-import { fromEntriesYobta } from '../fromEntriesYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
 import { enumYobta } from '../enumYobta'
@@ -46,7 +45,6 @@ it('rejects invalid', async () => {
 
 let validateSearch = asyncYobta(
   urlSearchParamsYobta(),
-  fromEntriesYobta(),
   shapeYobta({
     currentTab: [
       catchYobta(
