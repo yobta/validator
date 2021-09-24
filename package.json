@@ -370,6 +370,13 @@
       "limit": "22 B"
     },
     {
+      "name": "Async shape rule",
+      "import": {
+        "lib/index.js": "{ asyncShapeYobta }"
+      },
+      "limit": "513 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -408,7 +415,8 @@
         "lib/formDataYobta/index.js": "{ formDataYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
-        "lib/effectYobta/index.js": "{ effectYobta }"
+        "lib/effectYobta/index.js": "{ effectYobta }",
+        "lib/asyncShapeYobta/index.js": "{ asyncShapeYobta }"
       },
       "limit": "2000 B"
     }

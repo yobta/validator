@@ -53,7 +53,7 @@ async function confirmPassword (password) (
 )
 
 const validate = createAsyncYobta(
-  asyncEffectYobta(toggleFormLock),
+  effectYobta(toggleFormLock),
   formDataYobta()
   asyncShapeYobta({
     password: [
@@ -75,7 +75,7 @@ const validate = createAsyncYobta(
   submitYobta(sendMyFormAsJSON),
   errorsYobta(),
   reportValidityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
-  asyncEffectYobta(toggleFormLock),
+  effectYobta(toggleFormLock),
 )
 
 const myForm = window.getElementByID('myForm')
@@ -98,6 +98,7 @@ requiredYobta(
 - [+] Async validator
 - [+] Sync validator
 - [+] Shape validator
+- [+] Async Shape validator
 - [+] Enum validator (one of)
 - [-] Array validator
   - [+] items
@@ -122,7 +123,7 @@ requiredYobta(
   - [+] minimum date
   - [+] maximum date
 - [+] RegExp test
-- [-] FormData validator
+- [+] FormData
 
 ### Flow Utilities
 - [+] required
@@ -131,7 +132,6 @@ requiredYobta(
 - [+] identical
 - [+] different
 - [+] URLSearchParams
-- [+] from Entries
 - [+] side effect
 - [-] anyOf
 

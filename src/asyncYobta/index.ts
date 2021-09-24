@@ -1,6 +1,6 @@
 import { asyncPipe } from '..'
 import {
-  AsyncRules,
+  SyncOrAsyncRules,
   AsyncRulesChain1,
   AsyncRulesChain2,
   AsyncRulesChain3,
@@ -33,18 +33,18 @@ export interface AsyncYobta {
   <R1, R2, R3>(...rules: AsyncRulesChain3<R1, R2, R3>): AsyncYobtaRule<any, R3>
   <R1, R2>(...rules: AsyncRulesChain2<R1, R2>): AsyncYobtaRule<any, R2>
   <R1>(...rules: AsyncRulesChain1<R1>): AsyncYobtaRule<any, R1>
-  <R extends AsyncRules>(...rules: PipedFactories<R>): (
+  <R extends SyncOrAsyncRules>(...rules: PipedFactories<R>): (
     input: any
   ) => Promise<Success<R> | Failure>
 }
-type Success<R extends AsyncRules> = [PipeFactoryResult<R>, null]
+type Success<R extends SyncOrAsyncRules> = [PipeFactoryResult<R>, null]
 type Failure = [null, YobtaError[]]
 //#endregion
 
 const field = '@'
 
 export const asyncYobta: AsyncYobta =
-  <R extends AsyncRules>(...rules: R) =>
+  <R extends SyncOrAsyncRules>(...rules: R) =>
   async (data: any) => {
     let errors: YobtaError[] = []
     function pushError(error: YobtaError): void {
@@ -58,7 +58,7 @@ export const asyncYobta: AsyncYobta =
       pushError
     }
 
-    let validators = rules.map(next => next(context)) as AsyncRules
+    let validators = rules.map(next => next(context)) as SyncOrAsyncRules
 
     try {
       let result: PipeFactoryResult<R> = await asyncPipe(...validators)(data)
