@@ -8,6 +8,7 @@ export * from './YobtaError'
 
 export * from './arrayYobta'
 export * from './asyncYobta'
+export * from './asyncShapeYobta'
 export * from './booleanYobta'
 export * from './catchYobta'
 export * from './dateYobta'

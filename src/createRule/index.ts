@@ -52,7 +52,7 @@ export type AsyncRule<I, O> = (
 ) => (input: I) => Promise<O>
 export type AnyAsyncRule = AsyncRule<any, any>
 export type AnySyncOrAsyncRule = AnySyncRule | AnyAsyncRule
-export type AsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]
+export type SyncOrAsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]
 export type SyncOrAsyncRule<I, O> = SyncRule<I, O> | AsyncRule<I, O>
 
 export type AsyncRulesChain1<R1> = [SyncOrAsyncRule<any, R1>]
