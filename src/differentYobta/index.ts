@@ -1,5 +1,5 @@
 import { createRule, SyncRule } from '../createRule'
-import { getIn } from '../getIn'
+import { getIn } from '../_internal/getIn'
 import { Path } from '../YobtaContext'
 
 export const differentMessage = (path: Path): string =>

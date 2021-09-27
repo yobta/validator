@@ -1,5 +1,5 @@
 import { createRule, SyncRule } from '../createRule'
-import { pluralizeEn } from '../pluralizeEn'
+import { pluralizeEn } from '../_internal/pluralizeEn'
 
 export const maxCharactersMessage = (limit: number): string =>
   `It should be within ${pluralizeEn(limit, 'character')}`

@@ -1,4 +1,4 @@
-import { isPlainObject } from './'
+import { isPlainObject } from '.'
 
 it('should return `true` if the object is created by the `Object` constructor.', () => {
   expect(isPlainObject(Object.create({}))).toBe(true)

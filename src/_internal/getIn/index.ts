@@ -1,6 +1,6 @@
 // https://github.com/lodash/lodash/blob/master/.internal/baseGet.js
 
-import { Path } from '../YobtaContext'
+import { Path } from '../../YobtaContext'
 
 export function getIn<I>(input: any, path: Path): I {
   let index = 0
