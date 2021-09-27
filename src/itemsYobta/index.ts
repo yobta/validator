@@ -17,7 +17,7 @@ import {
   PipedFactories,
   PipeFactoryResult
 } from '../_internal/pipe'
-import { YobtaError } from '../YobtaError'
+import { YobtaError } from '../_internal/YobtaError'
 
 export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6, R7>(

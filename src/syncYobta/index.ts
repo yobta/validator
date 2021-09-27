@@ -10,8 +10,8 @@ import {
 } from '../createRule'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
-import { YobtaContext } from '../YobtaContext'
-import { YobtaError } from '../YobtaError'
+import { YobtaContext } from '../_internal/YobtaContext'
+import { YobtaError } from '../_internal/YobtaError'
 
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O

@@ -1,5 +1,5 @@
 export * from './createRule'
-export * from './YobtaError'
+export * from './_internal/YobtaError'
 
 export * from './arrayYobta'
 export * from './asyncShapeYobta'
