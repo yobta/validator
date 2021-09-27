@@ -1,4 +1,3 @@
-import { asyncPipe } from '..'
 import {
   SyncOrAsyncRules,
   AsyncRulesChain1,
@@ -9,8 +8,9 @@ import {
   AsyncRulesChain6,
   AsyncRulesChain7
 } from '../createRule'
-import { parseUnknownError } from '../parseUnknownError'
-import { PipedFactories, PipeFactoryResult } from '../pipe'
+import { parseUnknownError } from '../_internal/parseUnknownError'
+import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
+import { asyncPipe } from '../_internal/asyncPipe'
 import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
 

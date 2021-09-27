@@ -1,5 +1,5 @@
 import { createRule, SyncRule } from '../createRule'
-import { isVoid } from '../isVoid'
+import { isVoid } from '../_internal/isVoid'
 
 export const requiredMessage = 'Required'
 

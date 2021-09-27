@@ -10,8 +10,13 @@ import {
   SyncRulesChain6,
   SyncRulesChain7
 } from '../createRule'
-import { parseUnknownError } from '../parseUnknownError'
-import { Functions, pipe, PipedFactories, PipeFactoryResult } from '../pipe'
+import { parseUnknownError } from '../_internal/parseUnknownError'
+import {
+  Functions,
+  pipe,
+  PipedFactories,
+  PipeFactoryResult
+} from '../_internal/pipe'
 import { YobtaError } from '../YobtaError'
 
 export interface ItemsYobta {

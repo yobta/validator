@@ -10,7 +10,7 @@ import {
   SyncRulesChain6,
   SyncRulesChain7
 } from '../createRule'
-import { Functions, pipe, PipedFactories } from '../pipe'
+import { Functions, pipe, PipedFactories } from '../_internal/pipe'
 
 // export type SyncRule<I, O> = (input: I) => O
 export interface CatchYobta {

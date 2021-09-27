@@ -1,4 +1,4 @@
-import { pipe } from './'
+import { pipe } from '.'
 
 const addOne = (input: number): number => input + 1
 const toString = (input: number): string => input.toString()

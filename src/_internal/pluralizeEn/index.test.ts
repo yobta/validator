@@ -1,4 +1,4 @@
-import { pluralizeEn } from './'
+import { pluralizeEn } from '.'
 
 it('is plural for 1', () => {
   let result = pluralizeEn(1, 'yobta')

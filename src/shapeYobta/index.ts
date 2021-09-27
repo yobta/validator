@@ -1,7 +1,7 @@
 import { createRule, SyncRule, AnySyncRule, SyncRules } from '../createRule'
-import { isPlainObject } from '../isPlainObject'
-import { parseUnknownError } from '../parseUnknownError'
-import { pipe, PipeFactoryResult, PipedFactories } from '../pipe'
+import { isPlainObject } from '../_internal/isPlainObject'
+import { parseUnknownError } from '../_internal/parseUnknownError'
+import { pipe, PipeFactoryResult, PipedFactories } from '../_internal/pipe'
 import { YobtaError } from '../YobtaError'
 
 type Rules = Record<PropertyKey, SyncRules>

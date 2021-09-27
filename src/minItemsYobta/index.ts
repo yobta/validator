@@ -1,5 +1,5 @@
 import { createRule, SyncRule } from '../createRule'
-import { pluralizeEn } from '../pluralizeEn'
+import { pluralizeEn } from '../_internal/pluralizeEn'
 
 export const minItemsMessage = (limit: number): string =>
   `It should have at least ${pluralizeEn(limit, 'item')}`

@@ -1,13 +1,14 @@
-import { asyncPipe, shapeMessage } from '..'
+import { shapeMessage } from '..'
 import {
   createRule,
   SyncRule,
   AnySyncOrAsyncRule,
   SyncOrAsyncRules
 } from '../createRule'
-import { isPlainObject } from '../isPlainObject'
-import { parseUnknownError } from '../parseUnknownError'
-import { PipeFactoryResult, PipedFactories } from '../pipe'
+import { isPlainObject } from '../_internal/isPlainObject'
+import { parseUnknownError } from '../_internal/parseUnknownError'
+import { PipeFactoryResult, PipedFactories } from '../_internal/pipe'
+import { asyncPipe } from '../_internal/asyncPipe'
 import { YobtaError } from '../YobtaError'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
