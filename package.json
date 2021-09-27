@@ -384,6 +384,13 @@
       "limit": "79 B"
     },
     {
+      "name": "Errors utility",
+      "import": {
+        "lib/index.js": "{ errorsYobta }"
+      },
+      "limit": "40 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -424,7 +431,8 @@
         "lib/asyncYobta/index.js": "{ asyncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }",
         "lib/asyncShapeYobta/index.js": "{ asyncShapeYobta }",
-        "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }"
+        "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
+        "lib/errorsYobta/index.js": "{ errorsYobta }"
       },
       "limit": "2000 B"
     }
@@ -478,7 +486,8 @@
       "validation",
       "Dalton",
       "Enum",
-      "awaitSubmitYobta"
+      "awaitSubmitYobta",
+      "errorsYobta"
     ]
   },
   "sharec": {

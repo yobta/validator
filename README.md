@@ -134,6 +134,7 @@ requiredYobta(
 - [+] URLSearchParams
 - [+] side effect
 - [+] awaitSubmitYobta
+- [+] errorsYobta
 - [-] anyOf
 
 ### Docs
