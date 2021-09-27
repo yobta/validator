@@ -15,7 +15,7 @@ import { YobtaContext } from '../YobtaContext'
 import { YobtaError } from '../YobtaError'
 
 //#region Types
-export type AsyncYobtaRule<I, O> = (input: I) => O | Promise<O>
+export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
 export interface AsyncYobta {
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: AsyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>

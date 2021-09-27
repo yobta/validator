@@ -377,6 +377,13 @@
       "limit": "513 B"
     },
     {
+      "name": "Await submit utility",
+      "import": {
+        "lib/index.js": "{ awaitSubmitYobta }"
+      },
+      "limit": "79 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/createRule/index.js": "{ createRule }",
@@ -416,7 +423,8 @@
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }",
-        "lib/asyncShapeYobta/index.js": "{ asyncShapeYobta }"
+        "lib/asyncShapeYobta/index.js": "{ asyncShapeYobta }",
+        "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }"
       },
       "limit": "2000 B"
     }
@@ -469,7 +477,8 @@
       "RegExp",
       "validation",
       "Dalton",
-      "Enum"
+      "Enum",
+      "awaitSubmitYobta"
     ]
   },
   "sharec": {

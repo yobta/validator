@@ -72,7 +72,7 @@ const validate = createAsyncYobta(
       sameYobta('newPassword')
     ],
   }),
-  submitYobta(sendMyFormAsJSON),
+  awaitSubmitYobta(sendMyFormAsJSON),
   errorsYobta(),
   reportValidityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
   effectYobta(toggleFormLock),
@@ -133,6 +133,7 @@ requiredYobta(
 - [+] different
 - [+] URLSearchParams
 - [+] side effect
+- [+] awaitSubmitYobta
 - [-] anyOf
 
 ### Docs
