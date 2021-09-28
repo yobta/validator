@@ -9,7 +9,7 @@ import { isPlainObject } from '../_internal/isPlainObject'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { PipeFactoryResult, PipedFactories } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
-import { YobtaError } from '../YobtaError'
+import { YobtaError } from '../_internal/YobtaError'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 
@@ -21,7 +21,7 @@ type Config<F extends Rules> = {
   [K in keyof F]: PipedFactories<F[K]>
 }
 
-interface AsyncShapeRule {
+interface AsyncShapeFactory {
   <F extends Rules>(rulesSet: Config<F>, message?: string): SyncRule<
     any,
     Promise<Result<F> | undefined>
@@ -30,7 +30,7 @@ interface AsyncShapeRule {
 
 export const asyncShapeMessage = 'It should be a plain object'
 
-export const asyncShapeYobta: AsyncShapeRule = (
+export const awaitShapeYobta: AsyncShapeFactory = (
   rulesSet,
   validationMessage = shapeMessage
 ) =>

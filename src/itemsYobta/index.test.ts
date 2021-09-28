@@ -6,7 +6,7 @@ import { itemsYobta } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { arrayYobta } from '../arrayYobta'
-import { YobtaContext } from '../YobtaContext'
+import { YobtaContext } from '../_internal/YobtaContext'
 
 const validate = syncYobta(
   arrayYobta(),

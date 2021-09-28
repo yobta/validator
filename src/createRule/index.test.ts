@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals'
 
-import { YobtaContext } from '../YobtaContext'
+import { YobtaContext } from '../_internal/YobtaContext'
 import { createRule } from './'
 
 describe('sinc rule', () => {

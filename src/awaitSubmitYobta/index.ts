@@ -1,5 +1,5 @@
 import { createRule, AsyncRule } from '../createRule'
-import { YobtaContext } from '../YobtaContext'
+import { YobtaContext } from '../_internal/YobtaContext'
 
 interface Submitter<I> {
   (input: I, context: YobtaContext): Promise<void>

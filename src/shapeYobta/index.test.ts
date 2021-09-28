@@ -4,7 +4,7 @@ import { syncYobta } from '../syncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
 import { requiredYobta } from '../requiredYobta'
-import { YobtaContext } from '../YobtaContext'
+import { YobtaContext } from '../_internal/YobtaContext'
 
 const validate = syncYobta(
   shapeYobta({
