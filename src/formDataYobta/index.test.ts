@@ -1,7 +1,7 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { formDataYobta, formDataMessage } from '.'
 
-const validate = syncYobta(formDataYobta())
+const validate = yobta(formDataYobta())
 
 it('accepts FormData instance', () => {
   let input = new FormData()
@@ -35,6 +35,6 @@ it('rejects invalid input', () => {
 })
 
 it('has custom error messages', () => {
-  let attempt = (): any => syncYobta(formDataYobta('yobta!'))(null)
+  let attempt = (): any => yobta(formDataYobta('yobta!'))(null)
   expect(attempt).toThrow('yobta!')
 })

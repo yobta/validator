@@ -1,12 +1,12 @@
 import { jest } from '@jest/globals'
 
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { shapeYobta, shapeMessage } from './'
 import { requiredYobta } from '../requiredYobta'
 import { YobtaContext } from '../_internal/YobtaContext'
 
-const validate = syncYobta(
+const validate = yobta(
   shapeYobta({
     name: [stringYobta(), requiredYobta<string>()]
   })
@@ -39,7 +39,7 @@ it('can be undefined', () => {
 
 it('has custom error messages', () => {
   let attempt = (): any =>
-    syncYobta(
+    yobta(
       shapeYobta(
         {
           name: [stringYobta()]

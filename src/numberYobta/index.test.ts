@@ -1,8 +1,8 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { numberYobta, numberMessage } from './'
 
 const customMessage = 'yobta!'
-const validate = syncYobta(numberYobta(customMessage))
+const validate = yobta(numberYobta(customMessage))
 
 it('accepts numbers', () => {
   let result = validate(1)
@@ -48,7 +48,7 @@ it('rejects invalid', () => {
 })
 
 it('has default error message', () => {
-  let validateDefault = syncYobta(numberYobta())
+  let validateDefault = yobta(numberYobta())
   let attempt = (): any => validateDefault([])
   expect(attempt).toThrow(numberMessage)
 })

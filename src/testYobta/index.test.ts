@@ -1,10 +1,10 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { testYobta, testMessage } from './'
 
 const regExp = /fo*/
 
 const customMessage = 'yobta!'
-const validate = syncYobta(testYobta(regExp, customMessage))
+const validate = yobta(testYobta(regExp, customMessage))
 
 it('accepts if mathed', () => {
   let result = validate('table football')
@@ -22,7 +22,7 @@ it('regects if not matched', () => {
 })
 
 it('has default error message', () => {
-  let validateDefault = syncYobta(testYobta(regExp))
+  let validateDefault = yobta(testYobta(regExp))
   let attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(testMessage)
 })

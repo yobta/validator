@@ -1,7 +1,7 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { urlSearchParamsYobta } from '.'
 
-const validate = syncYobta(urlSearchParamsYobta())
+const validate = yobta(urlSearchParamsYobta())
 
 it('creates params from string', () => {
   let result = validate('?param=yobta')

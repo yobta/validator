@@ -1,4 +1,4 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { shapeYobta } from '../shapeYobta'
 import { numberYobta } from '../numberYobta'
 import { differentYobta, differentMessage } from '.'
@@ -6,7 +6,7 @@ import { differentYobta, differentMessage } from '.'
 const customMessage = (): string => 'yobta!'
 
 it('accepts when different', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [differentYobta(['a'])]
@@ -17,7 +17,7 @@ it('accepts when different', () => {
 })
 
 it('regects when not different', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [differentYobta(['a'], customMessage)]
@@ -28,7 +28,7 @@ it('regects when not different', () => {
 })
 
 it('has default error mesage', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [differentYobta(['a'])]

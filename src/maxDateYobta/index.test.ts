@@ -1,9 +1,9 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { maxDateYobta } from './'
 
 const maxDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`
-const validate = syncYobta(maxDateYobta(maxDate, customMessage))
+const validate = yobta(maxDateYobta(maxDate, customMessage))
 
 it('accepts exact date', () => {
   let result = validate(maxDate)
@@ -24,7 +24,7 @@ it('regects longer date lenght', () => {
 
 it('has default error message', () => {
   let longerDate = new Date('15 Jun 2017 00:00:00 PDT')
-  let attempt = (): any => syncYobta(maxDateYobta(maxDate))(longerDate)
+  let attempt = (): any => yobta(maxDateYobta(maxDate))(longerDate)
 
   expect(attempt).toThrow('It should be within Wed, 14 Jun 2017 07:00:00 GMT')
 })

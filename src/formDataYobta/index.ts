@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 import { fromEntries, PlainObject } from '../_internal/fromEntries'
 
 interface FormDataRule {
@@ -9,7 +9,7 @@ export const formDataMessage =
   'It should be HTMLFormElement, FormData or an Event'
 
 export const formDataYobta: FormDataRule = (message = formDataMessage) =>
-  createRule(input => {
+  ruleYobta(input => {
     let output: FormData | null = input instanceof FormData ? input : null
     if (typeof input === 'undefined') {
       return input

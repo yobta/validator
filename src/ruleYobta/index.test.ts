@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals'
 
 import { YobtaContext } from '../_internal/YobtaContext'
-import { createRule } from './'
+import { ruleYobta } from '.'
 
 describe('sinc rule', () => {
   function validateNumber<I>(input: I): number {
@@ -12,7 +12,7 @@ describe('sinc rule', () => {
 
   it('validates input', () => {
     let pushError = jest.fn()
-    let testNumber = createRule(validateNumber)
+    let testNumber = ruleYobta(validateNumber)
     let context: YobtaContext = {
       data: 1,
       errors: [],
@@ -28,7 +28,7 @@ describe('sinc rule', () => {
   it('does not intercept errors', () => {
     let pushError = jest.fn()
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let simulateUnexpectedException = createRule((data: number) => {
+    let simulateUnexpectedException = ruleYobta((data: number) => {
       throw new Error('yobta!')
     })
     let context: YobtaContext = {
@@ -53,7 +53,7 @@ describe('sinc rule', () => {
       pushError
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let simulateUnexpectedException = createRule(
+    let simulateUnexpectedException = ruleYobta(
       (data: number, context: YobtaContext) => {
         spy(data, context)
         return data
@@ -73,7 +73,7 @@ describe('asinc rule', () => {
 
   it('validates input', async () => {
     let pushError = jest.fn()
-    let testNumber = createRule(validateNumber)
+    let testNumber = ruleYobta(validateNumber)
     let context: YobtaContext = {
       data: 1,
       errors: [],

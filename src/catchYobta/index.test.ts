@@ -1,10 +1,10 @@
 import { stringYobta } from '../stringYobta'
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { catchYobta } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 
-const validate = syncYobta(
+const validate = yobta(
   catchYobta(
     'catched yobta!',
     stringYobta(),

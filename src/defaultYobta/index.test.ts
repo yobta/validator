@@ -1,9 +1,9 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { defaultYobta } from '.'
 import { stringYobta } from '../stringYobta'
 import { requiredYobta } from '../requiredYobta'
 
-const validate = syncYobta(defaultYobta('yobta'))
+const validate = yobta(defaultYobta('yobta'))
 
 let voidValues = ['', '   ', undefined, null, NaN]
 
@@ -23,7 +23,7 @@ values.forEach(value => {
 })
 
 it('pipes', () => {
-  let validateMultiple = syncYobta(
+  let validateMultiple = yobta(
     stringYobta(),
     defaultYobta('yobta'),
     requiredYobta()

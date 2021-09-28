@@ -1,15 +1,15 @@
 import { shapeMessage } from '..'
 import {
-  createRule,
+  ruleYobta,
   SyncRule,
   AnySyncOrAsyncRule,
   SyncOrAsyncRules
-} from '../createRule'
+} from '../ruleYobta'
 import { isPlainObject } from '../_internal/isPlainObject'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { PipeFactoryResult, PipedFactories } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 
@@ -34,7 +34,7 @@ export const awaitShapeYobta: AsyncShapeFactory = (
   rulesSet,
   validationMessage = shapeMessage
 ) =>
-  createRule(async (input, context) => {
+  ruleYobta(async (input, context) => {
     if (typeof input === 'undefined') {
       return input
     }

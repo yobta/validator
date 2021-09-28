@@ -1,9 +1,9 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { arrayYobta, arrayMessage } from './'
 
 const customMessage = 'yobta!'
 const stringRule = arrayYobta(customMessage)
-const validate = syncYobta(stringRule)
+const validate = yobta(stringRule)
 
 it('accepts array', () => {
   let result = validate(['yobta'])
@@ -33,7 +33,7 @@ it('rejects non-arrays', () => {
 
 it('has default error message', () => {
   let rule = arrayYobta()
-  let validateDefault = syncYobta(rule)
+  let validateDefault = yobta(rule)
   let attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(arrayMessage)
 })

@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 import { YobtaContext } from '../_internal/YobtaContext'
 
 interface Reporter {
@@ -10,7 +10,7 @@ interface ErrorsYobtaFactory {
 }
 
 export const errorsYobta: ErrorsYobtaFactory = report =>
-  createRule((input, context) => {
+  ruleYobta((input, context) => {
     let { errors } = context
     if (errors.length) {
       report(errors, context)

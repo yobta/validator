@@ -1,9 +1,9 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { minDateYobta, minDateMessage } from './'
 
 const minDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`
-const validate = syncYobta(minDateYobta(minDate, customMessage))
+const validate = yobta(minDateYobta(minDate, customMessage))
 
 it('accepts exact date', () => {
   let result = validate(minDate)
@@ -24,7 +24,7 @@ it('regects shorter date lenght', () => {
 
 it('has default error message', () => {
   let shorterDate = new Date('13 Jun 2017 00:00:00 PDT')
-  let validateDefault = syncYobta(minDateYobta(minDate))
+  let validateDefault = yobta(minDateYobta(minDate))
   let attempt = (): any => validateDefault(shorterDate)
   expect(attempt).toThrow(minDateMessage(minDate))
 })

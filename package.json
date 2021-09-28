@@ -33,6 +33,7 @@
     "@logux/eslint-config": "^45.4.6",
     "@logux/sharec-config": "^0.10.2",
     "@size-limit/preset-small-lib": "^5.0.1",
+    "@testing-library/dom": "^8.6.0",
     "@types/jest": "^26.0.24",
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.4.2",
@@ -113,14 +114,14 @@
     {
       "name": "Rule factory",
       "import": {
-        "lib/index.js": "{ createRule }"
+        "lib/index.js": "{ ruleYobta }"
       },
       "limit": "10 B"
     },
     {
       "name": "Validator factory",
       "import": {
-        "lib/index.js": "{ syncYobta }"
+        "lib/index.js": "{ yobta }"
       },
       "limit": "216 B"
     },
@@ -137,41 +138,6 @@
         "lib/index.js": "{ YobtaError }"
       },
       "limit": "73 B"
-    },
-    {
-      "name": "Is plain object utility",
-      "import": {
-        "lib/index.js": "{ isPlainObject }"
-      },
-      "limit": "191 B"
-    },
-    {
-      "name": "Is void utility",
-      "import": {
-        "lib/index.js": "{ isVoid }"
-      },
-      "limit": "46 B"
-    },
-    {
-      "name": "Pipe utility",
-      "import": {
-        "lib/index.js": "{ pipe }"
-      },
-      "limit": "20 B"
-    },
-    {
-      "name": "Async pipe utility",
-      "import": {
-        "lib/index.js": "{ asyncPipe }"
-      },
-      "limit": "32 B"
-    },
-    {
-      "name": "Pluralization utility for English",
-      "import": {
-        "lib/index.js": "{ pluralizeEn }"
-      },
-      "limit": "26 B"
     },
     {
       "name": "Shape rule",
@@ -393,12 +359,8 @@
     {
       "name": "All",
       "import": {
-        "lib/createRule/index.js": "{ createRule }",
-        "lib/syncYobta/index.js": "{ syncYobta }",
-        "lib/isPlainObject/index.js": "{ isPlainObject }",
-        "lib/pipe/index.js": "{ pipe }",
-        "lib/asyncPipe/index.js": "{ asyncPipe }",
-        "lib/pluralizeEn/index.js": "{ pluralizeEn }",
+        "lib/ruleYobta/index.js": "{ ruleYobta }",
+        "lib/yobta/index.js": "{ yobta }",
         "lib/shapeYobta/index.js": "{ shapeYobta }",
         "lib/stringYobta/index.js": "{ stringYobta }",
         "lib/arrayYobta/index.js": "{ arrayYobta }",
@@ -417,7 +379,6 @@
         "lib/testYobta/index.js": "{ testYobta }",
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
-        "lib/isVoid/index.js": "{ isVoid }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/catchYobta/index.js": "{ catchYobta }",
         "lib/itemsYobta/index.js": "{ itemsYobta }",
