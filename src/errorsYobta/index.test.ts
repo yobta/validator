@@ -6,9 +6,9 @@ import {
   formDataYobta,
   requiredYobta,
   shapeYobta,
-  stringYobta,
-  YobtaError
+  stringYobta
 } from '..'
+import { YobtaError } from '../_internal/YobtaError'
 
 it('calls reporter when validation fails', async () => {
   let formData = new FormData()

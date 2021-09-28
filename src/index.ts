@@ -1,5 +1,4 @@
 export * from './ruleYobta'
-export * from './YobtaError'
 
 export * from './arrayYobta'
 export * from './awaitShapeYobta'

@@ -9,7 +9,7 @@ import { isPlainObject } from '../_internal/isPlainObject'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { PipeFactoryResult, PipedFactories } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
-import { YobtaError } from '../YobtaError'
+import { YobtaError } from '../_internal/YobtaError'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 

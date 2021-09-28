@@ -133,13 +133,6 @@
       "limit": "203 B"
     },
     {
-      "name": "YobtaError",
-      "import": {
-        "lib/index.js": "{ YobtaError }"
-      },
-      "limit": "73 B"
-    },
-    {
       "name": "Shape rule",
       "import": {
         "lib/index.js": "{ shapeYobta }"
@@ -385,7 +378,6 @@
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
-        "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/formDataYobta/index.js": "{ formDataYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",

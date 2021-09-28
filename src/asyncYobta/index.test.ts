@@ -1,5 +1,4 @@
 import { asyncYobta } from '.'
-import { YobtaError } from '..'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
@@ -9,6 +8,7 @@ import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
+import { YobtaError } from '../_internal/YobtaError'
 
 let validate = asyncYobta(numberYobta('yobta!'))
 
