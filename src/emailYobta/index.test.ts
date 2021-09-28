@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-escape */
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'
-const validate = syncYobta(emailYobta(customMessage))
+const validate = yobta(emailYobta(customMessage))
 
 let validEmails = [
   'simple@example.com',
@@ -60,7 +60,7 @@ invalidEmails.forEach(option => {
 
 it('has default error message', () => {
   let rule = emailYobta()
-  let validateDefault = syncYobta(rule)
+  let validateDefault = yobta(rule)
   let attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(emailMessage)
 })

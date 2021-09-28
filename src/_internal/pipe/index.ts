@@ -1,4 +1,4 @@
-import { AnySyncRule, SyncRules } from '../../createRule'
+import { AnySyncRule, SyncRules } from '../../ruleYobta'
 
 export type PipedFactories<F extends SyncRules> = F & AsFactoryChain<F>
 type AsFactoryChain<F extends SyncRules, T extends AnySyncRule[] = Tail<F>> = {

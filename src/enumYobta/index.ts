@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 
 type TrustedItems = (string | number | symbol)[]
 
@@ -17,7 +17,7 @@ export const enumMessage: EnumMessage = items =>
   `It should be one of: ${items.join(', ')}`
 
 export const enumYobta: EnymYobta = (items, message = enumMessage) =>
-  createRule(input => {
+  ruleYobta(input => {
     if (items.includes(input) || typeof input === 'undefined') return input
     throw new Error(message(items))
   })

@@ -1,6 +1,6 @@
 /* eslint-disable security/detect-unsafe-regex */
 /* eslint-disable unicorn/better-regex */
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 
 // RFC 5322
 export const EMAIL =
@@ -11,7 +11,7 @@ export const emailMessage = 'It should be an email'
 export const emailYobta = (
   message = emailMessage
 ): SyncRule<string | undefined, string | undefined> =>
-  createRule(input => {
+  ruleYobta(input => {
     if (typeof input === 'undefined') return input
 
     let value = input.trim()

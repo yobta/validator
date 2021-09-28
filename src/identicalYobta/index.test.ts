@@ -1,4 +1,4 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { shapeYobta } from '../shapeYobta'
 import { numberYobta } from '../numberYobta'
 import { identicalYobta, identicalMessage } from '.'
@@ -6,7 +6,7 @@ import { identicalYobta, identicalMessage } from '.'
 const customMessage = (): string => 'yobta!'
 
 it('accepts when identical', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [identicalYobta(['a'])]
@@ -17,7 +17,7 @@ it('accepts when identical', () => {
 })
 
 it('regects when not identical', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [identicalYobta(['a'], customMessage)]
@@ -28,7 +28,7 @@ it('regects when not identical', () => {
 })
 
 it('has default error mesage', () => {
-  let validate = syncYobta(
+  let validate = yobta(
     shapeYobta({
       a: [numberYobta()],
       b: [identicalYobta(['a'])]

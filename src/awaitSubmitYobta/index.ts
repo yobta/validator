@@ -1,4 +1,4 @@
-import { createRule, AsyncRule } from '../createRule'
+import { ruleYobta, AsyncRule } from '../ruleYobta'
 import { YobtaContext } from '../_internal/YobtaContext'
 
 interface Submitter<I> {
@@ -10,7 +10,7 @@ interface AwaitSubmitFactory {
 }
 
 export const awaitSubmitYobta: AwaitSubmitFactory = submitter =>
-  createRule(async (input, context) => {
+  ruleYobta(async (input, context) => {
     let { data, errors } = context
     if (data instanceof Event && data.type === 'submit' && !errors.length) {
       await submitter(input, context)

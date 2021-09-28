@@ -1,5 +1,5 @@
 import {
-  createRule,
+  ruleYobta,
   SyncRule,
   SyncRules,
   SyncRulesChain1,
@@ -9,7 +9,7 @@ import {
   SyncRulesChain5,
   SyncRulesChain6,
   SyncRulesChain7
-} from '../createRule'
+} from '../ruleYobta'
 import { Functions, pipe, PipedFactories } from '../_internal/pipe'
 
 // export type SyncRule<I, O> = (input: I) => O
@@ -49,7 +49,7 @@ export const catchYobta: CatchYobta = (
   fallbackValue: any,
   ...rules: SyncRule<any, any>[]
 ) => {
-  return createRule((input, context) => {
+  return ruleYobta((input, context) => {
     let next = rules.map(rule => rule(context)) as Functions
     try {
       return pipe(...next)(input)

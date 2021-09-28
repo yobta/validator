@@ -1,4 +1,4 @@
-import { YobtaError } from '../YobtaError'
+import { YobtaError } from '../../YobtaError'
 
 export type Path = (string | number)[]
 

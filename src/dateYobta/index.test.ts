@@ -1,8 +1,8 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { dateYobta, dateMessage } from './'
 
 const customMessage = 'yobta!'
-const validate = syncYobta(dateYobta(customMessage))
+const validate = yobta(dateYobta(customMessage))
 
 it('accepts valid dates', () => {
   let date = new Date()
@@ -36,6 +36,6 @@ it('rejects invalid dates', () => {
 })
 
 it('has default error message', () => {
-  let validateDefault = (): any => syncYobta(dateYobta())(null)
+  let validateDefault = (): any => yobta(dateYobta())(null)
   expect(validateDefault).toThrow(dateMessage)
 })

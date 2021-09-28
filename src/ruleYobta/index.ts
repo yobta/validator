@@ -102,6 +102,6 @@ interface RuleFactory {
   <I, O>(validate: AsyncValidator<I, O>): AsyncRule<I, O>
 }
 
-export const createRule: RuleFactory = validate => context => input =>
+export const ruleYobta: RuleFactory = validate => context => input =>
   // @ts-ignore
   validate(input, context)

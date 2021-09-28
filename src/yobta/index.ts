@@ -7,15 +7,15 @@ import {
   SyncRulesChain5,
   SyncRulesChain6,
   SyncRulesChain7
-} from '../createRule'
+} from '../ruleYobta'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
 import { YobtaContext } from '../_internal/YobtaContext'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O
-export interface SyncYobta {
+export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
   ): SyncYobtaRule<any, R7>
@@ -40,7 +40,7 @@ export interface SyncYobta {
 
 export const field = '@'
 
-export const syncYobta: SyncYobta =
+export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
   (data: any) => {
     let context: YobtaContext = {

@@ -3,31 +3,17 @@ import { jest } from '@jest/globals'
 import { awaitSubmitYobta } from '.'
 import {
   asyncYobta,
+  AsyncYobtaRule,
   formDataYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
   YobtaError
 } from '..'
+import { mockForm } from '../_internal/mockForm'
 
-function mockValidate(
-  type: string,
-  spy: Function,
-  value: string
-): Promise<any> {
-  let event = new Event(type)
-  let form = document.createElement('form')
-  let input = document.createElement('input')
-  input.setAttribute('name', 'name')
-  input.setAttribute('value', value)
-  form.appendChild(input)
-
-  Object.defineProperty(event, 'currentTarget', {
-    writable: false,
-    value: form
-  })
-
-  let validate = asyncYobta(
+function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
+  return asyncYobta(
     formDataYobta(),
     shapeYobta({
       name: [stringYobta(), requiredYobta<string>()]
@@ -37,16 +23,14 @@ function mockValidate(
       spy(data, context)
     })
   )
-
-  let result = validate(event)
-
-  return result
 }
 
 it('submits data and context when it is valid and event type is submit', async () => {
   let spy = jest.fn()
-
-  let result = await mockValidate('submit', spy, 'yobta')
+  let validate = mockValidate(spy)
+  let result = await mockForm(
+    '<input type="text" name="name" value="yobta" />'
+  ).submit(validate)
 
   expect(result).toEqual([{ name: 'yobta' }, null])
 
@@ -64,8 +48,10 @@ it('submits data and context when it is valid and event type is submit', async (
 
 it('does not submit data when it is valid but the event type is not submit', async () => {
   let spy = jest.fn()
-
-  let result = await mockValidate('change', spy, 'yobta')
+  let validate = mockValidate(spy)
+  let result = await mockForm(
+    '<input type="text" name="name" value="yobta" />'
+  ).change(validate)
 
   expect(result).toEqual([{ name: 'yobta' }, null])
 
@@ -74,8 +60,10 @@ it('does not submit data when it is valid but the event type is not submit', asy
 
 it('does not fire when it is not valid and event type is submit', async () => {
   let spy = jest.fn()
-
-  let result = await mockValidate('change', spy, '')
+  let validate = mockValidate(spy)
+  let result = await mockForm('<input name="name" type="text" />').submit(
+    validate
+  )
 
   let error = new YobtaError({
     message: 'Required',

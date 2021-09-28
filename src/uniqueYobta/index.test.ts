@@ -1,15 +1,11 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { requiredYobta } from '../requiredYobta'
 import { arrayYobta } from '../arrayYobta'
 import { uniqueYobta } from '.'
 
 const customMesage = 'yobta'
 
-const validate = syncYobta(
-  arrayYobta(),
-  requiredYobta(),
-  uniqueYobta(customMesage)
-)
+const validate = yobta(arrayYobta(), requiredYobta(), uniqueYobta(customMesage))
 
 it('accepts empty array', () => {
   let result = validate([])
@@ -27,7 +23,7 @@ it('rejects duplicate items', () => {
 })
 
 it('has default error message', () => {
-  let validateDefault = syncYobta(arrayYobta(), requiredYobta(), uniqueYobta())
+  let validateDefault = yobta(arrayYobta(), requiredYobta(), uniqueYobta())
   let attempt = (): any => validateDefault(['', '2', '2'])
   expect(attempt).toThrow('It should contain unique items')
 })

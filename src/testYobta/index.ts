@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 
 export const testMessage = 'Invalid format'
 
@@ -6,7 +6,7 @@ export const testYobta = (
   expression: RegExp,
   message = testMessage
 ): SyncRule<string, string> =>
-  createRule(input => {
+  ruleYobta(input => {
     if (typeof input === 'undefined' || expression.test(input)) return input
     throw new Error(message)
   })

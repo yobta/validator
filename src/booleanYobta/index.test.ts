@@ -1,8 +1,8 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { booleanYobta, booleanMessage } from './'
 
 const customMessage = 'yobta!'
-const validate = syncYobta(booleanYobta(customMessage))
+const validate = yobta(booleanYobta(customMessage))
 
 it('accepts truthy', () => {
   let variants = ['yes', 'true', 'Yes', 'tRue', true, 1, '1']
@@ -44,7 +44,7 @@ it('rejects invalid', () => {
 
 it('has default error message', () => {
   let rule = booleanYobta()
-  let validateDefault = syncYobta(rule)
+  let validateDefault = yobta(rule)
   let attemt = (): any => validateDefault('yobta')
   expect(attemt).toThrow(booleanMessage)
 })

@@ -6,10 +6,10 @@ import { enumYobta } from '../enumYobta'
 import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
-import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
-import { syncYobta } from './'
+import { yobta } from '.'
+import { urlSearchParamsYobta } from '..'
 
-let validate = syncYobta(numberYobta('yobta!'))
+let validate = yobta(numberYobta('yobta!'))
 
 it('accepts valid', () => {
   let result = validate(1)
@@ -17,7 +17,7 @@ it('accepts valid', () => {
 })
 
 it('can pipe rules', () => {
-  let validateMultiple = syncYobta(
+  let validateMultiple = yobta(
     stringYobta(),
     requiredYobta(),
     minCharactersYobta(5)
@@ -31,7 +31,7 @@ it('rejects invalid', () => {
   expect(attempt).toThrow('yobta!')
 })
 
-let validateSearch = syncYobta(
+let validateSearch = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [

@@ -1,8 +1,8 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { minCharactersYobta, minCharactersMessage } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = syncYobta(minCharactersYobta(1, customMessage))
+const validate = yobta(minCharactersYobta(1, customMessage))
 
 it('accepts exact lenght', () => {
   let result = validate('a')
@@ -20,7 +20,7 @@ it('regects insufficient lenght', () => {
 })
 
 it('has default error message', () => {
-  let validateDefault = syncYobta(minCharactersYobta(1))
+  let validateDefault = yobta(minCharactersYobta(1))
   let attempt = (): any => validateDefault('')
   expect(attempt).toThrow(minCharactersMessage(1))
 })

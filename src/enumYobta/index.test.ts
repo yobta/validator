@@ -1,8 +1,8 @@
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { enumYobta, enumMessage } from '.'
 
 const customMessage = (): string => 'yobta!'
-const validate = syncYobta(enumYobta(['yobta'], customMessage))
+const validate = yobta(enumYobta(['yobta'], customMessage))
 
 it('accepts listed', () => {
   let result = validate('yobta')
@@ -21,7 +21,7 @@ it('rejects not listed', () => {
 
 it('has default error message', () => {
   let rule = enumYobta(['yobta'])
-  let validateDefault = syncYobta(rule)
+  let validateDefault = yobta(rule)
   let attempt = (): string | undefined => validateDefault(0)
   expect(attempt).toThrow(enumMessage(['yobta']))
 })

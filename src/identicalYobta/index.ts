@@ -1,4 +1,4 @@
-import { createRule, SyncRule } from '../createRule'
+import { ruleYobta, SyncRule } from '../ruleYobta'
 import { getIn } from '../_internal/getIn'
 import { Path } from '../_internal/YobtaContext'
 
@@ -9,7 +9,7 @@ export function identicalYobta<I>(
   path: Path,
   message = identicalMessage
 ): SyncRule<any, I> {
-  return createRule((input, { data }) => {
+  return ruleYobta((input, { data }) => {
     if (input === getIn(data, path)) return input
     throw new Error(message(path))
   })

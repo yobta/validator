@@ -1,14 +1,14 @@
 import { jest } from '@jest/globals'
 
 import { stringYobta } from '../stringYobta'
-import { syncYobta } from '../syncYobta'
+import { yobta } from '../yobta'
 import { itemsYobta } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { arrayYobta } from '../arrayYobta'
 import { YobtaContext } from '../_internal/YobtaContext'
 
-const validate = syncYobta(
+const validate = yobta(
   arrayYobta(),
   requiredYobta(),
   itemsYobta(stringYobta(), requiredYobta(), minCharactersYobta(5))
