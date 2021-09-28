@@ -54,7 +54,7 @@ async function confirmPassword (password) (
 
 const validate = asyncYobta(
   effectYobta(toggleFormLock),
-  formDataYobta()
+  formYobta()
   awaitShapeYobta({
     password: [
       stringYobta(),
