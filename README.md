@@ -25,7 +25,7 @@ should be sync and silent (no errors) and the state should be a plain
 object.
 
 ```js
-const getInitialState = createYobta(
+const getInitialState = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [
