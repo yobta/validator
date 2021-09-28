@@ -308,11 +308,11 @@
       "limit": "93 B"
     },
     {
-      "name": "Form Data rule",
+      "name": "Form rule",
       "import": {
-        "lib/index.js": "{ formDataYobta }"
+        "lib/index.js": "{ formYobta }"
       },
-      "limit": "208 B"
+      "limit": "196 B"
     },
     {
       "name": "Enum rule",
@@ -379,7 +379,7 @@
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
-        "lib/formDataYobta/index.js": "{ formDataYobta }",
+        "lib/formYobta/index.js": "{ formYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }",

@@ -1,14 +1,9 @@
+import { createEvent } from '@testing-library/dom'
+
 import { yobta } from '../yobta'
-import { formDataYobta, formDataMessage } from '.'
+import { formYobta, formDataMessage } from '.'
 
-const validate = yobta(formDataYobta())
-
-it('accepts FormData instance', () => {
-  let input = new FormData()
-  input.append('key', 'yobta')
-  let result = validate(input)
-  expect(result).toEqual({ key: 'yobta' })
-})
+const validate = yobta(formYobta())
 
 it('accepts form instance', () => {
   let input = document.createElement('form')
@@ -17,10 +12,10 @@ it('accepts form instance', () => {
 })
 
 it('accepts event', () => {
-  let input = {
-    currentTarget: document.createElement('form')
-  }
-  let result = validate(input)
+  let form = document.createElement('form')
+  let event = createEvent.submit(form)
+  Object.defineProperty(event, 'currentTarget', { value: form })
+  let result = validate(event)
   expect(result).toEqual({})
 })
 
@@ -35,6 +30,6 @@ it('rejects invalid input', () => {
 })
 
 it('has custom error messages', () => {
-  let attempt = (): any => yobta(formDataYobta('yobta!'))(null)
+  let attempt = (): any => yobta(formYobta('yobta!'))(null)
   expect(attempt).toThrow('yobta!')
 })
