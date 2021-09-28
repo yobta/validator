@@ -52,14 +52,14 @@ async function confirmPassword (password) (
   return password.data.password
 )
 
-const validate = createAsyncYobta(
+const validate = asyncYobta(
   effectYobta(toggleFormLock),
   formDataYobta()
-  asyncShapeYobta({
+  awaitShapeYobta({
     password: [
       stringYobta(),
       requiredYobta(),
-      awaitYobta(verifyPassword),
+      awaitSubmitYobta(verifyPassword),
     ],
     new: [
       stringYobta(),
@@ -74,7 +74,7 @@ const validate = createAsyncYobta(
   }),
   awaitSubmitYobta(sendMyFormAsJSON),
   errorsYobta(),
-  reportValidityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
+  validityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
   effectYobta(toggleFormLock),
 )
 

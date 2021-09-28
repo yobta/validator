@@ -2,12 +2,12 @@ import { jest } from '@jest/globals'
 
 import { asyncYobta } from '../asyncYobta'
 import { stringYobta, stringMessage } from '../stringYobta'
-import { asyncShapeYobta, asyncShapeMessage } from '.'
+import { awaitShapeYobta, asyncShapeMessage } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { YobtaContext } from '../_internal/YobtaContext'
 
 const validate = asyncYobta(
-  asyncShapeYobta({
+  awaitShapeYobta({
     name: [stringYobta(), requiredYobta<string>()]
   })
 )
@@ -51,7 +51,7 @@ it('can be undefined', async () => {
 it('has custom error messages', async () => {
   let attempt = (): any =>
     asyncYobta(
-      asyncShapeYobta(
+      awaitShapeYobta(
         {
           name: [stringYobta()]
         },
@@ -77,7 +77,7 @@ it('captures errors from field validators', async () => {
 
 it('returns errors for invalid keys', async () => {
   let pushError = jest.fn()
-  let validateCustom = asyncShapeYobta({
+  let validateCustom = awaitShapeYobta({
     name: [stringYobta()]
   })
   let context: YobtaContext = {

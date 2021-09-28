@@ -2,7 +2,7 @@ export * from './createRule'
 export * from './_internal/YobtaError'
 
 export * from './arrayYobta'
-export * from './asyncShapeYobta'
+export * from './awaitShapeYobta'
 export * from './asyncYobta'
 export * from './awaitSubmitYobta'
 export * from './booleanYobta'

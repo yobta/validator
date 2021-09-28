@@ -21,7 +21,7 @@ type Config<F extends Rules> = {
   [K in keyof F]: PipedFactories<F[K]>
 }
 
-interface AsyncShapeRule {
+interface AsyncShapeFactory {
   <F extends Rules>(rulesSet: Config<F>, message?: string): SyncRule<
     any,
     Promise<Result<F> | undefined>
@@ -30,7 +30,7 @@ interface AsyncShapeRule {
 
 export const asyncShapeMessage = 'It should be a plain object'
 
-export const asyncShapeYobta: AsyncShapeRule = (
+export const awaitShapeYobta: AsyncShapeFactory = (
   rulesSet,
   validationMessage = shapeMessage
 ) =>
