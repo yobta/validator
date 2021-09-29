@@ -46,11 +46,16 @@ const field = '@'
 export const asyncYobta: AsyncYobtaFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (data: any) => {
-    // TODO: prevent default
+    if (data instanceof Event && data.type === 'submit') {
+      data.preventDefault()
+    }
+
     let errors: YobtaError[] = []
+
     function pushError(error: YobtaError): void {
       errors.push(error)
     }
+
     let context: YobtaContext = {
       data,
       errors,
@@ -60,8 +65,6 @@ export const asyncYobta: AsyncYobtaFactory =
     }
 
     let validators = rules.map(next => next(context)) as SyncOrAsyncRules
-
-    // TODO: throw root-level errors
 
     try {
       let result: PipeFactoryResult<R> = await asyncPipe(...validators)(data)

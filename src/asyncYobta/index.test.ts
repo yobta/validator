@@ -1,3 +1,6 @@
+import { jest } from '@jest/globals'
+import { createEvent } from '@testing-library/dom'
+
 import { asyncYobta } from '.'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
@@ -21,7 +24,7 @@ it('can pipe rules', async () => {
   let validateMultiple = asyncYobta(
     stringYobta(),
     requiredYobta(),
-    minCharactersYobta(5)
+    minCharactersYobta(5),
   )
   let result = await validateMultiple('yobta')
   expect(result).toEqual(['yobta', null])
@@ -37,9 +40,9 @@ it('rejects invalid', async () => {
         field: '@',
         message: 'yobta!',
         name: 'Error',
-        path: []
-      }
-    ]
+        path: [],
+      },
+    ],
   ])
 })
 
@@ -50,11 +53,11 @@ let validateSearch = asyncYobta(
       catchYobta(
         'tab-1',
         enumYobta(['tab-1', 'tab-2', 'tab-3']),
-        requiredYobta()
-      )
+        requiredYobta(),
+      ),
     ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())]
-  })
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+  }),
 )
 
 it("creates default state when can't extract it from url", async () => {
@@ -62,9 +65,9 @@ it("creates default state when can't extract it from url", async () => {
   expect(result).toEqual([
     {
       currentTab: 'tab-1',
-      myModalIsOpen: false
+      myModalIsOpen: false,
     },
-    null
+    null,
   ])
 })
 
@@ -72,9 +75,9 @@ it('extracts state from url', async () => {
   expect(await validateSearch('currentTab=tab-3&myModalIsOpen=true')).toEqual([
     {
       currentTab: 'tab-3',
-      myModalIsOpen: true
+      myModalIsOpen: true,
     },
-    null
+    null,
   ])
 })
 
@@ -83,7 +86,7 @@ it('captures context errors', async () => {
     name: 'error',
     message: 'yobta',
     path: [],
-    field: '@'
+    field: '@',
   }
   let validateContext = asyncYobta(({ pushError }) => (item: any) => {
     if (typeof item !== 'string') pushError(error)
@@ -91,4 +94,20 @@ it('captures context errors', async () => {
   })
   let result = await validateContext(1)
   expect(result).toEqual([null, [error]])
+})
+
+it("prevents form submit and doesn't prevent change", async () => {
+  let form = document.createElement('form')
+  let submitEvent = createEvent.submit(form)
+  let changeEvent = createEvent.change(form)
+  let validateEvent = asyncYobta(requiredYobta())
+
+  jest.spyOn(submitEvent, 'preventDefault')
+  jest.spyOn(changeEvent, 'preventDefault')
+
+  await validateEvent(submitEvent)
+  await validateEvent(changeEvent)
+
+  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
+  expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
 })

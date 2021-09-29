@@ -43,7 +43,10 @@ export const field = '@'
 export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
   (data: any) => {
-    // TODO: prevent default
+    if (data instanceof Event && data.type === 'submit') {
+      data.preventDefault()
+    }
+
     let context: YobtaContext = {
       data,
       errors: [],

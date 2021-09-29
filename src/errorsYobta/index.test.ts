@@ -6,7 +6,7 @@ import {
   formYobta,
   requiredYobta,
   shapeYobta,
-  stringYobta
+  stringYobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../_internal/YobtaError'
@@ -16,13 +16,13 @@ it('calls reporter when validation fails', async () => {
   let validate = asyncYobta(
     formYobta(),
     shapeYobta({ name: [stringYobta(), requiredYobta<string>()] }),
-    errorsYobta(spy)
+    errorsYobta(spy),
   )
   let result = await mockForm('').submit(validate)
   let error = new YobtaError({
     message: 'Required',
     path: ['name'],
-    field: 'name'
+    field: 'name',
   })
 
   expect(result).toEqual([null, [error]])
@@ -31,7 +31,7 @@ it('calls reporter when validation fails', async () => {
     errors: [error],
     field: '@',
     path: [],
-    pushError: expect.any(Function)
+    pushError: expect.any(Function),
   })
 })
 
@@ -40,7 +40,7 @@ it('does not call reporter when validation succeeds', async () => {
   let validate = asyncYobta(
     formYobta(),
     shapeYobta({ name: [stringYobta()] }),
-    errorsYobta(spy)
+    errorsYobta(spy),
   )
   let result = await mockForm('').submit(validate)
 
