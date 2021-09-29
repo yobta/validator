@@ -1,13 +1,18 @@
-import { booleanYobta } from '../booleanYobta'
-import { catchYobta } from '../catchYobta'
-import { minCharactersYobta } from '../minCharactersYobta'
-import { numberYobta } from '../numberYobta'
-import { enumYobta } from '../enumYobta'
-import { requiredYobta } from '../requiredYobta'
-import { shapeYobta } from '../shapeYobta'
-import { stringYobta } from '../stringYobta'
+import { jest } from '@jest/globals'
+import { createEvent } from '@testing-library/dom'
+
 import { yobta } from '.'
-import { urlSearchParamsYobta } from '..'
+import {
+  booleanYobta,
+  catchYobta,
+  enumYobta,
+  minCharactersYobta,
+  numberYobta,
+  stringYobta,
+  shapeYobta,
+  requiredYobta,
+  urlSearchParamsYobta,
+} from '..'
 
 let validate = yobta(numberYobta('yobta!'))
 
@@ -20,7 +25,7 @@ it('can pipe rules', () => {
   let validateMultiple = yobta(
     stringYobta(),
     requiredYobta(),
-    minCharactersYobta(5)
+    minCharactersYobta(5),
   )
   let result = validateMultiple('yobta')
   expect(result).toBe('yobta')
@@ -38,23 +43,39 @@ let validateSearch = yobta(
       catchYobta(
         'tab-1',
         enumYobta(['tab-1', 'tab-2', 'tab-3']),
-        requiredYobta()
-      )
+        requiredYobta(),
+      ),
     ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())]
-  })
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+  }),
 )
 
 it("creates default state when can't extract it from url", () => {
   expect(validateSearch('')).toEqual({
     currentTab: 'tab-1',
-    myModalIsOpen: false
+    myModalIsOpen: false,
   })
 })
 
 it('extracts state from url', () => {
   expect(validateSearch('currentTab=tab-3&myModalIsOpen=true')).toEqual({
     currentTab: 'tab-3',
-    myModalIsOpen: true
+    myModalIsOpen: true,
   })
+})
+
+it("prevents form submit and doesn't prevent change", () => {
+  let form = document.createElement('form')
+  let submitEvent = createEvent.submit(form)
+  let changeEvent = createEvent.change(form)
+  let validateEvent = yobta(requiredYobta())
+
+  jest.spyOn(submitEvent, 'preventDefault')
+  jest.spyOn(changeEvent, 'preventDefault')
+
+  validateEvent(submitEvent)
+  validateEvent(changeEvent)
+
+  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
+  expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
 })

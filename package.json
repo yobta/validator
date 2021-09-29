@@ -123,14 +123,14 @@
       "import": {
         "lib/index.js": "{ yobta }"
       },
-      "limit": "216 B"
+      "limit": "245 B"
     },
     {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
       },
-      "limit": "203 B"
+      "limit": "233 B"
     },
     {
       "name": "Shape rule",
