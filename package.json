@@ -70,7 +70,7 @@
     "quoteProps": "consistent",
     "semi": false,
     "singleQuote": true,
-    "trailingComma": "none"
+    "trailingComma": "all"
   },
   "lint-staged": {
     "*.md": "yaspeller",
@@ -350,6 +350,13 @@
       "limit": "40 B"
     },
     {
+      "name": "Validity utility",
+      "import": {
+        "lib/index.js": "{ validityYobta }"
+      },
+      "limit": "246 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/ruleYobta/index.js": "{ ruleYobta }",
@@ -385,9 +392,10 @@
         "lib/effectYobta/index.js": "{ effectYobta }",
         "lib/awaitShapeYobta/index.js": "{ awaitShapeYobta }",
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
-        "lib/errorsYobta/index.js": "{ errorsYobta }"
+        "lib/errorsYobta/index.js": "{ errorsYobta }",
+        "lib/validityYobta/index.js": "{ validityYobta }"
       },
-      "limit": "2000 B"
+      "limit": "2500 B"
     }
   ],
   "yaspeller": {
