@@ -14,3 +14,7 @@ test:
 	npm run test
 	npm run build
 	npm run size-limit
+
+bump:
+	npm --no-git-tag-version version patch
+	git add .
