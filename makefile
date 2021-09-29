@@ -16,5 +16,7 @@ test:
 	npm run size-limit
 
 bump:
-	npm --no-git-tag-version version patch
+	npm version patch
 	git add .
+	git commit -m "bump version"
+	git push
