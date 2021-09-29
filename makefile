@@ -20,3 +20,7 @@ bump:
 	git add .
 	git commit -m "bump version"
 	git push
+
+publish: test bump
+	npm publish
+
