@@ -357,6 +357,13 @@
       "limit": "246 B"
     },
     {
+      "name": "Success utility",
+      "import": {
+        "lib/index.js": "{ successYobta }"
+      },
+      "limit": "34 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/ruleYobta/index.js": "{ ruleYobta }",
@@ -393,7 +400,8 @@
         "lib/awaitShapeYobta/index.js": "{ awaitShapeYobta }",
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
         "lib/errorsYobta/index.js": "{ errorsYobta }",
-        "lib/validityYobta/index.js": "{ validityYobta }"
+        "lib/validityYobta/index.js": "{ validityYobta }",
+        "lib/successYobta/index.js": "{ successYobta }"
       },
       "limit": "2500 B"
     }
@@ -448,7 +456,9 @@
       "Dalton",
       "Enum",
       "awaitSubmitYobta",
-      "errorsYobta"
+      "errorsYobta",
+      "successYobta",
+      "validityYobta"
     ]
   },
   "sharec": {

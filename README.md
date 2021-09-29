@@ -135,6 +135,8 @@ requiredYobta(
 - [+] side effect
 - [+] awaitSubmitYobta
 - [+] errorsYobta
+- [+] validityYobta
+- [+] successYobta
 - [-] anyOf
 
 ### Docs
