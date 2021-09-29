@@ -6,7 +6,7 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7
+  SyncRulesChain7,
 } from '../ruleYobta'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
@@ -33,7 +33,7 @@ export interface YobtaFactory {
   <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncYobtaRule<any, R2>
   <R1>(...rules: SyncRulesChain1<R1>): SyncYobtaRule<any, R1>
   <R extends SyncRules>(...rules: PipedFactories<R>): (
-    input: any
+    input: any,
   ) => PipeFactoryResult<R>
 }
 //#endregion
@@ -43,6 +43,7 @@ export const field = '@'
 export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
   (data: any) => {
+    // TODO: prevent default
     let context: YobtaContext = {
       data,
       errors: [],
@@ -50,7 +51,7 @@ export const yobta: YobtaFactory =
       path: [],
       pushError(error: YobtaError) {
         throw error
-      }
+      },
     }
 
     let validators = rules.map(next => next(context)) as SyncRules
