@@ -18,7 +18,6 @@ test:
 bump:
 	npm version patch
 	git add .
-	git commit -m "bump version"
 	git push
 
 publish: test bump

@@ -12,3 +12,5 @@ img/
 makefile
 src
 tsconfig.build.json
+.editorconfig
+.tool-versions   
