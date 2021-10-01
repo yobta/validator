@@ -10,6 +10,7 @@ import {
 } from '../ruleYobta'
 import { parseUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
+import { preventSubmit } from '../_internal/preventSubmit/preventSubmit'
 import { YobtaContext } from '../_internal/YobtaContext'
 import { YobtaError } from '../_internal/YobtaError'
 
@@ -43,9 +44,7 @@ export const field = '@'
 export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
   (data: any) => {
-    if (data instanceof Event && data.type === 'submit') {
-      data.preventDefault()
-    }
+    preventSubmit(data)
 
     let context: YobtaContext = {
       data,

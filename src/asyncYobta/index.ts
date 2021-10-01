@@ -13,6 +13,7 @@ import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
 import { YobtaContext } from '../_internal/YobtaContext'
 import { YobtaError } from '../_internal/YobtaError'
+import { preventSubmit } from '../_internal/preventSubmit/preventSubmit'
 
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
@@ -46,9 +47,7 @@ const field = '@'
 export const asyncYobta: AsyncYobtaFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (data: any) => {
-    if (data instanceof Event && data.type === 'submit') {
-      data.preventDefault()
-    }
+    preventSubmit(data)
 
     let errors: YobtaError[] = []
 
