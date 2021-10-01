@@ -326,7 +326,7 @@
       "import": {
         "lib/index.js": "{ effectYobta }"
       },
-      "limit": "22 B"
+      "limit": "24 B"
     },
     {
       "name": "Async shape rule",
