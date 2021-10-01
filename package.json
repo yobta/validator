@@ -305,14 +305,14 @@
       "import": {
         "lib/index.js": "{ urlSearchParamsYobta }"
       },
-      "limit": "93 B"
+      "limit": "112 B"
     },
     {
       "name": "Form rule",
       "import": {
         "lib/index.js": "{ formYobta }"
       },
-      "limit": "196 B"
+      "limit": "210 B"
     },
     {
       "name": "Enum rule",

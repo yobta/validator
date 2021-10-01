@@ -20,8 +20,8 @@ it('creates object from FormData instance', () => {
 
 it('understands arrays', () => {
   let params = new FormData()
-  params.append('yobta', '1')
-  params.append('yobta', '2')
+  params.append('yobta', 'yobta 1')
+  params.append('yobta', 'yobta 2')
   let result = fromEntries(params)
-  expect(result).toEqual({ yobta: ['1', '2'] })
+  expect(result).toEqual({ yobta: ['yobta 1', 'yobta 2'] })
 })
