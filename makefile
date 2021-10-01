@@ -15,11 +15,13 @@ test:
 	npm run build
 	npm run size-limit
 
+check: typecheck test lint
+
 bump:
 	npm version patch
 	git add .
 	git push
 
-publish: test bump
+publish: check bump
 	npm publish
 
