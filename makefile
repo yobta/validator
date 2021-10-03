@@ -15,7 +15,7 @@ test:
 	npm run build
 	npm run size-limit
 
-check: typecheck test lint
+check: test lint typecheck
 
 bump:
 	npm version patch

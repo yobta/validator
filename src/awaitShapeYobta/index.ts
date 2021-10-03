@@ -20,7 +20,7 @@ type Config<F extends Rules> = {
   [K in keyof F]: PipedFactories<F[K]>
 }
 
-interface AsyncShapeFactory {
+interface AwaitShapeFactory {
   <F extends Rules>(rulesSet: Config<F>, message?: string): SyncRule<
     any,
     Promise<Result<F> | undefined>
@@ -29,15 +29,15 @@ interface AsyncShapeFactory {
 
 export const asyncShapeMessage = 'It should be a plain object'
 
-export const awaitShapeYobta: AsyncShapeFactory = (
+export const awaitShapeYobta: AwaitShapeFactory = (
   rulesSet,
   validationMessage = shapeMessage,
 ) =>
-  ruleYobta(async (input, context) => {
-    if (typeof input === 'undefined') {
-      return input
+  ruleYobta(async (data, context) => {
+    if (typeof data === 'undefined') {
+      return data
     }
-    if (!isPlainObject(input)) {
+    if (!isPlainObject(data)) {
       throw new Error(validationMessage)
     }
 
@@ -47,11 +47,12 @@ export const awaitShapeYobta: AsyncShapeFactory = (
         let tests = rules.map((rule: AnySyncOrAsyncRule) =>
           rule({
             ...context,
+            data,
             field,
             path,
           }),
         )
-        let next = input[field]
+        let next = data[field]
         try {
           next = await asyncPipe(...tests)(next)
         } catch (error) {
@@ -60,7 +61,7 @@ export const awaitShapeYobta: AsyncShapeFactory = (
         }
         return { ...acc, [field]: next }
       },
-      input,
+      data,
     )
 
     return result
