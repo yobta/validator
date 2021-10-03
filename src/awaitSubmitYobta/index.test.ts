@@ -26,7 +26,7 @@ function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
 }
 
 describe('awaitSubmitYobta', () => {
-  it('submits data and context when it is valid and event type is submit', async () => {
+  it('submits when it is valid and context has submit event', async () => {
     let spy = jest.fn()
     let validate = mockValidate(spy)
     let result = await mockForm(
@@ -40,6 +40,34 @@ describe('awaitSubmitYobta', () => {
       {
         data: expect.any(Event),
         event: expect.any(Event),
+        errors: [],
+        field: '@',
+        form: expect.any(HTMLFormElement),
+        path: [],
+        pushError: expect.any(Function),
+      },
+    )
+  })
+  it('submits when it is valid and context has synthetic submit event', async () => {
+    let spy = jest.fn()
+    let validate = mockValidate(spy)
+    let form = document.createElement('form')
+    form.innerHTML = '<input type="text" name="name" value="yobta" />'
+
+    let syntheticEvent = {
+      currentTarget: form,
+      type: 'submit',
+      target: form,
+    }
+
+    let result = await validate(syntheticEvent)
+
+    expect(result).toEqual([{ name: 'yobta' }, null])
+    expect(spy).toHaveBeenCalledWith(
+      { name: 'yobta' },
+      {
+        data: syntheticEvent,
+        event: syntheticEvent,
         errors: [],
         field: '@',
         form: expect.any(HTMLFormElement),
