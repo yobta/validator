@@ -1,12 +1,18 @@
 import { jest } from '@jest/globals'
 
-import { asyncYobta } from '../asyncYobta'
-import { stringYobta, stringMessage } from '../stringYobta'
 import { awaitShapeYobta, asyncShapeMessage } from '.'
-import { requiredYobta } from '../requiredYobta'
-import { YobtaContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../_internal/YobtaError'
-import { defaultYobta, differentYobta, identicalYobta, shapeYobta } from '..'
+import {
+  asyncYobta,
+  defaultYobta,
+  differentYobta,
+  identicalYobta,
+  shapeYobta,
+  requiredYobta,
+  stringYobta,
+  stringMessage,
+} from '..'
 
 const validate = asyncYobta(
   awaitShapeYobta({
@@ -84,22 +90,16 @@ describe('awaitShapeYobta', () => {
   })
 
   it('returns errors for invalid keys', async () => {
-    let pushError = jest.fn()
-    let validateCustom = awaitShapeYobta({
+    let attempt = awaitShapeYobta({
       name: [stringYobta()],
     })
-    let context: YobtaContext = {
-      path: [],
-      field: '',
-      pushError,
-      data: '',
-      errors: [],
-    }
-    let result = await validateCustom(context)({
+    let context = createContext({})
+    jest.spyOn(context, 'pushError')
+    let result = await attempt(context)({
       name: {},
     })
     expect(result).toEqual({ name: {} })
-    expect(pushError).toHaveBeenCalledWith(new Error(stringMessage))
+    expect(context.pushError).toHaveBeenCalledWith(new Error(stringMessage))
   })
   it('should replace context.data', async () => {
     let replaced = {

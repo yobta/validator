@@ -3,6 +3,7 @@ import { YobtaError } from '../YobtaError'
 export type Path = (string | number)[]
 
 export type YobtaContext = {
+  event: any
   data: any
   errors: YobtaError[]
   field: string
@@ -16,18 +17,19 @@ interface YobtaContextFactory {
   (data: any): YobtaContext
 }
 
-export const createContext: YobtaContextFactory = data => {
-  if (data?.type === 'submit' && data.preventDefault) {
-    data.preventDefault()
+export const createContext: YobtaContextFactory = event => {
+  if (event?.type === 'submit' && event.preventDefault) {
+    event.preventDefault()
   }
   let errors: YobtaError[] = []
   let form =
-    data?.currentTarget instanceof HTMLFormElement
-      ? data.currentTarget
+    event?.currentTarget instanceof HTMLFormElement
+      ? event.currentTarget
       : undefined
-  let input = (form && data?.target !== form && data.target) || undefined
+  let input = (form && event?.target !== form && event.target) || undefined
   return {
-    data,
+    event,
+    data: event,
     errors,
     field: '@',
     form,

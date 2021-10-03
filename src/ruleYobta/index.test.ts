@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals'
 
 import { ruleYobta } from '.'
-import { YobtaContext } from '../_internal/createContext'
+import { createContext, YobtaContext } from '../_internal/createContext'
 
 describe('sinc rule', () => {
   function validateNumber<I>(input: I): number {
@@ -13,13 +13,7 @@ describe('sinc rule', () => {
   it('validates input', () => {
     let pushError = jest.fn()
     let testNumber = ruleYobta(validateNumber)
-    let context: YobtaContext = {
-      data: 1,
-      errors: [],
-      field: 'f',
-      path: ['price'],
-      pushError,
-    }
+    let context = createContext(1)
     let result = testNumber(context)(1)
     expect(result).toEqual(1)
     expect(pushError).toHaveBeenCalledTimes(0)
@@ -31,35 +25,20 @@ describe('sinc rule', () => {
     let simulateUnexpectedException = ruleYobta((data: number) => {
       throw new Error('yobta!')
     })
-    let context: YobtaContext = {
-      data: 1,
-      errors: [],
-      field: 'f',
-      path: ['price'],
-      pushError,
-    }
+    let context = createContext(1)
     expect(() => simulateUnexpectedException(context)(1)).toThrow('yobta!')
     expect(pushError).toHaveBeenCalledTimes(0)
   })
 
   it('gets both data and context', () => {
-    let pushError = jest.fn()
     let spy = jest.fn()
-    let contextMock: YobtaContext = {
-      data: 1,
-      errors: [],
-      field: 'f',
-      path: ['price'],
-      pushError,
-    }
+    let contextMock = createContext(1)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let simulateUnexpectedException = ruleYobta(
-      (data: number, context: YobtaContext) => {
-        spy(data, context)
-        return data
-      },
-    )
-    simulateUnexpectedException(contextMock)(1)
+    let attempt = ruleYobta((data: number, context: YobtaContext) => {
+      spy(data, context)
+      return data
+    })
+    attempt(contextMock)(1)
     expect(spy).toHaveBeenCalledWith(1, contextMock)
   })
 })
@@ -74,13 +53,7 @@ describe('asinc rule', () => {
   it('validates input', async () => {
     let pushError = jest.fn()
     let testNumber = ruleYobta(validateNumber)
-    let context: YobtaContext = {
-      data: 1,
-      errors: [],
-      field: 'f',
-      path: ['price'],
-      pushError,
-    }
+    let context = createContext(1)
     let result = await testNumber(context)(1)
     expect(result).toEqual(1)
     expect(pushError).toHaveBeenCalledTimes(0)
