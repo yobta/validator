@@ -69,6 +69,10 @@ describe('validityYobta', () => {
     Object.defineProperty(submitEvent, 'currentTarget', { value: form })
     Object.defineProperty(submitEvent, 'target', { value: form })
 
+    let changeEvent = createEvent.change(form)
+    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+    Object.defineProperty(changeEvent, 'target', { value: input })
+
     expect(input.checkValidity()).toBe(true)
     expect(checkbox.checkValidity()).toBe(true)
 
@@ -79,7 +83,7 @@ describe('validityYobta', () => {
 
     input.setAttribute('value', 'yobta')
 
-    await validate(submitEvent)
+    await validate(changeEvent)
 
     expect(input.checkValidity()).toBe(true)
     expect(checkbox.checkValidity()).toBe(false)

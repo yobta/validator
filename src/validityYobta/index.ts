@@ -14,8 +14,10 @@ export const validityYobta: ValidityYobtaFactory = (
       throw new Error(invariantMessage)
     }
 
-    let filteredErrors = input
-      ? errors.filter(({ field }) => field === input.getAttribute('name'))
+    let filterBy = input?.getAttribute('name')
+
+    let filteredErrors = filterBy
+      ? errors.filter(({ field }) => field === filterBy)
       : errors
 
     let messages = filteredErrors.reduce<Record<string, string>>(
@@ -28,9 +30,11 @@ export const validityYobta: ValidityYobtaFactory = (
 
     for (let element of form.elements) {
       let name = element.getAttribute('name') || ''
-      let message = messages[name] || ''
-      // @ts-ignore
-      element.setCustomValidity(message)
+      if (!filterBy || filterBy === name) {
+        let message = messages[name] || ''
+        // @ts-ignore
+        element.setCustomValidity(message)
+      }
     }
 
     form.reportValidity()
