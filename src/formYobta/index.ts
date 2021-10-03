@@ -8,15 +8,17 @@ interface FormFactory {
 export const formDataMessage = 'It should be HTMLFormElement or a form Event'
 
 export const formYobta: FormFactory = (message = formDataMessage) =>
-  ruleYobta(input => {
-    let output: FormData | null = input instanceof FormData ? input : null
+  ruleYobta((input, { form }) => {
     if (typeof input === 'undefined') {
       return input
     }
-    let element = input?.currentTarget || input
-    if (element instanceof HTMLFormElement) {
-      output = new FormData(element)
+
+    let node = form || input
+
+    if (node instanceof HTMLFormElement) {
+      let output = new FormData(node)
       return fromEntries(output)
     }
+
     throw new Error(message)
   })
