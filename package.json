@@ -137,7 +137,7 @@
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "488 B"
+      "limit": "493 B"
     },
     {
       "name": "String rule",
@@ -333,7 +333,7 @@
       "import": {
         "lib/index.js": "{ awaitShapeYobta }"
       },
-      "limit": "520 B"
+      "limit": "525 B"
     },
     {
       "name": "Await submit utility",

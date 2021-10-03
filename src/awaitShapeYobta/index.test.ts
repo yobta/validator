@@ -6,6 +6,7 @@ import { awaitShapeYobta, asyncShapeMessage } from '.'
 import { requiredYobta } from '../requiredYobta'
 import { YobtaContext } from '../_internal/createContext'
 import { YobtaError } from '../_internal/YobtaError'
+import { defaultYobta, differentYobta, identicalYobta, shapeYobta } from '..'
 
 const validate = asyncYobta(
   awaitShapeYobta({
@@ -99,5 +100,22 @@ describe('awaitShapeYobta', () => {
     })
     expect(result).toEqual({ name: {} })
     expect(pushError).toHaveBeenCalledWith(new Error(stringMessage))
+  })
+  it('should replace context.data', async () => {
+    let replaced = {
+      password: 'old yobta',
+      newPassword: 'new yobta',
+      retypePassword: 'new yobta',
+    }
+    let attempt = asyncYobta(
+      defaultYobta(replaced),
+      shapeYobta({
+        password: [stringYobta()],
+        newPassword: [differentYobta(['password'])],
+        retypePassword: [identicalYobta(['newPassword'])],
+      }),
+    )
+    let result = await attempt(undefined)
+    expect(result).toEqual([replaced, null])
   })
 })

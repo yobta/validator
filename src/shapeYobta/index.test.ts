@@ -2,7 +2,7 @@ import { shapeYobta, shapeMessage } from './'
 import { yobta } from '../yobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { requiredYobta } from '../requiredYobta'
-import { effectYobta } from '..'
+import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '..'
 import { YobtaError } from '../_internal/YobtaError'
 
 const validate = yobta(
@@ -75,5 +75,22 @@ describe('shapeYobta', () => {
         }),
       )({})
     expect(attempt).toThrow(yobtaError)
+  })
+  it('should replace context.data', () => {
+    let replaced = {
+      password: 'old yobta',
+      newPassword: 'new yobta',
+      retypePassword: 'new yobta',
+    }
+    let attempt = yobta(
+      defaultYobta(replaced),
+      shapeYobta({
+        password: [stringYobta()],
+        newPassword: [differentYobta(['password'])],
+        retypePassword: [identicalYobta(['newPassword'])],
+      }),
+    )
+    let result = attempt(undefined)
+    expect(result).toEqual(replaced)
   })
 })

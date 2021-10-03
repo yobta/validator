@@ -19,22 +19,23 @@ export const shapeYobta = <F extends Rules>(
   rulesSet: Config<F>,
   validationMessage = shapeMessage,
 ): SyncRule<any, Result<F> | undefined> =>
-  ruleYobta((input, context) => {
-    if (!isPlainObject(input) && typeof input !== 'undefined') {
+  ruleYobta((data, context) => {
+    if (!isPlainObject(data) && typeof data !== 'undefined') {
       throw new Error(validationMessage)
     }
 
-    return (input &&
+    return (data &&
       Object.entries(rulesSet).reduce((acc, [field, rules]) => {
         let path = [...context.path, field]
         let tests = rules.map((rule: AnySyncRule) =>
           rule({
             ...context,
+            data,
             field,
             path,
           }),
         )
-        let next = input[field]
+        let next = data[field]
         try {
           next = pipe(...tests)(next)
         } catch (error) {
@@ -42,5 +43,5 @@ export const shapeYobta = <F extends Rules>(
           context.pushError(yobtaError)
         }
         return { ...acc, [field]: next }
-      }, input)) as Result<F>
+      }, data)) as Result<F>
   })
