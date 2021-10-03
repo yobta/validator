@@ -1,12 +1,12 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
 
-interface ValidityYobtaFactory {
+interface ValidityFactory {
   <I>(validityMessage?: string): SyncRule<I, I>
 }
 
 export const validityMessage = 'Validity expects a form event'
 
-export const validityYobta: ValidityYobtaFactory = (
+export const validityYobta: ValidityFactory = (
   invariantMessage = validityMessage,
 ) =>
   ruleYobta((currentData, { errors, form, input }) => {
@@ -37,6 +37,9 @@ export const validityYobta: ValidityYobtaFactory = (
       }
     }
 
-    form.reportValidity()
+    if (filteredErrors.length) {
+      form.reportValidity()
+    }
+
     return currentData
   })
