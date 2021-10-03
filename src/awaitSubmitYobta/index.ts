@@ -12,7 +12,7 @@ interface AwaitSubmitFactory {
 export const awaitSubmitYobta: AwaitSubmitFactory = submit =>
   ruleYobta(async (input, context) => {
     let { event, errors } = context
-    if (event instanceof Event && event.type === 'submit' && !errors.length) {
+    if (event?.type === 'submit' && !errors.length) {
       await submit(input, context)
     }
     return input

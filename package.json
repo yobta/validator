@@ -340,7 +340,7 @@
       "import": {
         "lib/index.js": "{ awaitSubmitYobta }"
       },
-      "limit": "79 B"
+      "limit": "78 B"
     },
     {
       "name": "Errors utility",
