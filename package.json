@@ -333,7 +333,7 @@
       "import": {
         "lib/index.js": "{ awaitShapeYobta }"
       },
-      "limit": "525 B"
+      "limit": "529 B"
     },
     {
       "name": "Await submit utility",

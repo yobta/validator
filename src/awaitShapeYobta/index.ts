@@ -42,7 +42,7 @@ export const awaitShapeYobta: AwaitShapeFactory = (
     }
 
     let result = await Object.entries(rulesSet).reduce(
-      async (acc, [field, rules]) => {
+      async (accPromise, [field, rules]) => {
         let path = [...context.path, field]
         let tests = rules.map((rule: AnySyncOrAsyncRule) =>
           rule({
@@ -59,9 +59,10 @@ export const awaitShapeYobta: AwaitShapeFactory = (
           let yobtaError = handleUnknownError({ error, field, path })
           context.pushError(yobtaError)
         }
+        let acc = await accPromise
         return { ...acc, [field]: next }
       },
-      data,
+      Promise.resolve(data),
     )
 
     return result
