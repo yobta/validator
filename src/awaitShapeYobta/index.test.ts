@@ -17,6 +17,7 @@ import {
 const validate = asyncYobta(
   awaitShapeYobta({
     name: [stringYobta(), requiredYobta<string>()],
+    age: [stringYobta()],
   }),
 )
 
@@ -24,16 +25,18 @@ describe('awaitShapeYobta', () => {
   it('accepts valid shapes', async () => {
     let result = await validate({
       name: 'yobta',
+      age: 1,
     })
-    expect(result).toEqual([{ name: 'yobta' }, null])
+    expect(result).toEqual([{ name: 'yobta', age: '1' }, null])
   })
 
   it('accepts valid shapes with overload', async () => {
     let result = await validate({
       name: 'yobta',
       age: 0,
+      experience: 0,
     })
-    expect(result).toEqual([{ age: 0, name: 'yobta' }, null])
+    expect(result).toEqual([{ age: '0', name: 'yobta', experience: 0 }, null])
   })
 
   it('rejects invalid input', async () => {
