@@ -8,12 +8,11 @@ import {
   AsyncRulesChain6,
   AsyncRulesChain7,
 } from '../ruleYobta'
-import { parseUnknownError } from '../_internal/parseUnknownError'
+import { handleUnknownError } from '../_internal/parseUnknownError'
 import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
-import { YobtaContext } from '../_internal/YobtaContext'
+import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../_internal/YobtaError'
-import { preventSubmit } from '../_internal/preventSubmit/preventSubmit'
 
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
@@ -47,33 +46,19 @@ const field = '@'
 export const asyncYobta: AsyncYobtaFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (data: any) => {
-    preventSubmit(data)
-
-    let errors: YobtaError[] = []
-
-    function pushError(error: YobtaError): void {
-      errors.push(error)
-    }
-
-    let context: YobtaContext = {
-      data,
-      errors,
-      field,
-      path: [],
-      pushError,
-    }
+    let context = createContext(data)
 
     let validators = rules.map(next => next(context)) as SyncOrAsyncRules
 
     try {
       let result: PipeFactoryResult<R> = await asyncPipe(...validators)(data)
-      if (errors.length) {
-        return [null, errors] as Failure
+      if (context.errors.length) {
+        return [null, context.errors] as Failure
       }
       return [result, null] as Success<R>
     } catch (error) {
-      let { name, message } = parseUnknownError(error)
-      pushError({ field, name, message, path: [] })
-      return [null, errors] as Failure
+      let yobtaError = handleUnknownError({ error, field, path: [] })
+      context.pushError(yobtaError)
+      return [null, context.errors] as Failure
     }
   }

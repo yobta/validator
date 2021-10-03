@@ -1,8 +1,7 @@
 import { ruleYobta, SyncRule, AnySyncRule, SyncRules } from '../ruleYobta'
 import { isPlainObject } from '../_internal/isPlainObject'
-import { parseUnknownError } from '../_internal/parseUnknownError'
+import { handleUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipeFactoryResult, PipedFactories } from '../_internal/pipe'
-import { YobtaError } from '../_internal/YobtaError'
 
 type Rules = Record<PropertyKey, SyncRules>
 
@@ -18,7 +17,7 @@ export const shapeMessage = 'It should be a plain object'
 
 export const shapeYobta = <F extends Rules>(
   rulesSet: Config<F>,
-  validationMessage = shapeMessage
+  validationMessage = shapeMessage,
 ): SyncRule<any, Result<F> | undefined> =>
   ruleYobta((input, context) => {
     if (!isPlainObject(input) && typeof input !== 'undefined') {
@@ -32,16 +31,15 @@ export const shapeYobta = <F extends Rules>(
           rule({
             ...context,
             field,
-            path
-          })
+            path,
+          }),
         )
-        // @ts-ignore
         let next = input[field]
         try {
           next = pipe(...tests)(next)
         } catch (error) {
-          let { message } = parseUnknownError(error)
-          context.pushError(new YobtaError({ message, field, path }))
+          let yobtaError = handleUnknownError({ error, field, path })
+          context.pushError(yobtaError)
         }
         return { ...acc, [field]: next }
       }, input)) as Result<F>

@@ -5,10 +5,10 @@ import { AsyncYobtaRule } from '..'
 interface MockFormFactory {
   (innerHtml: string): {
     change<V extends AsyncYobtaRule<any, any>>(
-      validate: V
+      validate: V,
     ): Promise<ReturnType<V>>
     submit<V extends AsyncYobtaRule<any, any>>(
-      validate: V
+      validate: V,
     ): Promise<ReturnType<V>>
   }
 }
@@ -30,6 +30,6 @@ export const mockForm: MockFormFactory = innerHtml => {
       Object.defineProperty(event, 'currentTarget', { value: form })
 
       return validate(event)
-    }
+    },
   }
 }

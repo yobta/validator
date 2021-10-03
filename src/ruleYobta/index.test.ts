@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals'
 
-import { YobtaContext } from '../_internal/YobtaContext'
 import { ruleYobta } from '.'
+import { YobtaContext } from '../_internal/createContext'
 
 describe('sinc rule', () => {
   function validateNumber<I>(input: I): number {
@@ -18,7 +18,7 @@ describe('sinc rule', () => {
       errors: [],
       field: 'f',
       path: ['price'],
-      pushError
+      pushError,
     }
     let result = testNumber(context)(1)
     expect(result).toEqual(1)
@@ -36,7 +36,7 @@ describe('sinc rule', () => {
       errors: [],
       field: 'f',
       path: ['price'],
-      pushError
+      pushError,
     }
     expect(() => simulateUnexpectedException(context)(1)).toThrow('yobta!')
     expect(pushError).toHaveBeenCalledTimes(0)
@@ -50,14 +50,14 @@ describe('sinc rule', () => {
       errors: [],
       field: 'f',
       path: ['price'],
-      pushError
+      pushError,
     }
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let simulateUnexpectedException = ruleYobta(
       (data: number, context: YobtaContext) => {
         spy(data, context)
         return data
-      }
+      },
     )
     simulateUnexpectedException(contextMock)(1)
     expect(spy).toHaveBeenCalledWith(1, contextMock)
@@ -79,7 +79,7 @@ describe('asinc rule', () => {
       errors: [],
       field: 'f',
       path: ['price'],
-      pushError
+      pushError,
     }
     let result = await testNumber(context)(1)
     expect(result).toEqual(1)

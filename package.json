@@ -123,21 +123,21 @@
       "import": {
         "lib/index.js": "{ yobta }"
       },
-      "limit": "260 B"
+      "limit": "347 B"
     },
     {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
       },
-      "limit": "249 B"
+      "limit": "384 B"
     },
     {
       "name": "Shape rule",
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "481 B"
+      "limit": "488 B"
     },
     {
       "name": "String rule",
@@ -256,7 +256,7 @@
       "import": {
         "lib/index.js": "{ requiredYobta }"
       },
-      "limit": "92 B"
+      "limit": "91 B"
     },
     {
       "name": "Default rule",
@@ -277,7 +277,7 @@
       "import": {
         "lib/index.js": "{ itemsYobta }"
       },
-      "limit": "220 B"
+      "limit": "215 B"
     },
     {
       "name": "Unique rule",
@@ -333,7 +333,7 @@
       "import": {
         "lib/index.js": "{ awaitShapeYobta }"
       },
-      "limit": "513 B"
+      "limit": "520 B"
     },
     {
       "name": "Await submit utility",
@@ -354,7 +354,7 @@
       "import": {
         "lib/index.js": "{ validityYobta }"
       },
-      "limit": "246 B"
+      "limit": "197 B"
     },
     {
       "name": "Success utility",

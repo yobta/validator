@@ -1,5 +1,5 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
-import { YobtaContext } from '../_internal/YobtaContext'
+import { YobtaContext } from '../_internal/createContext'
 
 interface Reporter {
   (errors: YobtaContext['errors'], context: YobtaContext): void

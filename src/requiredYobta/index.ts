@@ -5,11 +5,12 @@ export const requiredMessage = 'Required'
 
 type Required<O> = O extends undefined ? never : O
 
-export function requiredYobta<I extends any>(
-  message = requiredMessage
-): SyncRule<I | undefined, Required<I>> {
-  return ruleYobta(input => {
+interface FequiredFactory {
+  <I extends any>(message?: string): SyncRule<I | undefined, Required<I>>
+}
+
+export const requiredYobta: FequiredFactory = <I>(message = requiredMessage) =>
+  ruleYobta(input => {
     if (isVoid(input)) throw new Error(message)
     return input as Required<I>
   })
-}

@@ -1,11 +1,22 @@
-type ErrorLike = { name: string; message: string }
+import { YobtaError, YobtaErrorPath } from '../YobtaError'
 
-export function parseUnknownError(error: unknown): ErrorLike {
-  if (error instanceof Error) {
+interface UnknownErrorInput {
+  error: unknown
+  field: string
+  path: YobtaErrorPath
+}
+interface HandleUnknownError {
+  (input: UnknownErrorInput): YobtaError
+}
+
+export const handleUnknownError: HandleUnknownError = ({
+  error,
+  field,
+  path,
+}) => {
+  if (error instanceof YobtaError) {
     return error
   }
-  return {
-    name: 'Unknown error',
-    message: String(error)
-  }
+  let message = error instanceof Error ? error.message : String(error)
+  return new YobtaError({ message, field, path })
 }

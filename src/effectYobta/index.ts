@@ -1,5 +1,5 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
-import { YobtaContext } from '../_internal/YobtaContext'
+import { YobtaContext } from '../_internal/createContext'
 
 interface Effect<I> {
   (input: I, context: YobtaContext): void

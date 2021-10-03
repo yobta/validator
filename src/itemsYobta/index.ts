@@ -8,16 +8,15 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7
+  SyncRulesChain7,
 } from '../ruleYobta'
-import { parseUnknownError } from '../_internal/parseUnknownError'
+import { handleUnknownError } from '../_internal/parseUnknownError'
 import {
   Functions,
   pipe,
   PipedFactories,
-  PipeFactoryResult
+  PipeFactoryResult,
 } from '../_internal/pipe'
-import { YobtaError } from '../_internal/YobtaError'
 
 export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6, R7>(
@@ -53,15 +52,11 @@ export const itemsYobta: ItemsYobta = <R extends SyncRules>(
       try {
         return pipe(...next)(item)
       } catch (error) {
-        let { message } = parseUnknownError(error)
-        context.pushError(
-          new YobtaError({
-            message,
-            field: context.field,
-            path: [...context.path, index]
-          })
-        )
-        return item
+        throw handleUnknownError({
+          error,
+          field: context.field,
+          path: [...context.path, index],
+        })
       }
     })
   })
