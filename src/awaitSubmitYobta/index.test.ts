@@ -39,6 +39,7 @@ describe('awaitSubmitYobta', () => {
       { name: 'yobta' },
       {
         data: expect.any(Event),
+        event: expect.any(Event),
         errors: [],
         field: '@',
         form: expect.any(HTMLFormElement),

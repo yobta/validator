@@ -8,6 +8,7 @@ describe('createContext', () => {
 
     expect(context).toEqual({
       data: null,
+      event: null,
       errors: [],
       field: '@',
       path: [],
@@ -26,6 +27,7 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
+      event,
       errors: [],
       field: '@',
       form,
@@ -47,6 +49,7 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(0)
     expect(context).toEqual({
       data: event,
+      event,
       errors: [],
       field: '@',
       form,
@@ -71,6 +74,7 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
+      event,
       errors: [],
       field: '@',
       form,

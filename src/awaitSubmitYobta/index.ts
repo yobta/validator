@@ -6,14 +6,14 @@ interface Submitter<I> {
 }
 
 interface AwaitSubmitFactory {
-  <I>(submitter: Submitter<I>): AsyncRule<I, I>
+  <I>(submit: Submitter<I>): AsyncRule<I, I>
 }
 
-export const awaitSubmitYobta: AwaitSubmitFactory = submitter =>
+export const awaitSubmitYobta: AwaitSubmitFactory = submit =>
   ruleYobta(async (input, context) => {
-    let { data, errors } = context
-    if (data instanceof Event && data.type === 'submit' && !errors.length) {
-      await submitter(input, context)
+    let { event, errors } = context
+    if (event instanceof Event && event.type === 'submit' && !errors.length) {
+      await submit(input, context)
     }
     return input
   })

@@ -21,6 +21,7 @@ it('fires when it is valid', async () => {
   expect(spy).toHaveBeenCalledWith('yobta', {
     data: 'yobta',
     errors: [],
+    event: 'yobta',
     field: '@',
     path: [],
     pushError: expect.any(Function),

@@ -3,7 +3,7 @@ import { createEvent } from '@testing-library/dom'
 import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '..'
 import { formYobta } from '../formYobta'
 import { validityMessage, validityYobta } from '.'
-import { YobtaContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext'
 
 interface FormMock {
   (): {
@@ -31,25 +31,13 @@ describe('validityYobta', () => {
   it('throws when gets a non-form event', () => {
     let input = document.createElement('input')
     let data = { currentTarget: input }
-    let context: YobtaContext = {
-      data,
-      errors: [],
-      field: '@',
-      path: [],
-      pushError() {},
-    }
+    let context = createContext(data)
 
     expect(() => validityYobta()(context)({})).toThrow(validityMessage)
   })
 
   it('throws when gets a non-event and has a custom error message', () => {
-    let context: YobtaContext = {
-      data: 'yobta',
-      errors: [],
-      field: '@',
-      path: [],
-      pushError() {},
-    }
+    let context = createContext('yobta')
 
     expect(() => validityYobta('yobta!')(context)({})).toThrow('yobta!')
   })
