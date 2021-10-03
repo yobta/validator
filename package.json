@@ -354,7 +354,7 @@
       "import": {
         "lib/index.js": "{ validityYobta }"
       },
-      "limit": "229 B"
+      "limit": "236 B"
     },
     {
       "name": "Success utility",

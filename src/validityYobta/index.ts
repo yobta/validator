@@ -28,12 +28,14 @@ export const validityYobta: ValidityFactory = (
       {},
     )
 
-    for (let element of form.elements) {
+    for (let element of form.elements as unknown as HTMLInputElement[]) {
       let name = element.getAttribute('name') || ''
       if (!filterBy || filterBy === name) {
         let message = messages[name] || ''
-        // @ts-ignore
         element.setCustomValidity(message)
+        if (!message) {
+          element.reportValidity()
+        }
       }
     }
 
