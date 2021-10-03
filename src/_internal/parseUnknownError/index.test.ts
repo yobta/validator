@@ -1,14 +1,23 @@
-import { parseUnknownError } from '.'
+import { handleUnknownError } from '.'
+import { YobtaError } from '../YobtaError'
 
-it('can parse error', () => {
-  let error = new Error('yobta')
-  let result = parseUnknownError(error)
-  expect(result).toEqual(error)
-})
+describe('handleUnknownError', () => {
+  it('can parse error', () => {
+    let error = new YobtaError({ field: '@', message: 'yobta', path: [] })
+    let result = handleUnknownError({ error, field: '', path: ['p'] })
+    expect(result).toEqual(error)
+  })
 
-it('can parse non-error', () => {
-  let nonError = [1]
-  let result = parseUnknownError(nonError)
+  it('can parse non-error', () => {
+    let nonError = [1]
+    let result = handleUnknownError({
+      error: nonError,
+      field: '@',
+      path: [],
+    })
 
-  expect(result).toEqual({ name: 'Unknown error', message: '1' })
+    expect(result).toEqual(
+      new YobtaError({ field: '@', message: '1', path: [] }),
+    )
+  })
 })

@@ -3,13 +3,12 @@ import {
   ruleYobta,
   SyncRule,
   AnySyncOrAsyncRule,
-  SyncOrAsyncRules
+  SyncOrAsyncRules,
 } from '../ruleYobta'
 import { isPlainObject } from '../_internal/isPlainObject'
-import { parseUnknownError } from '../_internal/parseUnknownError'
+import { handleUnknownError } from '../_internal/parseUnknownError'
 import { PipeFactoryResult, PipedFactories } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
-import { YobtaError } from '../_internal/YobtaError'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 
@@ -32,7 +31,7 @@ export const asyncShapeMessage = 'It should be a plain object'
 
 export const awaitShapeYobta: AsyncShapeFactory = (
   rulesSet,
-  validationMessage = shapeMessage
+  validationMessage = shapeMessage,
 ) =>
   ruleYobta(async (input, context) => {
     if (typeof input === 'undefined') {
@@ -49,19 +48,19 @@ export const awaitShapeYobta: AsyncShapeFactory = (
           rule({
             ...context,
             field,
-            path
-          })
+            path,
+          }),
         )
         let next = input[field]
         try {
           next = await asyncPipe(...tests)(next)
         } catch (error) {
-          let { message } = parseUnknownError(error)
-          context.pushError(new YobtaError({ message, field, path }))
+          let yobtaError = handleUnknownError({ error, field, path })
+          context.pushError(yobtaError)
         }
         return { ...acc, [field]: next }
       },
-      input
+      input,
     )
 
     return result

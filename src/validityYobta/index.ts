@@ -4,27 +4,19 @@ interface ValidityYobtaFactory {
   <I>(validityMessage?: string): SyncRule<I, I>
 }
 
-interface Data {
-  target: HTMLInputElement | HTMLFormElement
-  currentTarget: HTMLFormElement
-}
-
 export const validityMessage = 'Validity expects a form event'
 
 export const validityYobta: ValidityYobtaFactory = (
   invariantMessage = validityMessage,
 ) =>
-  ruleYobta((input, { errors, data }) => {
-    if (!(data?.currentTarget instanceof HTMLFormElement)) {
+  ruleYobta((currentData, { errors, form, input }) => {
+    if (!form) {
       throw new Error(invariantMessage)
     }
 
-    let { target, currentTarget: form } = data as unknown as Data
-
-    let filteredErrors =
-      target !== form
-        ? errors.filter(({ field }) => field === target.getAttribute('name'))
-        : errors
+    let filteredErrors = input
+      ? errors.filter(({ field }) => field === input.getAttribute('name'))
+      : errors
 
     let messages = filteredErrors.reduce<Record<string, string>>(
       (acc, { field, message }) => ({
@@ -42,5 +34,5 @@ export const validityYobta: ValidityYobtaFactory = (
     }
 
     form.reportValidity()
-    return input
+    return currentData
   })

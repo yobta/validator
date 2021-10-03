@@ -1,8 +1,8 @@
 import { jest } from '@jest/globals'
 
-import { yobta } from '../yobta'
 import { effectYobta } from '.'
-import { YobtaContext } from '../_internal/YobtaContext'
+import { yobta } from '../yobta'
+import { YobtaContext } from '../_internal/createContext'
 
 it('calls effect and returns data unmodified', () => {
   let spy = jest.fn()

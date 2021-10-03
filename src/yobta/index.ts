@@ -8,10 +8,9 @@ import {
   SyncRulesChain6,
   SyncRulesChain7,
 } from '../ruleYobta'
-import { parseUnknownError } from '../_internal/parseUnknownError'
+import { handleUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
-import { preventSubmit } from '../_internal/preventSubmit/preventSubmit'
-import { YobtaContext } from '../_internal/YobtaContext'
+import { createContext, YobtaContext } from '../_internal/createContext'
 import { YobtaError } from '../_internal/YobtaError'
 
 //#region Types
@@ -44,13 +43,8 @@ export const field = '@'
 export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
   (data: any) => {
-    preventSubmit(data)
-
     let context: YobtaContext = {
-      data,
-      errors: [],
-      field,
-      path: [],
+      ...createContext(data),
       pushError(error: YobtaError) {
         throw error
       },
@@ -61,7 +55,6 @@ export const yobta: YobtaFactory =
     try {
       return pipe(...validators)(data)
     } catch (error) {
-      let { message } = parseUnknownError(error)
-      throw new YobtaError({ field, message, path: [] })
+      throw handleUnknownError({ error, field, path: [] })
     }
   }
