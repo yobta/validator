@@ -22,7 +22,7 @@ it('rejects non-arrays', () => {
     Symbol('y'),
     new Set(),
     new Map(),
-    () => 'yobta'
+    () => 'yobta',
   ]
 
   variants.forEach(variant => {

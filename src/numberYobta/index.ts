@@ -1,26 +1,18 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
 
-let coercedTypes = new Set(['string', 'boolean'])
-
-function coerce<I>(input: I): number | I {
-  if (input === null) return 0
-  else if (coercedTypes.has(typeof input)) return Number(input)
-  return input
-}
+let coercedTypes = new Set(['string', 'boolean', 'number', 'undefined'])
 
 export const numberMessage = 'It should be a number'
 
-export const numberYobta = (
-  message = numberMessage
-): SyncRule<any, number | undefined> =>
-  ruleYobta(input => {
-    let value = coerce(input)
+interface NumberFactory {
+  (message?: string): SyncRule<any, number>
+}
 
-    if (
-      (typeof value === 'number' && !isNaN(value) && Number.isFinite(value)) ||
-      typeof value === 'undefined'
-    ) {
-      return value
+export const numberYobta: NumberFactory = (message = numberMessage) =>
+  ruleYobta(value => {
+    if (coercedTypes.has(typeof value) || value === null) {
+      let number = Number(value)
+      return Number.isFinite(number) ? number : NaN
     }
 
     throw new Error(message)

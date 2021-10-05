@@ -158,14 +158,14 @@
       "import": {
         "lib/index.js": "{ numberYobta }"
       },
-      "limit": "137 B"
+      "limit": "115 B"
     },
     {
       "name": "Integer rule",
       "import": {
         "lib/index.js": "{ integerYobta }"
       },
-      "limit": "77 B"
+      "limit": "69 B"
     },
     {
       "name": "Date rule",
@@ -249,7 +249,7 @@
       "import": {
         "lib/index.js": "{ emailYobta }"
       },
-      "limit": "172 B"
+      "limit": "165 B"
     },
     {
       "name": "Required rule",

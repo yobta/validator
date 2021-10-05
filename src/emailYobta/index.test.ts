@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { yobta } from '../yobta'
+import { YobtaError } from '../_internal/YobtaError'
 import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'
@@ -11,9 +12,10 @@ describe('emailYobta', () => {
     expect(result).toBe('user-@example.org')
   })
 
-  it('accepts undefined', () => {
-    let result = validate(undefined)
-    expect(result).toBeUndefined()
+  it('rejects undefined', () => {
+    let attempts = (): string => validate(undefined)
+    let error = new YobtaError({ field: '@', message: customMessage, path: [] })
+    expect(attempts).toThrow(error)
   })
 
   it('trims whitespace', () => {
