@@ -21,6 +21,14 @@ describe('reSlugYobta', () => {
     let result = reSlugYobta.test('my-name-12-')
     expect(result).toBe(false)
   })
+  it('can have length of 2 symbols', () => {
+    let result = reSlugYobta.test('m1')
+    expect(result).toBe(true)
+  })
+  it('can not be shorter than 2 symbols', () => {
+    let result = reSlugYobta.test('m')
+    expect(result).toBe(false)
+  })
 })
 
 describe('reEmailYobta', () => {

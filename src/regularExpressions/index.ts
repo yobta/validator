@@ -1,4 +1,4 @@
-export const reSlugYobta = /^[a-z][\da-z-]+[\da-z]+$/
+export const reSlugYobta = /^[a-z][\da-z-]*[\da-z]+$/
 
 // RFC 5322
 /* eslint-disable security/detect-unsafe-regex */
