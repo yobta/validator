@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.20
+* String rule consistent return type
+* Fix related dependencies
 ## 0.0.19
 * Fix slug length issue
 * Add regression tests
