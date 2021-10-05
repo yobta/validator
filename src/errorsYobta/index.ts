@@ -1,12 +1,12 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
 import { YobtaContext } from '../_internal/createContext'
 
-interface Reporter {
+export interface YobtaErrorReporter {
   (errors: YobtaContext['errors'], context: YobtaContext): void
 }
 
 interface ErrorsYobtaFactory {
-  <I>(report: Reporter): SyncRule<I, I>
+  <I>(report: YobtaErrorReporter): SyncRule<I, I>
 }
 
 export const errorsYobta: ErrorsYobtaFactory = report =>
