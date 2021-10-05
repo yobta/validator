@@ -2,11 +2,13 @@ import { ruleYobta, SyncRule } from '../ruleYobta'
 
 export const integerMessage = 'It should be an integer'
 
-export const integerYobta = (
-  message = integerMessage
-): SyncRule<number | undefined, number | undefined> =>
+interface IntegerFactory {
+  (message?: string): SyncRule<number, number>
+}
+
+export const integerYobta: IntegerFactory = (message = integerMessage) =>
   ruleYobta(input => {
-    if (Number.isInteger(input) || typeof input === 'undefined') return input
+    if (Number.isInteger(input)) return input
 
     throw new Error(message)
   })

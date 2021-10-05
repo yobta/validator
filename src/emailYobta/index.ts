@@ -3,15 +3,17 @@ import { ruleYobta, SyncRule } from '../ruleYobta'
 
 export const emailMessage = 'It should be an email'
 
-export const emailYobta = (
-  message = emailMessage,
-): SyncRule<string | undefined, string | undefined> =>
-  ruleYobta(input => {
-    if (typeof input === 'undefined') return input
+interface EmailFactory {
+  (message?: string): SyncRule<string, string>
+}
 
-    let value = input.trim()
-
-    if (reEmailYobta.test(value)) return value
-
+export const emailYobta: EmailFactory = (message = emailMessage) =>
+  ruleYobta(value => {
+    if (typeof value === 'string') {
+      let trimmed = value.trim()
+      if (reEmailYobta.test(trimmed)) {
+        return trimmed
+      }
+    }
     throw new Error(message)
   })

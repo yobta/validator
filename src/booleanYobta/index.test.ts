@@ -34,7 +34,7 @@ it('rejects invalid', () => {
     new Set(),
     new Map(),
     2,
-    () => 'yobta'
+    () => 'yobta',
   ]
   variants.forEach(variant => {
     let attemt = (): any => validate(variant)
