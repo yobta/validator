@@ -3,7 +3,7 @@ import { ruleYobta, SyncRule } from '../ruleYobta'
 export const testMessage = 'Invalid format'
 
 interface TestFactory {
-  <I extends string>(expression: RegExp, message?: string): SyncRule<I, I>
+  (expression: RegExp, message?: string): SyncRule<string, string>
 }
 
 export const testYobta: TestFactory = (
