@@ -144,7 +144,7 @@
       "import": {
         "lib/index.js": "{ stringYobta }"
       },
-      "limit": "126 B"
+      "limit": "110 B"
     },
     {
       "name": "Array rule",
@@ -242,7 +242,7 @@
       "import": {
         "lib/index.js": "{ testYobta }"
       },
-      "limit": "63 B"
+      "limit": "56 B"
     },
     {
       "name": "Email rule",
