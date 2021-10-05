@@ -1,24 +1,22 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
 
-let coercedTypes = new Set(['number', 'boolean'])
-
-function coerce<I>(input: I): string | I {
-  if (input === null) return ''
-  else if (coercedTypes.has(typeof input) || input instanceof String) {
-    return String(input)
-  }
-  return input
+interface StringFactory {
+  (message?: string): SyncRule<any, string>
 }
+
+const coercedTypes = new Set(['number', 'boolean'])
 
 export const stringMessage = 'It should be a string'
 
-export const stringYobta = (
-  message = stringMessage
-): SyncRule<any, string | undefined> =>
-  ruleYobta(input => {
-    let value = coerce(input)
-
-    if (typeof value === 'string' || typeof value === 'undefined') return value
+export const stringYobta: StringFactory = (message = stringMessage) =>
+  ruleYobta(value => {
+    if (value === null || typeof value === 'undefined') {
+      return ''
+    } else if (coercedTypes.has(typeof value) || value instanceof String) {
+      return String(value)
+    } else if (typeof value === 'string') {
+      return value
+    }
 
     throw new Error(message)
   })
