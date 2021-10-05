@@ -27,14 +27,6 @@ describe('errorsYobta', () => {
     })
 
     expect(result).toEqual([null, [error]])
-    // expect(spy).toHaveBeenCalledWith([error], {
-    //   data: expect.any(Event),
-    //   errors: [error],
-    //   field: '@',
-    //   form: expect.any(HTMLFormElement),
-    //   path: [],
-    //   pushError: expect.any(Function),
-    // })
   })
 
   it('does not call reporter when validation succeeds', async () => {
@@ -46,7 +38,7 @@ describe('errorsYobta', () => {
     )
     let result = await mockForm('').submit(validate)
 
-    expect(result).toEqual([{ name: undefined }, null])
+    expect(result).toEqual([{ name: '' }, null])
     expect(spy).toHaveBeenCalledTimes(0)
   })
 })
