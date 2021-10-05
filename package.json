@@ -401,7 +401,8 @@
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
         "lib/errorsYobta/index.js": "{ errorsYobta }",
         "lib/validityYobta/index.js": "{ validityYobta }",
-        "lib/successYobta/index.js": "{ successYobta }"
+        "lib/successYobta/index.js": "{ successYobta }",
+        "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
       "limit": "2500 B"
     }
@@ -458,6 +459,8 @@
       "awaitSubmitYobta",
       "errorsYobta",
       "successYobta",
+      "regularExpressions",
+      "src",
       "validityYobta"
     ]
   },
