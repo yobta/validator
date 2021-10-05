@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.21
+* Replace generic return type of the test rule with string
 ## 0.0.20
 * String and number rule consistent return types
 * Fix related dependencies
