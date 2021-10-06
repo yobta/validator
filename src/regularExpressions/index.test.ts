@@ -9,9 +9,9 @@ describe('reSlugYobta', () => {
     let result = reSlugYobta.test('my-Name-12')
     expect(result).toBe(false)
   })
-  it('can not start with a number', () => {
-    let result = reSlugYobta.test('2-my-name-12')
-    expect(result).toBe(false)
+  it('can start wwith a digit', () => {
+    let result = reSlugYobta.test('2pac')
+    expect(result).toBe(true)
   })
   it('can not start with a hyphen', () => {
     let result = reSlugYobta.test('-my-name-12')
