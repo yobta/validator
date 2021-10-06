@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { yobta } from '../yobta'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'

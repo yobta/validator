@@ -364,6 +364,13 @@
       "limit": "34 B"
     },
     {
+      "name": "Yobta error class",
+      "import": {
+        "lib/index.js": "{ YobtaError }"
+      },
+      "limit": "73 B"
+    },
+    {
       "name": "All",
       "import": {
         "lib/ruleYobta/index.js": "{ ruleYobta }",
@@ -402,6 +409,7 @@
         "lib/errorsYobta/index.js": "{ errorsYobta }",
         "lib/validityYobta/index.js": "{ validityYobta }",
         "lib/successYobta/index.js": "{ successYobta }",
+        "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
       "limit": "2500 B"

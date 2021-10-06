@@ -11,7 +11,7 @@ import {
 import { handleUnknownError } from '../_internal/parseUnknownError'
 import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
 import { createContext, YobtaContext } from '../_internal/createContext'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O

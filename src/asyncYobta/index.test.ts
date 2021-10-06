@@ -11,7 +11,7 @@ import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 import { effectYobta } from '..'
 
 let validate = asyncYobta(numberYobta('yobta!'))

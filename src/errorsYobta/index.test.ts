@@ -9,7 +9,7 @@ import {
   stringYobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 describe('errorsYobta', () => {
   it('calls reporter when validation fails', async () => {
