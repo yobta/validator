@@ -11,6 +11,6 @@ export const testYobta: TestFactory = (
   message = testMessage,
 ) =>
   ruleYobta(input => {
-    if (expression.test(input)) return input
+    if (input === '' || expression.test(input)) return input
     throw new Error(message)
   })
