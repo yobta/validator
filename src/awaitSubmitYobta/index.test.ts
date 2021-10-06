@@ -10,7 +10,7 @@ import {
   stringYobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
   return asyncYobta(

@@ -3,7 +3,7 @@ import { yobta } from '../yobta'
 import { stringYobta, stringMessage } from '../stringYobta'
 import { requiredYobta } from '../requiredYobta'
 import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '..'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 const validate = yobta(
   shapeYobta({

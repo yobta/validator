@@ -1,5 +1,5 @@
 import { yobta } from '../yobta'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 import { numberYobta, numberMessage } from './'
 
 const customMessage = 'yobta!'

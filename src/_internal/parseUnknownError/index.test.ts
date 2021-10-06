@@ -1,5 +1,5 @@
 import { handleUnknownError } from '.'
-import { YobtaError } from '../YobtaError'
+import { YobtaError } from '../../YobtaError'
 
 describe('handleUnknownError', () => {
   it('can parse error', () => {

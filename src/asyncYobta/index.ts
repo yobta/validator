@@ -12,7 +12,7 @@ import { handleUnknownError } from '../_internal/parseUnknownError'
 import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
 import { asyncPipe } from '../_internal/asyncPipe'
 import { createContext } from '../_internal/createContext'
-import { YobtaError } from '../_internal/YobtaError'
+import { YobtaError } from '../YobtaError'
 
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>

@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.25
+* Export Yobta error class
+  
 ## 0.0.24
 * Slug regular expression should allow slugs starting with a digit
 ## 0.0.23
