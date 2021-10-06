@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.23
+* RegExp test rule should accept empty strings
 ## 0.0.22
 * Export error reporter type
 ## 0.0.21

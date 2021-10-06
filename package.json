@@ -242,7 +242,7 @@
       "import": {
         "lib/index.js": "{ testYobta }"
       },
-      "limit": "56 B"
+      "limit": "61 B"
     },
     {
       "name": "Email rule",
