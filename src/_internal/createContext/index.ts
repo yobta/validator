@@ -21,12 +21,12 @@ export const createContext: YobtaContextFactory = event => {
   if (event?.type === 'submit' && event.preventDefault) {
     event.preventDefault()
   }
+
   let errors: YobtaError[] = []
-  let form =
-    event?.currentTarget instanceof HTMLFormElement
-      ? event.currentTarget
-      : undefined
+  let element = event?.currentTarget || event
+  let form = element?.tagName === 'FORM' ? element : undefined
   let input = (form && event?.target !== form && event.target) || undefined
+
   return {
     event,
     data: event,

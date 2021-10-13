@@ -15,7 +15,7 @@ export const formYobta: FormFactory = (message = formDataMessage) =>
 
     let node = form || input
 
-    if (node instanceof HTMLFormElement) {
+    if (node?.tagName === 'FORM') {
       let output = new FormData(node)
       return fromEntries(output)
     }
