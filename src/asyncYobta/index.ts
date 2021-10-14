@@ -7,6 +7,8 @@ import {
   AsyncRulesChain5,
   AsyncRulesChain6,
   AsyncRulesChain7,
+  AsyncRulesChain8,
+  AsyncRulesChain9,
 } from '../ruleYobta'
 import { handleUnknownError } from '../_internal/parseUnknownError'
 import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
@@ -17,6 +19,12 @@ import { YobtaError } from '../YobtaError'
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
 export interface AsyncYobtaFactory {
+  <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
+    ...rules: AsyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
+  ): AsyncYobtaRule<any, R9>
+  <R1, R2, R3, R4, R5, R6, R7, R8>(
+    ...rules: AsyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8>
+  ): AsyncYobtaRule<any, R8>
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: AsyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
   ): AsyncYobtaRule<any, R7>
@@ -37,8 +45,8 @@ export interface AsyncYobtaFactory {
     input: any,
   ) => Promise<Success<R> | Failure>
 }
-type Success<R extends SyncOrAsyncRules> = [PipeFactoryResult<R>, null]
-type Failure = [null, YobtaError[]]
+export type Success<R extends SyncOrAsyncRules> = [PipeFactoryResult<R>, null]
+export type Failure = [null, YobtaError[]]
 //#endregion
 
 const field = '@'

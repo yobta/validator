@@ -95,6 +95,27 @@ export type AsyncRulesChain7<R1, R2, R3, R4, R5, R6, R7> = [
   SyncOrAsyncRule<R5, R6>,
   SyncOrAsyncRule<R6, R7>,
 ]
+export type AsyncRulesChain8<R1, R2, R3, R4, R5, R6, R7, R8> = [
+  SyncOrAsyncRule<any, R1>,
+  SyncOrAsyncRule<R1, R2>,
+  SyncOrAsyncRule<R2, R3>,
+  SyncOrAsyncRule<R3, R4>,
+  SyncOrAsyncRule<R4, R5>,
+  SyncOrAsyncRule<R5, R6>,
+  SyncOrAsyncRule<R6, R7>,
+  SyncOrAsyncRule<R7, R8>,
+]
+export type AsyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9> = [
+  SyncOrAsyncRule<any, R1>,
+  SyncOrAsyncRule<R1, R2>,
+  SyncOrAsyncRule<R2, R3>,
+  SyncOrAsyncRule<R3, R4>,
+  SyncOrAsyncRule<R4, R5>,
+  SyncOrAsyncRule<R5, R6>,
+  SyncOrAsyncRule<R6, R7>,
+  SyncOrAsyncRule<R7, R8>,
+  SyncOrAsyncRule<R8, R9>,
+]
 // #endregion
 
 interface RuleFactory {
