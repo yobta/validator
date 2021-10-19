@@ -16,9 +16,14 @@ describe('numberYobta', () => {
     expect(result).toBe(NaN)
   })
 
-  it('accepts NaN', () => {
-    let result = validate(NaN)
-    expect(result).toBe(NaN)
+  it('rejects NaN', () => {
+    let attempt = (): number => validate(NaN)
+    let error = new YobtaError({
+      message: customMessage,
+      field: '@',
+      path: [],
+    })
+    expect(attempt).toThrow(error)
   })
 
   it('coerces null', () => {
@@ -26,14 +31,24 @@ describe('numberYobta', () => {
     expect(result).toBe(0)
   })
 
-  it('coerces Infinity', () => {
-    let result = validate(Infinity)
-    expect(result).toBe(NaN)
+  it('rejects Infinity', () => {
+    let attempt = (): number => validate(Infinity)
+    let error = new YobtaError({
+      message: customMessage,
+      field: '@',
+      path: [],
+    })
+    expect(attempt).toThrow(error)
   })
 
-  it('coerces Infinity string', () => {
-    let result = validate('Infinity')
-    expect(result).toBe(NaN)
+  it('rejects Infinity string', () => {
+    let attempt = (): number => validate('Infinity')
+    let error = new YobtaError({
+      message: customMessage,
+      field: '@',
+      path: [],
+    })
+    expect(attempt).toThrow(error)
   })
 
   it('coerces string', () => {
@@ -54,6 +69,7 @@ describe('numberYobta', () => {
       Symbol('y'),
       new Set(),
       new Map(),
+      'yobta',
       () => 'yobta',
     ]
     variants.forEach(variant => {
