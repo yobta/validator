@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.28
+* Number rule to return NaN only for undefined
 ## 0.0.27
 * Add non-throwing sync validator 
 ## 0.0.26

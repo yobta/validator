@@ -165,7 +165,7 @@
       "import": {
         "lib/index.js": "{ numberYobta }"
       },
-      "limit": "115 B"
+      "limit": "125 B"
     },
     {
       "name": "Integer rule",

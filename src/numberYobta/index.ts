@@ -1,6 +1,6 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
 
-let coercedTypes = new Set(['string', 'boolean', 'number', 'undefined'])
+let coercedTypes = new Set(['string', 'boolean', 'number'])
 
 export const numberMessage = 'It should be a number'
 
@@ -10,9 +10,17 @@ interface NumberFactory {
 
 export const numberYobta: NumberFactory = (message = numberMessage) =>
   ruleYobta(value => {
-    if (coercedTypes.has(typeof value) || value === null) {
+    if (value === null) {
+      return 0
+    }
+    if (typeof value === 'undefined') {
+      return NaN
+    }
+    if (coercedTypes.has(typeof value)) {
       let number = Number(value)
-      return Number.isFinite(number) ? number : NaN
+      if (Number.isFinite(number)) {
+        return number
+      }
     }
 
     throw new Error(message)
