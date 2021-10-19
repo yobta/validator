@@ -16,6 +16,9 @@ export const numberYobta: NumberFactory = (message = numberMessage) =>
     if (typeof value === 'undefined') {
       return NaN
     }
+    if (typeof value === 'string') {
+      value = value.replace(/\s+/g, '')
+    }
     if (coercedTypes.has(typeof value)) {
       let number = Number(value)
       if (Number.isFinite(number)) {
