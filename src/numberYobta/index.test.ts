@@ -56,6 +56,11 @@ describe('numberYobta', () => {
     expect(result).toBe(1)
   })
 
+  it('strips whitespace', () => {
+    let result = validate('1 23')
+    expect(result).toBe(123)
+  })
+
   it('coerces booelan', () => {
     let result = validate(true)
     expect(result).toBe(1)

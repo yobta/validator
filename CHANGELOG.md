@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.29
+* Number rule to strip white space
 ## 0.0.28
 * Number rule to return NaN only for undefined
 ## 0.0.27
