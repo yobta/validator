@@ -1,8 +1,7 @@
 import { yobta } from '../yobta'
-import { arrayYobta, arrayMessage } from './'
+import { arrayYobta } from './'
 
-const customMessage = 'yobta!'
-const stringRule = arrayYobta(customMessage)
+const stringRule = arrayYobta()
 const validate = yobta(stringRule)
 
 it('accepts array', () => {
@@ -12,28 +11,44 @@ it('accepts array', () => {
 
 it('accepts undefined', () => {
   let result = validate(undefined)
-  expect(result).toBeUndefined()
+  expect(result).toEqual([])
 })
 
-it('rejects non-arrays', () => {
-  let variants = [
-    {},
-    new Date(),
-    Symbol('y'),
-    new Set(),
-    new Map(),
-    () => 'yobta',
-  ]
-
-  variants.forEach(variant => {
-    let attempt = (): any => validate(variant)
-    expect(attempt).toThrow(customMessage)
-  })
+it('accepts strings', () => {
+  let result = validate('yobta')
+  expect(result).toEqual(['yobta'])
 })
 
-it('has default error message', () => {
-  let rule = arrayYobta()
-  let validateDefault = yobta(rule)
-  let attempt = (): any => validateDefault('yobta')
-  expect(attempt).toThrow(arrayMessage)
+it('accepts numbers', () => {
+  let result = validate(1)
+  expect(result).toEqual([1])
+})
+
+it('accepts plain objects', () => {
+  let result = validate({ k: 'v' })
+  expect(result).toEqual([{ k: 'v' }])
+})
+
+it('accepts dates', () => {
+  let value = new Date()
+  let result = validate(value)
+  expect(result).toEqual([value])
+})
+
+it('accepts symbols', () => {
+  let value = Symbol('y')
+  let result = validate(value)
+  expect(result).toEqual([value])
+})
+
+it('accepts sets', () => {
+  let value = new Set([1, 2, 3])
+  let result = validate(value)
+  expect(result).toEqual([1, 2, 3])
+})
+
+it('accepts maps', () => {
+  let value = new Map([['key', 1]])
+  let result = validate(value)
+  expect(result).toEqual([['key', 1]])
 })
