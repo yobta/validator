@@ -158,7 +158,7 @@
       "import": {
         "lib/index.js": "{ arrayYobta }"
       },
-      "limit": "72 B"
+      "limit": "126 B"
     },
     {
       "name": "Number rule",
@@ -263,14 +263,14 @@
       "import": {
         "lib/index.js": "{ requiredYobta }"
       },
-      "limit": "91 B"
+      "limit": "109 B"
     },
     {
       "name": "Default rule",
       "import": {
         "lib/index.js": "{ defaultYobta }"
       },
-      "limit": "68 B"
+      "limit": "86 B"
     },
     {
       "name": "Catch rule",

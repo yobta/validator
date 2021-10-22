@@ -1,6 +1,6 @@
 import { isVoid } from '.'
 
-const voidValues = ['', '   ', undefined, null, NaN]
+const voidValues = ['', '   ', undefined, null, NaN, []]
 
 voidValues.forEach(value => {
   it(`is void ${value}`, () => {
@@ -8,7 +8,15 @@ voidValues.forEach(value => {
   })
 })
 
-const values = [' a', 0, [], {}, new Date(), new Set(), new URLSearchParams('')]
+const values = [
+  ' a',
+  0,
+  [1],
+  { a: 1 },
+  new Date(),
+  new Set(),
+  new URLSearchParams(''),
+]
 
 values.forEach(value => {
   it(`is void ${value}`, () => {

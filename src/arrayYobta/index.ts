@@ -1,14 +1,23 @@
 import { ruleYobta, SyncRule } from '../ruleYobta'
+import { isVoid } from '../_internal/isVoid'
 
-export const arrayMessage = 'It should be an array'
+// const iterables = new Set(['number', 'string'])
 
-export const arrayYobta = (
-  message: string = arrayMessage
-): SyncRule<any, any[] | undefined> =>
+export const arrayYobta = (): SyncRule<any, any[]> =>
   ruleYobta(input => {
-    if (!Array.isArray(input) && typeof input !== 'undefined') {
-      throw new Error(message)
+    if (isVoid(input)) {
+      return []
+    }
+    if (typeof input === 'string') {
+      return [input]
+    }
+    if (Array.isArray(input)) {
+      return input
+    }
+    let array = Array.from(input)
+    if (array.length) {
+      return array
     }
 
-    return input
+    return [input]
   })

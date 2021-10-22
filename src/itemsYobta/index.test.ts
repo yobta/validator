@@ -1,14 +1,12 @@
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
 import { itemsYobta } from '.'
-import { requiredYobta } from '../requiredYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { arrayYobta } from '../arrayYobta'
 
 const validate = yobta(
   arrayYobta(),
-  requiredYobta(),
-  itemsYobta(stringYobta(), requiredYobta(), minCharactersYobta(5)),
+  itemsYobta(stringYobta(), minCharactersYobta(5)),
 )
 
 describe('itemsYobta', () => {

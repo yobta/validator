@@ -14,7 +14,7 @@ voidValues.forEach(value => {
   })
 })
 
-const values = [' a', 0, [], {}, new Date(), new Set(), new URLSearchParams('')]
+const values = [' a', 0, new Date(), new Set(), new URLSearchParams('')]
 values.forEach(value => {
   it(`does not change ${value}`, () => {
     let result = validate(value)
@@ -26,7 +26,7 @@ it('pipes', () => {
   let validateMultiple = yobta(
     stringYobta(),
     defaultYobta('yobta'),
-    requiredYobta()
+    requiredYobta(),
   )
   let result = validateMultiple(null)
   expect(result).toEqual('yobta')

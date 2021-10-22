@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.30
+* Consistent array rule
 ## 0.0.29
 * Number rule to strip white space
 ## 0.0.28
