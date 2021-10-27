@@ -104,6 +104,7 @@ describe('awaitShapeYobta', () => {
     expect(result).toEqual({ name: {} })
     expect(context.pushError).toHaveBeenCalledWith(new Error(stringMessage))
   })
+
   it('should replace context.data', async () => {
     let replaced = {
       password: 'old yobta',
@@ -120,5 +121,36 @@ describe('awaitShapeYobta', () => {
     )
     let result = await attempt(undefined)
     expect(result).toEqual([replaced, null])
+  })
+
+  it('has no racing condition', async () => {
+    let attempt = asyncYobta(
+      awaitShapeYobta({
+        title: [requiredYobta()],
+        address: [requiredYobta()],
+        description: [requiredYobta()],
+      }),
+    )
+    let result = await attempt({})
+    expect(result).toEqual([
+      null,
+      [
+        new YobtaError({
+          field: 'title',
+          message: 'Required',
+          path: ['title'],
+        }),
+        new YobtaError({
+          field: 'address',
+          message: 'Required',
+          path: ['address'],
+        }),
+        new YobtaError({
+          field: 'description',
+          message: 'Required',
+          path: ['description'],
+        }),
+      ],
+    ])
   })
 })

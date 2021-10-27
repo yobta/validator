@@ -9,11 +9,11 @@ export type YobtaErrorMetadata = {
 export class YobtaError extends Error {
   constructor({ field, message, path }: YobtaErrorMetadata) {
     super(message)
-    this.name = 'YobtaError'
     this.field = field
     this.path = path
   }
 
+  name = 'YobtaError'
   field: string
   path: YobtaErrorPath
 }
