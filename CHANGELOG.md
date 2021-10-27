@@ -1,6 +1,9 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.31
+* Fix racing condition issue in async shape validator
+* Improve error constructor
 ## 0.0.30
 * Consistent array rule
 ## 0.0.29
