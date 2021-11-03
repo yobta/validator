@@ -16,11 +16,18 @@ export const validityYobta: ValidityFactory = (
 
     let filterBy = input?.getAttribute('name')
 
-    let filteredErrors = filterBy
-      ? errors.filter(({ field }) => field === filterBy)
-      : errors
+    let elements = Array.from(form.elements)
 
-    let messages = filteredErrors.reduce<Record<string, string>>(
+    if (filterBy) {
+      let filteredElements = elements.filter(
+        element => element.getAttribute('name') === filterBy,
+      )
+      if (filteredElements.length) {
+        elements = filteredElements
+      }
+    }
+
+    let messages = errors.reduce<Record<string, string>>(
       (acc, { field, message }) => ({
         ...acc,
         [field]: message,
@@ -28,19 +35,11 @@ export const validityYobta: ValidityFactory = (
       {},
     )
 
-    for (let element of form.elements as unknown as HTMLInputElement[]) {
+    for (let element of elements.reverse() as unknown as HTMLInputElement[]) {
       let name = element.getAttribute('name') || ''
-      if (!filterBy || filterBy === name) {
-        let message = messages[name] || ''
-        element.setCustomValidity(message)
-        if (!message) {
-          element.reportValidity()
-        }
-      }
-    }
-
-    if (filteredErrors.length) {
-      form.reportValidity()
+      let message = messages[name] || ''
+      element.setCustomValidity(message)
+      element.reportValidity()
     }
 
     return currentData
