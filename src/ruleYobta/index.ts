@@ -53,7 +53,7 @@ export type AsyncRule<I, O> = (
 export type AnyAsyncRule = AsyncRule<any, any>
 export type AnySyncOrAsyncRule = AnySyncRule | AnyAsyncRule
 export type SyncOrAsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]
-export type SyncOrAsyncRule<I, O> = SyncRule<I, O> | AsyncRule<I, O>
+export type SyncOrAsyncRule<I, O> = SyncRule<I, O>
 
 export type AsyncRulesChain1<R1> = [SyncOrAsyncRule<any, R1>]
 export type AsyncRulesChain2<R1, R2> = [

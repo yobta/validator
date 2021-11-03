@@ -16,6 +16,20 @@ import { effectYobta } from '..'
 
 let validate = asyncYobta(numberYobta('yobta!'))
 
+let validateSearch = asyncYobta(
+  urlSearchParamsYobta(),
+  shapeYobta({
+    currentTab: [
+      catchYobta(
+        'tab-1',
+        enumYobta(['tab-1', 'tab-2', 'tab-3']),
+        requiredYobta(),
+      ),
+    ],
+    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+  }),
+)
+
 describe('asyncYobta', () => {
   it('accepts valid', async () => {
     let result = await validate(1)
@@ -46,20 +60,6 @@ describe('asyncYobta', () => {
       ],
     ])
   })
-
-  let validateSearch = asyncYobta(
-    urlSearchParamsYobta(),
-    shapeYobta({
-      currentTab: [
-        catchYobta(
-          'tab-1',
-          enumYobta(['tab-1', 'tab-2', 'tab-3']),
-          requiredYobta(),
-        ),
-      ],
-      myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
-    }),
-  )
 
   it("creates default state when can't extract it from url", async () => {
     let result = await validateSearch('')
