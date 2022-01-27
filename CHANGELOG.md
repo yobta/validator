@@ -1,6 +1,8 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.33
+* Unwrap async chain
 ## 0.0.32
 * Improve validity reporting
 ## 0.0.31
