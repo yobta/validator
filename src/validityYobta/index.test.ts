@@ -1,8 +1,9 @@
+/* eslint-disable import/extensions */
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '..'
+import { validityMessage, validityYobta } from './'
+import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '../'
 import { formYobta } from '../formYobta'
-import { validityMessage, validityYobta } from '.'
 import { createContext } from '../_internal/createContext'
 
 interface FormMock {

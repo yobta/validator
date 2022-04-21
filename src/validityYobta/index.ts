@@ -1,4 +1,4 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 interface ValidityFactory {
   <I>(validityMessage?: string): SyncRule<I, I>

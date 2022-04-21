@@ -7,11 +7,18 @@ import {
   SyncRulesChain5,
   SyncRulesChain6,
   SyncRulesChain7,
-} from '../ruleYobta'
-import { handleUnknownError } from '../_internal/parseUnknownError'
-import { pipe, PipedFactories, PipeFactoryResult } from '../_internal/pipe'
-import { createContext, YobtaContext } from '../_internal/createContext'
-import { YobtaError } from '../YobtaError'
+} from '../ruleYobta/index.js'
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import {
+  pipe,
+  PipedFactories,
+  PipeFactoryResult,
+} from '../_internal/pipe/index.js'
+import {
+  createContext,
+  YobtaContext,
+} from '../_internal/createContext/index.js'
+import { YobtaError } from '../YobtaError/index.js'
 
 //#region Types
 export type SyncYobtaRule<I, O> = (input: I) => O

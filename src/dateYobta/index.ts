@@ -1,9 +1,9 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 export const dateMessage = 'It should be a date'
 
 export const dateYobta = (
-  message = dateMessage
+  message = dateMessage,
 ): SyncRule<any, Date | undefined> =>
   ruleYobta(input => {
     if (typeof input === 'undefined') return input

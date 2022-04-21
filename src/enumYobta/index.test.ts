@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
+import { enumYobta, enumMessage } from './'
 import { yobta } from '../yobta'
-import { enumYobta, enumMessage } from '.'
 
 const customMessage = (): string => 'yobta!'
 const validate = yobta(enumYobta(['yobta'], customMessage))

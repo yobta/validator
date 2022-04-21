@@ -1,7 +1,9 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta } from '.'
+import { asyncYobta } from './'
+import { effectYobta } from '../'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
@@ -12,7 +14,6 @@ import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
-import { effectYobta } from '..'
 
 let validate = asyncYobta(numberYobta('yobta!'))
 

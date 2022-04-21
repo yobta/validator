@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { successYobta } from '.'
-import { yobta, SyncYobtaRule, stringYobta, stringMessage } from '..'
+import { successYobta } from './'
+import { yobta, SyncYobtaRule, stringYobta, stringMessage } from '../'
 
 function mockValidate(spy: Function): SyncYobtaRule<any, any> {
   return yobta(

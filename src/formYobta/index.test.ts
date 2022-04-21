@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 import { createEvent } from '@testing-library/dom'
 
+import { formYobta, formDataMessage } from './'
 import { yobta } from '../yobta'
-import { formYobta, formDataMessage } from '.'
 import { createContext } from '../_internal/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 

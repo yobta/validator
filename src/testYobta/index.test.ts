@@ -1,5 +1,7 @@
-import { yobta } from '../yobta'
+/* eslint-disable import/extensions */
+
 import { testYobta, testMessage } from './'
+import { yobta } from '../yobta'
 
 const regExp = /fo*/
 

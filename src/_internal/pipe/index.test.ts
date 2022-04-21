@@ -1,4 +1,5 @@
-import { pipe } from '.'
+/* eslint-disable import/extensions */
+import { pipe } from './'
 
 const addOne = (input: number): number => input + 1
 const toString = (input: number): string => input.toString()
@@ -24,7 +25,7 @@ it('pipes many functions', () => {
     addOne,
     addOne,
     addOne,
-    toString
+    toString,
   )(0)
   expect(result).toBe('9')
 })

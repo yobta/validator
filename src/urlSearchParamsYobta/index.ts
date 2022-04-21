@@ -1,5 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
-import { fromEntries, PlainObject } from '../_internal/fromEntries'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import { fromEntries, PlainObject } from '../_internal/fromEntries/index.js'
 
 interface UrlSearchParamsRule {
   (): SyncRule<any, PlainObject>

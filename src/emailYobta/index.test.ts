@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-useless-escape */
+import { emailYobta, emailMessage } from './'
 import { yobta } from '../yobta'
 import { YobtaError } from '../YobtaError'
-import { emailYobta, emailMessage } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(emailYobta(customMessage))

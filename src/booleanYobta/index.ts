@@ -1,4 +1,4 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 const truthySet = new Set([1, '1', 'yes', 'true'])
 const falsySet = new Set([0, '0', 'no', 'false', 'null', null])
@@ -13,7 +13,7 @@ function coerce(input: any): boolean {
 export const booleanMessage = 'It should be a boolean'
 
 export const booleanYobta = (
-  message = booleanMessage
+  message = booleanMessage,
 ): SyncRule<any, boolean | undefined> =>
   ruleYobta(input => {
     let value = coerce(input)

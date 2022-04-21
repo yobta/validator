@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { yobta } from '.'
+import { yobta } from './'
 import {
   booleanYobta,
   catchYobta,
@@ -12,7 +13,7 @@ import {
   shapeYobta,
   requiredYobta,
   urlSearchParamsYobta,
-} from '..'
+} from '../'
 
 let validate = yobta(numberYobta('yobta!'))
 

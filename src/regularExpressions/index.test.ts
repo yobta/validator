@@ -1,4 +1,5 @@
-import { reEmailYobta, reSlugYobta } from '.'
+/* eslint-disable import/extensions */
+import { reEmailYobta, reSlugYobta } from './'
 
 describe('reSlugYobta', () => {
   it('accepts lower case, digits and hyphens', () => {

@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
+import { urlSearchParamsYobta } from './'
 import { yobta } from '../yobta'
-import { urlSearchParamsYobta } from '.'
 
 const validate = yobta(urlSearchParamsYobta())
 

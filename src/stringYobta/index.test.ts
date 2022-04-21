@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { yobta } from '../yobta'
 import { stringYobta, stringMessage } from './'
 

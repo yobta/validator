@@ -9,12 +9,12 @@ import {
   AsyncRulesChain7,
   AsyncRulesChain8,
   AsyncRulesChain9,
-} from '../ruleYobta'
-import { handleUnknownError } from '../_internal/parseUnknownError'
-import { PipedFactories, PipeFactoryResult } from '../_internal/pipe'
-import { asyncPipe } from '../_internal/asyncPipe'
-import { createContext } from '../_internal/createContext'
-import { YobtaError } from '../YobtaError'
+} from '../ruleYobta/index.js'
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import { PipedFactories, PipeFactoryResult } from '../_internal/pipe/index.js'
+import { asyncPipe } from '../_internal/asyncPipe/index.js'
+import { createContext } from '../_internal/createContext/index.js'
+import { YobtaError } from '../YobtaError/index.js'
 
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
