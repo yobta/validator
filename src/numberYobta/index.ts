@@ -1,4 +1,4 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 let coercedTypes = new Set(['string', 'boolean', 'number'])
 

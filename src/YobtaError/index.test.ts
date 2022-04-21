@@ -1,4 +1,5 @@
-import { YobtaError } from '.'
+/* eslint-disable import/extensions */
+import { YobtaError } from './'
 
 it('extends Error', () => {
   let error = new YobtaError({ field: '@', message: 'yobta', path: [] })

@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { effectYobta } from '.'
+import { effectYobta } from './'
 import { yobta } from '../yobta'
 
 it('calls effect and returns data unmodified', () => {

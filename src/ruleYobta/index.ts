@@ -1,4 +1,4 @@
-import { YobtaContext } from '../_internal/createContext'
+import { YobtaContext } from '../_internal/createContext/index.js'
 
 // #region SyncRules
 type SyncValidator<I, O> = (input: I, context: YobtaContext) => O

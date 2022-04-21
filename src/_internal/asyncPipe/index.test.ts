@@ -1,7 +1,8 @@
+/* eslint-disable import/extensions */
 import { delay } from 'nanodelay'
 import { jest } from '@jest/globals'
 
-import { asyncPipe } from '.'
+import { asyncPipe } from './'
 
 const addOne = (input: number): number => input + 1
 const subtractOne = async (input: number): Promise<number> =>

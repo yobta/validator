@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
+import { itemsYobta } from './'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
-import { itemsYobta } from '.'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { arrayYobta } from '../arrayYobta'
 

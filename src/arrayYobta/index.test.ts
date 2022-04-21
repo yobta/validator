@@ -1,5 +1,6 @@
-import { yobta } from '../yobta'
+/* eslint-disable import/extensions */
 import { arrayYobta } from './'
+import { yobta } from '../yobta'
 
 const stringRule = arrayYobta()
 const validate = yobta(stringRule)

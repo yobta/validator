@@ -1,4 +1,5 @@
-import { fromEntries } from '.'
+/* eslint-disable import/extensions */
+import { fromEntries } from './'
 
 it('creates object from entries array', () => {
   let result = fromEntries([['yobta', 'param']])

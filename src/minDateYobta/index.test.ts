@@ -1,5 +1,6 @@
-import { yobta } from '../yobta'
+/* eslint-disable import/extensions */
 import { minDateYobta, minDateMessage } from './'
+import { yobta } from '../yobta'
 
 const minDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`

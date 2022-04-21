@@ -9,14 +9,14 @@ import {
   SyncRulesChain5,
   SyncRulesChain6,
   SyncRulesChain7,
-} from '../ruleYobta'
-import { handleUnknownError } from '../_internal/parseUnknownError'
+} from '../ruleYobta/index.js'
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import {
   Functions,
   pipe,
   PipedFactories,
   PipeFactoryResult,
-} from '../_internal/pipe'
+} from '../_internal/pipe/index.js'
 
 export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6, R7>(

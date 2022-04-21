@@ -1,4 +1,4 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 export const integerMessage = 'It should be an integer'
 

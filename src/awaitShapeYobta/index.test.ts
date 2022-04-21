@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitShapeYobta, asyncShapeMessage } from '.'
+import { awaitShapeYobta, asyncShapeMessage } from './'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
 import {

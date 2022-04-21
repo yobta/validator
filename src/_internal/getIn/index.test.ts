@@ -1,4 +1,5 @@
-import { getIn } from '.'
+/* eslint-disable import/extensions */
+import { getIn } from './'
 
 const voidValues = [
   '',
@@ -10,7 +11,7 @@ const voidValues = [
   {},
   new Date(),
   new Set(),
-  new URLSearchParams('')
+  new URLSearchParams(''),
 ]
 
 voidValues.forEach(value => {

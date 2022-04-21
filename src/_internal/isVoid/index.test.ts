@@ -1,4 +1,5 @@
-import { isVoid } from '.'
+/* eslint-disable import/extensions */
+import { isVoid } from './'
 
 const voidValues = ['', '   ', undefined, null, NaN, []]
 

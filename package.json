@@ -58,7 +58,7 @@
     "simple-git-hooks": "^2.5.1",
     "size-limit": "^5.0.1",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.4.3",
+    "typescript": "^4.6.3",
     "yaspeller": "^7.0.0"
   },
   "simple-git-hooks": {
@@ -85,12 +85,18 @@
   },
   "jest": {
     "preset": "ts-jest/presets/default-esm",
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "globals": {
       "ts-jest": {
         "useESM": true
       }
     },
     "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
     "coverageThreshold": {
       "global": {
         "statements": 100
@@ -100,8 +106,7 @@
   "eslintConfig": {
     "extends": "@logux/eslint-config/esm",
     "rules": {
-      "@typescript-eslint/no-explicit-any": "off",
-      "import/extensions": "off"
+      "@typescript-eslint/no-explicit-any": "off"
     },
     "globals": {
       "jsdom": false
@@ -478,7 +483,8 @@
       "regularExpressions",
       "src",
       "validityYobta",
-      "SSR"
+      "SSR",
+      "ESM"
     ]
   },
   "sharec": {

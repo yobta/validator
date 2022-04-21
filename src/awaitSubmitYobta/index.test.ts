@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitSubmitYobta } from '.'
+import { awaitSubmitYobta } from './'
 import {
   asyncYobta,
   AsyncYobtaRule,

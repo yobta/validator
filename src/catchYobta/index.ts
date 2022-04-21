@@ -8,9 +8,9 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7
-} from '../ruleYobta'
-import { Functions, pipe, PipedFactories } from '../_internal/pipe'
+  SyncRulesChain7,
+} from '../ruleYobta/index.js'
+import { Functions, pipe, PipedFactories } from '../_internal/pipe/index.js'
 
 // export type SyncRule<I, O> = (input: I) => O
 export interface CatchYobta {

@@ -1,5 +1,6 @@
-import { yobta } from '../yobta'
+/* eslint-disable import/extensions */
 import { maxItemsYobta, maxItemsMessage } from './'
+import { yobta } from '../yobta'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = yobta(maxItemsYobta(1, customMessage))

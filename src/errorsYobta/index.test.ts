@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { errorsYobta } from '.'
+import { errorsYobta } from './'
 import {
   asyncYobta,
   formYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
-} from '..'
+} from '../'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
 

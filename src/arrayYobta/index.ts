@@ -1,5 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta'
-import { isVoid } from '../_internal/isVoid'
+import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import { isVoid } from '../_internal/isVoid/index.js'
 
 // const iterables = new Set(['number', 'string'])
 

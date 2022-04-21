@@ -1,4 +1,4 @@
-import { YobtaError, YobtaErrorPath } from '../../YobtaError'
+import { YobtaError, YobtaErrorPath } from '../../YobtaError/index.js'
 
 interface UnknownErrorInput {
   error: unknown

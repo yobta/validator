@@ -1,5 +1,6 @@
+/* eslint-disable import/extensions */
+import { defaultYobta } from './'
 import { yobta } from '../yobta'
-import { defaultYobta } from '.'
 import { stringYobta } from '../stringYobta'
 import { requiredYobta } from '../requiredYobta'
 

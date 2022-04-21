@@ -1,6 +1,7 @@
+/* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { createContext } from '.'
+import { createContext } from './'
 
 describe('createContext', () => {
   it('creates contexts without a from', () => {
