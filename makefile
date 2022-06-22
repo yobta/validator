@@ -32,3 +32,5 @@ deps:
 publish: check bump
 	npm publish
 
+browserslist:
+	npx browserslist@latest --update-db
