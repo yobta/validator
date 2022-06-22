@@ -1,6 +1,6 @@
 {
-  "name": "yobta",
-  "version": "0.0.34",
+  "name": "@yobta/validator",
+  "version": "0.0.35",
   "description": "Tree-shakable es6 validator",
   "keywords": [
     "validator",
@@ -14,7 +14,8 @@
     "yaspeller": "yaspeller *.md",
     "size-limit": "size-limit",
     "test": "node --experimental-vm-modules node_modules/.bin/jest src --coverage",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ncu": "ncu -u"
   },
   "author": "Sergei Droganov <serge@droganov.ru>",
   "license": "MIT",
@@ -31,7 +32,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@logux/eslint-config": "^45.4.6",
-    "@logux/sharec-config": "^0.10.2",
     "@size-limit/preset-small-lib": "^5.0.1",
     "@testing-library/dom": "^8.6.0",
     "@types/jest": "^26.0.24",
@@ -54,6 +54,7 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.1.1",
     "nanodelay": "^2.0.2",
+    "npm-check-updates": "^14.0.1",
     "prettier": "^2.3.2",
     "simple-git-hooks": "^2.5.1",
     "size-limit": "^5.0.1",
@@ -486,9 +487,5 @@
       "SSR",
       "ESM"
     ]
-  },
-  "sharec": {
-    "config": "@logux/sharec-config",
-    "version": "0.10.2"
   }
 }

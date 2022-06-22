@@ -15,13 +15,22 @@ test:
 	npm run build
 	npm run size-limit
 
-check: test lint typecheck
+check:
+	make typecheck
+	make test
+	make lint
 
 bump:
 	npm version patch
 	git add .
 	git push
 
+deps:
+	run ncu
+	npm i --force
+
 publish: check bump
 	npm publish
 
+browserslist:
+	npx browserslist@latest --update-db
