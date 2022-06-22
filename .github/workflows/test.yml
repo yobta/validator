@@ -19,6 +19,7 @@ jobs:
       - name: Run tests
         run: make check
         env:
+          NODE_OPTIONS: --openssl-legacy-provider
           FORCE_COLOR: 2
   short:
     runs-on: ubuntu-latest
