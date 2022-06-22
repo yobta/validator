@@ -3,6 +3,11 @@ A promising and ridiculously small es6 validator that tree-shakes well and respe
 
 **Current state: work in progress**
 
+## Installation
+```
+npm i @yobta/validator
+```
+
 ## General Plan
 We want to fulfill the front-end needs and create functional promise-based validator which is fun to work with.
 
