@@ -15,12 +15,11 @@ jobs:
           node-version: 17
           cache: npm
       - name: Install dependencies
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
         run: npm ci --force
       - name: Run tests
         run: make check
         env:
+          NODE_OPTIONS: --openssl-legacy-provider
           FORCE_COLOR: 2
   short:
     runs-on: ubuntu-latest
