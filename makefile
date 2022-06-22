@@ -25,6 +25,10 @@ bump:
 	git add .
 	git push
 
+deps:
+	run ncu
+	npm i --force
+
 publish: check bump
 	npm publish
 

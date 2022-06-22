@@ -14,7 +14,8 @@
     "yaspeller": "yaspeller *.md",
     "size-limit": "size-limit",
     "test": "node --experimental-vm-modules node_modules/.bin/jest src --coverage",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ncu": "ncu -u"
   },
   "author": "Sergei Droganov <serge@droganov.ru>",
   "license": "MIT",
@@ -54,6 +55,7 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.1.1",
     "nanodelay": "^2.0.2",
+    "npm-check-updates": "^14.0.1",
     "prettier": "^2.3.2",
     "simple-git-hooks": "^2.5.1",
     "size-limit": "^5.0.1",
