@@ -32,7 +32,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@logux/eslint-config": "^45.4.6",
-    "@logux/sharec-config": "^0.10.2",
     "@size-limit/preset-small-lib": "^5.0.1",
     "@testing-library/dom": "^8.6.0",
     "@types/jest": "^26.0.24",
@@ -488,9 +487,5 @@
       "SSR",
       "ESM"
     ]
-  },
-  "sharec": {
-    "config": "@logux/sharec-config",
-    "version": "0.10.2"
   }
 }
