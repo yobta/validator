@@ -6,8 +6,6 @@ jobs:
   full:
     name: Node.js 17 Full
     runs-on: ubuntu-latest
-    env:
-      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -17,6 +15,8 @@ jobs:
           node-version: 17
           cache: npm
       - name: Install dependencies
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
         run: npm ci --force
       - name: Run tests
         run: make check
