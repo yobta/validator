@@ -1,6 +1,6 @@
 {
   "name": "@yobta/validator",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "Tree-shakable es6 validator",
   "keywords": [
     "validator",
