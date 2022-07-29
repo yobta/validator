@@ -2,9 +2,14 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.35
+
+- fix boolean rule typings
+
 ## 0.0.34
 
 - rename package to @yobta/validator
+
 ## 0.0.34
 
 - Add file extensions to ESM imports
