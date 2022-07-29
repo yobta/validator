@@ -12,13 +12,17 @@ function coerce(input: any): boolean {
 
 export const booleanMessage = 'It should be a boolean'
 
-export const booleanYobta = (
-  message = booleanMessage,
-): SyncRule<any, boolean | undefined> =>
+interface BooleanFactory {
+  (message?: string): SyncRule<any, boolean>
+}
+
+export const booleanYobta: BooleanFactory = (message = booleanMessage) =>
   ruleYobta(input => {
     let value = coerce(input)
 
-    if (typeof value === 'boolean' || typeof value === 'undefined') return value
+    if (typeof value === 'boolean' || typeof value === 'undefined') {
+      return value
+    }
 
     throw new Error(message)
   })

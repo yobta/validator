@@ -488,7 +488,8 @@
       "src",
       "validityYobta",
       "SSR",
-      "ESM"
+      "ESM",
+      "yobta"
     ]
   }
 }
