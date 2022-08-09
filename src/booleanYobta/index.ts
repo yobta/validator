@@ -16,7 +16,7 @@ interface BooleanFactory {
   (message?: string): SyncRule<any, boolean>
 }
 
-export const booleanYobta: BooleanFactory = (message = booleanMessage) =>
+export const booleanYobta: BooleanFactory = message =>
   ruleYobta(input => {
     let value = coerce(input)
 
@@ -24,5 +24,5 @@ export const booleanYobta: BooleanFactory = (message = booleanMessage) =>
       return value
     }
 
-    throw new Error(message)
+    throw new Error(message || booleanMessage)
   })
