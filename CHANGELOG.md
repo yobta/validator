@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.36
+
+- add catch to awaitSubmitYobta
+
 ## 0.0.35
 
 - fix boolean rule typings
