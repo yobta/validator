@@ -12,6 +12,7 @@ import {
 } from '..'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
+import { YobtaContext } from '../_internal/createContext'
 
 function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
   return asyncYobta(
@@ -86,7 +87,6 @@ describe('awaitSubmitYobta', () => {
     ).change(validate)
 
     expect(result).toEqual([{ name: 'yobta' }, null])
-
     expect(spy).toHaveBeenCalledTimes(0)
   })
 
@@ -105,5 +105,23 @@ describe('awaitSubmitYobta', () => {
 
     expect(result).toEqual([null, [error]])
     expect(spy).toHaveBeenCalledTimes(0)
+  })
+
+  it('catches submit error and pushes it to errors', async () => {
+    let context: YobtaContext = {
+      data: null,
+      event: {
+        type: 'submit',
+      },
+      errors: [],
+      field: '@',
+      path: [],
+      pushError: jest.fn(),
+    }
+    let rule = awaitSubmitYobta(async () => {
+      throw new Error('Submit error')
+    })
+    await rule(context)(null)
+    expect(context.pushError).toHaveBeenCalledWith(Error('Submit error'))
   })
 })
