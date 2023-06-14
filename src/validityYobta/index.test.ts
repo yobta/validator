@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import { createEvent } from '@testing-library/dom'
+import jest from 'jest-mock'
 
 import { validityMessage, validityYobta } from './'
 import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '../'
@@ -40,7 +41,9 @@ describe('validityYobta', () => {
   it('throws when gets a non-event and has a custom error message', () => {
     let context = createContext('yobta')
 
-    expect(() => validityYobta('yobta!')(context)({})).toThrow('yobta!')
+    expect(() =>
+      validityYobta({ missingFormMessage: 'yobta!' })(context)({}),
+    ).toThrow('yobta!')
   })
 
   it('sets validity for all errors when event target is form and resets when error is fixed', async () => {
@@ -51,7 +54,7 @@ describe('validityYobta', () => {
         text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
       }),
-      validityYobta(),
+      validityYobta({ mode: 'all' }),
     )
 
     let submitEvent = createEvent.submit(form)
@@ -86,7 +89,7 @@ describe('validityYobta', () => {
         text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
       }),
-      validityYobta(),
+      validityYobta({ mode: 'all' }),
     )
 
     let changeEvent = createEvent.change(input)
@@ -101,5 +104,63 @@ describe('validityYobta', () => {
     expect(result).toEqual([null, expect.any(Array)])
     expect(input.checkValidity()).toBe(false)
     expect(checkbox.checkValidity()).toBe(true)
+  })
+
+  it('ignores change when mode is submit-only', async () => {
+    let { form, input, checkbox } = mockForm()
+    let validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        text: [stringYobta(), requiredYobta<string>()],
+        checkbox: [stringYobta(), requiredYobta<string>()],
+      }),
+      validityYobta({ mode: 'submit-only' }),
+    )
+
+    let changeEvent = createEvent.change(input)
+    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+    Object.defineProperty(changeEvent, 'target', { value: input })
+
+    expect(input.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(true)
+
+    let result = await validate(changeEvent)
+
+    expect(result).toEqual([null, expect.any(Array)])
+    expect(input.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(true)
+  })
+
+  it('reports errors when mode is submit-only and event type is submit', async () => {
+    let { form, input, checkbox } = mockForm()
+
+    let inputSpy = jest.spyOn(input, 'setCustomValidity')
+    let checkboxSpy = jest.spyOn(checkbox, 'setCustomValidity')
+
+    let validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        text: [stringYobta(), requiredYobta<string>()],
+        checkbox: [stringYobta(), requiredYobta<string>()],
+      }),
+      validityYobta({ mode: 'submit-only' }),
+    )
+
+    let submitEvent = createEvent.submit(form)
+    Object.defineProperty(submitEvent, 'currentTarget', { value: form })
+    Object.defineProperty(submitEvent, 'target', { value: form })
+
+    expect(input.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(true)
+
+    let result = await validate(submitEvent)
+
+    expect(result).toEqual([null, expect.any(Array)])
+
+    expect(inputSpy).not.toHaveBeenCalled()
+    expect(checkboxSpy).not.toHaveBeenCalled()
+
+    inputSpy.mockRestore()
+    checkboxSpy.mockRestore()
   })
 })

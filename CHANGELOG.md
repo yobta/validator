@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.37
+
+- add mode option to validity rule
+- set default mode to submit
+- expect validity to fire only for submit when mode is not set
+
 ## 0.0.36
 
 - add catch to awaitSubmitYobta
