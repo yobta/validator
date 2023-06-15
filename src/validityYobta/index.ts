@@ -17,12 +17,12 @@ export const validityYobta: ValidityFactory = ({
   missingFormMessage: invariantMessage = validityMessage,
   mode = submitOnly,
 } = {}) =>
-  ruleYobta((currentData, { errors, form, input }) => {
+  ruleYobta((currentData, { errors, form, input, event }) => {
     if (!form) {
       throw new Error(invariantMessage)
     }
 
-    if ((mode === submitOnly && input?.type === 'submit') || mode === all) {
+    if ((mode === submitOnly && event?.type === 'submit') || mode === all) {
       let filterBy = input?.getAttribute('name')
 
       let elements = Array.from(form.elements)

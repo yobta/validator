@@ -146,7 +146,7 @@ describe('validityYobta', () => {
       validityYobta({ mode: 'submit-only' }),
     )
 
-    let submitEvent = createEvent.submit(form)
+    let submitEvent = createEvent.change(form)
     Object.defineProperty(submitEvent, 'currentTarget', { value: form })
     Object.defineProperty(submitEvent, 'target', { value: form })
 
@@ -156,7 +156,6 @@ describe('validityYobta', () => {
     let result = await validate(submitEvent)
 
     expect(result).toEqual([null, expect.any(Array)])
-
     expect(inputSpy).not.toHaveBeenCalled()
     expect(checkboxSpy).not.toHaveBeenCalled()
 
