@@ -22,31 +22,33 @@ export const validityYobta: ValidityFactory = ({
       throw new Error(invariantMessage)
     }
 
-    if ((mode === submitOnly && event?.type === 'submit') || mode === all) {
-      let filterBy = input?.getAttribute('name')
+    let filterBy = input?.getAttribute('name')
+    let elements = Array.from(form.elements)
 
-      let elements = Array.from(form.elements)
-
-      if (filterBy) {
-        let filteredElements = elements.filter(
-          element => element.getAttribute('name') === filterBy,
-        )
-        if (filteredElements.length) {
-          elements = filteredElements
-        }
-      }
-
-      let messages = errors.reduce<Record<string, string>>(
-        (acc, { field, message }) => ({
-          ...acc,
-          [field]: message,
-        }),
-        {},
+    if (filterBy) {
+      let filteredElements = elements.filter(
+        element => element.getAttribute('name') === filterBy,
       )
+      if (filteredElements.length) {
+        elements = filteredElements
+      }
+    }
 
-      for (let element of elements.reverse() as unknown as HTMLInputElement[]) {
-        let name = element.getAttribute('name') || ''
-        let message = messages[name] || ''
+    let messages = errors.reduce<Record<string, string>>(
+      (acc, { field, message }) => ({
+        ...acc,
+        [field]: message,
+      }),
+      {},
+    )
+
+    for (let element of elements.reverse() as unknown as HTMLInputElement[]) {
+      let name = element.getAttribute('name') || ''
+      let message = messages[name] || ''
+      let shouldReport = message
+        ? (mode === submitOnly && event?.type === 'submit') || mode === all
+        : true
+      if (shouldReport) {
         element.setCustomValidity(message)
         element.reportValidity()
       }

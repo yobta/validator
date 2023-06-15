@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.42
+
+- change validity reporting to always remove errors and set with respect to options
+
 ## 0.0.41
 
 - fixed validity event type issue
