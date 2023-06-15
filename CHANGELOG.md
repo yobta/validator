@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.41
+
+- fixed validity event type issue
+
 ## 0.0.37
 
 - add mode option to validity rule
