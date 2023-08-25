@@ -29,3 +29,12 @@ it('has default error message', () => {
   let attempt = (): any => validateDefault(shorterDate)
   expect(attempt).toThrow(minDateMessage(minDate))
 })
+
+it('accepts error message as a string', () => {
+  let shorterDate = new Date('13 Jun 2017 00:00:00 PDT')
+  let validateDefault = yobta(
+    minDateYobta(minDate, 'minDateYobta test error string'),
+  )
+  let attempt = (): any => validateDefault(shorterDate)
+  expect(attempt).toThrow('minDateYobta test error string')
+})
