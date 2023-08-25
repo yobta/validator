@@ -37,4 +37,14 @@ describe('differentYobta', () => {
     let attempt = (): any => validate({ a: 1, b: 1 })
     expect(attempt).toThrow(differentMessage(['a']))
   })
+  it('accepts error message as a string', () => {
+    let validate = yobta(
+      shapeYobta({
+        a: [numberYobta()],
+        b: [differentYobta(['a'], 'Test error message different')],
+      }),
+    )
+    let attempt = (): any => validate({ a: 1, b: 1 })
+    expect(attempt).toThrow('Test error message different')
+  })
 })
