@@ -39,4 +39,15 @@ describe('identicalYobta', () => {
     let attempt = (): any => validate({ a: '1', b: 1 })
     expect(attempt).toThrow(identicalMessage(['a']))
   })
+
+  it('accept error mesage as a string', () => {
+    let validate = yobta(
+      shapeYobta({
+        a: [numberYobta()],
+        b: [identicalYobta(['a'], 'Identical test error')],
+      }),
+    )
+    let attempt = (): any => validate({ a: '1', b: 1 })
+    expect(attempt).toThrow('Identical test error')
+  })
 })
