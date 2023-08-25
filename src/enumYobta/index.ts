@@ -1,3 +1,4 @@
+import { getMessage } from '../_internal/getMessage/getMessage.js'
 import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 type TrustedItems = (string | number | symbol)[]
@@ -7,7 +8,7 @@ interface EnumMessage {
 }
 
 interface EnymYobta {
-  <T extends TrustedItems>(items: T, message?: EnumMessage): SyncRule<
+  <T extends TrustedItems>(items: T, message?: EnumMessage | string): SyncRule<
     any,
     T[number] | undefined
   >
@@ -19,5 +20,5 @@ export const enumMessage: EnumMessage = items =>
 export const enumYobta: EnymYobta = (items, message = enumMessage) =>
   ruleYobta(input => {
     if (items.includes(input) || typeof input === 'undefined') return input
-    throw new Error(message(items))
+    throw new Error(getMessage(message, items))
   })

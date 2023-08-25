@@ -25,3 +25,9 @@ it('has default error message', () => {
   let assign = (): any => validateDefault([1, 2])
   expect(assign).toThrow(maxItemsMessage(1))
 })
+
+it('accepts error message as a string', () => {
+  let validateDefault = yobta(maxItemsYobta(1, 'maxItemsYobta error test'))
+  let assign = (): any => validateDefault([1, 2])
+  expect(assign).toThrow('maxItemsYobta error test')
+})

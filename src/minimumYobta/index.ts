@@ -1,3 +1,4 @@
+import { getMessage } from '../_internal/getMessage/getMessage.js'
 import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 
 export const minimumYobtaMessage = (limit: number): string =>
@@ -5,10 +6,10 @@ export const minimumYobtaMessage = (limit: number): string =>
 
 export const minimumYobta = (
   limit: number,
-  message = minimumYobtaMessage,
+  message: typeof minimumYobtaMessage | string = minimumYobtaMessage,
 ): SyncRule<number, number> =>
   ruleYobta(input => {
-    if (input < limit) throw new Error(message(limit))
+    if (input < limit) throw new Error(getMessage(message, limit))
 
     return input
   })

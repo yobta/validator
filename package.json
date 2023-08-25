@@ -202,56 +202,56 @@
       "import": {
         "lib/index.js": "{ minItemsYobta }"
       },
-      "limit": "107 B"
+      "limit": "122 B"
     },
     {
       "name": "Maximum items rule",
       "import": {
         "lib/index.js": "{ maxItemsYobta }"
       },
-      "limit": "103 B"
+      "limit": "119 B"
     },
     {
       "name": "Minimum characters rule",
       "import": {
         "lib/index.js": "{ minCharactersYobta }"
       },
-      "limit": "110 B"
+      "limit": "126 B"
     },
     {
       "name": "Maximum characters rule",
       "import": {
         "lib/index.js": "{ maxCharactersYobta }"
       },
-      "limit": "106 B"
+      "limit": "123 B"
     },
     {
       "name": "Minimum rule",
       "import": {
         "lib/index.js": "{ minimumYobta }"
       },
-      "limit": "68 B"
+      "limit": "84 B"
     },
     {
       "name": "Maximum rule",
       "import": {
         "lib/index.js": "{ maximumYobta }"
       },
-      "limit": "66 B"
+      "limit": "83 B"
     },
     {
       "name": "Minimum date rule",
       "import": {
         "lib/index.js": "{ minDateYobta }"
       },
-      "limit": "87 B"
+      "limit": "102 B"
     },
     {
       "name": "Maximum date rule",
       "import": {
         "lib/index.js": "{ maxDateYobta }"
       },
-      "limit": "84 B"
+      "limit": "101 B"
     },
     {
       "name": "RegExp test rule",
@@ -307,14 +307,14 @@
       "import": {
         "lib/index.js": "{ identicalYobta }"
       },
-      "limit": "136 B"
+      "limit": "155 B"
     },
     {
       "name": "Different rule",
       "import": {
         "lib/index.js": "{ differentYobta }"
       },
-      "limit": "139 B"
+      "limit": "155 B"
     },
     {
       "name": "UrlSearchParams rule",
@@ -335,7 +335,7 @@
       "import": {
         "lib/index.js": "{ enumYobta }"
       },
-      "limit": "89 B"
+      "limit": "108 B"
     },
     {
       "name": "Effect rule",
@@ -429,7 +429,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2372 B"
+      "limit": "2387 B"
     }
   ],
   "yaspeller": {

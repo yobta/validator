@@ -25,3 +25,9 @@ it('has default error message', () => {
   let assign = (): any => validateDefault(0)
   expect(assign).toThrow(minimumYobtaMessage(1))
 })
+
+it('accepts error message as a string', () => {
+  let validateDefault = yobta(minimumYobta(1, 'minimumYobta test error string'))
+  let assign = (): any => validateDefault(0)
+  expect(assign).toThrow('minimumYobta test error string')
+})

@@ -25,3 +25,11 @@ it('has default error message', () => {
   let attempt = (): any => validateDefault('')
   expect(attempt).toThrow(minCharactersMessage(1))
 })
+
+it('accepts error message as a string', () => {
+  let validateDefault = yobta(
+    minCharactersYobta(1, 'minCharactersYobta error string test'),
+  )
+  let attempt = (): any => validateDefault('')
+  expect(attempt).toThrow('minCharactersYobta error string test')
+})
