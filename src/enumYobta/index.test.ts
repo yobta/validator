@@ -26,3 +26,10 @@ it('has default error message', () => {
   let attempt = (): string | undefined => validateDefault(0)
   expect(attempt).toThrow(enumMessage(['yobta']))
 })
+
+it('accepts error message as a string', () => {
+  let rule = enumYobta(['yobta'], 'Enum error message test')
+  let validateDefault = yobta(rule)
+  let attempt = (): string | undefined => validateDefault(0)
+  expect(attempt).toThrow('Enum error message test')
+})
