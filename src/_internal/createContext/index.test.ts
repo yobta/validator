@@ -9,8 +9,8 @@ describe('createContext', () => {
 
     expect(context).toEqual({
       data: null,
-      event: null,
       errors: [],
+      event: null,
       field: '@',
       path: [],
       pushError: expect.any(Function),
@@ -28,8 +28,8 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       path: [],
@@ -50,8 +50,8 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(0)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       input,
@@ -63,10 +63,10 @@ describe('createContext', () => {
   it('prevents synthetic submit event', () => {
     let form = document.createElement('form')
     let event = {
-      type: 'submit',
       constructor: { name: 'SyntheticBaseEvent' },
       currentTarget: form,
       preventDefault() {},
+      type: 'submit',
     }
     jest.spyOn(event, 'preventDefault')
 
@@ -75,8 +75,8 @@ describe('createContext', () => {
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       path: [],

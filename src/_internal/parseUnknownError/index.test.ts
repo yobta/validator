@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { handleUnknownError } from './'
 import { YobtaError } from '../../YobtaError'
+import { handleUnknownError } from './'
 
 describe('handleUnknownError', () => {
   it('can parse error', () => {

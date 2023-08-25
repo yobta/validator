@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
-import { uniqueYobta } from './'
-import { yobta } from '../yobta'
-import { requiredYobta } from '../requiredYobta'
 import { arrayYobta } from '../arrayYobta'
+import { requiredYobta } from '../requiredYobta'
+import { yobta } from '../yobta'
+import { uniqueYobta } from './'
 
 const customMesage = 'yobta'
 

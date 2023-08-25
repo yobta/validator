@@ -1,18 +1,18 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitSubmitYobta } from './'
+import type { AsyncYobtaRule } from '..'
 import {
   asyncYobta,
-  AsyncYobtaRule,
   formYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
 } from '..'
+import type { YobtaContext } from '../_internal/createContext'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
-import { YobtaContext } from '../_internal/createContext'
+import { awaitSubmitYobta } from './'
 
 function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
   return asyncYobta(
@@ -41,8 +41,8 @@ describe('awaitSubmitYobta', () => {
       { name: 'yobta' },
       {
         data: expect.any(Event),
-        event: expect.any(Event),
         errors: [],
+        event: expect.any(Event),
         field: '@',
         form: expect.any(HTMLFormElement),
         path: [],
@@ -58,8 +58,8 @@ describe('awaitSubmitYobta', () => {
 
     let syntheticEvent = {
       currentTarget: form,
-      type: 'submit',
       target: form,
+      type: 'submit',
     }
 
     let result = await validate(syntheticEvent)
@@ -69,8 +69,8 @@ describe('awaitSubmitYobta', () => {
       { name: 'yobta' },
       {
         data: syntheticEvent,
-        event: syntheticEvent,
         errors: [],
+        event: syntheticEvent,
         field: '@',
         form: expect.any(HTMLFormElement),
         path: [],
@@ -98,9 +98,9 @@ describe('awaitSubmitYobta', () => {
     )
 
     let error = new YobtaError({
+      field: 'name',
       message: 'Required',
       path: ['name'],
-      field: 'name',
     })
 
     expect(result).toEqual([null, [error]])
@@ -110,10 +110,10 @@ describe('awaitSubmitYobta', () => {
   it('catches submit error and pushes it to errors', async () => {
     let context: YobtaContext = {
       data: null,
+      errors: [],
       event: {
         type: 'submit',
       },
-      errors: [],
       field: '@',
       path: [],
       pushError: jest.fn(),

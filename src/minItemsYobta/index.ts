@@ -1,5 +1,6 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
 import { pluralizeEn } from '../_internal/pluralizeEn/index.js'
+import type { SyncRule } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const minItemsMessage = (limit: number): string =>
   `It should have at least ${pluralizeEn(limit, 'item')}`

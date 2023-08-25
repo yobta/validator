@@ -1,6 +1,6 @@
 import { createEvent } from '@testing-library/dom'
 
-import { AsyncYobtaRule } from '../../index.js'
+import type { AsyncYobtaRule } from '../../index.js'
 
 interface MockFormFactory {
   (innerHtml: string): {

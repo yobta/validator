@@ -2,16 +2,16 @@
 import { createEvent } from '@testing-library/dom'
 import jest from 'jest-mock'
 
-import { validityMessage, validityYobta } from './'
 import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '../'
-import { formYobta } from '../formYobta'
 import { createContext } from '../_internal/createContext'
+import { formYobta } from '../formYobta'
+import { validityMessage, validityYobta } from './'
 
 interface FormMock {
   (): {
+    checkbox: HTMLInputElement
     form: HTMLFormElement
     input: HTMLInputElement
-    checkbox: HTMLInputElement
   }
 }
 const mockForm: FormMock = () => {
@@ -26,7 +26,7 @@ const mockForm: FormMock = () => {
   checkbox.setAttribute('name', 'checkbox')
   form.appendChild(checkbox)
 
-  return { form, input, checkbox }
+  return { checkbox, form, input }
 }
 
 describe('validityYobta', () => {
@@ -47,12 +47,12 @@ describe('validityYobta', () => {
   })
 
   it('sets validity for all errors when event target is form and resets when error is fixed', async () => {
-    let { form, input, checkbox } = mockForm()
+    let { checkbox, form, input } = mockForm()
     let validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
+        text: [stringYobta(), requiredYobta<string>()],
       }),
       validityYobta({ mode: 'all' }),
     )
@@ -82,12 +82,12 @@ describe('validityYobta', () => {
   })
 
   it('filters errors by input name when event target not a form', async () => {
-    let { form, input, checkbox } = mockForm()
+    let { checkbox, form, input } = mockForm()
     let validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
+        text: [stringYobta(), requiredYobta<string>()],
       }),
       validityYobta({ mode: 'all' }),
     )
@@ -107,12 +107,12 @@ describe('validityYobta', () => {
   })
 
   it('ignores change when mode is submit-only', async () => {
-    let { form, input, checkbox } = mockForm()
+    let { checkbox, form, input } = mockForm()
     let validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
+        text: [stringYobta(), requiredYobta<string>()],
       }),
       validityYobta({ mode: 'submit-only' }),
     )
@@ -132,7 +132,7 @@ describe('validityYobta', () => {
   })
 
   it('reports errors when mode is submit-only and event type is submit', async () => {
-    let { form, input, checkbox } = mockForm()
+    let { checkbox, form, input } = mockForm()
 
     let inputSpy = jest.spyOn(input, 'setCustomValidity')
     let checkboxSpy = jest.spyOn(checkbox, 'setCustomValidity')
@@ -140,8 +140,8 @@ describe('validityYobta', () => {
     let validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        text: [stringYobta(), requiredYobta<string>()],
         checkbox: [stringYobta(), requiredYobta<string>()],
+        text: [stringYobta(), requiredYobta<string>()],
       }),
       validityYobta({ mode: 'submit-only' }),
     )

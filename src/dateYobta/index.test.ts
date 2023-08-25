@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { dateYobta, dateMessage } from './'
 import { yobta } from '../yobta'
+import { dateMessage, dateYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(dateYobta(customMessage))

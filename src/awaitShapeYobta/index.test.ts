@@ -1,43 +1,43 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitShapeYobta, asyncShapeMessage } from './'
-import { createContext } from '../_internal/createContext'
-import { YobtaError } from '../YobtaError'
 import {
   asyncYobta,
   defaultYobta,
   differentYobta,
   identicalYobta,
-  shapeYobta,
   requiredYobta,
-  stringYobta,
+  shapeYobta,
   stringMessage,
+  stringYobta,
 } from '..'
+import { createContext } from '../_internal/createContext'
+import { YobtaError } from '../YobtaError'
+import { asyncShapeMessage, awaitShapeYobta } from './'
 
 const validate = asyncYobta(
   awaitShapeYobta({
-    name: [stringYobta(), requiredYobta<string>()],
     age: [stringYobta()],
+    name: [stringYobta(), requiredYobta<string>()],
   }),
 )
 
 describe('awaitShapeYobta', () => {
   it('accepts valid shapes', async () => {
     let result = await validate({
-      name: 'yobta',
       age: 1,
+      name: 'yobta',
     })
-    expect(result).toEqual([{ name: 'yobta', age: '1' }, null])
+    expect(result).toEqual([{ age: '1', name: 'yobta' }, null])
   })
 
   it('accepts valid shapes with overload', async () => {
     let result = await validate({
-      name: 'yobta',
       age: 0,
       experience: 0,
+      name: 'yobta',
     })
-    expect(result).toEqual([{ age: '0', name: 'yobta', experience: 0 }, null])
+    expect(result).toEqual([{ age: '0', experience: 0, name: 'yobta' }, null])
   })
 
   it('rejects invalid input', async () => {
@@ -108,15 +108,15 @@ describe('awaitShapeYobta', () => {
 
   it('should replace context.data', async () => {
     let replaced = {
-      password: 'old yobta',
       newPassword: 'new yobta',
+      password: 'old yobta',
       retypePassword: 'new yobta',
     }
     let attempt = asyncYobta(
       defaultYobta(replaced),
       shapeYobta({
-        password: [stringYobta()],
         newPassword: [differentYobta(['password'])],
+        password: [stringYobta()],
         retypePassword: [identicalYobta(['newPassword'])],
       }),
     )
@@ -127,9 +127,9 @@ describe('awaitShapeYobta', () => {
   it('has no racing condition', async () => {
     let attempt = asyncYobta(
       awaitShapeYobta({
-        title: [requiredYobta()],
         address: [requiredYobta()],
         description: [requiredYobta()],
+        title: [requiredYobta()],
       }),
     )
     let result = await attempt({})

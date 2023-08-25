@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { itemsYobta } from './'
+import { arrayYobta } from '../arrayYobta'
+import { minCharactersYobta } from '../minCharactersYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
-import { minCharactersYobta } from '../minCharactersYobta'
-import { arrayYobta } from '../arrayYobta'
+import { itemsYobta } from './'
 
 const validate = yobta(
   arrayYobta(),

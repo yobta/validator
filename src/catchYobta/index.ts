@@ -1,5 +1,7 @@
-import {
-  ruleYobta,
+import type { Functions, PipedFactories } from '../_internal/pipe/index.js'
+import { pipe } from '../_internal/pipe/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
+import type {
   SyncRule,
   SyncRules,
   SyncRulesChain1,
@@ -10,7 +12,6 @@ import {
   SyncRulesChain6,
   SyncRulesChain7,
 } from '../ruleYobta/index.js'
-import { Functions, pipe, PipedFactories } from '../_internal/pipe/index.js'
 
 // export type SyncRule<I, O> = (input: I) => O
 export interface CatchYobta {
@@ -34,10 +35,10 @@ export interface CatchYobta {
     fallbackValue: R3,
     ...rules: SyncRulesChain3<R1, R2, R3>
   ): SyncRule<any, R3>
-  <R1, R2>(fallbackValue: R2, ...rules: SyncRulesChain2<R1, R2>): SyncRule<
-    any,
-    R2
-  >
+  <R1, R2>(
+    fallbackValue: R2,
+    ...rules: SyncRulesChain2<R1, R2>
+  ): SyncRule<any, R2>
   <R1>(fallbackValue: R1, ...rules: SyncRulesChain1<R1>): SyncRule<any, R1>
   <F extends SyncRules, R>(
     fallbackValue: R,
@@ -53,7 +54,6 @@ export const catchYobta: CatchYobta = (
     let next = rules.map(rule => rule(context)) as Functions
     try {
       return pipe(...next)(input)
-      // eslint-disable-next-line unicorn/prefer-optional-catch-binding
     } catch (error) {
       return fallbackValue
     }

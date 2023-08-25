@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { minCharactersYobta, minCharactersMessage } from './'
 import { yobta } from '../yobta'
+import { minCharactersMessage, minCharactersYobta } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = yobta(minCharactersYobta(1, customMessage))

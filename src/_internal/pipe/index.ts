@@ -1,4 +1,4 @@
-import { AnySyncRule, SyncRules } from '../../ruleYobta/index.js'
+import type { AnySyncRule, SyncRules } from '../../ruleYobta/index.js'
 
 export type PipedFactories<F extends SyncRules> = F & AsFactoryChain<F>
 type AsFactoryChain<F extends SyncRules, T extends AnySyncRule[] = Tail<F>> = {

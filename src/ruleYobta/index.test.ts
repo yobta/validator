@@ -1,8 +1,9 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
+import type { YobtaContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext'
 import { ruleYobta } from './'
-import { createContext, YobtaContext } from '../_internal/createContext'
 
 describe('sinc rule', () => {
   function validateNumber<I>(input: I): number {

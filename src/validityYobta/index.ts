@@ -1,14 +1,15 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 const submitOnly = 'submit-only'
 const all = 'all'
 
-type ValidityMode = typeof submitOnly | typeof all
+type ValidityMode = typeof all | typeof submitOnly
 interface ValidityFactory {
-  <I>(props?: { missingFormMessage?: string; mode?: ValidityMode }): SyncRule<
-    I,
-    I
-  >
+  <I>(props?: {
+    missingFormMessage?: string
+    mode?: ValidityMode
+  }): SyncRule<I, I>
 }
 
 export const validityMessage = 'Validity expects a form event'
@@ -17,7 +18,7 @@ export const validityYobta: ValidityFactory = ({
   missingFormMessage: invariantMessage = validityMessage,
   mode = submitOnly,
 } = {}) =>
-  ruleYobta((currentData, { errors, form, input, event }) => {
+  ruleYobta((currentData, { errors, event, form, input }) => {
     if (!form) {
       throw new Error(invariantMessage)
     }

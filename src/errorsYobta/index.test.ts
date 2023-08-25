@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { errorsYobta } from './'
 import {
   asyncYobta,
   formYobta,
@@ -11,6 +10,7 @@ import {
 } from '../'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
+import { errorsYobta } from './'
 
 describe('errorsYobta', () => {
   it('calls reporter when validation fails', async () => {
@@ -22,9 +22,9 @@ describe('errorsYobta', () => {
     )
     let result = await mockForm('<input name="yobta" />').submit(validate)
     let error = new YobtaError({
+      field: 'yobta',
       message: 'Required',
       path: ['yobta'],
-      field: 'yobta',
     })
 
     expect(result).toEqual([null, [error]])
