@@ -29,3 +29,11 @@ it('has default error message', () => {
 
   expect(attempt).toThrow('It should be within Wed, 14 Jun 2017 07:00:00 GMT')
 })
+
+it('accept error message as a string', () => {
+  let longerDate = new Date('15 Jun 2017 00:00:00 PDT')
+  let attempt = (): any =>
+    yobta(maxDateYobta(maxDate, 'Max date test error'))(longerDate)
+
+  expect(attempt).toThrow('Max date test error')
+})
