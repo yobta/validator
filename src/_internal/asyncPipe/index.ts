@@ -1,8 +1,8 @@
-import {
-  Func1,
+import type {
   ArgType,
-  Lookup,
+  Func1,
   Functions,
+  Lookup,
   PipeResult,
   Tail,
 } from '../pipe/index.js'

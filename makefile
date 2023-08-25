@@ -1,19 +1,19 @@
 build:
-	npm run build
+	pnpm run build
 
 lint:
-	npm run lint
+	pnpm run lint
 
 size-limit: build
-	npm run size-limit
+	pnpm run size-limit
 
 typecheck:
-	npm run typecheck
+	pnpm run typecheck
 
 test:
-	npm run test
-	npm run build
-	npm run size-limit
+	pnpm run test
+	pnpm run build
+	pnpm run size-limit
 
 check:
 	make typecheck
@@ -21,16 +21,16 @@ check:
 	make lint
 
 bump:
-	npm version patch
+	pnpm version patch
 	git add .
 	git push
 
 deps:
-	run ncu
-	npm i --force
+	pnpm run ncu
+	pnpm i --force
 
 publish: check bump
-	npm publish
+	pnpm publish
 
 browserslist:
-	npx browserslist@latest --update-db
+	pnpx browserslist@latest --update-db

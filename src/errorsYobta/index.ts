@@ -1,5 +1,6 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
-import { YobtaContext } from '../_internal/createContext/index.js'
+import type { YobtaContext } from '../_internal/createContext/index.js'
+import type { SyncRule } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export interface YobtaErrorReporter {
   (errors: YobtaContext['errors'], context: YobtaContext): void

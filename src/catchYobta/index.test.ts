@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { catchYobta } from './'
+import { minCharactersYobta } from '../minCharactersYobta'
+import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
-import { requiredYobta } from '../requiredYobta'
-import { minCharactersYobta } from '../minCharactersYobta'
+import { catchYobta } from './'
 
 const validate = yobta(
   catchYobta(

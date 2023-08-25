@@ -1,4 +1,4 @@
-import { YobtaContext } from '../_internal/createContext/index.js'
+import type { YobtaContext } from '../_internal/createContext/index.js'
 
 // #region SyncRules
 type SyncValidator<I, O> = (input: I, context: YobtaContext) => O
@@ -51,7 +51,7 @@ export type AsyncRule<I, O> = (
   context: YobtaContext,
 ) => (input: I) => Promise<O>
 export type AnyAsyncRule = AsyncRule<any, any>
-export type AnySyncOrAsyncRule = AnySyncRule | AnyAsyncRule
+export type AnySyncOrAsyncRule = AnyAsyncRule | AnySyncRule
 export type SyncOrAsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]
 export type SyncOrAsyncRule<I, O> = SyncRule<I, O>
 

@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { booleanYobta, booleanMessage } from './'
 import { yobta } from '../yobta'
+import { booleanMessage, booleanYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(booleanYobta(customMessage))

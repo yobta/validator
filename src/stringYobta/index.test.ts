@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { yobta } from '../yobta'
-import { stringYobta, stringMessage } from './'
+import { stringMessage, stringYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(stringYobta(customMessage))

@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 
-import { testYobta, testMessage } from './'
 import { yobta } from '../yobta'
+import { testMessage, testYobta } from './'
 
 const regExp = /fo*/
 

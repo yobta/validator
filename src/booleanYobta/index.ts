@@ -1,4 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 const truthySet = new Set([1, '1', 'yes', 'true'])
 const falsySet = new Set([0, '0', 'no', 'false', 'null', null])

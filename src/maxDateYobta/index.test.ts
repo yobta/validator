@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { maxDateYobta } from './'
 import { yobta } from '../yobta'
+import { maxDateYobta } from './'
 
 const maxDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`

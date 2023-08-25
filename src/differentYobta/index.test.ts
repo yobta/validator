@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
-import { differentYobta, differentMessage } from './'
-import { yobta } from '../yobta'
-import { shapeYobta } from '../shapeYobta'
 import { numberYobta } from '../numberYobta'
+import { shapeYobta } from '../shapeYobta'
+import { yobta } from '../yobta'
+import { differentMessage, differentYobta } from './'
 
 const customMessage = (): string => 'yobta!'
 

@@ -1,16 +1,12 @@
-import {
-  ruleYobta,
-  SyncRule,
-  AnySyncRule,
-  SyncRules,
-} from '../ruleYobta/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import {
-  pipe,
-  PipeFactoryResult,
+import { pipe } from '../_internal/pipe/index.js'
+import type {
   PipedFactories,
+  PipeFactoryResult,
 } from '../_internal/pipe/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
+import type { AnySyncRule, SyncRule, SyncRules } from '../ruleYobta/index.js'
 
 type Rules = Record<PropertyKey, SyncRules>
 

@@ -2,18 +2,18 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { yobta } from './'
 import {
   booleanYobta,
   catchYobta,
   enumYobta,
   minCharactersYobta,
   numberYobta,
-  stringYobta,
-  shapeYobta,
   requiredYobta,
+  shapeYobta,
+  stringYobta,
   urlSearchParamsYobta,
 } from '../'
+import { yobta } from './'
 
 let validate = yobta(numberYobta('yobta!'))
 

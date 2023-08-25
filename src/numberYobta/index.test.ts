@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
-import { numberYobta, numberMessage } from './'
 import { yobta } from '../yobta'
 import { YobtaError } from '../YobtaError'
+import { numberMessage, numberYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(numberYobta(customMessage))
@@ -20,8 +20,8 @@ describe('numberYobta', () => {
   it('rejects NaN', () => {
     let attempt = (): number => validate(NaN)
     let error = new YobtaError({
-      message: customMessage,
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
@@ -35,8 +35,8 @@ describe('numberYobta', () => {
   it('rejects Infinity', () => {
     let attempt = (): number => validate(Infinity)
     let error = new YobtaError({
-      message: customMessage,
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
@@ -45,8 +45,8 @@ describe('numberYobta', () => {
   it('rejects Infinity string', () => {
     let attempt = (): number => validate('Infinity')
     let error = new YobtaError({
-      message: customMessage,
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
@@ -81,8 +81,8 @@ describe('numberYobta', () => {
     variants.forEach(variant => {
       let attempt = (): any => validate(variant)
       let error = new YobtaError({
-        message: customMessage,
         field: '@',
+        message: customMessage,
         path: [],
       })
       expect(attempt).toThrow(error)

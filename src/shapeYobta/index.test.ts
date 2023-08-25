@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
-import { shapeYobta, shapeMessage } from './'
-import { yobta } from '../yobta/'
-import { stringYobta, stringMessage } from '../stringYobta/'
-import { requiredYobta } from '../requiredYobta/'
 import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '../'
+import { requiredYobta } from '../requiredYobta/'
+import { stringMessage, stringYobta } from '../stringYobta/'
+import { yobta } from '../yobta/'
 import { YobtaError } from '../YobtaError/'
+import { shapeMessage, shapeYobta } from './'
 
 const validate = yobta(
   shapeYobta({
@@ -22,10 +22,10 @@ describe('shapeYobta', () => {
 
   it('accepts valid shapes with overload', () => {
     let result = validate({
-      name: 'yobta',
       age: 0,
+      name: 'yobta',
     })
-    expect(result).toEqual({ name: 'yobta', age: 0 })
+    expect(result).toEqual({ age: 0, name: 'yobta' })
   })
 
   it('rejects invalid input', () => {
@@ -79,15 +79,15 @@ describe('shapeYobta', () => {
   })
   it('should replace context.data', () => {
     let replaced = {
-      password: 'old yobta',
       newPassword: 'new yobta',
+      password: 'old yobta',
       retypePassword: 'new yobta',
     }
     let attempt = yobta(
       defaultYobta(replaced),
       shapeYobta({
-        password: [stringYobta()],
         newPassword: [differentYobta(['password'])],
+        password: [stringYobta()],
         retypePassword: [identicalYobta(['newPassword'])],
       }),
     )

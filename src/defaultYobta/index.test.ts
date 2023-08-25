@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
-import { defaultYobta } from './'
-import { yobta } from '../yobta'
-import { stringYobta } from '../stringYobta'
 import { requiredYobta } from '../requiredYobta'
+import { stringYobta } from '../stringYobta'
+import { yobta } from '../yobta'
+import { defaultYobta } from './'
 
 const validate = yobta(defaultYobta('yobta'))
 

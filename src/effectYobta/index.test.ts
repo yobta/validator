@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { effectYobta } from './'
 import { yobta } from '../yobta'
+import { effectYobta } from './'
 
 it('calls effect and returns data unmodified', () => {
   let spy = jest.fn()

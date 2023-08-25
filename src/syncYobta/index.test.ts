@@ -2,18 +2,18 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { syncYobta } from './'
 import { effectYobta } from '../'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
+import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
-import { enumYobta } from '../enumYobta'
 import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
+import { syncYobta } from './'
 
 let validate = syncYobta(numberYobta('yobta!'))
 
@@ -85,10 +85,10 @@ describe('asyncYobta', () => {
 
   it('captures context errors', () => {
     let error: YobtaError = {
-      name: 'error',
-      message: 'yobta',
-      path: [],
       field: '@',
+      message: 'yobta',
+      name: 'error',
+      path: [],
     }
     let validateContext = syncYobta(({ pushError }) => (item: any) => {
       if (typeof item !== 'string') pushError(error)

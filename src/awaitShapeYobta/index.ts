@@ -1,14 +1,17 @@
-import { shapeMessage } from '../index.js'
-import {
-  ruleYobta,
-  SyncRule,
-  AnySyncOrAsyncRule,
-  SyncOrAsyncRules,
-} from '../ruleYobta/index.js'
+import { asyncPipe } from '../_internal/asyncPipe/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import { PipeFactoryResult, PipedFactories } from '../_internal/pipe/index.js'
-import { asyncPipe } from '../_internal/asyncPipe/index.js'
+import type {
+  PipedFactories,
+  PipeFactoryResult,
+} from '../_internal/pipe/index.js'
+import { shapeMessage } from '../index.js'
+import type {
+  AnySyncOrAsyncRule,
+  SyncOrAsyncRules,
+  SyncRule,
+} from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 
@@ -21,10 +24,10 @@ type Config<F extends Rules> = {
 }
 
 interface AwaitShapeFactory {
-  <F extends Rules>(rulesSet: Config<F>, message?: string): SyncRule<
-    any,
-    Promise<Result<F> | undefined>
-  >
+  <F extends Rules>(
+    rulesSet: Config<F>,
+    message?: string,
+  ): SyncRule<any, Promise<Result<F> | undefined>>
 }
 
 export const asyncShapeMessage = 'It should be a plain object'

@@ -1,4 +1,4 @@
-export type YobtaErrorPath = (string | number)[]
+export type YobtaErrorPath = (number | string)[]
 
 export type YobtaErrorMetadata = {
   field: string
@@ -7,13 +7,13 @@ export type YobtaErrorMetadata = {
 }
 
 export class YobtaError extends Error {
+  field: string
+
+  name = 'YobtaError'
+  path: YobtaErrorPath
   constructor({ field, message, path }: YobtaErrorMetadata) {
     super(message)
     this.field = field
     this.path = path
   }
-
-  name = 'YobtaError'
-  field: string
-  path: YobtaErrorPath
 }

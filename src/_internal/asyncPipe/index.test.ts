@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { delay } from 'nanodelay'
 import { jest } from '@jest/globals'
+import { delay } from 'nanodelay'
 
 import { asyncPipe } from './'
 
