@@ -6,8 +6,9 @@ export const minimumYobtaMessage = (limit: number): string =>
 export const minimumYobta = (
   limit: number,
   message = minimumYobtaMessage,
-): SyncRule<number, number> =>
+): SyncRule<number | undefined, number | undefined> =>
   ruleYobta(input => {
+    if (input === undefined) return input
     if (input < limit) throw new Error(message(limit))
 
     return input

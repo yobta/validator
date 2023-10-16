@@ -230,14 +230,14 @@
       "import": {
         "lib/index.js": "{ minimumYobta }"
       },
-      "limit": "68 B"
+      "limit": "79 B"
     },
     {
       "name": "Maximum rule",
       "import": {
         "lib/index.js": "{ maximumYobta }"
       },
-      "limit": "66 B"
+      "limit": "77 B"
     },
     {
       "name": "Minimum date rule",
