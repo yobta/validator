@@ -14,11 +14,11 @@ describe('numberYobta', () => {
 
   it('accepts undefined', () => {
     let result = validate(undefined)
-    expect(result).toBe(NaN)
+    expect(result).toBeUndefined()
   })
 
   it('rejects NaN', () => {
-    let attempt = (): number => validate(NaN)
+    let attempt = (): number | undefined => validate(NaN)
     let error = new YobtaError({
       message: customMessage,
       field: '@',
@@ -33,7 +33,7 @@ describe('numberYobta', () => {
   })
 
   it('rejects Infinity', () => {
-    let attempt = (): number => validate(Infinity)
+    let attempt = (): number | undefined => validate(Infinity)
     let error = new YobtaError({
       message: customMessage,
       field: '@',
@@ -43,7 +43,7 @@ describe('numberYobta', () => {
   })
 
   it('rejects Infinity string', () => {
-    let attempt = (): number => validate('Infinity')
+    let attempt = (): number | undefined => validate('Infinity')
     let error = new YobtaError({
       message: customMessage,
       field: '@',
@@ -55,6 +55,11 @@ describe('numberYobta', () => {
   it('coerces string', () => {
     let result = validate('1')
     expect(result).toBe(1)
+  })
+
+  it('takes empty string as undefined', () => {
+    let result = validate('')
+    expect(result).toBeUndefined()
   })
 
   it('strips whitespace', () => {

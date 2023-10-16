@@ -5,7 +5,7 @@ let coercedTypes = new Set(['string', 'boolean', 'number'])
 export const numberMessage = 'It should be a number'
 
 interface NumberFactory {
-  (message?: string): SyncRule<any, number>
+  (message?: string): SyncRule<unknown, number | undefined>
 }
 
 export const numberYobta: NumberFactory = (message = numberMessage) =>
@@ -14,10 +14,14 @@ export const numberYobta: NumberFactory = (message = numberMessage) =>
       return 0
     }
     if (typeof value === 'undefined') {
-      return NaN
+      return undefined
     }
     if (typeof value === 'string') {
       value = value.replace(/\s+/g, '')
+      // @ts-ignore
+      if (!value.length) {
+        return undefined
+      }
     }
     if (coercedTypes.has(typeof value)) {
       let number = Number(value)
