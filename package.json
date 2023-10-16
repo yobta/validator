@@ -174,7 +174,7 @@
       "import": {
         "lib/index.js": "{ numberYobta }"
       },
-      "limit": "149 B"
+      "limit": "153 B"
     },
     {
       "name": "Integer rule",
@@ -429,7 +429,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2372 B"
+      "limit": "2380 B"
     }
   ],
   "yaspeller": {

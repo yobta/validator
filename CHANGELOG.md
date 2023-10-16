@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.43
+
+- fix optional number validation
+
 ## 0.0.42
 
 - change validity reporting to always remove errors and set with respect to options
