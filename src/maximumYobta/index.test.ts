@@ -5,6 +5,11 @@ import { yobta } from '../yobta'
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = yobta(maximumYobta(1, customMessage))
 
+it('accepts undefined', () => {
+  let result = validate(undefined)
+  expect(result).toBeUndefined()
+})
+
 it('accepts exact number', () => {
   let result = validate(1)
   expect(result).toBe(1)

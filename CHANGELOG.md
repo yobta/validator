@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.44
+
+- minimum and maximum to accept undefined
+
 ## 0.0.43
 
 - fix optional number validation
