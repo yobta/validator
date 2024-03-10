@@ -131,6 +131,7 @@ requiredYobta(
   - [+] minimum
   - [+] maximum
 - [+] Boolean validator
+- [+] Const validator
 - [+] Date validator
   - [+] minimum date
   - [+] maximum date
