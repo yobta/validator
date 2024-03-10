@@ -286,6 +286,13 @@
       "limit": "72 B"
     },
     {
+      "name": "Const rule",
+      "import": {
+        "lib/index.js": "{ constYobta }"
+      },
+      "limit": "75 B"
+    },
+    {
       "name": "Items rule",
       "import": {
         "lib/index.js": "{ itemsYobta }"
@@ -408,6 +415,7 @@
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/catchYobta/index.js": "{ catchYobta }",
+        "lib/constYobta/index.js": "{ constYobta }",
         "lib/itemsYobta/index.js": "{ itemsYobta }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
@@ -426,7 +434,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2380 B"
+      "limit": "2412 B"
     }
   ]
 }
