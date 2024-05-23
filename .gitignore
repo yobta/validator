@@ -4,5 +4,4 @@ yarn-error.log
 coverage/
 lib
 
-pnpm-lock.yaml
 tsconfig.build.json
