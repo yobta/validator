@@ -6,6 +6,8 @@ jobs:
   full:
     name: Node.js 20 Full
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
@@ -45,6 +47,8 @@ jobs:
           - 16
           - 14
     name: Node.js ${{ matrix.node-version }} Quick
+    env:
+      NODE_OPTIONS: --openssl-legacy-provider
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v2
