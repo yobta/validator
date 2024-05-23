@@ -11,6 +11,11 @@ test/
 img/
 makefile
 src
+eslint.config.js
+jest.config.js
+makefile
 tsconfig.build.json
+pnpm-lock.yaml
 .editorconfig
-.tool-versions   
+.tool-versions
+.github

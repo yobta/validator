@@ -1,11 +1,11 @@
-import { YobtaError } from '../../YobtaError/index.js'
+import type { YobtaError } from '../../YobtaError/index.js'
 
-export type Path = (string | number)[]
+export type Path = (number | string)[]
 
 export type YobtaContext = {
-  event: any
   data: any
   errors: YobtaError[]
+  event: any
   field: string
   form?: HTMLFormElement
   input?: HTMLInputElement | HTMLSelectElement
@@ -22,15 +22,15 @@ export const createContext: YobtaContextFactory = event => {
     event.preventDefault()
   }
 
-  let errors: YobtaError[] = []
-  let element = event?.currentTarget || event
-  let form = element?.tagName === 'FORM' ? element : undefined
-  let input = (form && event?.target !== form && event.target) || undefined
+  const errors: YobtaError[] = []
+  const element = event?.currentTarget || event
+  const form = element?.tagName === 'FORM' ? element : undefined
+  const input = (form && event?.target !== form && event.target) || undefined
 
   return {
-    event,
     data: event,
     errors,
+    event,
     field: '@',
     form,
     input,

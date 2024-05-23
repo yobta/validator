@@ -11,60 +11,53 @@
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest src --coverage",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest src --coverage",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },
-  "author": "Sergei Droganov <serge@droganov.ru>",
+  "author": "Sergei Droganov <sergei@droganov.com>",
   "license": "MIT",
-  "repository": "yobta/yobta",
+  "repository": "https://github.com/yobta/validator.git",
   "sideEffects": false,
   "type": "module",
-  "types": "lib/index.d.ts",
+  "types": "./lib/index.d.ts",
+  "module": "./lib/index.js",
   "exports": {
-    ".": "./lib/index.js"
-  },
-  "engines": {
-    "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8",
-    "@logux/eslint-config": "^45.4.6",
-    "@size-limit/preset-small-lib": "^5.0.1",
-    "@testing-library/dom": "^8.6.0",
-    "@types/jest": "^26.0.24",
-    "@types/jsdom": "^16.2.13",
-    "@types/node": "^16.4.2",
-    "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@typescript-eslint/parser": "^4.28.4",
-    "@vue/compiler-sfc": "^3.1.5",
-    "clean-publish": "^2.2.0",
-    "eslint": "^7.31.0",
-    "eslint-config-standard": "^16.0.3",
+    "@jest/globals": "^29.7.0",
+    "@logux/eslint-config": "^53.2.0",
+    "@size-limit/preset-small-lib": "^11.1.4",
+    "@testing-library/dom": "^10.1.0",
+    "@types/jest": "^29.5.12",
+    "@types/jsdom": "^21.1.6",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint": "^9.3.0",
+    "eslint-config-standard": "^17.1.0",
     "eslint-plugin-es5": "^1.5.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jest": "^28.5.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-let": "^1.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-unicorn": "^34.0.1",
-    "jest": "^27.0.6",
-    "lint-staged": "^11.1.1",
+    "eslint-plugin-prefer-let": "^3.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-security": "^3.0.0",
+    "eslint-plugin-unicorn": "^53.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "nanodelay": "^2.0.2",
-    "npm-check-updates": "^14.0.1",
-    "prettier": "^2.3.2",
-    "simple-git-hooks": "^2.5.1",
-    "size-limit": "^5.0.1",
-    "ts-jest": "^27.0.4",
-    "typescript": "^4.6.3"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "prettier": "^3.2.5",
+    "size-limit": "^11.1.4",
+    "ts-jest": "^29.1.3",
+    "typescript": "^5.4.5"
   },
   "prettier": {
     "arrowParens": "avoid",
@@ -74,321 +67,279 @@
     "singleQuote": true,
     "trailingComma": "all"
   },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.ts": [
-      "prettier --write",
-      "eslint --fix"
-    ]
-  },
-  "jest": {
-    "preset": "ts-jest/presets/default-esm",
-    "extensionsToTreatAsEsm": [
-      ".ts"
-    ],
-    "globals": {
-      "ts-jest": {
-        "useESM": true
-      }
-    },
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "^(\\.{1,2}/.*)\\.js$": "$1"
-    },
-    "coverageThreshold": {
-      "global": {
-        "statements": 100
-      }
-    }
-  },
-  "eslintConfig": {
-    "extends": "@logux/eslint-config/esm",
-    "rules": {
-      "@typescript-eslint/no-explicit-any": "off"
-    },
-    "globals": {
-      "jsdom": false
-    }
-  },
-  "eslintIgnore": [
-    "**/errors.ts"
-  ],
   "size-limit": [
     {
       "name": "Rule factory",
       "import": {
         "lib/index.js": "{ ruleYobta }"
       },
-      "limit": "10 B"
+      "limit": "16 B"
     },
     {
       "name": "Validator factory",
       "import": {
         "lib/index.js": "{ yobta }"
       },
-      "limit": "354 B"
+      "limit": "342 B"
     },
     {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
       },
-      "limit": "393 B"
+      "limit": "387 B"
     },
     {
       "name": "Sync validator factory",
       "import": {
         "lib/index.js": "{ syncYobta }"
       },
-      "limit": "371 B"
+      "limit": "363 B"
     },
     {
       "name": "Shape rule",
       "import": {
         "lib/index.js": "{ shapeYobta }"
       },
-      "limit": "493 B"
+      "limit": "506 B"
     },
     {
       "name": "String rule",
       "import": {
         "lib/index.js": "{ stringYobta }"
       },
-      "limit": "110 B"
+      "limit": "145 B"
     },
     {
       "name": "Array rule",
       "import": {
         "lib/index.js": "{ arrayYobta }"
       },
-      "limit": "126 B"
+      "limit": "157 B"
     },
     {
       "name": "Number rule",
       "import": {
         "lib/index.js": "{ numberYobta }"
       },
-      "limit": "153 B"
+      "limit": "175 B"
     },
     {
       "name": "Integer rule",
       "import": {
         "lib/index.js": "{ integerYobta }"
       },
-      "limit": "69 B"
+      "limit": "81 B"
     },
     {
       "name": "Date rule",
       "import": {
         "lib/index.js": "{ dateYobta }"
       },
-      "limit": "95 B"
+      "limit": "107 B"
     },
     {
       "name": "Boolean rule",
       "import": {
         "lib/index.js": "{ booleanYobta }"
       },
-      "limit": "156 B"
+      "limit": "180 B"
     },
     {
       "name": "Minimum items rule",
       "import": {
         "lib/index.js": "{ minItemsYobta }"
       },
-      "limit": "107 B"
+      "limit": "125 B"
     },
     {
       "name": "Maximum items rule",
       "import": {
         "lib/index.js": "{ maxItemsYobta }"
       },
-      "limit": "103 B"
+      "limit": "117 B"
     },
     {
       "name": "Minimum characters rule",
       "import": {
         "lib/index.js": "{ minCharactersYobta }"
       },
-      "limit": "110 B"
+      "limit": "122 B"
     },
     {
       "name": "Maximum characters rule",
       "import": {
         "lib/index.js": "{ maxCharactersYobta }"
       },
-      "limit": "106 B"
+      "limit": "117 B"
     },
     {
       "name": "Minimum rule",
       "import": {
         "lib/index.js": "{ minimumYobta }"
       },
-      "limit": "79 B"
+      "limit": "88 B"
     },
     {
       "name": "Maximum rule",
       "import": {
         "lib/index.js": "{ maximumYobta }"
       },
-      "limit": "77 B"
+      "limit": "87 B"
     },
     {
       "name": "Minimum date rule",
       "import": {
         "lib/index.js": "{ minDateYobta }"
       },
-      "limit": "87 B"
+      "limit": "112 B"
     },
     {
       "name": "Maximum date rule",
       "import": {
         "lib/index.js": "{ maxDateYobta }"
       },
-      "limit": "84 B"
+      "limit": "112 B"
     },
     {
       "name": "RegExp test rule",
       "import": {
         "lib/index.js": "{ testYobta }"
       },
-      "limit": "61 B"
+      "limit": "76 B"
     },
     {
       "name": "Email rule",
       "import": {
         "lib/index.js": "{ emailYobta }"
       },
-      "limit": "165 B"
+      "limit": "181 B"
     },
     {
       "name": "Required rule",
       "import": {
         "lib/index.js": "{ requiredYobta }"
       },
-      "limit": "109 B"
+      "limit": "138 B"
     },
     {
       "name": "Default rule",
       "import": {
         "lib/index.js": "{ defaultYobta }"
       },
-      "limit": "86 B"
+      "limit": "136 B"
     },
     {
       "name": "Catch rule",
       "import": {
         "lib/index.js": "{ catchYobta }"
       },
-      "limit": "72 B"
+      "limit": "95 B"
     },
     {
       "name": "Const rule",
       "import": {
         "lib/index.js": "{ constYobta }"
       },
-      "limit": "75 B"
+      "limit": "96 B"
     },
     {
       "name": "Items rule",
       "import": {
         "lib/index.js": "{ itemsYobta }"
       },
-      "limit": "215 B"
+      "limit": "241 B"
     },
     {
       "name": "Unique rule",
       "import": {
         "lib/index.js": "{ uniqueYobta }"
       },
-      "limit": "79 B"
+      "limit": "89 B"
     },
     {
       "name": "Identical rule",
       "import": {
         "lib/index.js": "{ identicalYobta }"
       },
-      "limit": "136 B"
+      "limit": "155 B"
     },
     {
       "name": "Different rule",
       "import": {
         "lib/index.js": "{ differentYobta }"
       },
-      "limit": "139 B"
+      "limit": "153 B"
     },
     {
       "name": "UrlSearchParams rule",
       "import": {
         "lib/index.js": "{ urlSearchParamsYobta }"
       },
-      "limit": "112 B"
+      "limit": "143 B"
     },
     {
       "name": "Form rule",
       "import": {
         "lib/index.js": "{ formYobta }"
       },
-      "limit": "205 B"
+      "limit": "211 B"
     },
     {
       "name": "Enum rule",
       "import": {
         "lib/index.js": "{ enumYobta }"
       },
-      "limit": "89 B"
+      "limit": "114 B"
     },
     {
       "name": "Effect rule",
       "import": {
         "lib/index.js": "{ effectYobta }"
       },
-      "limit": "24 B"
+      "limit": "37 B"
     },
     {
       "name": "Async shape rule",
       "import": {
         "lib/index.js": "{ awaitShapeYobta }"
       },
-      "limit": "529 B"
+      "limit": "533 B"
     },
     {
       "name": "Await submit utility",
       "import": {
         "lib/index.js": "{ awaitSubmitYobta }"
       },
-      "limit": "232 B"
+      "limit": "236 B"
     },
     {
       "name": "Errors utility",
       "import": {
         "lib/index.js": "{ errorsYobta }"
       },
-      "limit": "40 B"
+      "limit": "56 B"
     },
     {
       "name": "Validity utility",
       "import": {
         "lib/index.js": "{ validityYobta }"
       },
-      "limit": "307 B"
+      "limit": "301 B"
     },
     {
       "name": "Success utility",
       "import": {
         "lib/index.js": "{ successYobta }"
       },
-      "limit": "34 B"
+      "limit": "51 B"
     },
     {
       "name": "Yobta error class",
       "import": {
         "lib/index.js": "{ YobtaError }"
       },
-      "limit": "73 B"
+      "limit": "72 B"
     },
     {
       "name": "All",
@@ -434,7 +385,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2412 B"
+      "limit": "2.47 kB"
     }
   ]
 }

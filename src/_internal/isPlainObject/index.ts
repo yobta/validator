@@ -10,14 +10,12 @@ function isObject(o: any): boolean {
 }
 
 export function isPlainObject(o: any): boolean {
-  let ctor, prot
-
   if (!isObject(o)) return false
 
-  ctor = o.constructor
+  const ctor = o.constructor
   if (ctor === undefined) return true
 
-  prot = ctor.prototype
+  const prot = ctor.prototype
   if (!isObject(prot)) return false
 
   // eslint-disable-next-line no-prototype-builtins

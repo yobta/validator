@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { itemsYobta } from './'
+import { arrayYobta } from '../arrayYobta'
+import { minCharactersYobta } from '../minCharactersYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
-import { minCharactersYobta } from '../minCharactersYobta'
-import { arrayYobta } from '../arrayYobta'
+import { itemsYobta } from './'
 
 const validate = yobta(
   arrayYobta(),
@@ -12,27 +12,27 @@ const validate = yobta(
 
 describe('itemsYobta', () => {
   it('accepts empty array', () => {
-    let result = validate([])
+    const result = validate([])
     expect(result).toEqual([])
   })
 
   it('accepts array of strings', () => {
-    let result = validate(['yobta'])
+    const result = validate(['yobta'])
     expect(result).toEqual(['yobta'])
   })
 
   it('rejects empty array', () => {
-    let result = (): any => validate([[]])
+    const result = (): any => validate([[]])
     expect(result).toThrow('It should be a string')
   })
 
   it('rejects array with empty string', () => {
-    let result = (): any => validate([['']])
+    const result = (): any => validate([['']])
     expect(result).toThrow('It should be a string')
   })
 
   it('rejects array with invalid item', () => {
-    let result = (): any => validate([['yobt']])
+    const result = (): any => validate([['yobt']])
     expect(result).toThrow('It should be a string')
   })
 })

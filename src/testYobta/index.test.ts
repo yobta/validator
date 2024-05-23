@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 
-import { testYobta, testMessage } from './'
 import { yobta } from '../yobta'
+import { testMessage, testYobta } from './'
 
 const regExp = /fo*/
 
@@ -10,28 +10,28 @@ const validate = yobta(testYobta(regExp, customMessage))
 
 describe('testYobta', () => {
   it('accepts if mathed', () => {
-    let result = validate('table football')
+    const result = validate('table football')
     expect(result).toBe('table football')
   })
 
   it('accepts undefined', () => {
-    let result = validate(undefined)
+    const result = validate(undefined)
     expect(result).toBeUndefined()
   })
 
   it('accepts empty string', () => {
-    let result = validate('')
+    const result = validate('')
     expect(result).toBe('')
   })
 
   it('regects if not matched', () => {
-    let attempt = (): any => validate('yobta')
+    const attempt = (): any => validate('yobta')
     expect(attempt).toThrow(customMessage)
   })
 
   it('has default error message', () => {
-    let validateDefault = yobta(testYobta(regExp))
-    let attempt = (): any => validateDefault('yobta')
+    const validateDefault = yobta(testYobta(regExp))
+    const attempt = (): any => validateDefault('yobta')
     expect(attempt).toThrow(testMessage)
   })
 })

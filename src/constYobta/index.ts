@@ -1,4 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const constMessage = <I>(value: I): string =>
   `Should be identical to "${String(value)}"`

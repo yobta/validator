@@ -1,6 +1,6 @@
 import { createEvent } from '@testing-library/dom'
 
-import { AsyncYobtaRule } from '../../index.js'
+import type { AsyncYobtaRule } from '../../index.js'
 
 interface MockFormFactory {
   (innerHtml: string): {
@@ -16,17 +16,17 @@ interface MockFormFactory {
 export const mockForm: MockFormFactory = innerHtml => {
   return {
     change(validate) {
-      let form = document.createElement('form')
+      const form = document.createElement('form')
       form.innerHTML = innerHtml
-      let event = createEvent.change(form)
+      const event = createEvent.change(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
 
       return validate(event)
     },
     submit(validate) {
-      let form = document.createElement('form')
+      const form = document.createElement('form')
       form.innerHTML = innerHtml
-      let event = createEvent.submit(form)
+      const event = createEvent.submit(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
 
       return validate(event)

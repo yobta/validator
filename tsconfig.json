@@ -9,8 +9,9 @@
     "outDir": "lib",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2019"
+    "target": "es2019",
+    "types": ["node", "jest"]
   },
   "include": ["src"],
-  "exclude": []
+  "exclude": ["tsconfig.json", "tsconfig-build.json"]
 }

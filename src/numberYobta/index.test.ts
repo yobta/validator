@@ -1,79 +1,79 @@
 /* eslint-disable import/extensions */
-import { numberYobta, numberMessage } from './'
 import { yobta } from '../yobta'
 import { YobtaError } from '../YobtaError'
+import { numberMessage, numberYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(numberYobta(customMessage))
 
 describe('numberYobta', () => {
   it('accepts numbers', () => {
-    let result = validate(1)
+    const result = validate(1)
     expect(result).toBe(1)
   })
 
   it('accepts undefined', () => {
-    let result = validate(undefined)
+    const result = validate(undefined)
     expect(result).toBeUndefined()
   })
 
   it('rejects NaN', () => {
-    let attempt = (): number | undefined => validate(NaN)
-    let error = new YobtaError({
-      message: customMessage,
+    const attempt = (): number | undefined => validate(NaN)
+    const error = new YobtaError({
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
   })
 
   it('coerces null', () => {
-    let result = validate(null)
+    const result = validate(null)
     expect(result).toBe(0)
   })
 
   it('rejects Infinity', () => {
-    let attempt = (): number | undefined => validate(Infinity)
-    let error = new YobtaError({
-      message: customMessage,
+    const attempt = (): number | undefined => validate(Infinity)
+    const error = new YobtaError({
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
   })
 
   it('rejects Infinity string', () => {
-    let attempt = (): number | undefined => validate('Infinity')
-    let error = new YobtaError({
-      message: customMessage,
+    const attempt = (): number | undefined => validate('Infinity')
+    const error = new YobtaError({
       field: '@',
+      message: customMessage,
       path: [],
     })
     expect(attempt).toThrow(error)
   })
 
   it('coerces string', () => {
-    let result = validate('1')
+    const result = validate('1')
     expect(result).toBe(1)
   })
 
   it('takes empty string as undefined', () => {
-    let result = validate('')
+    const result = validate('')
     expect(result).toBeUndefined()
   })
 
   it('strips whitespace', () => {
-    let result = validate('1 23')
+    const result = validate('1 23')
     expect(result).toBe(123)
   })
 
   it('coerces booelan', () => {
-    let result = validate(true)
+    const result = validate(true)
     expect(result).toBe(1)
   })
 
   it('rejects invalid', () => {
-    let variants = [
+    const variants = [
       [],
       {},
       new Date(),
@@ -84,10 +84,10 @@ describe('numberYobta', () => {
       () => 'yobta',
     ]
     variants.forEach(variant => {
-      let attempt = (): any => validate(variant)
-      let error = new YobtaError({
-        message: customMessage,
+      const attempt = (): any => validate(variant)
+      const error = new YobtaError({
         field: '@',
+        message: customMessage,
         path: [],
       })
       expect(attempt).toThrow(error)
@@ -95,8 +95,8 @@ describe('numberYobta', () => {
   })
 
   it('has default error message', () => {
-    let validateDefault = yobta(numberYobta())
-    let attempt = (): any => validateDefault([])
+    const validateDefault = yobta(numberYobta())
+    const attempt = (): any => validateDefault([])
     expect(attempt).toThrow(numberMessage)
   })
 })

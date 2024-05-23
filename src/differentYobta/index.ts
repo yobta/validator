@@ -1,6 +1,7 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { Path } from '../_internal/createContext/index.js'
 import { getIn } from '../_internal/getIn/index.js'
-import { Path } from '../_internal/createContext/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const differentMessage = (path: Path): string =>
   `It should be different from "${path.join('.')}"`

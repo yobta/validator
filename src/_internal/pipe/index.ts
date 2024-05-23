@@ -1,6 +1,6 @@
-import { AnySyncRule, SyncRules } from '../../ruleYobta/index.js'
+import type { AnySyncRule, SyncRules } from '../../ruleYobta/index.js'
 
-export type PipedFactories<F extends SyncRules> = F & AsFactoryChain<F>
+export type PipedFactories<F extends SyncRules> = AsFactoryChain<F> & F
 type AsFactoryChain<F extends SyncRules, T extends AnySyncRule[] = Tail<F>> = {
   [K in keyof F]: (
     arg: ArgType<FactoryProduct<F, T, K>>,
@@ -36,17 +36,19 @@ export type Last<T extends any[]> = T extends [...infer F, infer L] ? L : never
 export type LaxReturnType<F> = F extends (...args: any) => infer R ? R : never
 
 export type Functions = [Func1, ...Func1[]]
-export type PipedFunctions<F extends Functions> = F & AsChain<F>
+export type PipedFunctions<F extends Functions> = AsChain<F> & F
 export type PipeResult<F extends Functions> = LaxReturnType<Last<F>>
 export type PipeFunction<F extends Functions, I> = (
   ...functions: PipedFunctions<F>
 ) => (input: I) => PipeResult<F>
 
-export type ThenArgRecursive<T> = T extends PromiseLike<infer U>
-  ? ThenArgRecursive<U>
-  : T
+export type ThenArgRecursive<T> =
+  T extends PromiseLike<infer U> ? ThenArgRecursive<U> : T
 
 export const pipe =
   <F extends Functions>(...functions: PipedFunctions<F>) =>
   (input: ArgType<F[0]>): PipeResult<F> =>
-    functions.reduce((prev, next) => next(prev), input) as PipeResult<F>
+    functions.reduce(
+      (prev: unknown, next) => next(prev),
+      input,
+    ) as PipeResult<F>

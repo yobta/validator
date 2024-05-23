@@ -1,48 +1,48 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitShapeYobta, asyncShapeMessage } from './'
-import { createContext } from '../_internal/createContext'
-import { YobtaError } from '../YobtaError'
 import {
   asyncYobta,
   defaultYobta,
   differentYobta,
   identicalYobta,
-  shapeYobta,
   requiredYobta,
-  stringYobta,
+  shapeYobta,
   stringMessage,
+  stringYobta,
 } from '..'
+import { createContext } from '../_internal/createContext'
+import { YobtaError } from '../YobtaError'
+import { asyncShapeMessage, awaitShapeYobta } from './'
 
 const validate = asyncYobta(
   awaitShapeYobta({
-    name: [stringYobta(), requiredYobta<string>()],
     age: [stringYobta()],
+    name: [stringYobta(), requiredYobta<string>()],
   }),
 )
 
 describe('awaitShapeYobta', () => {
   it('accepts valid shapes', async () => {
-    let result = await validate({
-      name: 'yobta',
+    const result = await validate({
       age: 1,
+      name: 'yobta',
     })
-    expect(result).toEqual([{ name: 'yobta', age: '1' }, null])
+    expect(result).toEqual([{ age: '1', name: 'yobta' }, null])
   })
 
   it('accepts valid shapes with overload', async () => {
-    let result = await validate({
-      name: 'yobta',
+    const result = await validate({
       age: 0,
       experience: 0,
+      name: 'yobta',
     })
-    expect(result).toEqual([{ age: '0', name: 'yobta', experience: 0 }, null])
+    expect(result).toEqual([{ age: '0', experience: 0, name: 'yobta' }, null])
   })
 
   it('rejects invalid input', async () => {
-    let attempt = async (): Promise<any> => await validate([])
-    let result = await attempt()
+    const attempt = async (): Promise<any> => await validate([])
+    const result = await attempt()
     expect(result).toEqual([
       null,
       [
@@ -56,12 +56,12 @@ describe('awaitShapeYobta', () => {
   })
 
   it('can be undefined', async () => {
-    let result = await validate(undefined)
+    const result = await validate(undefined)
     expect(result).toEqual([undefined, null])
   })
 
   it('has custom error messages', async () => {
-    let attempt = (): any =>
+    const attempt = (): any =>
       asyncYobta(
         awaitShapeYobta(
           {
@@ -70,7 +70,7 @@ describe('awaitShapeYobta', () => {
           'yobta!',
         ),
       )([])
-    let result = await attempt()
+    const result = await attempt()
     expect(result).toEqual([
       null,
       [
@@ -84,22 +84,22 @@ describe('awaitShapeYobta', () => {
   })
 
   it('captures errors from field validators', async () => {
-    let attempt = (): any =>
+    const attempt = (): any =>
       validate({
         name: [],
       })
-    let result = await attempt()
+    const result = await attempt()
 
     expect(result).toEqual([null, [new Error(stringMessage)]])
   })
 
   it('returns errors for invalid keys', async () => {
-    let attempt = awaitShapeYobta({
+    const attempt = awaitShapeYobta({
       name: [stringYobta()],
     })
-    let context = createContext({})
+    const context = createContext({})
     jest.spyOn(context, 'pushError')
-    let result = await attempt(context)({
+    const result = await attempt(context)({
       name: {},
     })
     expect(result).toEqual({ name: {} })
@@ -107,32 +107,32 @@ describe('awaitShapeYobta', () => {
   })
 
   it('should replace context.data', async () => {
-    let replaced = {
-      password: 'old yobta',
+    const replaced = {
       newPassword: 'new yobta',
+      password: 'old yobta',
       retypePassword: 'new yobta',
     }
-    let attempt = asyncYobta(
+    const attempt = asyncYobta(
       defaultYobta(replaced),
       shapeYobta({
-        password: [stringYobta()],
         newPassword: [differentYobta(['password'])],
+        password: [stringYobta()],
         retypePassword: [identicalYobta(['newPassword'])],
       }),
     )
-    let result = await attempt(undefined)
+    const result = await attempt(undefined)
     expect(result).toEqual([replaced, null])
   })
 
   it('has no racing condition', async () => {
-    let attempt = asyncYobta(
+    const attempt = asyncYobta(
       awaitShapeYobta({
-        title: [requiredYobta()],
         address: [requiredYobta()],
         description: [requiredYobta()],
+        title: [requiredYobta()],
       }),
     )
-    let result = await attempt({})
+    const result = await attempt({})
     expect(result).toEqual([
       null,
       [

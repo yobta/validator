@@ -5,12 +5,12 @@ import { createContext } from './'
 
 describe('createContext', () => {
   it('creates contexts without a from', () => {
-    let context = createContext(null)
+    const context = createContext(null)
 
     expect(context).toEqual({
       data: null,
-      event: null,
       errors: [],
+      event: null,
       field: '@',
       path: [],
       pushError: expect.any(Function),
@@ -18,18 +18,18 @@ describe('createContext', () => {
   })
 
   it('prevents submit event', () => {
-    let form = document.createElement('form')
-    let event = new Event('submit')
+    const form = document.createElement('form')
+    const event = new Event('submit')
     Object.defineProperty(event, 'currentTarget', { value: form })
     jest.spyOn(event, 'preventDefault')
 
-    let context = createContext(event)
+    const context = createContext(event)
 
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       path: [],
@@ -38,20 +38,20 @@ describe('createContext', () => {
   })
 
   it('does not prevent change event', () => {
-    let form = document.createElement('form')
-    let input = document.createElement('input')
-    let event = new Event('change')
+    const form = document.createElement('form')
+    const input = document.createElement('input')
+    const event = new Event('change')
     Object.defineProperty(event, 'currentTarget', { value: form })
     Object.defineProperty(event, 'target', { value: input })
     jest.spyOn(event, 'preventDefault')
 
-    let context = createContext(event)
+    const context = createContext(event)
 
     expect(event.preventDefault).toHaveBeenCalledTimes(0)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       input,
@@ -61,22 +61,22 @@ describe('createContext', () => {
   })
 
   it('prevents synthetic submit event', () => {
-    let form = document.createElement('form')
-    let event = {
-      type: 'submit',
+    const form = document.createElement('form')
+    const event = {
       constructor: { name: 'SyntheticBaseEvent' },
       currentTarget: form,
       preventDefault() {},
+      type: 'submit',
     }
     jest.spyOn(event, 'preventDefault')
 
-    let context = createContext(event)
+    const context = createContext(event)
 
     expect(event.preventDefault).toHaveBeenCalledTimes(1)
     expect(context).toEqual({
       data: event,
-      event,
       errors: [],
+      event,
       field: '@',
       form,
       path: [],

@@ -1,5 +1,7 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
-import { fromEntries, PlainObject } from '../_internal/fromEntries/index.js'
+import type { PlainObject } from '../_internal/fromEntries/index.js'
+import { fromEntries } from '../_internal/fromEntries/index.js'
+import type { SyncRule } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 interface FormFactory {
   (message?: string): SyncRule<any, PlainObject | undefined>
@@ -13,10 +15,11 @@ export const formYobta: FormFactory = (message = formDataMessage) =>
       return input
     }
 
-    let node = form || input
+    const node = form || input
 
     if (node?.tagName === 'FORM') {
-      let output = new FormData(node)
+      // eslint-disable-next-line n/no-unsupported-features/node-builtins
+      const output = new FormData(node)
       return fromEntries(output)
     }
 

@@ -3,37 +3,37 @@ import { reEmailYobta, reSlugYobta } from './'
 
 describe('reSlugYobta', () => {
   it('accepts lower case, digits and hyphens', () => {
-    let result = reSlugYobta.test('my-name-12')
+    const result = reSlugYobta.test('my-name-12')
     expect(result).toBe(true)
   })
   it('rejects upper case', () => {
-    let result = reSlugYobta.test('my-Name-12')
+    const result = reSlugYobta.test('my-Name-12')
     expect(result).toBe(false)
   })
   it('can start wwith a digit', () => {
-    let result = reSlugYobta.test('2pac')
+    const result = reSlugYobta.test('2pac')
     expect(result).toBe(true)
   })
   it('can not start with a hyphen', () => {
-    let result = reSlugYobta.test('-my-name-12')
+    const result = reSlugYobta.test('-my-name-12')
     expect(result).toBe(false)
   })
   it('can not end with a hyphen', () => {
-    let result = reSlugYobta.test('my-name-12-')
+    const result = reSlugYobta.test('my-name-12-')
     expect(result).toBe(false)
   })
   it('can have length of 2 symbols', () => {
-    let result = reSlugYobta.test('m1')
+    const result = reSlugYobta.test('m1')
     expect(result).toBe(true)
   })
   it('can not be shorter than 2 symbols', () => {
-    let result = reSlugYobta.test('m')
+    const result = reSlugYobta.test('m')
     expect(result).toBe(false)
   })
 })
 
 describe('reEmailYobta', () => {
-  let validEmails = [
+  const validEmails = [
     'simple@example.com',
     'very.common@example.com',
     'disposable.style.email.with+symbol@example.com',
@@ -50,7 +50,7 @@ describe('reEmailYobta', () => {
     'user%example.com@example.org',
     'user-@example.org',
   ]
-  let invalidEmails = [
+  const invalidEmails = [
     'admin@mailserver1',
     'Abc.example.com',
     'A@b@c@example.com',
@@ -64,13 +64,13 @@ describe('reEmailYobta', () => {
   ]
   validEmails.forEach(option => {
     it(`accepts ${option}`, async () => {
-      let result = reEmailYobta.test(option)
+      const result = reEmailYobta.test(option)
       expect(result).toBe(true)
     })
   })
   invalidEmails.forEach(option => {
     it(`accepts ${option}`, async () => {
-      let result = reEmailYobta.test(option)
+      const result = reEmailYobta.test(option)
       expect(result).toBe(false)
     })
   })

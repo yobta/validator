@@ -1,5 +1,12 @@
-import {
-  SyncOrAsyncRules,
+import { asyncPipe } from '../_internal/asyncPipe/index.js'
+import { createContext } from '../_internal/createContext/index.js'
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type {
+  Functions,
+  PipedFactories,
+  PipeFactoryResult,
+} from '../_internal/pipe/index.js'
+import type {
   AsyncRulesChain1,
   AsyncRulesChain2,
   AsyncRulesChain3,
@@ -9,12 +16,9 @@ import {
   AsyncRulesChain7,
   AsyncRulesChain8,
   AsyncRulesChain9,
+  SyncOrAsyncRules,
 } from '../ruleYobta/index.js'
-import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import { PipedFactories, PipeFactoryResult } from '../_internal/pipe/index.js'
-import { asyncPipe } from '../_internal/asyncPipe/index.js'
-import { createContext } from '../_internal/createContext/index.js'
-import { YobtaError } from '../YobtaError/index.js'
+import type { YobtaError } from '../YobtaError/index.js'
 
 //#region Types
 export type AsyncYobtaRule<I, O> = (input: I) => Promise<O>
@@ -34,16 +38,15 @@ export interface AsyncYobtaFactory {
   <R1, R2, R3, R4, R5>(
     ...rules: AsyncRulesChain5<R1, R2, R3, R4, R5>
   ): AsyncYobtaRule<any, R5>
-  <R1, R2, R3, R4>(...rules: AsyncRulesChain4<R1, R2, R3, R4>): AsyncYobtaRule<
-    any,
-    R4
-  >
+  <R1, R2, R3, R4>(
+    ...rules: AsyncRulesChain4<R1, R2, R3, R4>
+  ): AsyncYobtaRule<any, R4>
   <R1, R2, R3>(...rules: AsyncRulesChain3<R1, R2, R3>): AsyncYobtaRule<any, R3>
   <R1, R2>(...rules: AsyncRulesChain2<R1, R2>): AsyncYobtaRule<any, R2>
   <R1>(...rules: AsyncRulesChain1<R1>): AsyncYobtaRule<any, R1>
-  <R extends SyncOrAsyncRules>(...rules: PipedFactories<R>): (
-    input: any,
-  ) => Promise<Success<R> | Failure>
+  <R extends SyncOrAsyncRules>(
+    ...rules: PipedFactories<R>
+  ): (input: any) => Promise<Failure | Success<R>>
 }
 export type Success<R extends SyncOrAsyncRules> = [PipeFactoryResult<R>, null]
 export type Failure = [null, YobtaError[]]
@@ -54,18 +57,18 @@ const field = '@'
 export const asyncYobta: AsyncYobtaFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (data: any) => {
-    let context = createContext(data)
+    const context = createContext(data)
 
-    let validators = rules.map(next => next(context)) as SyncOrAsyncRules
+    const validators = rules.map(next => next(context)) as Functions
 
     try {
-      let result: PipeFactoryResult<R> = await asyncPipe(...validators)(data)
+      const result: PipeFactoryResult<R> = await asyncPipe(...validators)(data)
       if (context.errors.length) {
         return [null, context.errors] as Failure
       }
       return [result, null] as Success<R>
     } catch (error) {
-      let yobtaError = handleUnknownError({ error, field, path: [] })
+      const yobtaError = handleUnknownError({ error, field, path: [] })
       context.pushError(yobtaError)
       return [null, context.errors] as Failure
     }

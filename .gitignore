@@ -4,4 +4,4 @@ yarn-error.log
 coverage/
 lib
 
-.vscode
+tsconfig.build.json

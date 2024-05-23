@@ -1,5 +1,6 @@
 import { reEmailYobta } from '../regularExpressions/index.js'
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const emailMessage = 'It should be an email'
 
@@ -10,7 +11,7 @@ interface EmailFactory {
 export const emailYobta: EmailFactory = (message = emailMessage) =>
   ruleYobta(value => {
     if (typeof value === 'string') {
-      let trimmed = value.trim()
+      const trimmed = value.trim()
       if (reEmailYobta.test(trimmed)) {
         return trimmed
       }

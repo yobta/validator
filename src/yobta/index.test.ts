@@ -2,42 +2,42 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { yobta } from './'
 import {
   booleanYobta,
   catchYobta,
   enumYobta,
   minCharactersYobta,
   numberYobta,
-  stringYobta,
-  shapeYobta,
   requiredYobta,
+  shapeYobta,
+  stringYobta,
   urlSearchParamsYobta,
 } from '../'
+import { yobta } from './'
 
-let validate = yobta(numberYobta('yobta!'))
+const validate = yobta(numberYobta('yobta!'))
 
 it('accepts valid', () => {
-  let result = validate(1)
+  const result = validate(1)
   expect(result).toBe(1)
 })
 
 it('can pipe rules', () => {
-  let validateMultiple = yobta(
+  const validateMultiple = yobta(
     stringYobta(),
     requiredYobta(),
     minCharactersYobta(5),
   )
-  let result = validateMultiple('yobta')
+  const result = validateMultiple('yobta')
   expect(result).toBe('yobta')
 })
 
 it('rejects invalid', () => {
-  let attempt = (): any => validate([])
+  const attempt = (): any => validate([])
   expect(attempt).toThrow('yobta!')
 })
 
-let validateSearch = yobta(
+const validateSearch = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [
@@ -66,10 +66,10 @@ it('extracts state from url', () => {
 })
 
 it("prevents form submit and doesn't prevent change", () => {
-  let form = document.createElement('form')
-  let submitEvent = createEvent.submit(form)
-  let changeEvent = createEvent.change(form)
-  let validateEvent = yobta(requiredYobta())
+  const form = document.createElement('form')
+  const submitEvent = createEvent.submit(form)
+  const changeEvent = createEvent.change(form)
+  const validateEvent = yobta(requiredYobta())
 
   jest.spyOn(submitEvent, 'preventDefault')
   jest.spyOn(changeEvent, 'preventDefault')
