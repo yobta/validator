@@ -1,44 +1,44 @@
 /* eslint-disable import/extensions */
 import { yobta } from '../yobta'
-import { stringYobta, stringMessage } from './'
+import { stringMessage, stringYobta } from './'
 
 const customMessage = 'yobta!'
 const validate = yobta(stringYobta(customMessage))
 
 describe('stringYobta', () => {
   it('accepts strings', () => {
-    let result = validate('yobta')
+    const result = validate('yobta')
     expect(result).toBe('yobta')
   })
 
   it('accepts undefined', () => {
-    let result = validate(undefined)
+    const result = validate(undefined)
     expect(result).toBe('')
   })
 
   it('coerces null', () => {
-    let result = validate(null)
+    const result = validate(null)
     expect(result).toBe('')
   })
 
   it('coerces number', () => {
-    let result = validate(1)
+    const result = validate(1)
     expect(result).toBe('1')
   })
 
   it('coerces booelan', () => {
-    let result = validate(true)
+    const result = validate(true)
     expect(result).toBe('true')
   })
 
   it('coerces string object', () => {
     // eslint-disable-next-line no-new-wrappers
-    let result = validate(new String('yobta'))
+    const result = validate(new String('yobta'))
     expect(result).toBe('yobta')
   })
 
   it('rejects invalid', () => {
-    let variants = [
+    const variants = [
       [],
       {},
       new Date(),
@@ -48,15 +48,15 @@ describe('stringYobta', () => {
       () => 'yobta',
     ]
     variants.forEach(variant => {
-      let attempt = (): any => validate(variant)
+      const attempt = (): any => validate(variant)
       expect(attempt).toThrow(customMessage)
     })
   })
 
   it('has default error message', () => {
-    let rule = stringYobta()
-    let validateDefault = yobta(rule)
-    let attempt = (): any => validateDefault([])
+    const rule = stringYobta()
+    const validateDefault = yobta(rule)
+    const attempt = (): any => validateDefault([])
     expect(attempt).toThrow(stringMessage)
   })
 })

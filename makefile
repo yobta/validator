@@ -4,6 +4,9 @@ build:
 lint:
 	npm run lint
 
+lf:
+	npm run lint:fix
+
 size-limit: build
 	npm run size-limit
 
@@ -25,12 +28,11 @@ bump:
 	git add .
 	git push
 
-deps:
-	run ncu
-	npm i --force
-
 publish: check bump
 	npm publish
 
 browserslist:
 	npx browserslist@latest --update-db
+
+up:
+	pnpm up -L

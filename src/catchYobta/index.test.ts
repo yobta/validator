@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { catchYobta } from './'
+import { minCharactersYobta } from '../minCharactersYobta'
+import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
-import { requiredYobta } from '../requiredYobta'
-import { minCharactersYobta } from '../minCharactersYobta'
+import { catchYobta } from './'
 
 const validate = yobta(
   catchYobta(
@@ -15,11 +15,11 @@ const validate = yobta(
 )
 
 it('does not catch when no errors', () => {
-  let result = validate('yobta')
+  const result = validate('yobta')
   expect(result).toEqual('yobta')
 })
 
 it('catches when errors', () => {
-  let result = validate('')
+  const result = validate('')
   expect(result).toEqual('catched yobta!')
 })

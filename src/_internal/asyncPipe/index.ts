@@ -1,8 +1,8 @@
-import {
-  Func1,
+import type {
   ArgType,
-  Lookup,
+  Func1,
   Functions,
+  Lookup,
   PipeResult,
   Tail,
 } from '../pipe/index.js'
@@ -23,8 +23,9 @@ type PromiseChain<
 export const asyncPipe =
   <F extends Functions>(...functions: PipedPromices<F>) =>
   (input: ArgType<F[0]>): Promise<PipeResult<F>> => {
-    return functions.reduce(
+    const resultingPromise = functions.reduce(
       (prev, next) => prev.then(next),
       Promise.resolve(input),
     ) as Promise<PipeResult<F>>
+    return resultingPromise
   }

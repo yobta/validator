@@ -1,14 +1,15 @@
-import { shapeMessage } from '../index.js'
-import {
-  ruleYobta,
-  SyncRule,
-  AnySyncOrAsyncRule,
-  SyncOrAsyncRules,
-} from '../ruleYobta/index.js'
+import { asyncPipe } from '../_internal/asyncPipe/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import { PipeFactoryResult, PipedFactories } from '../_internal/pipe/index.js'
-import { asyncPipe } from '../_internal/asyncPipe/index.js'
+import type { PipedFactories, PipeFactoryResult } from '../_internal/pipe/index.js'
+import { shapeMessage } from '../index.js'
+import type {
+  AnySyncOrAsyncRule,
+  SyncOrAsyncRules,
+  SyncRule} from '../ruleYobta/index.js';
+import {
+  ruleYobta
+} from '../ruleYobta/index.js'
 
 type Rules = Record<PropertyKey, SyncOrAsyncRules>
 
@@ -41,11 +42,11 @@ export const awaitShapeYobta: AwaitShapeFactory = (
       throw new Error(validationMessage)
     }
 
-    let result = await Object.entries(rulesSet).reduce(
+    const result = await Object.entries(rulesSet).reduce(
       async (acc, [field, rules]) => {
         acc = await acc
-        let path = [...context.path, field]
-        let tests = rules.map((rule: AnySyncOrAsyncRule) =>
+        const path = [...context.path, field]
+        const tests = rules.map((rule: AnySyncOrAsyncRule) =>
           rule({
             ...context,
             data,
@@ -57,7 +58,7 @@ export const awaitShapeYobta: AwaitShapeFactory = (
         try {
           next = await asyncPipe(...tests)(next)
         } catch (error) {
-          let yobtaError = handleUnknownError({ error, field, path })
+          const yobtaError = handleUnknownError({ error, field, path })
           context.pushError(yobtaError)
         }
         return { ...acc, [field]: next }

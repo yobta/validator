@@ -1,6 +1,7 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
-let coercedTypes = new Set(['string', 'boolean', 'number'])
+const coercedTypes = new Set(['string', 'boolean', 'number'])
 
 export const numberMessage = 'It should be a number'
 
@@ -24,7 +25,7 @@ export const numberYobta: NumberFactory = (message = numberMessage) =>
       }
     }
     if (coercedTypes.has(typeof value)) {
-      let number = Number(value)
+      const number = Number(value)
       if (Number.isFinite(number)) {
         return number
       }

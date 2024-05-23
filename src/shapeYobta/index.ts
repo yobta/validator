@@ -1,31 +1,33 @@
-import {
-  ruleYobta,
-  SyncRule,
-  AnySyncRule,
-  SyncRules,
-} from '../ruleYobta/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import {
-  pipe,
-  PipeFactoryResult,
+import type {
   PipedFactories,
+  PipeFactoryResult} from '../_internal/pipe/index.js';
+import {
+  pipe
 } from '../_internal/pipe/index.js'
+import type {
+  AnySyncRule,
+  SyncRule,
+  SyncRules} from '../ruleYobta/index.js';
+import {
+  ruleYobta
+} from '../ruleYobta/index.js'
 
-type Rules = Record<PropertyKey, SyncRules>
+type SyncRulesRecord = Record<PropertyKey, SyncRules>
 
-type Result<F extends Rules> = {
-  [Property in keyof F]: PipeFactoryResult<F[Property]>
+type Config<F extends SyncRulesRecord> = {
+  [K in keyof F]: PipedFactories<F[K]>
 }
 
-type Config<F extends Rules> = {
-  [K in keyof F]: PipedFactories<F[K]>
+type Result<F extends SyncRulesRecord> = {
+  [Property in keyof F]: PipeFactoryResult<F[Property]>
 }
 
 export const shapeMessage = 'It should be a plain object'
 
-export const shapeYobta = <F extends Rules>(
-  rulesSet: Config<F>,
+export const shapeYobta = <F extends SyncRulesRecord>(
+  rulesMap: Config<F>,
   validationMessage = shapeMessage,
 ): SyncRule<any, Result<F> | undefined> =>
   ruleYobta((data, context) => {
@@ -34,9 +36,9 @@ export const shapeYobta = <F extends Rules>(
     }
 
     return (data &&
-      Object.entries(rulesSet).reduce((acc, [field, rules]) => {
-        let path = [...context.path, field]
-        let tests = rules.map((rule: AnySyncRule) =>
+      Object.entries(rulesMap).reduce((acc, [field, rules]) => {
+        const path = [...context.path, field]
+        const tests = rules.map((rule: AnySyncRule) =>
           rule({
             ...context,
             data,
@@ -48,7 +50,7 @@ export const shapeYobta = <F extends Rules>(
         try {
           next = pipe(...tests)(next)
         } catch (error) {
-          let yobtaError = handleUnknownError({ error, field, path })
+          const yobtaError = handleUnknownError({ error, field, path })
           context.pushError(yobtaError)
         }
         return { ...acc, [field]: next }

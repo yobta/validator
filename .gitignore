@@ -4,4 +4,5 @@ yarn-error.log
 coverage/
 lib
 
-.vscode
+pnpm-lock.yaml
+tsconfig.build.json

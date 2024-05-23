@@ -1,4 +1,5 @@
-import { YobtaError, YobtaErrorPath } from '../../YobtaError/index.js'
+import type { YobtaErrorPath } from '../../YobtaError/index.js';
+import { YobtaError } from '../../YobtaError/index.js'
 
 interface UnknownErrorInput {
   error: unknown
@@ -17,6 +18,6 @@ export const handleUnknownError: HandleUnknownError = ({
   if (error instanceof YobtaError) {
     return error
   }
-  let message = error instanceof Error ? error.message : String(error)
-  return new YobtaError({ message, field, path })
+  const message = error instanceof Error ? error.message : String(error)
+  return new YobtaError({ field, message, path })
 }

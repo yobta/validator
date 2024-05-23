@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { delay } from 'nanodelay'
 import { jest } from '@jest/globals'
+import { delay } from 'nanodelay'
 
 import { asyncPipe } from './'
 
@@ -11,23 +11,23 @@ const toString = (input: number): string => input.toString()
 
 describe('asyncPipe', () => {
   it('pipes one function', async () => {
-    let result = await asyncPipe(addOne)(0)
+    const result = await asyncPipe(addOne)(0)
     expect(result).toBe(1)
   })
 
   it('pipes two functions', async () => {
-    let result = await asyncPipe(addOne, subtractOne)(0)
+    const result = await asyncPipe(addOne, subtractOne)(0)
     expect(result).toBe(0)
   })
 
   it('pipes many functions', async () => {
-    let result = await asyncPipe(addOne, subtractOne, addOne, toString)(0)
+    const result = await asyncPipe(addOne, subtractOne, addOne, toString)(0)
     expect(result).toBe('1')
   })
 
   it('has no racing condition', async () => {
-    let spy = jest.fn()
-    let validate = asyncPipe(
+    const spy = jest.fn()
+    const validate = asyncPipe(
       (a: number) => {
         spy(a)
         return 1
@@ -42,7 +42,7 @@ describe('asyncPipe', () => {
         return 3
       },
     )
-    let result = await validate(0)
+    const result = await validate(0)
 
     expect(result).toBe(3)
 

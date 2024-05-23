@@ -1,8 +1,9 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
+import type { SyncYobtaRule } from '../'
+import { stringMessage, stringYobta, yobta } from '../'
 import { successYobta } from './'
-import { yobta, SyncYobtaRule, stringYobta, stringMessage } from '../'
 
 function mockValidate(spy: Function): SyncYobtaRule<any, any> {
   return yobta(
@@ -14,9 +15,9 @@ function mockValidate(spy: Function): SyncYobtaRule<any, any> {
 }
 
 it('fires when it is valid', async () => {
-  let spy = jest.fn()
-  let validate = mockValidate(spy)
-  let result = validate('yobta')
+  const spy = jest.fn()
+  const validate = mockValidate(spy)
+  const result = validate('yobta')
 
   expect(result).toEqual('yobta')
   expect(spy).toHaveBeenCalledWith('yobta', {
@@ -30,8 +31,8 @@ it('fires when it is valid', async () => {
 })
 
 it('does not fire when invalid', async () => {
-  let spy = jest.fn()
-  let validate = mockValidate(spy)
+  const spy = jest.fn()
+  const validate = mockValidate(spy)
 
   expect(() => validate({})).toThrow(stringMessage)
   expect(spy).toHaveBeenCalledTimes(0)

@@ -1,6 +1,7 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
-type TrustedItems = (string | number | symbol)[]
+type TrustedItems = (number | string | symbol)[]
 
 interface EnumMessage {
   (items: TrustedItems): string

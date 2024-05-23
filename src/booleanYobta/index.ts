@@ -1,10 +1,11 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 const truthySet = new Set([1, '1', 'yes', 'true'])
 const falsySet = new Set([0, '0', 'no', 'false', 'null', null])
 
 function coerce(input: any): boolean {
-  let lowerCasedInput = typeof input === 'string' ? input.toLowerCase() : input
+  const lowerCasedInput = typeof input === 'string' ? input.toLowerCase() : input
   if (falsySet.has(lowerCasedInput)) return false
   else if (truthySet.has(lowerCasedInput)) return true
   return input
@@ -18,7 +19,7 @@ interface BooleanFactory {
 
 export const booleanYobta: BooleanFactory = message =>
   ruleYobta(input => {
-    let value = coerce(input)
+    const value = coerce(input)
 
     if (typeof value === 'boolean' || typeof value === 'undefined') {
       return value

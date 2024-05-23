@@ -1,17 +1,17 @@
 /* eslint-disable import/extensions */
-import { handleUnknownError } from './'
 import { YobtaError } from '../../YobtaError'
+import { handleUnknownError } from './'
 
 describe('handleUnknownError', () => {
   it('can parse error', () => {
-    let error = new YobtaError({ field: '@', message: 'yobta', path: [] })
-    let result = handleUnknownError({ error, field: '', path: ['p'] })
+    const error = new YobtaError({ field: '@', message: 'yobta', path: [] })
+    const result = handleUnknownError({ error, field: '', path: ['p'] })
     expect(result).toEqual(error)
   })
 
   it('can parse non-error', () => {
-    let nonError = [1]
-    let result = handleUnknownError({
+    const nonError = [1]
+    const result = handleUnknownError({
       error: nonError,
       field: '@',
       path: [],

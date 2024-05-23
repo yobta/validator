@@ -1,4 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const minimumYobtaMessage = (limit: number): string =>
   `It should be at least ${limit}`

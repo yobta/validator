@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.46
+
+- updated dev deps, changed let to const
+
 ## 0.0.45
 
 - const vlidator

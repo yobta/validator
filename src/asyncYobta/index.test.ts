@@ -2,22 +2,22 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta } from './'
 import { effectYobta } from '../'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
+import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
-import { enumYobta } from '../enumYobta'
 import { requiredYobta } from '../requiredYobta'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
+import { asyncYobta } from './'
 
-let validate = asyncYobta(numberYobta('yobta!'))
+const validate = asyncYobta(numberYobta('yobta!'))
 
-let validateSearch = asyncYobta(
+const validateSearch = asyncYobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [
@@ -33,23 +33,23 @@ let validateSearch = asyncYobta(
 
 describe('asyncYobta', () => {
   it('accepts valid', async () => {
-    let result = await validate(1)
+    const result = await validate(1)
     expect(result).toEqual([1, null])
   })
 
   it('can pipe rules', async () => {
-    let validateMultiple = asyncYobta(
+    const validateMultiple = asyncYobta(
       stringYobta(),
       requiredYobta(),
       minCharactersYobta(5),
     )
-    let result = await validateMultiple('yobta')
+    const result = await validateMultiple('yobta')
     expect(result).toEqual(['yobta', null])
   })
 
   it('rejects invalid', async () => {
-    let attempt = async (): Promise<any> => await validate([])
-    let result = await attempt()
+    const attempt = async (): Promise<any> => await validate([])
+    const result = await attempt()
     expect(result).toEqual([
       null,
       [
@@ -63,7 +63,7 @@ describe('asyncYobta', () => {
   })
 
   it("creates default state when can't extract it from url", async () => {
-    let result = await validateSearch('')
+    const result = await validateSearch('')
     expect(result).toEqual([
       {
         currentTab: 'tab-1',
@@ -86,25 +86,25 @@ describe('asyncYobta', () => {
   })
 
   it('captures context errors', async () => {
-    let error: YobtaError = {
-      name: 'error',
-      message: 'yobta',
-      path: [],
+    const error: YobtaError = {
       field: '@',
+      message: 'yobta',
+      name: 'error',
+      path: [],
     }
-    let validateContext = asyncYobta(({ pushError }) => (item: any) => {
+    const validateContext = asyncYobta(({ pushError }) => (item: any) => {
       if (typeof item !== 'string') pushError(error)
       return item
     })
-    let result = await validateContext(1)
+    const result = await validateContext(1)
     expect(result).toEqual([null, [error]])
   })
 
   it("prevents form submit and doesn't prevent change", async () => {
-    let form = document.createElement('form')
-    let submitEvent = createEvent.submit(form)
-    let changeEvent = createEvent.change(form)
-    let validateEvent = asyncYobta(requiredYobta())
+    const form = document.createElement('form')
+    const submitEvent = createEvent.submit(form)
+    const changeEvent = createEvent.change(form)
+    const validateEvent = asyncYobta(requiredYobta())
 
     jest.spyOn(submitEvent, 'preventDefault')
     jest.spyOn(changeEvent, 'preventDefault')
@@ -117,12 +117,12 @@ describe('asyncYobta', () => {
   })
 
   it('preserves yobta error', async () => {
-    let yobtaError = new YobtaError({
+    const yobtaError = new YobtaError({
       field: 'yobta',
       message: 'yobta',
       path: [],
     })
-    let result = await asyncYobta(
+    const result = await asyncYobta(
       shapeYobta({
         name: [
           effectYobta<any>(() => {

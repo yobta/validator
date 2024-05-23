@@ -1,4 +1,5 @@
-import { ruleYobta, SyncRule } from '../ruleYobta/index.js'
+import type { SyncRule } from '../ruleYobta/index.js';
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export const dateMessage = 'It should be a date'
 
@@ -8,7 +9,7 @@ export const dateYobta = (
   ruleYobta(input => {
     if (typeof input === 'undefined') return input
 
-    let value = new Date(input)
+    const value = new Date(input)
 
     if (isNaN(value.getTime()) || input === null) throw new Error(message)
 

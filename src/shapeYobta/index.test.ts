@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
-import { shapeYobta, shapeMessage } from './'
-import { yobta } from '../yobta/'
-import { stringYobta, stringMessage } from '../stringYobta/'
-import { requiredYobta } from '../requiredYobta/'
 import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '../'
+import { requiredYobta } from '../requiredYobta/'
+import { stringMessage, stringYobta } from '../stringYobta/'
+import { yobta } from '../yobta/'
 import { YobtaError } from '../YobtaError/'
+import { shapeMessage, shapeYobta } from './'
 
 const validate = yobta(
   shapeYobta({
@@ -14,32 +14,32 @@ const validate = yobta(
 
 describe('shapeYobta', () => {
   it('accepts valid shapes', () => {
-    let result = validate({
+    const result = validate({
       name: 'yobta',
     })
     expect(result).toEqual({ name: 'yobta' })
   })
 
   it('accepts valid shapes with overload', () => {
-    let result = validate({
-      name: 'yobta',
+    const result = validate({
       age: 0,
+      name: 'yobta',
     })
-    expect(result).toEqual({ name: 'yobta', age: 0 })
+    expect(result).toEqual({ age: 0, name: 'yobta' })
   })
 
   it('rejects invalid input', () => {
-    let attempt = (): any => validate([])
+    const attempt = (): any => validate([])
     expect(attempt).toThrow(shapeMessage)
   })
 
   it('can be undefined', () => {
-    let result = validate(undefined)
+    const result = validate(undefined)
     expect(result).toBeUndefined()
   })
 
   it('has custom error messages', () => {
-    let attempt = (): any =>
+    const attempt = (): any =>
       yobta(
         shapeYobta(
           {
@@ -52,7 +52,7 @@ describe('shapeYobta', () => {
   })
 
   it('captures errors from field validators', () => {
-    let attempt = (): any =>
+    const attempt = (): any =>
       validate({
         name: [],
       })
@@ -60,38 +60,40 @@ describe('shapeYobta', () => {
   })
 
   it('preserves yobta error', () => {
-    let yobtaError = new YobtaError({
+    const yobtaError = new YobtaError({
       field: 'yobta',
       message: 'yobta',
       path: [],
     })
-    let attempt = (): any =>
+    const attempt = (): any =>
       yobta(
         shapeYobta({
           name: [
-            effectYobta(() => {
+            effectYobta<string>(() => {
               throw yobtaError
             }),
           ],
         }),
-      )({})
+      )({
+        name: 'yobta',
+      })
     expect(attempt).toThrow(yobtaError)
   })
   it('should replace context.data', () => {
-    let replaced = {
-      password: 'old yobta',
+    const replaced = {
       newPassword: 'new yobta',
+      password: 'old yobta',
       retypePassword: 'new yobta',
     }
-    let attempt = yobta(
+    const attempt = yobta(
       defaultYobta(replaced),
       shapeYobta({
-        password: [stringYobta()],
         newPassword: [differentYobta(['password'])],
+        password: [stringYobta()],
         retypePassword: [identicalYobta(['newPassword'])],
       }),
     )
-    let result = attempt(undefined)
+    const result = attempt(undefined)
     expect(result).toEqual(replaced)
   })
 })

@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { effectYobta } from './'
 import { yobta } from '../yobta'
+import { effectYobta } from './'
 
 it('calls effect and returns data unmodified', () => {
-  let spy = jest.fn()
-  let validate = yobta(effectYobta(spy))
-  let data = {}
-  let result = validate(data)
+  const spy = jest.fn()
+  const validate = yobta(effectYobta(spy))
+  const data = {}
+  const result = validate(data)
   expect(result).toBe(result)
   expect(spy).toHaveBeenCalledWith(
     {},

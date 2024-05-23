@@ -1,18 +1,18 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { awaitSubmitYobta } from './'
+import type { AsyncYobtaRule } from '..'
 import {
   asyncYobta,
-  AsyncYobtaRule,
   formYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
 } from '..'
+import type { YobtaContext } from '../_internal/createContext'
 import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
-import { YobtaContext } from '../_internal/createContext'
+import { awaitSubmitYobta } from './'
 
 function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
   return asyncYobta(
@@ -29,9 +29,9 @@ function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
 
 describe('awaitSubmitYobta', () => {
   it('submits when it is valid and context has submit event', async () => {
-    let spy = jest.fn()
-    let validate = mockValidate(spy)
-    let result = await mockForm(
+    const spy = jest.fn()
+    const validate = mockValidate(spy)
+    const result = await mockForm(
       '<input type="text" name="name" value="yobta" />',
     ).submit(validate)
 
@@ -41,8 +41,8 @@ describe('awaitSubmitYobta', () => {
       { name: 'yobta' },
       {
         data: expect.any(Event),
-        event: expect.any(Event),
         errors: [],
+        event: expect.any(Event),
         field: '@',
         form: expect.any(HTMLFormElement),
         path: [],
@@ -51,26 +51,26 @@ describe('awaitSubmitYobta', () => {
     )
   })
   it('submits when it is valid and context has synthetic submit event', async () => {
-    let spy = jest.fn()
-    let validate = mockValidate(spy)
-    let form = document.createElement('form')
+    const spy = jest.fn()
+    const validate = mockValidate(spy)
+    const form = document.createElement('form')
     form.innerHTML = '<input type="text" name="name" value="yobta" />'
 
-    let syntheticEvent = {
+    const syntheticEvent = {
       currentTarget: form,
-      type: 'submit',
       target: form,
+      type: 'submit',
     }
 
-    let result = await validate(syntheticEvent)
+    const result = await validate(syntheticEvent)
 
     expect(result).toEqual([{ name: 'yobta' }, null])
     expect(spy).toHaveBeenCalledWith(
       { name: 'yobta' },
       {
         data: syntheticEvent,
-        event: syntheticEvent,
         errors: [],
+        event: syntheticEvent,
         field: '@',
         form: expect.any(HTMLFormElement),
         path: [],
@@ -80,9 +80,9 @@ describe('awaitSubmitYobta', () => {
   })
 
   it('does not submit data when it is valid but the event type is not submit', async () => {
-    let spy = jest.fn()
-    let validate = mockValidate(spy)
-    let result = await mockForm(
+    const spy = jest.fn()
+    const validate = mockValidate(spy)
+    const result = await mockForm(
       '<input type="text" name="name" value="yobta" />',
     ).change(validate)
 
@@ -91,16 +91,16 @@ describe('awaitSubmitYobta', () => {
   })
 
   it('does not fire when it is not valid and event type is submit', async () => {
-    let spy = jest.fn()
-    let validate = mockValidate(spy)
-    let result = await mockForm('<input name="name" type="text" />').submit(
+    const spy = jest.fn()
+    const validate = mockValidate(spy)
+    const result = await mockForm('<input name="name" type="text" />').submit(
       validate,
     )
 
-    let error = new YobtaError({
+    const error = new YobtaError({
+      field: 'name',
       message: 'Required',
       path: ['name'],
-      field: 'name',
     })
 
     expect(result).toEqual([null, [error]])
@@ -108,17 +108,17 @@ describe('awaitSubmitYobta', () => {
   })
 
   it('catches submit error and pushes it to errors', async () => {
-    let context: YobtaContext = {
+    const context: YobtaContext = {
       data: null,
+      errors: [],
       event: {
         type: 'submit',
       },
-      errors: [],
       field: '@',
       path: [],
       pushError: jest.fn(),
     }
-    let rule = awaitSubmitYobta(async () => {
+    const rule = awaitSubmitYobta(async () => {
       throw new Error('Submit error')
     })
     await rule(context)(null)

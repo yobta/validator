@@ -9,6 +9,6 @@ const arrayFrom = (value: any): any[] =>
 
 export const fromEntries: FromEntries = input =>
   Array.from(input).reduce((acc, [key, value]) => {
-    let next = key in acc ? arrayFrom(acc[key]).concat(value) : value
+    const next = key in acc ? arrayFrom(acc[key]).concat(value) : value
     return { ...acc, [key]: next }
   }, {} as PlainObject)

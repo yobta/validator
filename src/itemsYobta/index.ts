@@ -1,5 +1,12 @@
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type {
+  Functions,
+  PipedFactories,
+  PipeFactoryResult} from '../_internal/pipe/index.js';
 import {
-  ruleYobta,
+  pipe
+} from '../_internal/pipe/index.js'
+import type {
   SyncRule,
   SyncRules,
   SyncRulesChain1,
@@ -8,15 +15,10 @@ import {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7,
-} from '../ruleYobta/index.js'
-import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+  SyncRulesChain7} from '../ruleYobta/index.js';
 import {
-  Functions,
-  pipe,
-  PipedFactories,
-  PipeFactoryResult,
-} from '../_internal/pipe/index.js'
+  ruleYobta
+} from '../ruleYobta/index.js'
 
 export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6, R7>(
@@ -46,7 +48,7 @@ export const itemsYobta: ItemsYobta = <R extends SyncRules>(
   ...rules: R
 ): SyncRule<any[], PipeFactoryResult<R>[]> => {
   return ruleYobta((input: any[], context) => {
-    let next = rules.map(rule => rule(context)) as Functions
+    const next = rules.map(rule => rule(context)) as Functions
 
     return input.map((item, index) => {
       try {
