@@ -2,6 +2,12 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.1.1
+
+- changed validity props, added required unhandled error callback
+- removed mode option
+- added new option validateAllFieldsOnChange
+
 ## 0.0.46
 
 - updated dev deps, changed let to const

@@ -85,7 +85,7 @@ const validate = asyncYobta(
   }),
   awaitSubmitYobta(sendMyFormAsJSON),
   errorsYobta(),
-  validityYobta(), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
+  validityYobta(console.error), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
   effectYobta(toggleFormLock),
 )
 
