@@ -44,22 +44,25 @@ export const validityYobta: ValidityFactory = (
       event.type === 'submit' || validateAllFieldsOnChange
 
     if (shouldReport) {
-      for (const element of [...form.elements].flat().filter(isInputElement)) {
-        updateValidity(element, '')
+      const elements = [...form.elements]
+        .flat()
+        .filter(isInputElement)
+        .reverse()
+
+      const mappedErrors = new Map<string, YobtaError>()
+
+      for (const error of errors) {
+        mappedErrors.set(error.field, error)
       }
 
-      for (const error of [...errors].reverse()) {
-        const namedElements = [form.elements.namedItem(error.field)]
-          .flat()
-          .filter(isInputElement)
+      for (const element of elements) {
+        const error = mappedErrors.get(element.name)
+        updateValidity(element, error?.message || '')
+        mappedErrors.delete(element.name)
+      }
 
-        if (namedElements.length) {
-          for (const element of namedElements) {
-            updateValidity(element, error.message)
-          }
-        } else {
-          onUnhandledError(error)
-        }
+      for (const [, error] of mappedErrors) {
+        onUnhandledError(error)
       }
     } else if (input && !errors.some(({ field }) => field === input.name)) {
       updateValidity(input, '')
