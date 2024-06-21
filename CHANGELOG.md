@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - changed validity props, added required unhandled error callback
 - removed mode option
 - added new option validateAllFieldsOnChange
+- attempt to improve async rules typings
 
 ## 0.0.46
 
