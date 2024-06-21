@@ -2,7 +2,14 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta, requiredYobta, shapeYobta, stringYobta } from '../'
+import {
+  asyncYobta,
+  constYobta,
+  requiredYobta,
+  shapeYobta,
+  stringYobta,
+  YobtaError,
+} from '../'
 import { createContext } from '../_internal/createContext'
 import { formYobta } from '../formYobta'
 import { validityMessage, validityYobta } from './'
@@ -12,58 +19,119 @@ interface FormMock {
     checkbox: HTMLInputElement
     form: HTMLFormElement
     input: HTMLInputElement
+    select: HTMLSelectElement
+    textarea: HTMLTextAreaElement
   }
 }
 const mockForm: FormMock = () => {
   const form = document.createElement('form')
-  const input = document.createElement('input')
-  const checkbox = document.createElement('input')
 
+  const input = document.createElement('input')
   input.setAttribute('type', 'text')
   input.setAttribute('name', 'text')
   form.appendChild(input)
+
+  const checkbox = document.createElement('input')
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('name', 'checkbox')
   form.appendChild(checkbox)
 
-  return { checkbox, form, input }
+  const select = document.createElement('select')
+  select.setAttribute('name', 'select')
+  form.appendChild(select)
+
+  const option1 = document.createElement('option')
+  option1.setAttribute('value', 'option1')
+  select.appendChild(option1)
+
+  const option2 = document.createElement('option')
+  option2.setAttribute('value', 'option2')
+  select.appendChild(option2)
+
+  const textarea = document.createElement('textarea')
+  textarea.setAttribute('name', 'textarea')
+  form.appendChild(textarea)
+
+  return { checkbox, form, input, select, textarea }
 }
+
+const errorHandlerMock = jest.fn()
 
 describe('validityYobta', () => {
   it('throws when gets a non-form event', () => {
     const input = document.createElement('input')
     const data = { currentTarget: input }
     const context = createContext(data)
-
-    expect(() => validityYobta()(context)({})).toThrow(validityMessage)
+    expect(() => validityYobta(errorHandlerMock)(context)({})).toThrow(
+      validityMessage,
+    )
   })
 
   it('throws when gets a non-event and has a custom error message', () => {
     const context = createContext('yobta')
-
     expect(() =>
-      validityYobta({ missingFormMessage: 'yobta!' })(context)({}),
+      validityYobta(errorHandlerMock, { missingFormMessage: 'yobta!' })(
+        context,
+      )({}),
     ).toThrow('yobta!')
   })
 
-  it('sets validity for all errors when event target is form and resets when error is fixed', async () => {
-    const { checkbox, form, input } = mockForm()
+  it('reports validity for buttons, selects, inputs and textareas', async () => {
+    const { checkbox, form, input, select, textarea } = mockForm()
     const validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        checkbox: [stringYobta(), requiredYobta<string>()],
-        text: [stringYobta(), requiredYobta<string>()],
+        button: [requiredYobta(), stringYobta()],
+        checkbox: [requiredYobta(), stringYobta()],
+        select: [requiredYobta(), stringYobta(), constYobta('option2')],
+        text: [requiredYobta(), stringYobta()],
+        textarea: [requiredYobta(), stringYobta()],
       }),
-      validityYobta({ mode: 'all' }),
+      validityYobta(errorHandlerMock),
     )
-
     const submitEvent = createEvent.submit(form)
     Object.defineProperty(submitEvent, 'currentTarget', { value: form })
     Object.defineProperty(submitEvent, 'target', { value: form })
 
-    const changeEvent = createEvent.change(form)
-    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
-    Object.defineProperty(changeEvent, 'target', { value: input })
+    expect(checkbox.checkValidity()).toBe(true)
+    expect(input.checkValidity()).toBe(true)
+    expect(select.checkValidity()).toBe(true)
+    expect(textarea.checkValidity()).toBe(true)
+
+    await validate(submitEvent)
+
+    expect(checkbox.checkValidity()).toBe(false)
+    expect(input.checkValidity()).toBe(false)
+    expect(select.checkValidity()).toBe(false)
+    expect(textarea.checkValidity()).toBe(false)
+
+    checkbox.setAttribute('value', 'yobta')
+    checkbox.checked = true
+    input.setAttribute('value', 'yobta')
+    select.value = 'option2'
+    textarea.textContent = 'yobta'
+
+    await validate(submitEvent)
+
+    expect(checkbox.checkValidity()).toBe(true)
+    expect(input.checkValidity()).toBe(true)
+    expect(select.checkValidity()).toBe(true)
+    expect(textarea.checkValidity()).toBe(true)
+  })
+
+  it('reports validity on submit and restores on input', async () => {
+    const { checkbox, form, input } = mockForm()
+    const validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        checkbox: [requiredYobta(), stringYobta()],
+        text: [requiredYobta(), stringYobta()],
+      }),
+      validityYobta(errorHandlerMock),
+    )
+    const submitEvent = createEvent.submit(form)
+    Object.defineProperty(submitEvent, 'currentTarget', { value: form })
+    Object.defineProperty(submitEvent, 'target', { value: form })
 
     expect(input.checkValidity()).toBe(true)
     expect(checkbox.checkValidity()).toBe(true)
@@ -74,14 +142,16 @@ describe('validityYobta', () => {
     expect(checkbox.checkValidity()).toBe(false)
 
     input.setAttribute('value', 'yobta')
-
+    const changeEvent = createEvent.change(form)
+    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+    Object.defineProperty(changeEvent, 'target', { value: input })
     await validate(changeEvent)
 
     expect(input.checkValidity()).toBe(true)
     expect(checkbox.checkValidity()).toBe(false)
   })
 
-  it('filters errors by input name when event target not a form', async () => {
+  it('does not report input events when validateAllFieldsOnChange is false', async () => {
     const { checkbox, form, input } = mockForm()
     const validate = asyncYobta(
       formYobta(),
@@ -89,77 +159,61 @@ describe('validityYobta', () => {
         checkbox: [stringYobta(), requiredYobta<string>()],
         text: [stringYobta(), requiredYobta<string>()],
       }),
-      validityYobta({ mode: 'all' }),
+      validityYobta(errorHandlerMock, { validateAllFieldsOnChange: false }),
     )
-
     const changeEvent = createEvent.change(input)
     Object.defineProperty(changeEvent, 'currentTarget', { value: form })
     Object.defineProperty(changeEvent, 'target', { value: input })
-
     expect(input.checkValidity()).toBe(true)
     expect(checkbox.checkValidity()).toBe(true)
-
     const result = await validate(changeEvent)
+    expect(result).toEqual([null, expect.any(Array)])
+    expect(input.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(true)
+  })
 
+  it('reports input events when validateAllFieldsOnChange is true', async () => {
+    const { checkbox, form, input } = mockForm()
+    const validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        checkbox: [stringYobta(), requiredYobta<string>()],
+        text: [stringYobta(), requiredYobta<string>()],
+      }),
+      validityYobta(errorHandlerMock, { validateAllFieldsOnChange: true }),
+    )
+    const changeEvent = createEvent.change(input)
+    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+    Object.defineProperty(changeEvent, 'target', { value: input })
+    expect(input.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(true)
+    const result = await validate(changeEvent)
     expect(result).toEqual([null, expect.any(Array)])
     expect(input.checkValidity()).toBe(false)
-    expect(checkbox.checkValidity()).toBe(true)
+    expect(checkbox.checkValidity()).toBe(false)
   })
 
-  it('ignores change when mode is submit-only', async () => {
-    const { checkbox, form, input } = mockForm()
+  it('reports unhandled errors', async () => {
+    const { form, input } = mockForm()
     const validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        checkbox: [stringYobta(), requiredYobta<string>()],
-        text: [stringYobta(), requiredYobta<string>()],
+        inputIsNotInForm: [requiredYobta(), stringYobta()],
+        text: [requiredYobta(), stringYobta()],
       }),
-      validityYobta({ mode: 'submit-only' }),
+      validityYobta(errorHandlerMock),
     )
 
-    const changeEvent = createEvent.change(input)
-    Object.defineProperty(changeEvent, 'currentTarget', { value: form })
-    Object.defineProperty(changeEvent, 'target', { value: input })
-
     expect(input.checkValidity()).toBe(true)
-    expect(checkbox.checkValidity()).toBe(true)
 
-    const result = await validate(changeEvent)
-
-    expect(result).toEqual([null, expect.any(Array)])
-    expect(input.checkValidity()).toBe(true)
-    expect(checkbox.checkValidity()).toBe(true)
-  })
-
-  it('reports errors when mode is submit-only and event type is submit', async () => {
-    const { checkbox, form, input } = mockForm()
-
-    const inputSpy = jest.spyOn(input, 'setCustomValidity')
-    const checkboxSpy = jest.spyOn(checkbox, 'setCustomValidity')
-
-    const validate = asyncYobta(
-      formYobta(),
-      shapeYobta({
-        checkbox: [stringYobta(), requiredYobta<string>()],
-        text: [stringYobta(), requiredYobta<string>()],
-      }),
-      validityYobta({ mode: 'submit-only' }),
-    )
-
-    const submitEvent = createEvent.change(form)
+    const submitEvent = createEvent.submit(form)
     Object.defineProperty(submitEvent, 'currentTarget', { value: form })
     Object.defineProperty(submitEvent, 'target', { value: form })
 
-    expect(input.checkValidity()).toBe(true)
-    expect(checkbox.checkValidity()).toBe(true)
+    await validate(submitEvent)
 
-    const result = await validate(submitEvent)
-
-    expect(result).toEqual([null, expect.any(Array)])
-    expect(inputSpy).not.toHaveBeenCalled()
-    expect(checkboxSpy).not.toHaveBeenCalled()
-
-    inputSpy.mockRestore()
-    checkboxSpy.mockRestore()
+    expect(input.checkValidity()).toBe(false)
+    expect(errorHandlerMock).toHaveBeenCalledTimes(1)
+    expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
   })
 })

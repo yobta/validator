@@ -1,58 +1,68 @@
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaError } from '../YobtaError/index.js'
 
-const submitOnly = 'submit-only'
-const all = 'all'
+type YontaErrorHandler = (error: YobtaError) => void
 
-type ValidityMode = typeof all | typeof submitOnly
 interface ValidityFactory {
-  <I>(props?: { missingFormMessage?: string; mode?: ValidityMode }): SyncRule<
-    I,
-    I
-  >
+  <I>(
+    onUnhandledError: YontaErrorHandler,
+    props?: {
+      missingFormMessage?: string
+      validateAllFieldsOnChange?: boolean
+    },
+  ): SyncRule<I, I>
 }
 
 export const validityMessage = 'Validity expects a form event'
 
-export const validityYobta: ValidityFactory = ({
-  missingFormMessage: invariantMessage = validityMessage,
-  mode = submitOnly,
-} = {}) =>
+type InputElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+
+const isInputElement = (element: unknown): element is InputElement =>
+  element instanceof HTMLInputElement ||
+  element instanceof HTMLSelectElement ||
+  element instanceof HTMLTextAreaElement
+
+const updateValidity = (element: InputElement, message: string = ''): void => {
+  element.setCustomValidity(message)
+  element.reportValidity()
+}
+
+export const validityYobta: ValidityFactory = (
+  onUnhandledError,
+  {
+    missingFormMessage = validityMessage,
+    validateAllFieldsOnChange = false,
+  } = {},
+) =>
   ruleYobta((currentData, { errors, event, form, input }) => {
     if (!form) {
-      throw new Error(invariantMessage)
+      throw new Error(missingFormMessage)
     }
 
-    const filterBy = input?.getAttribute('name')
-    let elements = Array.from(form.elements)
+    const shouldReport: boolean =
+      event.type === 'submit' || validateAllFieldsOnChange
 
-    if (filterBy) {
-      const filteredElements = elements.filter(
-        element => element.getAttribute('name') === filterBy,
-      )
-      if (filteredElements.length) {
-        elements = filteredElements
+    if (shouldReport) {
+      for (const element of [...form.elements].flat().filter(isInputElement)) {
+        updateValidity(element, '')
       }
-    }
 
-    const messages = errors.reduce<Record<string, string>>(
-      (acc, { field, message }) => ({
-        ...acc,
-        [field]: message,
-      }),
-      {},
-    )
+      for (const error of [...errors].reverse()) {
+        const namedElements = [form.elements.namedItem(error.field)]
+          .flat()
+          .filter(isInputElement)
 
-    for (const element of elements.reverse() as unknown as HTMLInputElement[]) {
-      const name = element.getAttribute('name') || ''
-      const message = messages[name] || ''
-      const shouldReport = message
-        ? (mode === submitOnly && event?.type === 'submit') || mode === all
-        : true
-      if (shouldReport) {
-        element.setCustomValidity(message)
-        element.reportValidity()
+        if (namedElements.length) {
+          for (const element of namedElements) {
+            updateValidity(element, error.message)
+          }
+        } else {
+          onUnhandledError(error)
+        }
       }
+    } else if (input && !errors.some(({ field }) => field === input.name)) {
+      updateValidity(input, '')
     }
 
     return currentData
