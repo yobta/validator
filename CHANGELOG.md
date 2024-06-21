@@ -2,12 +2,20 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 0.1.1
+## 0.1.3
+
+- Fixed validity messages order to show message near the first failed form element
+
+## 0.1.2
 
 - changed validity props, added required unhandled error callback
 - removed mode option
 - added new option validateAllFieldsOnChange
 - attempt to improve async rules typings
+
+## 0.1.1
+
+- failed npm publish
 
 ## 0.0.46
 
