@@ -325,7 +325,7 @@
       "import": {
         "lib/index.js": "{ validityYobta }"
       },
-      "limit": "331 B"
+      "limit": "338 B"
     },
     {
       "name": "Success utility",
@@ -385,7 +385,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2512 B"
+      "limit": "2518 B"
     }
   ]
 }

@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.1.4
+
+- Readonly inputs not using reportValidity and sending errors to error handler.
+
 ## 0.1.3
 
 - Fixed validity messages order to show message near the first failed form element
