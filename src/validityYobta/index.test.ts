@@ -18,6 +18,7 @@ interface FormMock {
   (): {
     checkbox: HTMLInputElement
     form: HTMLFormElement
+    hiddenInput: HTMLInputElement
     input: HTMLInputElement
     readonlyInput: HTMLInputElement
     select: HTMLSelectElement
@@ -27,15 +28,20 @@ interface FormMock {
 const mockForm: FormMock = () => {
   const form = document.createElement('form')
 
-  const input = document.createElement('input')
-  input.setAttribute('type', 'text')
-  input.setAttribute('name', 'text')
-  form.appendChild(input)
-
   const checkbox = document.createElement('input')
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('name', 'checkbox')
   form.appendChild(checkbox)
+
+  const hiddenInput = document.createElement('input')
+  hiddenInput.setAttribute('type', 'hidden')
+  hiddenInput.setAttribute('name', 'hidden')
+  form.appendChild(hiddenInput)
+
+  const input = document.createElement('input')
+  input.setAttribute('type', 'text')
+  input.setAttribute('name', 'text')
+  form.appendChild(input)
 
   const readonlyInput = document.createElement('input')
   readonlyInput.setAttribute('type', 'text')
@@ -59,7 +65,7 @@ const mockForm: FormMock = () => {
   textarea.setAttribute('name', 'textarea')
   form.appendChild(textarea)
 
-  return { checkbox, form, input, readonlyInput, select, textarea }
+  return { checkbox, form, hiddenInput, input, readonlyInput, select, textarea }
 }
 
 const errorHandlerMock = jest.fn()
@@ -224,7 +230,7 @@ describe('validityYobta', () => {
     expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
   })
 
-  it('sends error readonly input errors to error handle', async () => {
+  it('does not report readonly inputs', async () => {
     const { form, readonlyInput } = mockForm()
     const validate = asyncYobta(
       formYobta(),
@@ -243,6 +249,29 @@ describe('validityYobta', () => {
     await validate(submitEvent)
 
     expect(readonlyInput.checkValidity()).toBe(true)
+    expect(errorHandlerMock).toHaveBeenCalledTimes(1)
+    expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
+  })
+
+  it('does not report hidden inputs', async () => {
+    const { form, hiddenInput } = mockForm()
+    const validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        hidden: [requiredYobta(), stringYobta()],
+      }),
+      validityYobta(errorHandlerMock),
+    )
+
+    expect(hiddenInput.checkValidity()).toBe(true)
+
+    const submitEvent = createEvent.submit(form)
+    Object.defineProperty(submitEvent, 'currentTarget', { value: form })
+    Object.defineProperty(submitEvent, 'target', { value: form })
+
+    await validate(submitEvent)
+
+    expect(hiddenInput.checkValidity()).toBe(true)
     expect(errorHandlerMock).toHaveBeenCalledTimes(1)
     expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
   })

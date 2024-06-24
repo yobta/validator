@@ -56,7 +56,10 @@ export const validityYobta: ValidityFactory = (
       }
 
       for (const element of reversedElements) {
-        if (!(element as HTMLInputElement).readOnly) {
+        if (
+          !(element as HTMLInputElement).readOnly &&
+          element.type !== 'hidden'
+        ) {
           const error = mappedErrors.get(element.name)
           updateValidity(element, error?.message || '')
           mappedErrors.delete(element.name)
