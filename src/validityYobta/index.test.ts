@@ -19,6 +19,7 @@ interface FormMock {
     checkbox: HTMLInputElement
     form: HTMLFormElement
     input: HTMLInputElement
+    readonlyInput: HTMLInputElement
     select: HTMLSelectElement
     textarea: HTMLTextAreaElement
   }
@@ -36,6 +37,12 @@ const mockForm: FormMock = () => {
   checkbox.setAttribute('name', 'checkbox')
   form.appendChild(checkbox)
 
+  const readonlyInput = document.createElement('input')
+  readonlyInput.setAttribute('type', 'text')
+  readonlyInput.setAttribute('name', 'readonly')
+  readonlyInput.setAttribute('readonly', 'readonly')
+  form.appendChild(readonlyInput)
+
   const select = document.createElement('select')
   select.setAttribute('name', 'select')
   form.appendChild(select)
@@ -52,7 +59,7 @@ const mockForm: FormMock = () => {
   textarea.setAttribute('name', 'textarea')
   form.appendChild(textarea)
 
-  return { checkbox, form, input, select, textarea }
+  return { checkbox, form, input, readonlyInput, select, textarea }
 }
 
 const errorHandlerMock = jest.fn()
@@ -213,6 +220,29 @@ describe('validityYobta', () => {
     await validate(submitEvent)
 
     expect(input.checkValidity()).toBe(false)
+    expect(errorHandlerMock).toHaveBeenCalledTimes(1)
+    expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
+  })
+
+  it('sends error readonly input errors to error handle', async () => {
+    const { form, readonlyInput } = mockForm()
+    const validate = asyncYobta(
+      formYobta(),
+      shapeYobta({
+        readonly: [requiredYobta(), stringYobta()],
+      }),
+      validityYobta(errorHandlerMock),
+    )
+
+    expect(readonlyInput.checkValidity()).toBe(true)
+
+    const submitEvent = createEvent.submit(form)
+    Object.defineProperty(submitEvent, 'currentTarget', { value: form })
+    Object.defineProperty(submitEvent, 'target', { value: form })
+
+    await validate(submitEvent)
+
+    expect(readonlyInput.checkValidity()).toBe(true)
     expect(errorHandlerMock).toHaveBeenCalledTimes(1)
     expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
   })

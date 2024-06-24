@@ -44,7 +44,7 @@ export const validityYobta: ValidityFactory = (
       event.type === 'submit' || validateAllFieldsOnChange
 
     if (shouldReport) {
-      const elements = [...form.elements]
+      const reversedElements = [...form.elements]
         .flat()
         .filter(isInputElement)
         .reverse()
@@ -55,10 +55,12 @@ export const validityYobta: ValidityFactory = (
         mappedErrors.set(error.field, error)
       }
 
-      for (const element of elements) {
-        const error = mappedErrors.get(element.name)
-        updateValidity(element, error?.message || '')
-        mappedErrors.delete(element.name)
+      for (const element of reversedElements) {
+        if (!(element as HTMLInputElement).readOnly) {
+          const error = mappedErrors.get(element.name)
+          updateValidity(element, error?.message || '')
+          mappedErrors.delete(element.name)
+        }
       }
 
       for (const [, error] of mappedErrors) {

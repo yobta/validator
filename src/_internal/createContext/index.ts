@@ -8,7 +8,7 @@ export type YobtaContext = {
   event: any
   field: string
   form?: HTMLFormElement
-  input?: HTMLInputElement | HTMLSelectElement
+  input?: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
   path: Path
   pushError(error: YobtaError): void
 }
