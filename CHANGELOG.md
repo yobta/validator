@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.7
+
+- Array rule is now optional
+
 ## 0.1.6
 
 - Slightly refactiored typings

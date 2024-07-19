@@ -2,7 +2,14 @@ import type { YobtaContext } from '../_internal/createContext/index.js'
 
 // #region SyncRules
 type SyncValidator<I, O> = (input: I, context: YobtaContext) => O
+export type OptionalIfUnkown<I, O> = I extends unknown ? O | undefined : O
+
 export type SyncRule<I, O> = (context: YobtaContext) => (input: I) => O
+
+export type OptionalSyncRule<I, O> = (
+  context: YobtaContext,
+) => (input: I) => OptionalIfUnkown<I, O>
+
 export type SyncRules = [AnySyncRule, ...AnySyncRule[]]
 export type AnySyncRule = SyncRule<any, any>
 
@@ -47,9 +54,11 @@ export type SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7> = [
 
 // #region AsyncRules
 type AsyncValidator<I, O> = (input: I, context: YobtaContext) => Promise<O>
+
 export type AsyncRule<I, O> = (
   context: YobtaContext,
-) => (input: I) => Promise<O>
+) => (input: I) => Promise<OptionalIfUnkown<I, O>>
+
 export type AnyAsyncRule = AsyncRule<any, any>
 export type AnySyncOrAsyncRule = AnyAsyncRule | AnySyncRule
 export type SyncOrAsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]

@@ -12,7 +12,7 @@ it('accepts array', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toEqual([])
+  expect(result).toBeUndefined()
 })
 
 it('accepts strings', () => {
@@ -52,4 +52,12 @@ it('accepts maps', () => {
   const value = new Map([['key', 1]])
   const result = validate(value)
   expect(result).toEqual([['key', 1]])
+})
+
+it('coerces nullish values to empty array', () => {
+  const values = [null, '', '   ', NaN]
+  values.forEach(value => {
+    const result = validate(value)
+    expect(result).toEqual([])
+  })
 })

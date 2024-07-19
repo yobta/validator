@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { isVoid } from './'
 
-const voidValues = ['', '   ', undefined, null, NaN, []]
+const voidValues = ['', '   ', undefined, null, NaN]
 
 voidValues.forEach(value => {
   it(`is void ${value}`, () => {
@@ -12,6 +12,7 @@ voidValues.forEach(value => {
 const values = [
   ' a',
   0,
+  [],
   [1],
   { a: 1 },
   new Date(),

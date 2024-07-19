@@ -18,7 +18,7 @@ function mockValidate(spy: Function): AsyncRuleYobta<any, any> {
   return asyncYobta(
     formYobta(),
     shapeYobta({
-      name: [stringYobta(), requiredYobta<string>()],
+      name: [stringYobta(), requiredYobta()],
     }),
     requiredYobta(),
     awaitSubmitYobta(async (data, context) => {

@@ -6,7 +6,7 @@ import { uniqueYobta } from './'
 
 const customMesage = 'yobta'
 
-const validate = yobta(arrayYobta(), uniqueYobta(customMesage))
+const validate = yobta(arrayYobta(), requiredYobta(), uniqueYobta(customMesage))
 
 it('accepts empty array', () => {
   const result = validate([])

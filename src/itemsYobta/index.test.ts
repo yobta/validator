@@ -1,12 +1,14 @@
 /* eslint-disable import/extensions */
 import { arrayYobta } from '../arrayYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
+import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
 import { itemsYobta } from './'
 
 const validate = yobta(
   arrayYobta(),
+  requiredYobta(),
   itemsYobta(stringYobta(), minCharactersYobta(5)),
 )
 

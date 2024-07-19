@@ -1,6 +1,5 @@
-const voidValues = new Set(['', undefined, null, NaN])
+const voidValues = new Set<unknown>(['', undefined, null, NaN])
 
-export function isVoid(input: any): boolean {
-  const value = typeof input === 'string' ? input.trim() : input
-  return input?.length === 0 || voidValues.has(value)
+export function isVoid(input: unknown): boolean {
+  return voidValues.has(typeof input === 'string' ? input.trim() : input)
 }

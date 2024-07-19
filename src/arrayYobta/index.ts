@@ -1,23 +1,27 @@
 import { isVoid } from '../_internal/isVoid/index.js'
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { OptionalSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-// const iterables = new Set(['number', 'string'])
+function isIterable<T>(value: T): value is Iterable<unknown> & T {
+  return typeof value === 'object' && value !== null && Symbol.iterator in value
+}
 
-export const arrayYobta = (): SyncRule<any, any[]> =>
-  ruleYobta(input => {
+export const arrayYobta = <I>(): OptionalSyncRule<I, any[]> =>
+  ruleYobta<I, any[] | undefined>((input: I): any[] | undefined => {
+    if (input === undefined) {
+      return undefined
+    }
+
     if (isVoid(input)) {
       return []
     }
-    if (typeof input === 'string') {
-      return [input]
-    }
+
     if (Array.isArray(input)) {
       return input
     }
-    const array = Array.from(input)
-    if (array.length) {
-      return array
+
+    if (isIterable(input)) {
+      return Array.from(input)
     }
 
     return [input]

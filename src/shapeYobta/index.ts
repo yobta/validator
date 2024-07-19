@@ -27,7 +27,7 @@ export const shapeMessage = 'It should be a plain object'
 export const shapeYobta = <F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
-): SyncRule<any, ShapeResult<F> | undefined> =>
+): SyncRule<any, ShapeResult<F>> =>
   ruleYobta((data, context) => {
     if (!isPlainObject(data) && typeof data !== 'undefined') {
       throw new Error(validationMessage)

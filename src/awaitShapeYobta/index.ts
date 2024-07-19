@@ -27,7 +27,7 @@ interface AwaitShapeFactory {
   <F extends Rules>(
     rulesSet: Config<F>,
     message?: string,
-  ): SyncRule<any, Promise<Result<F> | undefined>>
+  ): SyncRule<any, Promise<Result<F>>>
 }
 
 export const asyncShapeMessage = 'It should be a plain object'
