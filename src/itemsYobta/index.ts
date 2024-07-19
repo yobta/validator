@@ -1,11 +1,10 @@
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFactories,
-  PipeFactoryResult} from '../_internal/pipe/index.js';
-import {
-  pipe
+  PipeFactoryResult,
+  SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
+import { pipe } from '../_internal/pipe/index.js'
 import type {
   SyncRule,
   SyncRules,
@@ -15,10 +14,9 @@ import type {
   SyncRulesChain4,
   SyncRulesChain5,
   SyncRulesChain6,
-  SyncRulesChain7} from '../ruleYobta/index.js';
-import {
-  ruleYobta
+  SyncRulesChain7,
 } from '../ruleYobta/index.js'
+import { ruleYobta } from '../ruleYobta/index.js'
 
 export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6, R7>(
@@ -27,21 +25,18 @@ export interface ItemsYobta {
   <R1, R2, R3, R4, R5, R6>(
     ...rules: SyncRulesChain6<R1, R2, R3, R4, R5, R6>
   ): SyncRule<any[], R6[]>
-  <R1, R2, R3, R4, R5>(...rules: SyncRulesChain5<R1, R2, R3, R4, R5>): SyncRule<
-    any,
-    R5[]
-  >
-  <R1, R2, R3, R4>(...rules: SyncRulesChain4<R1, R2, R3, R4>): SyncRule<
-    any[],
-    R4[]
-  >
+  <R1, R2, R3, R4, R5>(
+    ...rules: SyncRulesChain5<R1, R2, R3, R4, R5>
+  ): SyncRule<any, R5[]>
+  <R1, R2, R3, R4>(
+    ...rules: SyncRulesChain4<R1, R2, R3, R4>
+  ): SyncRule<any[], R4[]>
   <R1, R2, R3>(...rules: SyncRulesChain3<R1, R2, R3>): SyncRule<any[], R3[]>
   <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncRule<any[], R2[]>
   <R1>(...rules: SyncRulesChain1<R1>): SyncRule<any[], R1[]>
-  <F extends SyncRules>(...rules: PipedFactories<F>): SyncRule<
-    any[],
-    PipeFactoryResult<F>[]
-  >
+  <F extends SyncRules>(
+    ...rules: SyncRulesPipeYobta<F>
+  ): SyncRule<any[], PipeFactoryResult<F>[]>
 }
 
 export const itemsYobta: ItemsYobta = <R extends SyncRules>(

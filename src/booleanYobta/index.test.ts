@@ -46,6 +46,6 @@ it('rejects invalid', () => {
 it('has default error message', () => {
   const rule = booleanYobta()
   const validateDefault = yobta(rule)
-  const attemt = (): any => validateDefault('yobta')
+  const attemt = (): any => validateDefault('')
   expect(attemt).toThrow(booleanMessage)
 })

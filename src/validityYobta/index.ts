@@ -18,10 +18,8 @@ export const validityMessage = 'Validity expects a form event'
 
 type InputElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 
-const isInputElement = (element: unknown): element is InputElement =>
-  element instanceof HTMLInputElement ||
-  element instanceof HTMLSelectElement ||
-  element instanceof HTMLTextAreaElement
+const isInputElement = (element: Element): element is InputElement =>
+  Boolean('setCustomValidity' in element && 'reportValidity' in element)
 
 const updateValidity = (element: InputElement, message: string = ''): void => {
   element.setCustomValidity(message)
