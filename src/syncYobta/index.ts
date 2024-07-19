@@ -2,12 +2,11 @@ import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFactories,
-  PipeFactoryResult} from '../_internal/pipe/index.js';
-import {
-  pipe
+  PipeFactoryResult,
+  SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
-import type { Failure, Success, SyncYobtaRule } from '../index.js'
+import { pipe } from '../_internal/pipe/index.js'
+import type { FailureYobta, SuccessYobta, SyncYobtaRule } from '../index.js'
 import type {
   SyncRules,
   SyncRulesChain1,
@@ -22,8 +21,8 @@ import type {
 //#region Types
 export interface SyncYobtaFactory {
   <R extends SyncRules>(
-    ...rules: PipedFactories<R>
-  ): (input: any) => Failure | Success<R>
+    ...rules: SyncRulesPipeYobta<R>
+  ): (input: any) => FailureYobta | SuccessYobta<R>
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
   ): SyncYobtaRule<any, R7>
@@ -54,12 +53,12 @@ export const syncYobta: SyncYobtaFactory =
     try {
       const result: PipeFactoryResult<R> = pipe(...validators)(data)
       if (context.errors.length) {
-        return [null, context.errors] as Failure
+        return [null, context.errors] as FailureYobta
       }
-      return [result, null] as Success<R>
+      return [result, null] as SuccessYobta<R>
     } catch (error) {
       const yobtaError = handleUnknownError({ error, field, path: [] })
       context.pushError(yobtaError)
-      return [null, context.errors] as Failure
+      return [null, context.errors] as FailureYobta
     }
   }

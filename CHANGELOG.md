@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.6
+
+- Slightly refactiored typings
+- Added utility type PrettyTypeYobta
+
 ## 0.1.5
 
 - No validity reporting on hidden inputs

@@ -1,11 +1,13 @@
 import type { AnySyncRule, SyncRules } from '../../ruleYobta/index.js'
 
-export type PipedFactories<F extends SyncRules> = AsFactoryChain<F> & F
+export type SyncRulesPipeYobta<F extends SyncRules> = AsFactoryChain<F> & F
+
 type AsFactoryChain<F extends SyncRules, T extends AnySyncRule[] = Tail<F>> = {
   [K in keyof F]: (
     arg: ArgType<FactoryProduct<F, T, K>>,
   ) => FactoryProduct<F, T, K>
 }
+
 type FactoryProduct<
   F extends SyncRules,
   T extends AnySyncRule[],

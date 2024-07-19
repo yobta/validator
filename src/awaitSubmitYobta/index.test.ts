@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import type { AsyncYobtaRule } from '..'
+import type { AsyncRuleYobta } from '..'
 import {
   asyncYobta,
   formYobta,
@@ -14,7 +14,7 @@ import { mockForm } from '../_internal/mockForm'
 import { YobtaError } from '../YobtaError'
 import { awaitSubmitYobta } from './'
 
-function mockValidate(spy: Function): AsyncYobtaRule<any, any> {
+function mockValidate(spy: Function): AsyncRuleYobta<any, any> {
   return asyncYobta(
     formYobta(),
     shapeYobta({

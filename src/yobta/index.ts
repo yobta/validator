@@ -1,16 +1,12 @@
-import type {
-  YobtaContext} from '../_internal/createContext/index.js';
-import {
-  createContext
-} from '../_internal/createContext/index.js'
+import type { YobtaContext } from '../_internal/createContext/index.js'
+import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFactories,
-  PipeFactoryResult} from '../_internal/pipe/index.js';
-import {
-  pipe
+  PipeFactoryResult,
+  SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
+import { pipe } from '../_internal/pipe/index.js'
 import type {
   SyncRules,
   SyncRulesChain1,
@@ -42,7 +38,7 @@ export interface YobtaFactory {
   <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncYobtaRule<any, R2>
   <R1>(...rules: SyncRulesChain1<R1>): SyncYobtaRule<any, R1>
   <R extends SyncRules>(
-    ...rules: PipedFactories<R>
+    ...rules: SyncRulesPipeYobta<R>
   ): (input: any) => PipeFactoryResult<R>
 }
 //#endregion

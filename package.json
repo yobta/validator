@@ -143,7 +143,7 @@
       "import": {
         "lib/index.js": "{ booleanYobta }"
       },
-      "limit": "180 B"
+      "limit": "145 B"
     },
     {
       "name": "Minimum items rule",
@@ -325,7 +325,7 @@
       "import": {
         "lib/index.js": "{ validityYobta }"
       },
-      "limit": "346 B"
+      "limit": "330 B"
     },
     {
       "name": "Success utility",
@@ -385,7 +385,7 @@
         "lib/YobtaError/index.js": "{ YobtaError }",
         "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
       },
-      "limit": "2532 B"
+      "limit": "2484 B"
     }
   ]
 }
