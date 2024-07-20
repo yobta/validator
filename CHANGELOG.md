@@ -16,6 +16,7 @@ OptionalSyncRule returtype for:
 - booleanYobta
 - constYobta
 - dateYobta
+- enumYobta
 
 ## 0.1.6
 
