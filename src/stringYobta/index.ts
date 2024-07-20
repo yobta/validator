@@ -1,8 +1,8 @@
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 interface StringFactory {
-  (message?: string): SyncRule<any, string>
+  (message?: string): YobtaOptionalSyncRule<unknown, string>
 }
 
 const coercedTypes = new Set(['number', 'boolean'])
