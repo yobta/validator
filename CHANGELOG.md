@@ -11,6 +11,7 @@
 - differentYobta
 - identicalYobta
 - itemsYobta
+- maximumYobta
 
 OptionalSyncRule returtype for:
 
