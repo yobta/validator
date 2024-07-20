@@ -19,6 +19,7 @@
 - minItemsYobta
 - patterns
 - testYobta
+- uniqueYobta
 
 OptionalSyncRule returtype for:
 
