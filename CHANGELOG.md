@@ -2,13 +2,19 @@
 
 ## 0.1.7
 
-- Array rule is now OptionalSyncRule
-- Improved isPlainObject typings
-- Refactored awaitShapeYobta
-- Refactored shapeYobta
-- booleanYobta is now OptionalSyncRule
-- constYobta is now OptionalSyncRule
-- dateYobta is now OptionalSyncRule
+-Refactored
+
+- isPlainObject
+- awaitShapeYobta
+- shapeYobta
+- defaultYobta
+
+OptionalSyncRule returtype for:
+
+- arrayYobta
+- booleanYobta
+- constYobta
+- dateYobta
 
 ## 0.1.6
 

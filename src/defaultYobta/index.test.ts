@@ -1,5 +1,4 @@
 /* eslint-disable import/extensions */
-import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
 import { defaultYobta } from './'
@@ -24,11 +23,7 @@ values.forEach(value => {
 })
 
 it('pipes', () => {
-  const validateMultiple = yobta(
-    stringYobta(),
-    defaultYobta('yobta'),
-    requiredYobta(),
-  )
+  const validateMultiple = yobta(stringYobta(), defaultYobta('yobta'))
   const result = validateMultiple(null)
   expect(result).toEqual('yobta')
 })
