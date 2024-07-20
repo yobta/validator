@@ -2,71 +2,71 @@ import { asyncPipe } from '../_internal/asyncPipe/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
+  Functions,
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
 import { shapeMessage } from '../index.js'
 import type {
   AnySyncOrAsyncRule,
+  OptionalIfUnkown,
+  OptionalSyncRule,
   SyncOrAsyncRules,
-  SyncRule,
 } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-type Rules = Record<PropertyKey, SyncOrAsyncRules>
+type GenericMapShapeConfig = Record<PropertyKey, SyncOrAsyncRules>
 
-type Result<F extends Rules> = {
-  [Property in keyof F]: PipeFactoryResult<F[Property]>
+type AwaitShapeConfig<Config extends GenericMapShapeConfig> = {
+  [K in keyof Config]: SyncRulesPipeYobta<Config[K]>
 }
 
-type Config<F extends Rules> = {
-  [K in keyof F]: SyncRulesPipeYobta<F[K]>
+type ValidResults<F extends GenericMapShapeConfig> = {
+  [Key in keyof F]: PipeFactoryResult<F[Key]>
 }
 
-interface AwaitShapeFactory {
-  <F extends Rules>(
-    rulesSet: Config<F>,
-    message?: string,
-  ): SyncRule<any, Promise<Result<F>>>
-}
+type MapShapeValidationResults<
+  I,
+  F extends GenericMapShapeConfig,
+> = OptionalIfUnkown<I, ValidResults<F>>
 
 export const asyncShapeMessage = 'It should be a plain object'
 
-export const awaitShapeYobta: AwaitShapeFactory = (
-  rulesSet,
-  validationMessage = shapeMessage,
-) =>
-  ruleYobta(async (data, context) => {
-    if (typeof data === 'undefined') {
-      return data
-    }
-    if (!isPlainObject(data)) {
-      throw new Error(validationMessage)
-    }
+export const awaitShapeYobta = <
+  I,
+  F extends GenericMapShapeConfig = GenericMapShapeConfig,
+>(
+  rulesSet: AwaitShapeConfig<F>,
+  validationMessage: string = shapeMessage,
+): OptionalSyncRule<I, Promise<MapShapeValidationResults<I, F>>> =>
+  ruleYobta<I, Promise<MapShapeValidationResults<I, F>>>(
+    async (data, context) => {
+      if (data === undefined) {
+        return undefined
+      }
 
-    const result = await Object.entries(rulesSet).reduce(
-      async (acc, [field, rules]) => {
-        acc = await acc
+      if (!isPlainObject(data)) {
+        throw new Error(validationMessage)
+      }
+
+      const result = { ...data } as ValidResults<F>
+
+      for await (const field of Object.keys(rulesSet)) {
         const path = [...context.path, field]
-        const tests = rules.map((rule: AnySyncOrAsyncRule) =>
-          rule({
-            ...context,
-            data,
-            field,
-            path,
-          }),
+        const validators = rulesSet[field].map((rule: AnySyncOrAsyncRule) =>
+          rule({ ...context, data, field, path }),
         )
-        let next = data[field]
         try {
-          next = await asyncPipe(...tests)(next)
+          const valid = await asyncPipe(...(validators as Functions))(
+            data[field as keyof I],
+          )
+          result[field as keyof I] = valid
         } catch (error) {
           const yobtaError = handleUnknownError({ error, field, path })
           context.pushError(yobtaError)
         }
-        return { ...acc, [field]: next }
-      },
-      Promise.resolve(data),
-    )
+      }
 
-    return result
-  })
+      return result
+    },
+  )
