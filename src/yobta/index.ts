@@ -26,24 +26,24 @@ export type SyncValidatorYobta<I, O> = (input: I) => YobtaOptionalIfUnkown<I, O>
 export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>
-  ): SyncValidatorYobta<any, R7>
+  ): SyncValidatorYobta<unknown, R7>
   <R1, R2, R3, R4, R5, R6>(
     ...rules: SyncRulesChain6<R1, R2, R3, R4, R5, R6>
-  ): SyncValidatorYobta<any, R6>
+  ): SyncValidatorYobta<unknown, R6>
   <R1, R2, R3, R4, R5>(
     ...rules: SyncRulesChain5<R1, R2, R3, R4, R5>
-  ): SyncValidatorYobta<any, R5>
+  ): SyncValidatorYobta<unknown, R5>
   <R1, R2, R3, R4>(
     ...rules: SyncRulesChain4<R1, R2, R3, R4>
-  ): SyncValidatorYobta<any, R4>
+  ): SyncValidatorYobta<unknown, R4>
   <R1, R2, R3>(
     ...rules: SyncRulesChain3<R1, R2, R3>
-  ): SyncValidatorYobta<any, R3>
-  <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncValidatorYobta<any, R2>
-  <R1>(...rules: SyncRulesChain1<R1>): SyncValidatorYobta<any, R1>
+  ): SyncValidatorYobta<unknown, R3>
+  <R1, R2>(...rules: SyncRulesChain2<R1, R2>): SyncValidatorYobta<unknown, R2>
+  <R1>(...rules: SyncRulesChain1<R1>): SyncValidatorYobta<unknown, R1>
   <R extends SyncRules>(
     ...rules: SyncRulesPipeYobta<R>
-  ): (input: any) => PipeFactoryResult<R>
+  ): (input: unknown) => PipeFactoryResult<R>
 }
 //#endregion
 
@@ -51,7 +51,7 @@ export const field = '@'
 
 export const yobta: YobtaFactory =
   <R extends SyncRules>(...rules: R) =>
-  (data: any) => {
+  (data: unknown) => {
     const context: YobtaContext = {
       ...createContext(data),
       pushError(error: YobtaError) {
