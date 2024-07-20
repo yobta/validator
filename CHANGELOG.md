@@ -26,6 +26,7 @@ OptionalSyncRule returtype for:
 - dateYobta
 - enumYobta
 - integerYobta
+- numberYobta
 
 ## 0.1.6
 
