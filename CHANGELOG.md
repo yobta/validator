@@ -31,8 +31,11 @@ OptionalSyncRule returtype for:
 - shapeYobta
 - stringYobta
 
-Todo:
+Todo pipes:
 ruleYobta
+yobta
+awaitShapeYobta
+shapeYobta
 
 ## 0.1.6
 

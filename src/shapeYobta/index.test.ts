@@ -8,7 +8,7 @@ import { shapeMessage, shapeYobta } from './'
 
 const validate = yobta(
   shapeYobta({
-    name: [stringYobta(), requiredYobta<string>()],
+    name: [stringYobta(), requiredYobta()],
   }),
 )
 

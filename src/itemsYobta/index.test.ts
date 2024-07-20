@@ -9,7 +9,7 @@ import { itemsYobta } from './'
 const validate = yobta(
   arrayYobta(),
   requiredYobta(),
-  itemsYobta(stringYobta(), minCharactersYobta(5)),
+  itemsYobta(stringYobta(), requiredYobta(), minCharactersYobta(5)),
 )
 
 describe('itemsYobta', () => {

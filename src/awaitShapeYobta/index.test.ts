@@ -18,7 +18,7 @@ import { asyncShapeMessage, awaitShapeYobta } from './'
 const validate = asyncYobta(
   awaitShapeYobta({
     age: [stringYobta()],
-    name: [stringYobta(), requiredYobta<string>()],
+    name: [stringYobta(), requiredYobta()],
   }),
 )
 

@@ -95,7 +95,7 @@
     {
       "name": "Sync validator factory",
       "import": {
-        "lib/index.js": "{ syncYobta }"
+        "lib/index.js": "{ yobta }"
       },
       "limit": "363 B"
     },
@@ -378,7 +378,6 @@
         "lib/formYobta/index.js": "{ formYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/asyncYobta/index.js": "{ asyncYobta }",
-        "lib/syncYobta/index.js": "{ syncYobta }",
         "lib/effectYobta/index.js": "{ effectYobta }",
         "lib/awaitShapeYobta/index.js": "{ awaitShapeYobta }",
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",

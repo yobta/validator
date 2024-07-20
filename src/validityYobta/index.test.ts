@@ -169,8 +169,8 @@ describe('validityYobta', () => {
     const validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        checkbox: [stringYobta(), requiredYobta<string>()],
-        text: [stringYobta(), requiredYobta<string>()],
+        checkbox: [stringYobta(), requiredYobta()],
+        text: [stringYobta(), requiredYobta()],
       }),
       validityYobta(errorHandlerMock, { validateAllFieldsOnChange: false }),
     )
@@ -190,8 +190,8 @@ describe('validityYobta', () => {
     const validate = asyncYobta(
       formYobta(),
       shapeYobta({
-        checkbox: [stringYobta(), requiredYobta<string>()],
-        text: [stringYobta(), requiredYobta<string>()],
+        checkbox: [stringYobta(), requiredYobta()],
+        text: [stringYobta(), requiredYobta()],
       }),
       validityYobta(errorHandlerMock, { validateAllFieldsOnChange: true }),
     )

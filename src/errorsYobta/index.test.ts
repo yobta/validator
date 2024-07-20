@@ -17,7 +17,7 @@ describe('errorsYobta', () => {
     const spy = jest.fn()
     const validate = asyncYobta(
       formYobta(),
-      shapeYobta({ yobta: [stringYobta(), requiredYobta<string>()] }),
+      shapeYobta({ yobta: [stringYobta(), requiredYobta()] }),
       errorsYobta(spy),
     )
     const result = await mockForm('<input name="yobta" />').submit(validate)
