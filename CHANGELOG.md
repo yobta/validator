@@ -9,6 +9,7 @@
 - shapeYobta
 - defaultYobta
 - differentYobta
+- identicalYobta
 
 OptionalSyncRule returtype for:
 

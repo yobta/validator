@@ -9,9 +9,11 @@ export const identicalMessage = (path: YobtaPath): string =>
 export function identicalYobta<I>(
   path: YobtaPath,
   message = identicalMessage,
-): SyncRule<any, I> {
+): SyncRule<I, I> {
   return ruleYobta((input, { data }) => {
-    if (input === getIn(data, path)) return input
+    if (input === getIn(data, path)) {
+      return input
+    }
     throw new Error(message(path))
   })
 }

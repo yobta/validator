@@ -17,6 +17,9 @@
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },
+  "engines": {
+    "node": ">=21"
+  },
   "author": "Sergei Droganov <sergei@droganov.com>",
   "license": "MIT",
   "repository": "https://github.com/yobta/validator.git",

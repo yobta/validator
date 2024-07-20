@@ -1,10 +1,10 @@
 import type { PlainObject } from '../_internal/fromEntries/index.js'
 import { fromEntries } from '../_internal/fromEntries/index.js'
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 interface FormFactory {
-  (message?: string): SyncRule<any, PlainObject | undefined>
+  (message?: string): YobtaOptionalSyncRule<any, PlainObject>
 }
 
 export const formDataMessage = 'It should be HTMLFormElement or a form Event'
@@ -18,7 +18,6 @@ export const formYobta: FormFactory = (message = formDataMessage) =>
     const node = form || input
 
     if (node?.tagName === 'FORM') {
-      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       const output = new FormData(node)
       return fromEntries(output)
     }
