@@ -1,5 +1,5 @@
-import { reEmailYobta } from '../regularExpressions/index.js'
-import type { SyncRule } from '../ruleYobta/index.js';
+import { reEmailYobta } from '../_patterns/reEmailYobta.js'
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const emailMessage = 'It should be an email'

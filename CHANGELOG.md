@@ -17,6 +17,7 @@
 - minDateYobta
 - minimumYobta
 - minItemsYobta
+- patterns
 
 OptionalSyncRule returtype for:
 
@@ -27,6 +28,11 @@ OptionalSyncRule returtype for:
 - enumYobta
 - integerYobta
 - numberYobta
+- shapeYobta
+- stringYobta
+
+Todo:
+ruleYobta
 
 ## 0.1.6
 

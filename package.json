@@ -386,7 +386,8 @@
         "lib/validityYobta/index.js": "{ validityYobta }",
         "lib/successYobta/index.js": "{ successYobta }",
         "lib/YobtaError/index.js": "{ YobtaError }",
-        "lib/regularExpressions/index.js": "{ reSlugYobta, reEmailYobta }"
+        "lib/_patterns/reEmailYobta.js": "{ reEmailYobta }",
+        "lib/_patterns/reSlugYobta.js": "{ reSlugYobta }"
       },
       "limit": "2484 B"
     }
