@@ -1,4 +1,3 @@
-import type { YobtaContext } from '../_internal/createContext/index.js'
 import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
@@ -8,8 +7,9 @@ import type {
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
+import type { YobtaContext } from '../_types/YobtaContext.js'
+import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
 import type {
-  OptionalIfUnkown,
   SyncRules,
   SyncRulesChain1,
   SyncRulesChain2,
@@ -22,7 +22,7 @@ import type {
 import type { YobtaError } from '../YobtaError/index.js'
 
 //#region Types
-export type SyncValidatorYobta<I, O> = (input: I) => OptionalIfUnkown<I, O>
+export type SyncValidatorYobta<I, O> = (input: I) => YobtaOptionalIfUnkown<I, O>
 export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>

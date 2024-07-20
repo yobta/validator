@@ -7,11 +7,11 @@ import type {
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
+import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { shapeMessage } from '../index.js'
 import type {
   AnySyncOrAsyncRule,
-  OptionalIfUnkown,
-  OptionalSyncRule,
   SyncOrAsyncRules,
 } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
@@ -29,7 +29,7 @@ type ValidAsyncShapeYobta<F extends GenericMapShapeConfig> = {
 type OptionalValidAsyncShapeYobta<
   I,
   F extends GenericMapShapeConfig,
-> = OptionalIfUnkown<I, ValidAsyncShapeYobta<F>>
+> = YobtaOptionalIfUnkown<I, ValidAsyncShapeYobta<F>>
 
 export const asyncShapeMessage = 'It should be a plain object'
 
@@ -39,7 +39,7 @@ export const awaitShapeYobta = <
 >(
   rulesSet: AwaitShapeConfig<F>,
   validationMessage: string = shapeMessage,
-): OptionalSyncRule<I, Promise<OptionalValidAsyncShapeYobta<I, F>>> =>
+): YobtaOptionalSyncRule<I, Promise<OptionalValidAsyncShapeYobta<I, F>>> =>
   ruleYobta<I, Promise<OptionalValidAsyncShapeYobta<I, F>>>(
     async (data, context) => {
       if (data === undefined) {

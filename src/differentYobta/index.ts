@@ -1,13 +1,13 @@
-import type { Path } from '../_internal/createContext/index.js'
 import { getIn } from '../_internal/getIn/index.js'
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { YobtaPath } from '../_types/YobtaPath.js'
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-export const differentMessage = (path: Path): string =>
+export const differentMessage = (path: YobtaPath): string =>
   `It should be different from "${path.join('.')}"`
 
 export function differentYobta<I>(
-  path: Path,
+  path: YobtaPath,
   message = differentMessage,
 ): SyncRule<any, I> {
   return ruleYobta((input, { data }) => {

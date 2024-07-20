@@ -1,17 +1,5 @@
+import type { YobtaContext } from '../../_types/YobtaContext.js'
 import type { YobtaError } from '../../YobtaError/index.js'
-
-export type Path = (number | string)[]
-
-export type YobtaContext = {
-  data: any
-  errors: YobtaError[]
-  event: any
-  field: string
-  form?: HTMLFormElement
-  input?: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-  path: Path
-  pushError(error: YobtaError): void
-}
 
 interface YobtaContextFactory {
   (data: any): YobtaContext

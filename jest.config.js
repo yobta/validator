@@ -5,6 +5,7 @@ const config = {
     'src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.spec.{js,jsx,ts,tsx}',
     '!src/**/*.test.{js,jsx,ts,tsx}',
+    '!src/_types/*.ts',
   ],
   coverageProvider: 'v8',
   coverageReporters: ['json', 'lcov', 'text', 'clover'],

@@ -2,10 +2,11 @@
 
 ## 0.1.7
 
-- Array rule is now optional
+- Array rule is now OptionalSyncRule
 - Improved isPlainObject typings
 - Refactored awaitShapeYobta
 - Refactored shapeYobta
+- booleanYobta is now OptionalSyncRule
 
 ## 0.1.6
 

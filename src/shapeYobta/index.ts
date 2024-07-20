@@ -7,12 +7,9 @@ import type {
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
-import type {
-  AnySyncRule,
-  OptionalIfUnkown,
-  OptionalSyncRule,
-  SyncRules,
-} from '../ruleYobta/index.js'
+import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
+import type { AnySyncRule, SyncRules } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 type SyncRulesRecord = Record<PropertyKey, SyncRules>
@@ -25,17 +22,17 @@ type ValidShapeYobta<F extends SyncRulesRecord> = {
   [Property in keyof F]: PipeFactoryResult<F[Property]>
 }
 
-type OptionalValidShapeYobta<I, F extends SyncRulesRecord> = OptionalIfUnkown<
+type OptionalValidShapeYobta<
   I,
-  ValidShapeYobta<F>
->
+  F extends SyncRulesRecord,
+> = YobtaOptionalIfUnkown<I, ValidShapeYobta<F>>
 
 export const shapeMessage = 'It should be a plain object'
 
 export const shapeYobta = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
-): OptionalSyncRule<I, ValidShapeYobta<F>> =>
+): YobtaOptionalSyncRule<I, ValidShapeYobta<F>> =>
   ruleYobta<I, OptionalValidShapeYobta<I, F>>((data, context) => {
     if (data === undefined) {
       return undefined

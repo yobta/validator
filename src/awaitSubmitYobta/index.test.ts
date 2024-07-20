@@ -9,8 +9,8 @@ import {
   shapeYobta,
   stringYobta,
 } from '..'
-import type { YobtaContext } from '../_internal/createContext'
 import { mockForm } from '../_internal/mockForm'
+import type { YobtaContext } from '../_types/YobtaContext'
 import { YobtaError } from '../YobtaError'
 import { awaitSubmitYobta } from './'
 

@@ -1,5 +1,5 @@
-import type { YobtaContext } from '../_internal/createContext/index.js'
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { YobtaContext } from '../_types/YobtaContext.js'
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 interface Handler<I> {

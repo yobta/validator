@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import type { YobtaContext } from '../_internal/createContext'
 import { createContext } from '../_internal/createContext'
+import type { YobtaContext } from '../_types/YobtaContext'
 import { ruleYobta } from './'
 
 describe('sinc rule', () => {

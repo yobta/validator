@@ -1,5 +1,5 @@
-import type { YobtaContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { AsyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 

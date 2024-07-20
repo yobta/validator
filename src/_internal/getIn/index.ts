@@ -1,8 +1,8 @@
 // https://github.com/lodash/lodash/blob/master/.internal/baseGet.js
 
-import type { Path } from '../createContext/index.js'
+import type { YobtaPath } from '../../_types/YobtaPath'
 
-export function getIn<I>(input: any, path: Path): I {
+export function getIn<I>(input: any, path: YobtaPath): I {
   let index = 0
   while (input != null && index < path.length) {
     input = input[path[index++]]

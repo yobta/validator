@@ -1,4 +1,4 @@
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 const truthySet = new Set(['1', 'yes', 'true'])
@@ -7,7 +7,7 @@ const falsySet = new Set(['0', 'no', 'false', 'null'])
 export const booleanMessage = 'It should be a boolean'
 
 interface BooleanFactory {
-  (message?: string): SyncRule<unknown, boolean | undefined>
+  (message?: string): YobtaOptionalSyncRule<unknown, boolean>
 }
 
 export const booleanYobta: BooleanFactory = message =>
