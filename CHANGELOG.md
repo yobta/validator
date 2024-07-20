@@ -32,6 +32,7 @@ OptionalSyncRule returtype for:
 - numberYobta
 - shapeYobta
 - stringYobta
+- urlSearchParamsYobta
 
 Todo pipes:
 ruleYobta
