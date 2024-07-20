@@ -6,7 +6,7 @@ import type {
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
-import type { PrettyTypeYobta } from '../PrettyTypeYobta/index.js'
+import type { YobtaPretty } from '../_types/YobtaPretty.js'
 import type {
   AsyncRulesChain1,
   AsyncRulesChain2,
@@ -24,7 +24,7 @@ import type { YobtaError } from '../YobtaError/index.js'
 //#region Types
 export type AsyncRuleYobta<I, O> = (
   input: I,
-) => AsyncResultYobta<PrettyTypeYobta<O>>
+) => AsyncResultYobta<YobtaPretty<O>>
 
 export interface AsyncYobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
