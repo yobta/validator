@@ -58,7 +58,7 @@ export type SuccessYobta<R> = [R, null]
 export type FailureYobta = [null, YobtaError[]]
 
 export type AsyncResultYobta<R = unknown> = Promise<
-  FailureYobta | SuccessYobta<R>
+  YobtaPretty<FailureYobta> | YobtaPretty<SuccessYobta<R>>
 >
 //#endregion
 

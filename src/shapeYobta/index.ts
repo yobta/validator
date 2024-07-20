@@ -9,6 +9,7 @@ import type {
 import { pipe } from '../_internal/pipe/index.js'
 import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
 import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
+import type { YobtaPretty } from '../_types/YobtaPretty.js'
 import type { AnySyncRule, SyncRules } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
@@ -32,7 +33,7 @@ export const shapeMessage = 'It should be a plain object'
 export const shapeYobta = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
-): YobtaOptionalSyncRule<I, ValidShapeYobta<F>> =>
+): YobtaOptionalSyncRule<I, YobtaPretty<ValidShapeYobta<F>>> =>
   ruleYobta<I, OptionalValidShapeYobta<I, F>>((data, context) => {
     if (data === undefined) {
       return undefined

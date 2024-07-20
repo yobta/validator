@@ -130,6 +130,7 @@ describe('asyncYobta', () => {
           }),
         ],
       }),
+      requiredYobta(),
     )({})
     expect(result).toEqual([null, [yobtaError]])
   })

@@ -8,7 +8,7 @@ import type {
 } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
-import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
+import type { YobtaPretty } from '../_types/YobtaPretty.js'
 import type {
   SyncRules,
   SyncRulesChain1,
@@ -22,7 +22,7 @@ import type {
 import type { YobtaError } from '../YobtaError/index.js'
 
 //#region Types
-export type SyncValidatorYobta<I, O> = (input: I) => YobtaOptionalIfUnkown<I, O>
+export type SyncValidatorYobta<I, O> = (input: I) => YobtaPretty<O>
 export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7>

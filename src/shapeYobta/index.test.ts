@@ -8,7 +8,7 @@ import { shapeMessage, shapeYobta } from './'
 
 const validate = yobta(
   shapeYobta({
-    name: [stringYobta(), requiredYobta()],
+    name: [requiredYobta(), stringYobta()],
   }),
 )
 
@@ -25,6 +25,7 @@ describe('shapeYobta', () => {
       age: 0,
       name: 'yobta',
     })
+
     expect(result).toEqual({ age: 0, name: 'yobta' })
   })
 
