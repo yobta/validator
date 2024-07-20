@@ -9,7 +9,7 @@ export const differentMessage = (path: YobtaPath): string =>
 export function differentYobta<I>(
   path: YobtaPath,
   message = differentMessage,
-): YobtaOptionalSyncRule<any, I> {
+): YobtaOptionalSyncRule<I, I> {
   return ruleYobta((input, { data }) => {
     if (input === getIn(data, path)) {
       throw new Error(message(path))
