@@ -1,17 +1,21 @@
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const dateMessage = 'It should be a date'
 
 export const dateYobta = (
   message = dateMessage,
-): SyncRule<any, Date | undefined> =>
+): YobtaOptionalSyncRule<unknown, Date> =>
   ruleYobta(input => {
-    if (typeof input === 'undefined') return input
+    if (input === undefined) {
+      return input
+    }
 
-    const value = new Date(input)
+    const value = new Date(input as string)
 
-    if (isNaN(value.getTime()) || input === null) throw new Error(message)
+    if (isNaN(value.getTime()) || input === null) {
+      throw new Error(message)
+    }
 
     return value
   })

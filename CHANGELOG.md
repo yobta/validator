@@ -8,6 +8,7 @@
 - Refactored shapeYobta
 - booleanYobta is now OptionalSyncRule
 - constYobta is now OptionalSyncRule
+- dateYobta is now OptionalSyncRule
 
 ## 0.1.6
 
