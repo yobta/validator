@@ -1,3 +1,4 @@
+import type { PipedPromices } from '../_internal/asyncPipe/index.js'
 import { asyncPipe } from '../_internal/asyncPipe/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
@@ -21,14 +22,14 @@ type AwaitShapeConfig<Config extends GenericMapShapeConfig> = {
   [K in keyof Config]: SyncRulesPipeYobta<Config[K]>
 }
 
-type ValidResults<F extends GenericMapShapeConfig> = {
+type ValidAsyncShapeYobta<F extends GenericMapShapeConfig> = {
   [Key in keyof F]: PipeFactoryResult<F[Key]>
 }
 
-type MapShapeValidationResults<
+type OptionalValidAsyncShapeYobta<
   I,
   F extends GenericMapShapeConfig,
-> = OptionalIfUnkown<I, ValidResults<F>>
+> = OptionalIfUnkown<I, ValidAsyncShapeYobta<F>>
 
 export const asyncShapeMessage = 'It should be a plain object'
 
@@ -38,8 +39,8 @@ export const awaitShapeYobta = <
 >(
   rulesSet: AwaitShapeConfig<F>,
   validationMessage: string = shapeMessage,
-): OptionalSyncRule<I, Promise<MapShapeValidationResults<I, F>>> =>
-  ruleYobta<I, Promise<MapShapeValidationResults<I, F>>>(
+): OptionalSyncRule<I, Promise<OptionalValidAsyncShapeYobta<I, F>>> =>
+  ruleYobta<I, Promise<OptionalValidAsyncShapeYobta<I, F>>>(
     async (data, context) => {
       if (data === undefined) {
         return undefined
@@ -49,17 +50,15 @@ export const awaitShapeYobta = <
         throw new Error(validationMessage)
       }
 
-      const result = { ...data } as ValidResults<F>
+      const result = { ...data } as ValidAsyncShapeYobta<F>
 
       for await (const field of Object.keys(rulesSet)) {
         const path = [...context.path, field]
         const validators = rulesSet[field].map((rule: AnySyncOrAsyncRule) =>
           rule({ ...context, data, field, path }),
-        )
+        ) as PipedPromices<Functions>
         try {
-          const valid = await asyncPipe(...(validators as Functions))(
-            data[field as keyof I],
-          )
+          const valid = await asyncPipe(...validators)(data[field as keyof I])
           result[field as keyof I] = valid
         } catch (error) {
           const yobtaError = handleUnknownError({ error, field, path })

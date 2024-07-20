@@ -9,10 +9,7 @@ import type {
 
 export type PipedPromices<F extends Functions> = F & PromiseChain<F>
 
-type PromiseChain<
-  F extends [Func1, ...Func1[]],
-  T extends Func1[] = Tail<F>,
-> = {
+type PromiseChain<F extends Functions, T extends Func1[] = Tail<F>> = {
   [K in keyof F]: (
     arg: ArgType<F[K]>,
   ) =>

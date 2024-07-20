@@ -3,6 +3,9 @@
 ## 0.1.7
 
 - Array rule is now optional
+- Improved isPlainObject typings
+- Refactored awaitShapeYobta
+- Refactored shapeYobta
 
 ## 0.1.6
 
