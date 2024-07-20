@@ -1,4 +1,4 @@
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const testMessage = 'Invalid format'
@@ -12,6 +12,8 @@ export const testYobta: TestFactory = (
   message = testMessage,
 ) =>
   ruleYobta(input => {
-    if (input === '' || expression.test(input)) return input
+    if (expression.test(input)) {
+      return input
+    }
     throw new Error(message)
   })
