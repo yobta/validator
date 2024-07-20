@@ -7,9 +7,11 @@ export const constMessage = <I>(value: I): string =>
 export function constYobta<I>(
   value: I,
   message?: string,
-): YobtaOptionalSyncRule<any, I> {
+): YobtaOptionalSyncRule<I | undefined, I> {
   return ruleYobta(input => {
-    if (input === value) return input
+    if (input === value || input === undefined) {
+      return input
+    }
     throw new Error(message ?? constMessage(value))
   })
 }
