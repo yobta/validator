@@ -8,6 +8,7 @@
 - awaitShapeYobta
 - shapeYobta
 - defaultYobta
+- differentYobta
 
 OptionalSyncRule returtype for:
 
@@ -15,7 +16,6 @@ OptionalSyncRule returtype for:
 - booleanYobta
 - constYobta
 - dateYobta
-- differentYobta
 
 ## 0.1.6
 
