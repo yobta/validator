@@ -10,6 +10,7 @@
 - defaultYobta
 - differentYobta
 - identicalYobta
+- itemsYobta
 
 OptionalSyncRule returtype for:
 
