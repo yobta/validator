@@ -1,4 +1,4 @@
-import type { SyncRule } from '../ruleYobta/index.js';
+import type { SyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const minDateMessage = (limit: Date): string =>
@@ -9,7 +9,9 @@ export const minDateYobta = (
   message = minDateMessage,
 ): SyncRule<Date, Date> =>
   ruleYobta(input => {
-    if (input.getTime() < limit.getTime()) throw new Error(message(limit))
+    if (input.getTime() < limit.getTime()) {
+      throw new Error(message(limit))
+    }
 
     return input
   })

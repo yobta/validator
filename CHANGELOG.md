@@ -14,6 +14,7 @@
 - maximumYobta
 - maxItemsYobta
 - minCharactersYobta
+- minDateYobta
 
 OptionalSyncRule returtype for:
 
