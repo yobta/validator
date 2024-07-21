@@ -4,7 +4,7 @@ import { yobta } from '../yobta'
 import { requiredMessage, requiredYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(stringYobta(), requiredYobta(customMessage))
+const validate = yobta(requiredYobta(customMessage), stringYobta())
 
 it('accepts value', () => {
   const result = validate('yobta')
@@ -17,7 +17,7 @@ it('rejects undefined', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(stringYobta(), requiredYobta())
+  const validateDefault = yobta(requiredYobta(), stringYobta())
   const attempt = (): any => validateDefault(undefined)
   expect(attempt).toThrow(requiredMessage)
 })

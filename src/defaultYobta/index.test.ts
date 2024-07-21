@@ -5,16 +5,26 @@ import { defaultYobta } from './'
 
 const validate = yobta(defaultYobta('yobta'))
 
-const voidValues = ['', '   ', undefined, null, NaN]
-
-voidValues.forEach(value => {
-  it(`sets default for ${value}`, () => {
-    const result = validate(value)
-    expect(result).toEqual('yobta')
-  })
+test('undefined', () => {
+  const result = validate(undefined)
+  expect(result).toEqual('yobta')
 })
 
-const values = [' a', 0, new Date(), new Set(), new URLSearchParams('')]
+test('null', () => {
+  const result = validate(null)
+  expect(result).toEqual('yobta')
+})
+
+const values = [
+  ' a',
+  0,
+  new Date(),
+  new Set(),
+  new URLSearchParams(''),
+  '',
+  '   ',
+  NaN,
+]
 values.forEach(value => {
   it(`does not change ${value}`, () => {
     const result = validate(value)
@@ -23,7 +33,7 @@ values.forEach(value => {
 })
 
 it('pipes', () => {
-  const validateMultiple = yobta(stringYobta(), defaultYobta('yobta'))
+  const validateMultiple = yobta(defaultYobta('yobta'), stringYobta())
   const result = validateMultiple(null)
   expect(result).toEqual('yobta')
 })

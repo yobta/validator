@@ -1,5 +1,4 @@
 import type { YobtaContext } from '../_types/YobtaContext'
-import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown'
 import type { YobtaUnwrapPromise } from '../_types/YobtaUnwrapPromise'
 
 // #region SyncRules
@@ -17,7 +16,7 @@ type AsyncValidator<I, O> = (input: I, context: YobtaContext) => Promise<O>
 
 export type AsyncRule<I, O> = (
   context: YobtaContext,
-) => (input: I) => Promise<YobtaOptionalIfUnkown<I, O>>
+) => (input: I) => Promise<O>
 
 export type AnyAsyncRule = AsyncRule<any, any>
 export type AnySyncOrAsyncRule = AnyAsyncRule | YobtaAnySyncRule

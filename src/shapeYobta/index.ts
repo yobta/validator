@@ -6,10 +6,12 @@ import type {
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
-import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
-import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import type { YobtaPretty } from '../_types/YobtaPretty.js'
-import type { YobtaAnySyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
+import type {
+  YobtaAnySyncRule,
+  YobtaSyncRule,
+  YobtaSyncRules,
+} from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 type SyncRulesRecord = Record<PropertyKey, YobtaSyncRules>
@@ -22,39 +24,30 @@ type ValidShapeYobta<Branch extends SyncRulesRecord> = {
   [Rules in keyof Branch]: PipeFactoryResult<Branch[Rules]>
 }
 
-type OptionalValidShapeYobta<
-  I,
-  F extends SyncRulesRecord,
-> = YobtaOptionalIfUnkown<I, ValidShapeYobta<F>>
-
 export const shapeMessage = 'It should be a plain object'
 
 export const shapeYobta = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
-): YobtaOptionalSyncRule<I, YobtaPretty<ValidShapeYobta<F>>> =>
-  ruleYobta<I, OptionalValidShapeYobta<I, F>>((data, context) => {
-    if (data === undefined) {
-      return undefined
-    }
-
-    if (!isPlainObject(data)) {
+): YobtaSyncRule<I, YobtaPretty<ValidShapeYobta<F>>> =>
+  ruleYobta<I, ValidShapeYobta<F>>((value = {} as I, context) => {
+    if (!isPlainObject(value)) {
       throw new Error(validationMessage)
     }
 
-    const result = { ...data } as ValidShapeYobta<F>
+    const result = { ...value } as ValidShapeYobta<F>
 
     for (const field of Object.keys(rulesMap)) {
       const path = [...context.path, field]
       const tests = rulesMap[field].map((rule: YobtaAnySyncRule) =>
         rule({
           ...context,
-          data,
+          data: value,
           field,
           path,
         }),
       ) as Functions
-      let next = data[field as keyof typeof data]
+      let next = value[field as keyof typeof value]
       try {
         next = pipe(...tests)(next)
       } catch (error) {

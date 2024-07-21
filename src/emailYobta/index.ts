@@ -4,17 +4,17 @@ import { ruleYobta } from '../ruleYobta/index.js'
 
 export const emailMessage = 'It should be an email'
 
+export type YobtaEmail = { __email__: void } & string
+
 interface EmailFactory {
-  (message?: string): YobtaSyncRule<string, string>
+  <I extends string>(message?: string): YobtaSyncRule<I, YobtaEmail>
 }
 
 export const emailYobta: EmailFactory = (message = emailMessage) =>
   ruleYobta(value => {
-    if (typeof value === 'string') {
-      const trimmed = value.trim()
-      if (reEmailYobta.test(trimmed)) {
-        return trimmed
-      }
+    const trimmed = value.trim()
+    if (reEmailYobta.test(trimmed)) {
+      return trimmed as YobtaEmail
     }
     throw new Error(message)
   })

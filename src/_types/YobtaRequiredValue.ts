@@ -1,1 +1,3 @@
-export type YobtaRequiredValue<Value> = Value extends undefined ? never : Value
+import type { YobtaEmpty } from './YobtaEmpty'
+
+export type YobtaRequiredValue<Value> = Value extends YobtaEmpty ? never : Value

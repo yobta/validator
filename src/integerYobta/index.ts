@@ -1,16 +1,16 @@
-import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const integerMessage = 'It should be an integer'
 
 type Integer = { __brand: 'integer' } & number
 interface IntegerFactory {
-  (message?: string): YobtaOptionalSyncRule<unknown, Integer>
+  (message?: string): YobtaSyncRule<number, Integer>
 }
 
 export const integerYobta: IntegerFactory = (message = integerMessage) =>
   ruleYobta(input => {
-    if (input === undefined || Number.isInteger(input)) {
+    if (Number.isInteger(input)) {
       return input as Integer
     }
 

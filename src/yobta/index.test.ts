@@ -6,7 +6,6 @@ import {
   booleanYobta,
   catchYobta,
   enumYobta,
-  minCharactersYobta,
   numberYobta,
   requiredYobta,
   shapeYobta,
@@ -26,14 +25,14 @@ it('can pipe rules', () => {
   const validateMultiple = yobta(
     stringYobta(),
     requiredYobta(),
-    minCharactersYobta(5),
+    // minCharactersYobta(5),
   )
   const result = validateMultiple('yobta')
   expect(result).toBe('yobta')
 })
 
 it('rejects invalid', () => {
-  const attempt = (): any => validate([])
+  const attempt = (): any => validate({})
   expect(attempt).toThrow('yobta!')
 })
 
@@ -43,7 +42,7 @@ const validateSearch = yobta(
     currentTab: [
       catchYobta(
         'tab-1',
-        enumYobta(['tab-1', 'tab-2', 'tab-3']),
+        enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
     ],

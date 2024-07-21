@@ -6,12 +6,11 @@ import type {
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
-import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
-import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import { shapeMessage } from '../index.js'
 import type {
   AnySyncOrAsyncRule,
   SyncOrAsyncRules,
+  YobtaSyncRule,
 } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
@@ -25,11 +24,6 @@ type ValidAsyncShapeYobta<F extends GenericMapShapeConfig> = {
   [Key in keyof F]: PipeFactoryResult<F[Key]>
 }
 
-type OptionalValidAsyncShapeYobta<
-  I,
-  F extends GenericMapShapeConfig,
-> = YobtaOptionalIfUnkown<I, ValidAsyncShapeYobta<F>>
-
 export const asyncShapeMessage = 'It should be a plain object'
 
 export const awaitShapeYobta = <
@@ -38,33 +32,27 @@ export const awaitShapeYobta = <
 >(
   rulesSet: AwaitShapeConfig<F>,
   validationMessage: string = shapeMessage,
-): YobtaOptionalSyncRule<I, Promise<OptionalValidAsyncShapeYobta<I, F>>> =>
-  ruleYobta<I, Promise<OptionalValidAsyncShapeYobta<I, F>>>(
-    async (data, context) => {
-      if (data === undefined) {
-        return undefined
+): YobtaSyncRule<I, Promise<ValidAsyncShapeYobta<F>>> =>
+  ruleYobta<I, Promise<ValidAsyncShapeYobta<F>>>(async (data, context) => {
+    if (!isPlainObject(data)) {
+      throw new Error(validationMessage)
+    }
+
+    const result = { ...data } as ValidAsyncShapeYobta<F>
+
+    for await (const field of Object.keys(rulesSet)) {
+      const path = [...context.path, field]
+      const validators = rulesSet[field].map((rule: AnySyncOrAsyncRule) =>
+        rule({ ...context, data, field, path }),
+      ) as Functions
+      try {
+        const valid = await asyncPipe(...validators)(data[field as keyof I])
+        result[field as keyof I] = valid
+      } catch (error) {
+        const yobtaError = handleUnknownError({ error, field, path })
+        context.pushError(yobtaError)
       }
+    }
 
-      if (!isPlainObject(data)) {
-        throw new Error(validationMessage)
-      }
-
-      const result = { ...data } as ValidAsyncShapeYobta<F>
-
-      for await (const field of Object.keys(rulesSet)) {
-        const path = [...context.path, field]
-        const validators = rulesSet[field].map((rule: AnySyncOrAsyncRule) =>
-          rule({ ...context, data, field, path }),
-        ) as Functions
-        try {
-          const valid = await asyncPipe(...validators)(data[field as keyof I])
-          result[field as keyof I] = valid
-        } catch (error) {
-          const yobtaError = handleUnknownError({ error, field, path })
-          context.pushError(yobtaError)
-        }
-      }
-
-      return result
-    },
-  )
+    return result
+  })

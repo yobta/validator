@@ -10,11 +10,6 @@ it('accepts integers', () => {
   expect(result).toEqual(1)
 })
 
-it('accepts undefined', () => {
-  const result = validate(undefined)
-  expect(result).toBeUndefined()
-})
-
 it('rejects floats', () => {
   const attempt = (): any => validate(2.2)
   expect(attempt).toThrow(customMessage)
@@ -27,6 +22,11 @@ it('rejects NaN', () => {
 
 it('rejects Infinity', () => {
   const attempt = (): any => validate(Infinity)
+  expect(attempt).toThrow(customMessage)
+})
+
+it('rejects undefined', () => {
+  const attempt = (): any => validate(undefined)
   expect(attempt).toThrow(customMessage)
 })
 

@@ -2,8 +2,7 @@
 import { yobta } from '../yobta'
 import { arrayYobta } from './'
 
-const stringRule = arrayYobta()
-const validate = yobta(stringRule)
+const validate = yobta(arrayYobta())
 
 it('accepts array', () => {
   const result = validate(['yobta'])
@@ -12,7 +11,7 @@ it('accepts array', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toBeUndefined()
+  expect(result).toEqual([])
 })
 
 it('accepts strings', () => {
@@ -54,10 +53,12 @@ it('accepts maps', () => {
   expect(result).toEqual([['key', 1]])
 })
 
-it('coerces nullish values to empty array', () => {
-  const values = [null, '', '   ', NaN]
-  values.forEach(value => {
-    const result = validate(value)
-    expect(result).toEqual([])
-  })
+it('accepts null', () => {
+  const result = validate(null)
+  expect(result).toEqual([null])
+})
+
+it('accepts NaN', () => {
+  const result = validate(NaN)
+  expect(result).toEqual([NaN])
 })

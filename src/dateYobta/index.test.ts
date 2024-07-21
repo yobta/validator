@@ -11,11 +11,6 @@ it('accepts valid dates', () => {
   expect(result).toEqual(date)
 })
 
-it('accepts undefined', () => {
-  const result = validate(undefined)
-  expect(result).toBeUndefined()
-})
-
 it('accepts timestamps', () => {
   const now = Date.now()
   const result = validate(now)
@@ -29,7 +24,7 @@ it('accepts stringified dates', () => {
 })
 
 it('rejects invalid dates', () => {
-  const variants = [null, 'yobta', [], {}, new Set(), new Map()]
+  const variants = [undefined, null, 'yobta', [], {}, new Set(), new Map()]
   variants.forEach(variant => {
     const attempt = (): any => validate(variant)
     expect(attempt).toThrow(customMessage)

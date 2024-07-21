@@ -1,4 +1,4 @@
-import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 const truthySet = new Set(['1', 'yes', 'true'])
@@ -7,7 +7,7 @@ const falsySet = new Set(['0', 'no', 'false', 'null'])
 export const booleanMessage = 'It should be a boolean'
 
 interface BooleanFactory {
-  (message?: string): YobtaOptionalSyncRule<unknown, boolean>
+  (message?: string): YobtaSyncRule<unknown, boolean>
 }
 
 export const booleanYobta: BooleanFactory = message =>
@@ -17,8 +17,6 @@ export const booleanYobta: BooleanFactory = message =>
       return false
     } else if (truthySet.has(lowerCasedInput)) {
       return true
-    } else if (input === undefined) {
-      return input
     }
 
     throw new Error(message || booleanMessage)

@@ -11,5 +11,5 @@ it('creates params from string', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toBeUndefined()
+  expect(result).toEqual({})
 })

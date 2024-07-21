@@ -2,12 +2,9 @@ export * from './_patterns/reEmailYobta.js'
 export * from './_patterns/reSlugYobta.js'
 
 export * from './_types/YobtaContext.js'
-export * from './_types/YobtaOptionalIfUnkown.js'
-export * from './_types/YobtaOptionalSyncRule.js'
 export * from './_types/YobtaPath.js'
 export * from './_types/YobtaPretty.js'
 export * from './_types/YobtaRequiredValue.js'
-export * from './_types/YobtaVoid.js'
 
 export * from './arrayYobta/index.js'
 export * from './asyncYobta/index.js'

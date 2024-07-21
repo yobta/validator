@@ -13,16 +13,6 @@ it('accepts when identical', () => {
   expect(result).toEqual({ a: 'a' })
 })
 
-it('accepts when undefined', () => {
-  const validate = yobta(
-    shapeYobta({
-      a: [constYobta('a')],
-    }),
-  )
-  const result = validate({})
-  expect(result).toEqual({ a: undefined })
-})
-
 it('rejects when not identical', () => {
   const validate = yobta(
     shapeYobta({
@@ -30,6 +20,16 @@ it('rejects when not identical', () => {
     }),
   )
   const attempt = (): any => validate({ a: 'a' })
+  expect(attempt).toThrow('yobta')
+})
+
+it('rejects when not undefined', () => {
+  const validate = yobta(
+    shapeYobta({
+      a: [constYobta('b', 'yobta')],
+    }),
+  )
+  const attempt = (): any => validate({})
   expect(attempt).toThrow('yobta')
 })
 

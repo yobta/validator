@@ -23,7 +23,7 @@ const validateSearch = asyncYobta(
     currentTab: [
       catchYobta(
         'tab-1',
-        enumYobta(['tab-1', 'tab-2', 'tab-3']),
+        enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
     ],
@@ -31,107 +31,103 @@ const validateSearch = asyncYobta(
   }),
 )
 
-describe('asyncYobta', () => {
-  it('accepts valid', async () => {
-    const result = await validate(1)
-    expect(result).toEqual([1, null])
-  })
+it('accepts valid', async () => {
+  const result = await validate(1)
+  expect(result).toEqual([1, null])
+})
 
-  it('can pipe rules', async () => {
-    const validateMultiple = asyncYobta(
-      stringYobta(),
-      requiredYobta(),
-      minCharactersYobta(5),
-    )
-    const result = await validateMultiple('yobta')
-    expect(result).toEqual(['yobta', null])
-  })
+it('can pipe rules', async () => {
+  const validateMultiple = asyncYobta(
+    stringYobta(),
+    requiredYobta(),
+    minCharactersYobta(5),
+  )
+  const result = await validateMultiple('yobta')
+  expect(result).toEqual(['yobta', null])
+})
 
-  it('rejects invalid', async () => {
-    const attempt = async (): Promise<any> => await validate([])
-    const result = await attempt()
-    expect(result).toEqual([
-      null,
-      [
-        new YobtaError({
-          field: '@',
-          message: 'yobta!',
-          path: [],
+it('rejects invalid', async () => {
+  const attempt = async (): Promise<any> => await validate({})
+  const result = await attempt()
+  expect(result).toEqual([
+    null,
+    [
+      new YobtaError({
+        field: '@',
+        message: 'yobta!',
+        path: [],
+      }),
+    ],
+  ])
+})
+
+it("creates default state when can't extract it from url", async () => {
+  const result = await validateSearch('')
+  expect(result).toEqual([
+    {
+      currentTab: 'tab-1',
+      myModalIsOpen: false,
+    },
+    null,
+  ])
+})
+
+it('extracts state from url', async () => {
+  expect(await validateSearch('currentTab=tab-3&myModalIsOpen=true')).toEqual([
+    {
+      currentTab: 'tab-3',
+      myModalIsOpen: true,
+    },
+    null,
+  ])
+})
+
+it('captures context errors', async () => {
+  const error: YobtaError = {
+    field: '@',
+    message: 'yobta',
+    name: 'error',
+    path: [],
+  }
+  const validateContext = asyncYobta(({ pushError }) => (item: any) => {
+    if (typeof item !== 'string') pushError(error)
+    return item
+  })
+  const result = await validateContext(1)
+  expect(result).toEqual([null, [error]])
+})
+
+it("prevents form submit and doesn't prevent change", async () => {
+  const form = document.createElement('form')
+  const submitEvent = createEvent.submit(form)
+  const changeEvent = createEvent.change(form)
+  const validateEvent = asyncYobta(requiredYobta())
+
+  jest.spyOn(submitEvent, 'preventDefault')
+  jest.spyOn(changeEvent, 'preventDefault')
+
+  await validateEvent(submitEvent)
+  await validateEvent(changeEvent)
+
+  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
+  expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
+})
+
+it('preserves yobta error', async () => {
+  const yobtaError = new YobtaError({
+    field: 'yobta',
+    message: 'yobta',
+    path: [],
+  })
+  const result = await asyncYobta(
+    shapeYobta({
+      name: [
+        effectYobta<any>(() => {
+          throw yobtaError
         }),
       ],
-    ])
-  })
-
-  it("creates default state when can't extract it from url", async () => {
-    const result = await validateSearch('')
-    expect(result).toEqual([
-      {
-        currentTab: 'tab-1',
-        myModalIsOpen: false,
-      },
-      null,
-    ])
-  })
-
-  it('extracts state from url', async () => {
-    expect(await validateSearch('currentTab=tab-3&myModalIsOpen=true')).toEqual(
-      [
-        {
-          currentTab: 'tab-3',
-          myModalIsOpen: true,
-        },
-        null,
-      ],
-    )
-  })
-
-  it('captures context errors', async () => {
-    const error: YobtaError = {
-      field: '@',
-      message: 'yobta',
-      name: 'error',
-      path: [],
-    }
-    const validateContext = asyncYobta(({ pushError }) => (item: any) => {
-      if (typeof item !== 'string') pushError(error)
-      return item
-    })
-    const result = await validateContext(1)
-    expect(result).toEqual([null, [error]])
-  })
-
-  it("prevents form submit and doesn't prevent change", async () => {
-    const form = document.createElement('form')
-    const submitEvent = createEvent.submit(form)
-    const changeEvent = createEvent.change(form)
-    const validateEvent = asyncYobta(requiredYobta())
-
-    jest.spyOn(submitEvent, 'preventDefault')
-    jest.spyOn(changeEvent, 'preventDefault')
-
-    await validateEvent(submitEvent)
-    await validateEvent(changeEvent)
-
-    expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
-    expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
-  })
-
-  it('preserves yobta error', async () => {
-    const yobtaError = new YobtaError({
-      field: 'yobta',
-      message: 'yobta',
-      path: [],
-    })
-    const result = await asyncYobta(
-      shapeYobta({
-        name: [
-          effectYobta<any>(() => {
-            throw yobtaError
-          }),
-        ],
-      }),
-      requiredYobta(),
-    )({})
-    expect(result).toEqual([null, [yobtaError]])
-  })
+    }),
+    requiredYobta(),
+  )({})
+  expect(result).toEqual([null, [yobtaError]])
 })
