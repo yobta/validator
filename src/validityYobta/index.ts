@@ -1,4 +1,4 @@
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 import type { YobtaError } from '../YobtaError/index.js'
 
@@ -11,7 +11,7 @@ interface ValidityFactory {
       missingFormMessage?: string
       validateAllFieldsOnChange?: boolean
     },
-  ): SyncRule<I, I>
+  ): YobtaSyncRule<I, I>
 }
 
 export const validityMessage = 'Validity expects a form event'

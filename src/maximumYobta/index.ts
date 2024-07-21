@@ -1,4 +1,4 @@
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const maximumYobtaMessage = (limit: number): string =>
@@ -7,7 +7,7 @@ export const maximumYobtaMessage = (limit: number): string =>
 export const maximumYobta = (
   limit: number,
   message = maximumYobtaMessage,
-): SyncRule<number, number> =>
+): YobtaSyncRule<number, number> =>
   ruleYobta(input => {
     if (input > limit) {
       throw new Error(message(limit))

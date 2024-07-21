@@ -9,10 +9,10 @@ import { pipe } from '../_internal/pipe/index.js'
 import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown.js'
 import type { YobtaOptionalSyncRule } from '../_types/YobtaOptionalSyncRule.js'
 import type { YobtaPretty } from '../_types/YobtaPretty.js'
-import type { AnySyncRule, SyncRules } from '../ruleYobta/index.js'
+import type { YobtaAnySyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-type SyncRulesRecord = Record<PropertyKey, SyncRules>
+type SyncRulesRecord = Record<PropertyKey, YobtaSyncRules>
 
 type ShapeConfigYobta<F extends SyncRulesRecord> = {
   [K in keyof F]: SyncRulesPipeYobta<F[K]>
@@ -46,7 +46,7 @@ export const shapeYobta = <I, F extends SyncRulesRecord>(
 
     for (const field of Object.keys(rulesMap)) {
       const path = [...context.path, field]
-      const tests = rulesMap[field].map((rule: AnySyncRule) =>
+      const tests = rulesMap[field].map((rule: YobtaAnySyncRule) =>
         rule({
           ...context,
           data,

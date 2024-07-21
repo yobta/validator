@@ -4,48 +4,11 @@ import type { YobtaOptionalIfUnkown } from '../_types/YobtaOptionalIfUnkown'
 // #region SyncRules
 type SyncValidator<I, O> = (input: I, context: YobtaContext) => O
 
-export type SyncRule<I, O> = (context: YobtaContext) => (input: I) => O
+export type YobtaSyncRule<I, O> = (context: YobtaContext) => (input: I) => O
 
-export type SyncRules = [AnySyncRule, ...AnySyncRule[]]
-export type AnySyncRule = SyncRule<any, any>
+export type YobtaSyncRules = [YobtaAnySyncRule, ...YobtaAnySyncRule[]]
+export type YobtaAnySyncRule = YobtaSyncRule<any, any>
 
-export type SyncRulesChain1<R1> = [SyncRule<any, R1>]
-export type SyncRulesChain2<R1, R2> = [SyncRule<any, R1>, SyncRule<R1, R2>]
-export type SyncRulesChain3<R1, R2, R3> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-]
-export type SyncRulesChain4<R1, R2, R3, R4> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-]
-export type SyncRulesChain5<R1, R2, R3, R4, R5> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-  SyncRule<R4, R5>,
-]
-export type SyncRulesChain6<R1, R2, R3, R4, R5, R6> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-  SyncRule<R4, R5>,
-  SyncRule<R5, R6>,
-]
-export type SyncRulesChain7<R1, R2, R3, R4, R5, R6, R7> = [
-  SyncRule<any, R1>,
-  SyncRule<R1, R2>,
-  SyncRule<R2, R3>,
-  SyncRule<R3, R4>,
-  SyncRule<R4, R5>,
-  SyncRule<R5, R6>,
-  SyncRule<R6, R7>,
-]
 // #endregion
 
 // #region AsyncRules
@@ -56,9 +19,9 @@ export type AsyncRule<I, O> = (
 ) => (input: I) => Promise<YobtaOptionalIfUnkown<I, O>>
 
 export type AnyAsyncRule = AsyncRule<any, any>
-export type AnySyncOrAsyncRule = AnyAsyncRule | AnySyncRule
+export type AnySyncOrAsyncRule = AnyAsyncRule | YobtaAnySyncRule
 export type SyncOrAsyncRules = [AnySyncOrAsyncRule, ...AnySyncOrAsyncRule[]]
-export type SyncOrAsyncRule<I, O> = SyncRule<UnwrapPromiseYobta<I>, O>
+export type SyncOrAsyncRule<I, O> = YobtaSyncRule<UnwrapPromiseYobta<I>, O>
 
 type UnwrapPromiseYobta<T> = T extends Promise<infer U> ? U : T
 
@@ -126,7 +89,7 @@ export type AsyncRulesChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9> = [
 // #endregion
 
 interface RuleFactory {
-  <I, O>(validate: SyncValidator<I, O>): SyncRule<I, O>
+  <I, O>(validate: SyncValidator<I, O>): YobtaSyncRule<I, O>
   <I, O>(validate: AsyncValidator<I, O>): AsyncRule<I, O>
 }
 

@@ -1,5 +1,5 @@
 import { pluralizeEn } from '../_internal/pluralizeEn/index.js'
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const maxCharactersMessage = (limit: number): string =>
@@ -8,7 +8,7 @@ export const maxCharactersMessage = (limit: number): string =>
 export const maxCharactersYobta = (
   limit: number,
   message = maxCharactersMessage,
-): SyncRule<string, string> =>
+): YobtaSyncRule<string, string> =>
   ruleYobta(input => {
     if (input.length > limit) {
       throw new Error(message(limit))

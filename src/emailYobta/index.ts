@@ -1,11 +1,11 @@
 import { reEmailYobta } from '../_patterns/reEmailYobta.js'
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const emailMessage = 'It should be an email'
 
 interface EmailFactory {
-  (message?: string): SyncRule<string, string>
+  (message?: string): YobtaSyncRule<string, string>
 }
 
 export const emailYobta: EmailFactory = (message = emailMessage) =>

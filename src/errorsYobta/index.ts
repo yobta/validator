@@ -1,5 +1,5 @@
 import type { YobtaContext } from '../_types/YobtaContext.js'
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export interface YobtaErrorReporter {
@@ -7,7 +7,7 @@ export interface YobtaErrorReporter {
 }
 
 interface ErrorsYobtaFactory {
-  <I>(report: YobtaErrorReporter): SyncRule<I, I>
+  <I>(report: YobtaErrorReporter): YobtaSyncRule<I, I>
 }
 
 export const errorsYobta: ErrorsYobtaFactory = report =>

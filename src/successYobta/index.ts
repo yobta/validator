@@ -1,5 +1,5 @@
 import type { YobtaContext } from '../_types/YobtaContext.js'
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 interface Handler<I> {
@@ -7,7 +7,7 @@ interface Handler<I> {
 }
 
 interface SuccessFactory {
-  <I>(handle: Handler<I>): SyncRule<I, I>
+  <I>(handle: Handler<I>): YobtaSyncRule<I, I>
 }
 
 export const successYobta: SuccessFactory = handle =>

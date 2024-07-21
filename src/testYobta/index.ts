@@ -1,10 +1,10 @@
-import type { SyncRule } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const testMessage = 'Invalid format'
 
 interface TestFactory {
-  (expression: RegExp, message?: string): SyncRule<string, string>
+  (expression: RegExp, message?: string): YobtaSyncRule<string, string>
 }
 
 export const testYobta: TestFactory = (
