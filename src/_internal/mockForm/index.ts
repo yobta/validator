@@ -1,11 +1,12 @@
 import { createEvent } from '@testing-library/dom'
 
-import type { AsyncResultYobta, AsyncRuleYobta } from '../../index.js'
+import type { YobtaAsyncResult } from '../../_types/YobtaAsyncResult'
+import type { YobtaAsyncRule } from '../../_types/YobtaAsyncRule'
 
 interface MockFormFactory {
   (innerHtml: string): {
-    change<V>(validate: AsyncRuleYobta<unknown, V>): AsyncResultYobta<V>
-    submit<V>(validate: AsyncRuleYobta<unknown, V>): AsyncResultYobta<V>
+    change<V>(validate: YobtaAsyncRule<unknown, V>): YobtaAsyncResult<V>
+    submit<V>(validate: YobtaAsyncRule<unknown, V>): YobtaAsyncResult<V>
   }
 }
 

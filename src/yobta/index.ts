@@ -5,7 +5,7 @@ import { pipe } from '../_internal/pipe/index.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { YobtaSyncRules } from '../ruleYobta/index.js'
 import type { YobtaError } from '../YobtaError/index.js'
-import type { YobtaFactory } from './YobtaFactory.js'
+import type { YobtaFactory } from '../_types/YobtaFactory.js'
 
 export const field = '@'
 

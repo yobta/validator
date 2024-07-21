@@ -1,9 +1,9 @@
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type { Functions, PipeFactoryResult } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
+import type { ItemsYobta } from '../_types/ItemsYobta.js'
 import type { YobtaSyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
-import type { ItemsYobta } from './ItemsYobta.js'
 
 export const itemsYobta: ItemsYobta = <R extends YobtaSyncRules>(
   ...rules: R

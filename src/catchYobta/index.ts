@@ -1,8 +1,8 @@
 import type { Functions } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
+import type { CatchYobta } from '../_types/CatchYobta.js'
 import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
-import type { CatchYobta } from './CatchYobta.js'
 
 export const catchYobta: CatchYobta = (
   fallbackValue: any,
