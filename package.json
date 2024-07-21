@@ -212,6 +212,13 @@
       "limit": "76 B"
     },
     {
+      "name": "RegExp test rule",
+      "import": {
+        "lib/index.js": "{ transformYobta }"
+      },
+      "limit": "76 B"
+    },
+    {
       "name": "Email rule",
       "import": {
         "lib/index.js": "{ emailYobta }"
@@ -365,6 +372,7 @@
         "lib/minDateYobta/index.js": "{ minDateYobta }",
         "lib/maxDateYobta/index.js": "{ maxDateYobta }",
         "lib/testYobta/index.js": "{ testYobta }",
+        "lib/transformYobta/index.js": "{ transformYobta }",
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",

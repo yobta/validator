@@ -34,6 +34,10 @@ OptionalSyncRule returtype for:
 - stringYobta
 - urlSearchParamsYobta
 
+Added:
+
+- transformYobta
+
 Todo pipes:
 ruleYobta
 yobta
