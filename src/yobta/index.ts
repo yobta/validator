@@ -2,7 +2,6 @@ import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFunctions,
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
@@ -59,9 +58,7 @@ export const yobta: YobtaFactory =
       },
     }
 
-    const validators = rules.map(next =>
-      next(context),
-    ) as PipedFunctions<Functions>
+    const validators = rules.map(next => next(context)) as Functions
 
     try {
       return pipe(...validators)(data)

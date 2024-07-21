@@ -2,7 +2,6 @@ import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFunctions,
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
@@ -19,8 +18,8 @@ type ShapeConfigYobta<F extends SyncRulesRecord> = {
   [K in keyof F]: SyncRulesPipeYobta<F[K]>
 }
 
-type ValidShapeYobta<F extends SyncRulesRecord> = {
-  [Property in keyof F]: PipeFactoryResult<F[Property]>
+type ValidShapeYobta<Rules extends SyncRulesRecord> = {
+  [Rule in keyof Rules]: PipeFactoryResult<Rules[Rule]>
 }
 
 type OptionalValidShapeYobta<
@@ -54,7 +53,7 @@ export const shapeYobta = <I, F extends SyncRulesRecord>(
           field,
           path,
         }),
-      ) as PipedFunctions<Functions>
+      ) as Functions
       let next = data[field as keyof typeof data]
       try {
         next = pipe(...tests)(next)

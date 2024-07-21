@@ -1,4 +1,3 @@
-import type { PipedPromices } from '../_internal/asyncPipe/index.js'
 import { asyncPipe } from '../_internal/asyncPipe/index.js'
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
@@ -56,7 +55,7 @@ export const awaitShapeYobta = <
         const path = [...context.path, field]
         const validators = rulesSet[field].map((rule: AnySyncOrAsyncRule) =>
           rule({ ...context, data, field, path }),
-        ) as PipedPromices<Functions>
+        ) as Functions
         try {
           const valid = await asyncPipe(...validators)(data[field as keyof I])
           result[field as keyof I] = valid

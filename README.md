@@ -151,6 +151,7 @@ requiredYobta(
 - [+] errorsYobta
 - [+] validityYobta
 - [+] successYobta
+- [+] transformYobta
 - [-] anyOf
 
 ### Docs

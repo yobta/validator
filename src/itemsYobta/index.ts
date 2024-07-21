@@ -1,7 +1,6 @@
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type {
   Functions,
-  PipedFunctions,
   PipeFactoryResult,
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
@@ -44,7 +43,7 @@ export const itemsYobta: ItemsYobta = <R extends SyncRules>(
   ...rules: R
 ): SyncRule<unknown[], PipeFactoryResult<R>[]> => {
   return ruleYobta((input: unknown[], context) => {
-    const next = rules.map(rule => rule(context)) as PipedFunctions<Functions>
+    const next = rules.map(rule => rule(context)) as Functions
 
     return input.map((item, index) => {
       try {

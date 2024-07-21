@@ -41,7 +41,7 @@ type AsChain<F extends Functions, G extends Func1[] = Tail<F>> = {
 export type Last<T extends any[]> = T extends [...infer F, infer L] ? L : never
 export type LaxReturnType<F> = F extends (...args: any) => infer R ? R : never
 
-export type Functions = Func1[]
+export type Functions = [Func1, ...Func1[]]
 export type PipedFunctions<F extends Functions> = AsChain<F> & F
 export type PipeResult<F extends Functions> = LaxReturnType<Last<F>>
 export type PipeFunction<F extends Functions, I> = (

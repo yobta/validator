@@ -1,8 +1,4 @@
-import type {
-  Functions,
-  PipedFunctions,
-  SyncRulesPipeYobta,
-} from '../_internal/pipe/index.js'
+import type { Functions, SyncRulesPipeYobta } from '../_internal/pipe/index.js'
 import { pipe } from '../_internal/pipe/index.js'
 import type {
   SyncRule,
@@ -55,7 +51,7 @@ export const catchYobta: CatchYobta = (
   ...rules: SyncRule<any, any>[]
 ) => {
   return ruleYobta((input, context) => {
-    const next = rules.map(rule => rule(context)) as PipedFunctions<Functions>
+    const next = rules.map(rule => rule(context)) as Functions
     try {
       return pipe(...next)(input)
     } catch (error) {
