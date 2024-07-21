@@ -14,12 +14,12 @@ import { ruleYobta } from '../ruleYobta/index.js'
 
 type SyncRulesRecord = Record<PropertyKey, YobtaSyncRules>
 
-type ShapeConfigYobta<F extends SyncRulesRecord> = {
-  [K in keyof F]: SyncRulesPipeYobta<F[K]>
+type ShapeConfigYobta<Branch extends SyncRulesRecord> = {
+  [Rules in keyof Branch]: SyncRulesPipeYobta<Branch[Rules]>
 }
 
-type ValidShapeYobta<Rules extends SyncRulesRecord> = {
-  [Rule in keyof Rules]: PipeFactoryResult<Rules[Rule]>
+type ValidShapeYobta<Branch extends SyncRulesRecord> = {
+  [Rules in keyof Branch]: PipeFactoryResult<Branch[Rules]>
 }
 
 type OptionalValidShapeYobta<
