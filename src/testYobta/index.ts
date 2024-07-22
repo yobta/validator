@@ -11,7 +11,7 @@ export const testYobta: TestFactory = (
   expression: RegExp,
   message = testMessage,
 ) =>
-  ruleYobta(input => {
+  ruleYobta<string, string>(input => {
     if (expression.test(input)) {
       return input
     }

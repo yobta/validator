@@ -1,9 +1,10 @@
 /* eslint-disable import/extensions */
+import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
 import { maxCharactersMessage, maxCharactersYobta } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = yobta(maxCharactersYobta(1, customMessage))
+const validate = yobta(stringYobta(), maxCharactersYobta(1, customMessage))
 
 it('accepts exact lenght', () => {
   const result = validate('a')
@@ -21,7 +22,7 @@ it('regects greater lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(maxCharactersYobta(1))
+  const validateDefault = yobta(stringYobta(), maxCharactersYobta(1))
   const attempt = (): any => validateDefault('ab')
   expect(attempt).toThrow(maxCharactersMessage(1))
 })

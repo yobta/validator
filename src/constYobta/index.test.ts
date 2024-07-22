@@ -6,7 +6,7 @@ import { yobta } from '../yobta'
 it('accepts when identical', () => {
   const validate = yobta(
     shapeYobta({
-      a: [constYobta('a')],
+      a: yobta(constYobta('a')),
     }),
   )
   const result = validate({ a: 'a' })
@@ -16,7 +16,7 @@ it('accepts when identical', () => {
 it('rejects when not identical', () => {
   const validate = yobta(
     shapeYobta({
-      a: [constYobta('b', 'yobta')],
+      a: yobta(constYobta('b', 'yobta')),
     }),
   )
   const attempt = (): any => validate({ a: 'a' })
@@ -26,7 +26,7 @@ it('rejects when not identical', () => {
 it('rejects when not undefined', () => {
   const validate = yobta(
     shapeYobta({
-      a: [constYobta('b', 'yobta')],
+      a: yobta(constYobta('b', 'yobta')),
     }),
   )
   const attempt = (): any => validate({})
@@ -36,7 +36,7 @@ it('rejects when not undefined', () => {
 it('has default error mesage', () => {
   const validate = yobta(
     shapeYobta({
-      a: [constYobta('b')],
+      a: yobta(constYobta('b')),
     }),
   )
   const attempt = (): any => validate({ a: 'a' })

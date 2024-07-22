@@ -8,7 +8,7 @@ import { shapeMessage, shapeYobta } from './'
 
 const validate = yobta(
   shapeYobta({
-    name: [stringYobta(), requiredYobta()],
+    name: yobta(requiredYobta(), stringYobta()),
   }),
 )
 
@@ -43,7 +43,7 @@ it('has custom error messages', () => {
     yobta(
       shapeYobta(
         {
-          name: [stringYobta()],
+          name: yobta(stringYobta()),
         },
         'yobta!',
       ),
@@ -68,11 +68,11 @@ it('preserves yobta error', () => {
   const attempt = (): any =>
     yobta(
       shapeYobta({
-        name: [
-          effectYobta<string>(() => {
+        name: yobta(
+          effectYobta(() => {
             throw yobtaError
           }),
-        ],
+        ),
       }),
     )({
       name: 'yobta',
@@ -89,9 +89,9 @@ it('should replace context.data', () => {
   const attempt = yobta(
     defaultYobta(replaced),
     shapeYobta({
-      newPassword: [differentYobta(['password'])],
-      password: [stringYobta()],
-      retypePassword: [identicalYobta(['newPassword'])],
+      newPassword: yobta(differentYobta(['password'])),
+      password: yobta(stringYobta()),
+      retypePassword: yobta(identicalYobta(['newPassword'])),
     }),
   )
   const result = attempt(undefined)

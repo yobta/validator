@@ -5,12 +5,15 @@ import { createEvent } from '@testing-library/dom'
 import {
   booleanYobta,
   catchYobta,
+  constYobta,
   enumYobta,
   numberYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
   urlSearchParamsYobta,
+  YobtaContext,
+  YobtaError,
 } from '../'
 import { yobta } from './'
 
@@ -39,14 +42,14 @@ it('rejects invalid', () => {
 const validateSearch = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: [
+    currentTab: yobta(
       catchYobta(
         'tab-1',
         enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
-    ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+    ),
+    myModalIsOpen: yobta(catchYobta(false, booleanYobta(), requiredYobta())),
   }),
 )
 
@@ -78,4 +81,28 @@ it("prevents form submit and doesn't prevent change", () => {
 
   expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
   expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
+})
+
+it('takes external context', () => {
+  const pushError = jest.fn()
+  const context: YobtaContext = {
+    data: 'yobta',
+    errors: [],
+    event: 'yobta',
+    field: 'yobta',
+    path: ['yobta'],
+    pushError,
+  }
+  const validateWithContext = yobta(constYobta(1))
+
+  try {
+    validateWithContext(2, context)
+  } catch (error) {
+    const yobtaError = error as YobtaError
+    expect(yobtaError).toBeInstanceOf(YobtaError)
+    expect(pushError).not.toHaveBeenCalled()
+    expect(yobtaError.message).toBe('Should be identical to "1"')
+    expect(yobtaError.field).toBe('yobta')
+    expect(yobtaError.path).toEqual(['yobta'])
+  }
 })

@@ -10,6 +10,7 @@ import {
   shapeYobta,
   stringMessage,
   stringYobta,
+  yobta,
 } from '..'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
@@ -124,9 +125,9 @@ it('should replace context.data', async () => {
   const attempt = asyncYobta(
     defaultYobta(replaced),
     shapeYobta({
-      newPassword: [differentYobta(['password'])],
-      password: [stringYobta()],
-      retypePassword: [identicalYobta(['newPassword'])],
+      newPassword: yobta(differentYobta(['password'])),
+      password: yobta(stringYobta()),
+      retypePassword: yobta(identicalYobta(['newPassword'])),
     }),
   )
   const result = await attempt(undefined)

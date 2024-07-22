@@ -11,7 +11,7 @@ interface BooleanFactory {
 }
 
 export const booleanYobta: BooleanFactory = message =>
-  ruleYobta(input => {
+  ruleYobta<unknown, boolean>(input => {
     const lowerCasedInput = String(input).toLowerCase()
     if (falsySet.has(lowerCasedInput)) {
       return false

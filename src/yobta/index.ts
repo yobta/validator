@@ -7,23 +7,25 @@ import type { YobtaFactory } from '../_types/YobtaFactory.js'
 import type { YobtaSyncRules } from '../ruleYobta/index.js'
 import type { YobtaError } from '../YobtaError/index.js'
 
-export const field = '@'
-
 export const yobta: YobtaFactory =
   <R extends YobtaSyncRules>(...rules: R) =>
-  (data: unknown) => {
-    const context: YobtaContext = {
+  (data: unknown, context?: YobtaContext) => {
+    const ctx = context || {
       ...createContext(data),
       pushError(error: YobtaError) {
         throw error
       },
     }
 
-    const validators = rules.map(next => next(context)) as Functions
+    const validators = rules.map(next => next(ctx)) as Functions
 
     try {
       return pipe(...validators)(data)
     } catch (error) {
-      throw handleUnknownError({ error, field, path: [] })
+      throw handleUnknownError({
+        error,
+        field: ctx.field,
+        path: ctx.path,
+      })
     }
   }

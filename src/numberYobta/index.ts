@@ -8,7 +8,7 @@ interface NumberFactory {
 }
 
 export const numberYobta: NumberFactory = (message = numberMessage) =>
-  ruleYobta(value => {
+  ruleYobta<unknown, number>(value => {
     try {
       const number = Number(value ?? 0)
       if (Number.isFinite(number)) {

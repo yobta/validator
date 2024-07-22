@@ -1,14 +1,10 @@
 /* eslint-disable import/extensions */
+import { numberYobta } from '../numberYobta'
 import { yobta } from '../yobta'
 import { minimumYobta, minimumYobtaMessage } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = yobta(minimumYobta(1, customMessage))
-
-it('accepts undefined', () => {
-  const result = validate(undefined)
-  expect(result).toBeUndefined()
-})
+const validate = yobta(numberYobta(), minimumYobta(1, customMessage))
 
 it('accepts exact lenght', () => {
   const result = validate(1)
@@ -26,7 +22,7 @@ it('regects insufficient lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(minimumYobta(1))
+  const validateDefault = yobta(numberYobta(), minimumYobta(1))
   const assign = (): any => validateDefault(0)
   expect(assign).toThrow(minimumYobtaMessage(1))
 })

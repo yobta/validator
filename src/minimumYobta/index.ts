@@ -8,7 +8,7 @@ export const minimumYobta = (
   limit: number,
   message = minimumYobtaMessage,
 ): YobtaSyncRule<number, number> =>
-  ruleYobta(input => {
+  ruleYobta<number, number>(input => {
     if (input < limit) {
       throw new Error(message(limit))
     }

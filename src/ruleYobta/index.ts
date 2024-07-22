@@ -26,8 +26,8 @@ export type SyncOrAsyncRule<I, O> = YobtaSyncRule<YobtaUnwrapPromise<I>, O>
 // #endregion
 
 interface RuleFactory {
-  <I, O>(validate: SyncValidator<I, O>): YobtaSyncRule<I, O>
   <I, O>(validate: AsyncValidator<I, O>): AsyncRule<I, O>
+  <I, O>(validate: SyncValidator<I, O>): YobtaSyncRule<I, O>
 }
 
 export const ruleYobta: RuleFactory = validate => context => input =>

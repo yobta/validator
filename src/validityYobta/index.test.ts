@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta, constYobta, shapeYobta, YobtaError } from '../'
+import { asyncYobta, constYobta, shapeYobta, yobta, YobtaError } from '../'
 import { createContext } from '../_internal/createContext'
 import { formYobta } from '../formYobta'
 import { validityMessage, validityYobta } from './'
@@ -86,11 +86,11 @@ it('reports validity for buttons, selects, inputs and textareas', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      button: [constYobta('yobta')],
-      checkbox: [constYobta('yobta')],
-      select: [constYobta('option2')],
-      text: [constYobta('yobta')],
-      textarea: [constYobta('yobta')],
+      button: yobta(constYobta('yobta')),
+      checkbox: yobta(constYobta('yobta')),
+      select: yobta(constYobta('option2')),
+      text: yobta(constYobta('yobta')),
+      textarea: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -129,8 +129,8 @@ it('reports validity on submit and restores on input', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      checkbox: [constYobta('yobta')],
-      text: [constYobta('yobta')],
+      checkbox: yobta(constYobta('yobta')),
+      text: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -161,8 +161,8 @@ it('does not report input events when validateAllFieldsOnChange is false', async
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      checkbox: [constYobta('yobta')],
-      text: [constYobta('yobta')],
+      checkbox: yobta(constYobta('yobta')),
+      text: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock, { validateAllFieldsOnChange: false }),
   )
@@ -182,8 +182,8 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      checkbox: [constYobta('yobta')],
-      text: [constYobta('yobta')],
+      checkbox: yobta(constYobta('yobta')),
+      text: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock, { validateAllFieldsOnChange: true }),
   )
@@ -203,8 +203,8 @@ it('reports unhandled errors', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      inputIsNotInForm: [constYobta('yobta')],
-      text: [constYobta('yobta')],
+      inputIsNotInForm: yobta(constYobta('yobta')),
+      text: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -227,7 +227,7 @@ it('does not report readonly inputs', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      readonly: [constYobta('yobta')],
+      readonly: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -250,7 +250,7 @@ it('does not report hidden inputs', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      hidden: [constYobta('yobta')],
+      hidden: yobta(constYobta('yobta')),
     }),
     validityYobta(errorHandlerMock),
   )

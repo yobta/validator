@@ -10,8 +10,8 @@ describe('identicalYobta', () => {
   it('accepts when identical', () => {
     const validate = yobta(
       shapeYobta({
-        a: [numberYobta()],
-        b: [identicalYobta(['a'])],
+        a: yobta(numberYobta()),
+        b: yobta(identicalYobta(['a'])),
       }),
     )
     const result = validate({ a: 1, b: 1 })
@@ -21,8 +21,8 @@ describe('identicalYobta', () => {
   it('rejects when not identical', () => {
     const validate = yobta(
       shapeYobta({
-        a: [numberYobta()],
-        b: [identicalYobta(['a'], customMessage)],
+        a: yobta(numberYobta()),
+        b: yobta(identicalYobta(['a'], customMessage)),
       }),
     )
     const attempt = (): any => validate({ a: '2', b: 1 })
@@ -32,8 +32,8 @@ describe('identicalYobta', () => {
   it('has default error mesage', () => {
     const validate = yobta(
       shapeYobta({
-        a: [numberYobta()],
-        b: [identicalYobta(['a'])],
+        a: yobta(numberYobta()),
+        b: yobta(identicalYobta(['a'])),
       }),
     )
     const attempt = (): any => validate({ a: '1', b: 1 })

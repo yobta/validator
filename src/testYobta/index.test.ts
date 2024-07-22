@@ -1,21 +1,22 @@
 /* eslint-disable import/extensions */
 
+import { stringYobta } from '../stringYobta'
 import { yobta } from '../yobta'
 import { testMessage, testYobta } from './'
 
 const regExp = /fo*/
 
 const customMessage = 'yobta!'
-const validate = yobta(testYobta(regExp, customMessage))
+const validate = yobta(stringYobta(), testYobta(regExp, customMessage))
 
 it('accepts if mathed', () => {
   const result = validate('table football')
   expect(result).toBe('table football')
 })
 
-it('accepts undefined', () => {
-  const result = validate(undefined)
-  expect(result).toBeUndefined()
+it('rejects undefined', () => {
+  const attempt = (): any => validate(undefined)
+  expect(attempt).toThrow(customMessage)
 })
 
 it('regects empty string', () => {
@@ -29,7 +30,7 @@ it('regects if not matched', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(testYobta(regExp))
+  const validateDefault = yobta(stringYobta(), testYobta(regExp))
   const attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(testMessage)
 })

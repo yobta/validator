@@ -10,7 +10,7 @@ const coercedTypes = new Set(['number', 'boolean', 'string'])
 export const stringMessage = 'It should be a string'
 
 export const stringYobta: StringFactory = (message = stringMessage) =>
-  ruleYobta((value = '') => {
+  ruleYobta<unknown, string>((value = '') => {
     if (value instanceof String || coercedTypes.has(typeof value)) {
       return String(value).trim()
     }

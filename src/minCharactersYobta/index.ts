@@ -9,7 +9,7 @@ export const minCharactersYobta = (
   limit: number,
   message = minCharactersMessage,
 ): YobtaSyncRule<string, string> =>
-  ruleYobta(input => {
+  ruleYobta<string, string>(input => {
     if (input.length < limit) {
       throw new Error(message(limit))
     }

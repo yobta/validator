@@ -8,7 +8,7 @@ export const maximumYobta = (
   limit: number,
   message = maximumYobtaMessage,
 ): YobtaSyncRule<number, number> =>
-  ruleYobta(input => {
+  ruleYobta<number, number>(input => {
     if (input > limit) {
       throw new Error(message(limit))
     }

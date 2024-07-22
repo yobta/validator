@@ -9,8 +9,8 @@ const customMessage = (): string => 'yobta!'
 it('accepts when different', () => {
   const validate = yobta(
     shapeYobta({
-      a: [numberYobta()],
-      b: [differentYobta(['a'])],
+      a: yobta(numberYobta()),
+      b: yobta(differentYobta(['a'])),
     }),
   )
   const result = validate({ a: 1, b: 2 })
@@ -20,8 +20,8 @@ it('accepts when different', () => {
 it('accepts when different and undefined', () => {
   const validate = yobta(
     shapeYobta({
-      a: [numberYobta()],
-      b: [differentYobta(['a'])],
+      a: yobta(numberYobta()),
+      b: yobta(differentYobta(['a'])),
     }),
   )
   const result = validate({ a: 1 })
@@ -31,8 +31,8 @@ it('accepts when different and undefined', () => {
 it('regects when not different', () => {
   const validate = yobta(
     shapeYobta({
-      a: [numberYobta()],
-      b: [differentYobta(['a'], customMessage)],
+      a: yobta(numberYobta()),
+      b: yobta(differentYobta(['a'], customMessage)),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
@@ -42,8 +42,8 @@ it('regects when not different', () => {
 it('has default error mesage', () => {
   const validate = yobta(
     shapeYobta({
-      a: [numberYobta()],
-      b: [differentYobta(['a'])],
+      a: yobta(numberYobta()),
+      b: yobta(differentYobta(['a'])),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })

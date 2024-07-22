@@ -7,6 +7,7 @@ import {
   requiredYobta,
   shapeYobta,
   stringYobta,
+  yobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
 import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule'
@@ -18,7 +19,7 @@ function mockValidate(spy: Function): YobtaAsyncRule<any, any> {
   return asyncYobta(
     formYobta(),
     shapeYobta({
-      name: [requiredYobta(), stringYobta()],
+      name: yobta(requiredYobta(), stringYobta()),
     }),
     awaitSubmitYobta(async (data, context) => {
       spy(data, context)

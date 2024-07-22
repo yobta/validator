@@ -20,9 +20,6 @@
 - patterns
 - testYobta
 - uniqueYobta
-
-OptionalSyncRule returtype for:
-
 - arrayYobta
 - booleanYobta
 - constYobta
@@ -39,10 +36,9 @@ Added:
 - transformYobta
 
 Todo pipes:
-ruleYobta
-yobta
 awaitShapeYobta
-shapeYobta
+optionalYobta
+requiredYobta should use context value
 
 ## 0.1.6
 

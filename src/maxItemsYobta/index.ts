@@ -9,7 +9,7 @@ export const maxItemsYobta = <I extends unknown[]>(
   limit: number,
   message = maxItemsMessage,
 ): YobtaSyncRule<I, I> =>
-  ruleYobta(input => {
+  ruleYobta<I, I>(input => {
     if (input.length > limit) {
       throw new Error(message(limit))
     }

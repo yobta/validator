@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { effectYobta } from '../'
+import { effectYobta, yobta } from '../'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
 import { enumYobta } from '../enumYobta'
@@ -20,14 +20,14 @@ const validate = asyncYobta(numberYobta('yobta!'))
 const validateSearch = asyncYobta(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: [
+    currentTab: yobta(
       catchYobta(
         'tab-1',
         enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
-    ],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+    ),
+    myModalIsOpen: yobta(catchYobta(false, booleanYobta(), requiredYobta())),
   }),
 )
 
@@ -121,11 +121,11 @@ it('preserves yobta error', async () => {
   })
   const result = await asyncYobta(
     shapeYobta({
-      name: [
+      name: yobta(
         effectYobta<any>(() => {
           throw yobtaError
         }),
-      ],
+      ),
     }),
     requiredYobta(),
   )({})
