@@ -19,10 +19,9 @@ type PromiseChain<F extends Functions, T extends Func1[] = Tail<F>> = {
 
 export const asyncPipe =
   <F extends Functions>(...functions: PipedPromices<F>) =>
-  (input: ArgType<F[0]>): Promise<PipeResult<F>> => {
-    const resultingPromise = functions.reduce(
-      (prev, next) => prev.then(next),
-      Promise.resolve(input),
-    ) as Promise<PipeResult<F>>
-    return resultingPromise
+  async (input: ArgType<F[0]>): Promise<PipeResult<F>> => {
+    for await (const fn of functions) {
+      input = await fn(input)
+    }
+    return input as PipeResult<F>
   }

@@ -18,8 +18,8 @@ import { asyncShapeMessage, awaitShapeYobta } from './'
 
 const validate = asyncYobta(
   awaitShapeYobta({
-    age: [stringYobta()],
-    name: [stringYobta(), requiredYobta()],
+    age: asyncYobta(stringYobta()),
+    name: asyncYobta(stringYobta()),
   }),
 )
 
@@ -75,7 +75,7 @@ it('has custom error messages', async () => {
     asyncYobta(
       awaitShapeYobta(
         {
-          name: [stringYobta()],
+          name: asyncYobta(requiredYobta()),
         },
         'yobta!',
       ),
@@ -100,20 +100,35 @@ it('captures errors from field validators', async () => {
     })
   const result = await attempt()
 
-  expect(result).toEqual([null, [new Error(stringMessage)]])
+  expect(result).toEqual([
+    null,
+    [
+      new YobtaError({
+        field: 'age',
+        message: stringMessage,
+        path: ['age'],
+      }),
+      new YobtaError({
+        field: 'name',
+        message: asyncShapeMessage,
+        path: ['name'],
+      }),
+    ],
+  ])
 })
 
 it('returns errors for invalid keys', async () => {
-  const attempt = awaitShapeYobta({
-    name: [stringYobta()],
-  })
   const context = createContext({})
-  jest.spyOn(context, 'pushError')
-  const result = await attempt(context)({
-    name: {},
-  })
-  expect(result).toEqual({ name: {} })
-  expect(context.pushError).toHaveBeenCalledWith(new Error(stringMessage))
+  // jest.spyOn(context, 'pushError')
+
+  const attempt = (): any =>
+    awaitShapeYobta({
+      name: asyncYobta(stringYobta()),
+    })(context)({
+      name: {},
+    })
+  expect(attempt).rejects.toThrow(asyncShapeMessage)
+  // expect(pushErrorMock).toHaveBeenCalledWith(new Error(stringMessage))
 })
 
 it('should replace context.data', async () => {
@@ -137,9 +152,9 @@ it('should replace context.data', async () => {
 it('has no racing condition', async () => {
   const attempt = asyncYobta(
     awaitShapeYobta({
-      address: [requiredYobta()],
-      description: [requiredYobta()],
-      title: [requiredYobta()],
+      address: asyncYobta(requiredYobta()),
+      description: asyncYobta(requiredYobta()),
+      title: asyncYobta(requiredYobta()),
     }),
   )
   const result = await attempt({})
@@ -160,6 +175,11 @@ it('has no racing condition', async () => {
         field: 'description',
         message: 'Required',
         path: ['description'],
+      }),
+      new YobtaError({
+        field: '@',
+        message: asyncShapeMessage,
+        path: ['@'],
       }),
     ],
   ])

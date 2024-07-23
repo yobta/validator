@@ -2,7 +2,8 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { effectYobta, yobta } from '../'
+import { constYobta, effectYobta, yobta } from '../'
+import { createContext } from '../_internal/createContext'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
 import { enumYobta } from '../enumYobta'
@@ -97,6 +98,14 @@ it('captures context errors', async () => {
   expect(result).toEqual([null, [error]])
 })
 
+it('respects foreign context', async () => {
+  const foreignContext = createContext({})
+  jest.spyOn(foreignContext, 'pushError')
+  const validateConst = asyncYobta(constYobta(1))
+  await validateConst(2, foreignContext)
+  expect(foreignContext.pushError).toHaveBeenCalledTimes(1)
+})
+
 it("prevents form submit and doesn't prevent change", async () => {
   const form = document.createElement('form')
   const submitEvent = createEvent.submit(form)
@@ -129,5 +138,15 @@ it('preserves yobta error', async () => {
     }),
     requiredYobta(),
   )({})
-  expect(result).toEqual([null, [yobtaError]])
+  expect(result).toEqual([
+    null,
+    [
+      yobtaError,
+      new YobtaError({
+        field: 'yobta',
+        message: 'Ivalid shape',
+        path: [],
+      }),
+    ],
+  ])
 })

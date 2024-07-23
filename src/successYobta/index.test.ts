@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 
 import { stringMessage, stringYobta, yobta } from '../'
-import type { SyncValidatorYobta } from '../_types/YobtaSyncValidator'
+import type { SyncValidatorYobta } from '../_types/SyncValidatorYobta'
 import { successYobta } from './'
 
 function mockValidate(spy: Function): SyncValidatorYobta<any, any> {

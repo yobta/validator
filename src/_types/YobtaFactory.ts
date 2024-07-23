@@ -17,7 +17,7 @@ import type {
   YobtaSyncChain8,
   YobtaSyncChain9,
 } from './YobtaSyncChain.js'
-import type { SyncValidatorYobta } from './YobtaSyncValidator.js'
+import type { SyncValidatorYobta } from './SyncValidatorYobta.js'
 
 export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(
@@ -79,5 +79,5 @@ export interface YobtaFactory {
 
   <R extends YobtaSyncRules>(
     ...rules: SyncRulesPipeYobta<R>
-  ): (input: any) => PipeFactoryResult<R>
+  ): SyncValidatorYobta<any, PipeFactoryResult<R>>
 }

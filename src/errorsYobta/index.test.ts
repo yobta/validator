@@ -15,13 +15,21 @@ it('calls reporter when validation fails', async () => {
 
   const result = await validate({ yobta: [] })
 
-  const error = new YobtaError({
-    field: 'yobta',
-    message: 'It should be a string',
-    path: ['yobta'],
-  })
-
-  expect(result).toEqual([null, [error]])
+  expect(result).toEqual([
+    null,
+    [
+      new YobtaError({
+        field: 'yobta',
+        message: 'It should be a string',
+        path: ['yobta'],
+      }),
+      new YobtaError({
+        field: '@',
+        message: 'Ivalid shape',
+        path: ['@'],
+      }),
+    ],
+  ])
 })
 
 it('does not call reporter when validation succeeds', async () => {

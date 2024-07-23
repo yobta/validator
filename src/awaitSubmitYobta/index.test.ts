@@ -10,12 +10,12 @@ import {
   yobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
-import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule'
+import type { AsyncValidatorYobta } from '../_types/AsyncValidatorYobta'
 import type { YobtaContext } from '../_types/YobtaContext'
 import { YobtaError } from '../YobtaError'
 import { awaitSubmitYobta } from './'
 
-function mockValidate(spy: Function): YobtaAsyncRule<any, any> {
+function mockValidate(spy: Function): AsyncValidatorYobta<any, any> {
   return asyncYobta(
     formYobta(),
     shapeYobta({
@@ -97,17 +97,26 @@ it('does not fire when it is not valid and event type is submit', async () => {
     validate,
   )
 
-  const error = new YobtaError({
-    field: 'name',
-    message: 'Required',
-    path: ['name'],
-  })
-
-  expect(result).toEqual([null, [error]])
+  expect(result).toEqual([
+    null,
+    [
+      new YobtaError({
+        field: 'name',
+        message: 'Required',
+        path: ['name'],
+      }),
+      new YobtaError({
+        field: 'name',
+        message: 'Ivalid shape',
+        path: ['name'],
+      }),
+    ],
+  ])
   expect(spy).toHaveBeenCalledTimes(0)
 })
 
 it('catches submit error and pushes it to errors', async () => {
+  const pushErrorMock = jest.fn()
   const context: YobtaContext = {
     data: null,
     errors: [],
@@ -116,11 +125,19 @@ it('catches submit error and pushes it to errors', async () => {
     },
     field: '@',
     path: [],
-    pushError: jest.fn(),
+    pushError: pushErrorMock,
   }
   const rule = awaitSubmitYobta(async () => {
     throw new Error('Submit error')
   })
   await rule(context)(null)
-  expect(context.pushError).toHaveBeenCalledWith(Error('Submit error'))
+  expect(pushErrorMock.mock.calls).toEqual([
+    [
+      new YobtaError({
+        field: 'name',
+        message: 'Submit error',
+        path: ['name'],
+      }),
+    ],
+  ])
 })

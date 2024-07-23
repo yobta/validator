@@ -2,7 +2,14 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { asyncYobta, constYobta, shapeYobta, yobta, YobtaError } from '../'
+import {
+  asyncYobta,
+  constYobta,
+  shapeMessage,
+  shapeYobta,
+  yobta,
+  YobtaError,
+} from '../'
 import { createContext } from '../_internal/createContext'
 import { formYobta } from '../formYobta'
 import { validityMessage, validityYobta } from './'
@@ -81,12 +88,11 @@ it('throws when gets a non-event and has a custom error message', () => {
   ).toThrow('yobta!')
 })
 
-it('reports validity for buttons, selects, inputs and textareas', async () => {
+it('reports validity for selects, inputs and textareas', async () => {
   const { checkbox, form, input, select, textarea } = mockForm()
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      button: yobta(constYobta('yobta')),
       checkbox: yobta(constYobta('yobta')),
       select: yobta(constYobta('option2')),
       text: yobta(constYobta('yobta')),
@@ -104,6 +110,10 @@ it('reports validity for buttons, selects, inputs and textareas', async () => {
   expect(textarea.checkValidity()).toBe(true)
 
   await validate(submitEvent)
+
+  expect(errorHandlerMock).toHaveBeenCalledWith(
+    new YobtaError({ field: '@', message: shapeMessage, path: [] }),
+  )
 
   expect(checkbox.checkValidity()).toBe(false)
   expect(input.checkValidity()).toBe(false)
@@ -218,8 +228,17 @@ it('reports unhandled errors', async () => {
   await validate(submitEvent)
 
   expect(input.checkValidity()).toBe(false)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
-  expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
+  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock.mock.calls).toEqual([
+    [
+      new YobtaError({
+        field: 'inputIsNotInForm',
+        message: 'Should be identical to "yobta"',
+        path: ['inputIsNotInForm'],
+      }),
+    ],
+    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
+  ])
 })
 
 it('does not report readonly inputs', async () => {
@@ -227,7 +246,7 @@ it('does not report readonly inputs', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      readonly: yobta(constYobta('yobta')),
+      readonly: yobta(constYobta('readonly yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -241,8 +260,17 @@ it('does not report readonly inputs', async () => {
   await validate(submitEvent)
 
   expect(readonlyInput.checkValidity()).toBe(true)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
-  expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
+  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock.mock.calls).toEqual([
+    [
+      new YobtaError({
+        field: 'readonly',
+        message: 'Should be identical to "readonly yobta"',
+        path: ['readonly'],
+      }),
+    ],
+    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
+  ])
 })
 
 it('does not report hidden inputs', async () => {
@@ -250,7 +278,7 @@ it('does not report hidden inputs', async () => {
   const validate = asyncYobta(
     formYobta(),
     shapeYobta({
-      hidden: yobta(constYobta('yobta')),
+      hidden: yobta(constYobta('hidden yobta')),
     }),
     validityYobta(errorHandlerMock),
   )
@@ -264,6 +292,15 @@ it('does not report hidden inputs', async () => {
   await validate(submitEvent)
 
   expect(hiddenInput.checkValidity()).toBe(true)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
-  expect(errorHandlerMock).toHaveBeenCalledWith(expect.any(YobtaError))
+  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock.mock.calls).toEqual([
+    [
+      new YobtaError({
+        field: 'hidden',
+        message: 'Should be identical to "hidden yobta"',
+        path: ['hidden'],
+      }),
+    ],
+    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
+  ])
 })

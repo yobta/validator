@@ -14,7 +14,7 @@
     "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest src --coverage",
-    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/shapeYobta",
+    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/validityYobta",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },

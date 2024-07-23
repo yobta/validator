@@ -17,8 +17,6 @@ type FactoryProduct<
   K extends keyof F,
 > = (arg: ArgType<F>) => ArgType<Lookup<ExtractReturnTypes<T>, K, any>, any>
 
-type Awaited<T> = T extends PromiseLike<infer U> ? U : T
-
 export type ExtractReturnTypes<T extends Func1[]> = {
   [P in keyof T]: T[P] extends (a: ArgType<T[P]>) => infer R
     ? Awaited<R>
