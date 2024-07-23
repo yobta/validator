@@ -5,7 +5,7 @@ import type {
   Lookup,
   PipeResult,
   Tail,
-} from '../pipe/index.js'
+} from '../../_types/YobtaPipe.js'
 
 export type PipedPromices<F extends Functions> = F & PromiseChain<F>
 

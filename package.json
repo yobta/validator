@@ -250,7 +250,7 @@
     {
       "name": "Items rule",
       "import": {
-        "lib/index.js": "{ itemsYobta }"
+        "lib/index.js": "{ items }"
       },
       "limit": "241 B"
     },
@@ -372,7 +372,7 @@
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/safe/safe.js": "{ safe }",
         "lib/constYobta/index.js": "{ constYobta }",
-        "lib/itemsYobta/index.js": "{ itemsYobta }",
+        "lib/items/items.js": "{ items }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",

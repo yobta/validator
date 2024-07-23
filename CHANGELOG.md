@@ -36,6 +36,7 @@ Renamed:
 - yobta => createValidator
 - asyncYobta => createAsyncValidator
 - catchYobta => safe
+- itemsYobta => items
 
 Added:
 

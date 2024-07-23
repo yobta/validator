@@ -1,6 +1,6 @@
 import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import type { PipeFactoryResult } from '../_internal/pipe/index.js'
+import type { PipeFactoryResult } from '../_types/YobtaPipe.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { YobtaValidatorFactory } from '../_types/YobtaValidatorFactory.js'
 import type { YobtaSyncRules } from '../ruleYobta/index.js'

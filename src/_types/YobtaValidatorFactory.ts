@@ -1,7 +1,4 @@
-import type {
-  PipeFactoryResult,
-  SyncRulesPipeYobta,
-} from '../_internal/pipe/index.js'
+import type { PipeFactoryResult, SyncRulesPipeYobta } from './YobtaPipe.js'
 import type { YobtaSyncRules } from '../ruleYobta/index.js'
 import type {
   YobtaSyncChain1,

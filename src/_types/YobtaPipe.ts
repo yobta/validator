@@ -1,4 +1,4 @@
-import type { YobtaAnySyncRule, YobtaSyncRules } from '../../ruleYobta/index.js'
+import type { YobtaAnySyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
 
 export type SyncRulesPipeYobta<F extends YobtaSyncRules> = AsFactoryChain<F> & F
 
@@ -51,11 +51,3 @@ export type PipeFunction<F extends Functions, I> = (
 
 export type ThenArgRecursive<T> =
   T extends PromiseLike<infer U> ? ThenArgRecursive<U> : T
-
-export const pipe =
-  <F extends Functions>(...functions: PipedFunctions<F>) =>
-  (input: ArgType<F[0]>): PipeResult<F> =>
-    functions.reduce(
-      (prev: unknown, next) => next(prev),
-      input,
-    ) as PipeResult<F>
