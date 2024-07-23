@@ -41,6 +41,7 @@ Renamed:
 Added:
 
 - transformYobta
+- pipe
 
 Todo pipes:
 awaitShapeYobta

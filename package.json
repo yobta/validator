@@ -311,6 +311,13 @@
       "limit": "533 B"
     },
     {
+      "name": "Pipe rule",
+      "import": {
+        "lib/index.js": "{ pipe }"
+      },
+      "limit": "69 B"
+    },
+    {
       "name": "Await submit utility",
       "import": {
         "lib/index.js": "{ awaitSubmitYobta }"
@@ -373,6 +380,7 @@
         "lib/safe/safe.js": "{ safe }",
         "lib/constYobta/index.js": "{ constYobta }",
         "lib/items/items.js": "{ items }",
+        "lib/pipe/pipe.js": "{ pipe }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
