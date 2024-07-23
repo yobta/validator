@@ -10,7 +10,7 @@ import {
   numberYobta,
   requiredYobta,
   safe,
-  shapeYobta,
+  shape,
   stringYobta,
   urlSearchParamsYobta,
   YobtaError,
@@ -41,7 +41,7 @@ it('rejects invalid', () => {
 
 const validateSearch = createValidator(
   urlSearchParamsYobta(),
-  shapeYobta({
+  shape({
     currentTab: safe(
       'tab-1',
       enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),

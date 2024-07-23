@@ -96,7 +96,7 @@
     {
       "name": "Shape rule",
       "import": {
-        "lib/index.js": "{ shapeYobta }"
+        "lib/index.js": "{ shape }"
       },
       "limit": "506 B"
     },
@@ -357,7 +357,7 @@
       "import": {
         "lib/ruleYobta/index.js": "{ ruleYobta }",
         "lib/createValidator/createValidator.js": "{ createValidator }",
-        "lib/shapeYobta/index.js": "{ shapeYobta }",
+        "lib/shape/shape.js": "{ shape }",
         "lib/stringYobta/index.js": "{ stringYobta }",
         "lib/arrayYobta/index.js": "{ arrayYobta }",
         "lib/numberYobta/index.js": "{ numberYobta }",

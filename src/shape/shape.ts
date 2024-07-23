@@ -16,7 +16,7 @@ type ValidShapeYobta<Record extends SyncRulesRecord> = {
 
 export const shapeMessage = 'Ivalid shape'
 
-export const shapeYobta = <I, F extends SyncRulesRecord>(
+export const shape = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
 ): YobtaSyncRule<I, YobtaPretty<ValidShapeYobta<F>>> =>

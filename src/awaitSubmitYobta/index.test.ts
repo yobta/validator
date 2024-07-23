@@ -6,7 +6,7 @@ import {
   formYobta,
   pipe,
   requiredYobta,
-  shapeYobta,
+  shape,
   stringYobta,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
@@ -18,7 +18,7 @@ import { awaitSubmitYobta } from './'
 function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
     formYobta(),
-    shapeYobta({
+    shape({
       name: pipe(requiredYobta(), stringYobta()),
     }),
     awaitSubmitYobta(async (data, context) => {

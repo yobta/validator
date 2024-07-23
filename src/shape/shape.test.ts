@@ -5,15 +5,15 @@ import {
   effectYobta,
   identicalYobta,
   pipe,
-} from '../'
+} from '..'
 import { createValidator } from '../createValidator/createValidator'
-import { requiredYobta } from '../requiredYobta/'
-import { stringMessage, stringYobta } from '../stringYobta/'
-import { YobtaError } from '../YobtaError/'
-import { shapeMessage, shapeYobta } from './'
+import { requiredYobta } from '../requiredYobta'
+import { stringMessage, stringYobta } from '../stringYobta'
+import { YobtaError } from '../YobtaError'
+import { shape, shapeMessage } from './shape'
 
 const validate = createValidator(
-  shapeYobta({
+  shape({
     name: pipe(requiredYobta(), stringYobta()),
   }),
 )
@@ -40,14 +40,14 @@ it('rejects invalid input', () => {
 })
 
 it('coerces undefined', () => {
-  const result = createValidator(shapeYobta({}))(undefined)
+  const result = createValidator(shape({}))(undefined)
   expect(result).toEqual({})
 })
 
 it('has custom error messages', () => {
   const attempt = (): any =>
     createValidator(
-      shapeYobta(
+      shape(
         {
           name: stringYobta(),
         },
@@ -73,7 +73,7 @@ it('preserves yobta error', () => {
   })
   const attempt = (): any =>
     createValidator(
-      shapeYobta({
+      shape({
         name: effectYobta(() => {
           throw yobtaError
         }),
@@ -92,7 +92,7 @@ it('should replace context.data', () => {
   }
   const attempt = createValidator(
     defaultYobta(replaced),
-    shapeYobta({
+    shape({
       newPassword: differentYobta(['password']),
       password: stringYobta(),
       retypePassword: identicalYobta(['newPassword']),

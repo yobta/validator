@@ -10,7 +10,7 @@ import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
 import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
-import { shapeYobta } from '../shapeYobta'
+import { shape } from '../shape/shape'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
@@ -20,7 +20,7 @@ const validate = createAsyncValidator(numberYobta('yobta!'))
 
 const validateSearch = createAsyncValidator(
   urlSearchParamsYobta(),
-  shapeYobta({
+  shape({
     currentTab: safe(
       'tab-1',
       enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
@@ -130,7 +130,7 @@ it('preserves yobta error', async () => {
     path: [],
   })
   const result = await createAsyncValidator(
-    shapeYobta({
+    shape({
       name: effectYobta<any>(() => {
         throw yobtaError
       }),
