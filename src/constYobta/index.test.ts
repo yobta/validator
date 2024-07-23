@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 import { constMessage, constYobta } from '.'
 import { shapeYobta } from '../shapeYobta'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 
 it('accepts when identical', () => {
-  const validate = yobta(
+  const validate = createValidator(
     shapeYobta({
-      a: yobta(constYobta('a')),
+      a: createValidator(constYobta('a')),
     }),
   )
   const result = validate({ a: 'a' })
@@ -14,9 +14,9 @@ it('accepts when identical', () => {
 })
 
 it('rejects when not identical', () => {
-  const validate = yobta(
+  const validate = createValidator(
     shapeYobta({
-      a: yobta(constYobta('b', 'yobta')),
+      a: createValidator(constYobta('b', 'yobta')),
     }),
   )
   const attempt = (): any => validate({ a: 'a' })
@@ -24,9 +24,9 @@ it('rejects when not identical', () => {
 })
 
 it('rejects when not undefined', () => {
-  const validate = yobta(
+  const validate = createValidator(
     shapeYobta({
-      a: yobta(constYobta('b', 'yobta')),
+      a: createValidator(constYobta('b', 'yobta')),
     }),
   )
   const attempt = (): any => validate({})
@@ -34,9 +34,9 @@ it('rejects when not undefined', () => {
 })
 
 it('has default error mesage', () => {
-  const validate = yobta(
+  const validate = createValidator(
     shapeYobta({
-      a: yobta(constYobta('b')),
+      a: createValidator(constYobta('b')),
     }),
   )
   const attempt = (): any => validate({ a: 'a' })

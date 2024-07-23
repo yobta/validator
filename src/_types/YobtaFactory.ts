@@ -3,6 +3,7 @@ import type {
   SyncRulesPipeYobta,
 } from '../_internal/pipe/index.js'
 import type { YobtaSyncRules } from '../ruleYobta/index.js'
+import type { SyncValidatorYobta } from './SyncValidatorYobta.js'
 import type {
   YobtaSyncChain1,
   YobtaSyncChain10,
@@ -17,7 +18,6 @@ import type {
   YobtaSyncChain8,
   YobtaSyncChain9,
 } from './YobtaSyncChain.js'
-import type { SyncValidatorYobta } from './SyncValidatorYobta.js'
 
 export interface YobtaFactory {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(

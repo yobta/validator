@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { urlSearchParamsYobta } from './'
 
-const validate = yobta(urlSearchParamsYobta())
+const validate = createValidator(urlSearchParamsYobta())
 
 it('creates params from string', () => {
   const result = validate('?param=yobta')

@@ -2,6 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
+import type { YobtaContext } from '..'
 import {
   booleanYobta,
   catchYobta,
@@ -12,12 +13,11 @@ import {
   shapeYobta,
   stringYobta,
   urlSearchParamsYobta,
-  YobtaContext,
   YobtaError,
-} from '../'
-import { yobta } from './'
+} from '..'
+import { createValidator } from './createValidator'
 
-const validate = yobta(numberYobta('yobta!'))
+const validate = createValidator(numberYobta('yobta!'))
 
 it('accepts valid', () => {
   const result = validate(1)
@@ -25,7 +25,7 @@ it('accepts valid', () => {
 })
 
 it('can pipe rules', () => {
-  const validateMultiple = yobta(
+  const validateMultiple = createValidator(
     stringYobta(),
     requiredYobta(),
     // minCharactersYobta(5),
@@ -39,17 +39,19 @@ it('rejects invalid', () => {
   expect(attempt).toThrow('yobta!')
 })
 
-const validateSearch = yobta(
+const validateSearch = createValidator(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: yobta(
+    currentTab: createValidator(
       catchYobta(
         'tab-1',
         enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
     ),
-    myModalIsOpen: yobta(catchYobta(false, booleanYobta(), requiredYobta())),
+    myModalIsOpen: createValidator(
+      catchYobta(false, booleanYobta(), requiredYobta()),
+    ),
   }),
 )
 
@@ -71,7 +73,7 @@ it("prevents form submit and doesn't prevent change", () => {
   const form = document.createElement('form')
   const submitEvent = createEvent.submit(form)
   const changeEvent = createEvent.change(form)
-  const validateEvent = yobta(requiredYobta())
+  const validateEvent = createValidator(requiredYobta())
 
   jest.spyOn(submitEvent, 'preventDefault')
   jest.spyOn(changeEvent, 'preventDefault')
@@ -93,7 +95,7 @@ it('takes external context', () => {
     path: ['yobta'],
     pushError,
   }
-  const validateWithContext = yobta(constYobta(1))
+  const validateWithContext = createValidator(constYobta(1))
 
   try {
     validateWithContext(2, context)

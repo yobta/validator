@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { integerMessage, integerYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(integerYobta(customMessage))
+const validate = createValidator(integerYobta(customMessage))
 
 it('accepts integers', () => {
   const result = validate(1)
@@ -31,7 +31,7 @@ it('rejects undefined', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(integerYobta())
+  const validateDefault = createValidator(integerYobta())
   const attempt = (): any => validateDefault(0.1)
   expect(attempt).toThrow(integerMessage)
 })

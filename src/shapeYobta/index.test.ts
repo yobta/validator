@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '../'
+import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta/'
 import { stringMessage, stringYobta } from '../stringYobta/'
-import { yobta } from '../yobta/'
 import { YobtaError } from '../YobtaError/'
 import { shapeMessage, shapeYobta } from './'
 
-const validate = yobta(
+const validate = createValidator(
   shapeYobta({
-    name: yobta(requiredYobta(), stringYobta()),
+    name: createValidator(requiredYobta(), stringYobta()),
   }),
 )
 
@@ -34,16 +34,16 @@ it('rejects invalid input', () => {
 })
 
 it('coerces undefined', () => {
-  const result = yobta(shapeYobta({}))(undefined)
+  const result = createValidator(shapeYobta({}))(undefined)
   expect(result).toEqual({})
 })
 
 it('has custom error messages', () => {
   const attempt = (): any =>
-    yobta(
+    createValidator(
       shapeYobta(
         {
-          name: yobta(stringYobta()),
+          name: createValidator(stringYobta()),
         },
         'yobta!',
       ),
@@ -66,9 +66,9 @@ it('preserves yobta error', () => {
     path: [],
   })
   const attempt = (): any =>
-    yobta(
+    createValidator(
       shapeYobta({
-        name: yobta(
+        name: createValidator(
           effectYobta(() => {
             throw yobtaError
           }),
@@ -86,12 +86,12 @@ it('should replace context.data', () => {
     password: 'old yobta',
     retypePassword: 'new yobta',
   }
-  const attempt = yobta(
+  const attempt = createValidator(
     defaultYobta(replaced),
     shapeYobta({
-      newPassword: yobta(differentYobta(['password'])),
-      password: yobta(stringYobta()),
-      retypePassword: yobta(identicalYobta(['newPassword'])),
+      newPassword: createValidator(differentYobta(['password'])),
+      password: createValidator(stringYobta()),
+      retypePassword: createValidator(identicalYobta(['newPassword'])),
     }),
   )
   const result = attempt(undefined)

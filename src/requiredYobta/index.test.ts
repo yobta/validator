@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
 import { stringYobta } from '../stringYobta'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { requiredMessage, requiredYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(requiredYobta(customMessage), stringYobta())
+const validate = createValidator(requiredYobta(customMessage), stringYobta())
 
 it('accepts value', () => {
   const result = validate('yobta')
@@ -17,7 +17,7 @@ it('rejects undefined', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(requiredYobta(), stringYobta())
+  const validateDefault = createValidator(requiredYobta(), stringYobta())
   const attempt = (): any => validateDefault(undefined)
   expect(attempt).toThrow(requiredMessage)
 })

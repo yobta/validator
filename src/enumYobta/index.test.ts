@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { enumMessage, enumYobta } from './'
 
 const customMessage = (): string => 'yobta!'
-const validate = yobta(enumYobta(new Set(['yobta']), customMessage))
+const validate = createValidator(enumYobta(new Set(['yobta']), customMessage))
 
 it('accepts listed', () => {
   const result = validate('yobta')
@@ -23,7 +23,7 @@ it('rejects not listed', () => {
 it('has default error message', () => {
   const set = new Set<['yobta']>()
   const rule = enumYobta(set)
-  const validateDefault = yobta(rule)
+  const validateDefault = createValidator(rule)
   const attempt = (): any => validateDefault(0)
   expect(attempt).toThrow(enumMessage(set))
 })

@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 
 import { stringYobta } from '../stringYobta'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { YobtaError } from '../YobtaError'
 import { emailMessage, emailYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(stringYobta(), emailYobta(customMessage))
+const validate = createValidator(stringYobta(), emailYobta(customMessage))
 
 it(`accepts valid emails`, async () => {
   const result = validate('user-@example.org')
@@ -31,7 +31,7 @@ it(`rejects invalid email`, () => {
 
 it('has default error message', () => {
   const rule = emailYobta()
-  const validateDefault = yobta(rule)
+  const validateDefault = createValidator(rule)
   const attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(emailMessage)
 })

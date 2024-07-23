@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { YobtaError } from '../YobtaError'
 import { numberMessage, numberYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(numberYobta(customMessage))
+const validate = createValidator(numberYobta(customMessage))
 
 it('accepts numbers', () => {
   const result = validate(1)
@@ -48,7 +48,7 @@ it('coerces date', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(numberYobta())
+  const validateDefault = createValidator(numberYobta())
   const attempt = (): any => validateDefault({})
   expect(attempt).toThrow(numberMessage)
 })

@@ -80,13 +80,6 @@
       "limit": "16 B"
     },
     {
-      "name": "Validator factory",
-      "import": {
-        "lib/index.js": "{ yobta }"
-      },
-      "limit": "342 B"
-    },
-    {
       "name": "Async validator factory",
       "import": {
         "lib/index.js": "{ asyncYobta }"
@@ -96,7 +89,7 @@
     {
       "name": "Sync validator factory",
       "import": {
-        "lib/index.js": "{ yobta }"
+        "lib/index.js": "{ createValidator }"
       },
       "limit": "363 B"
     },
@@ -356,7 +349,7 @@
       "name": "All",
       "import": {
         "lib/ruleYobta/index.js": "{ ruleYobta }",
-        "lib/yobta/index.js": "{ yobta }",
+        "lib/createValidator/createValidator.js": "{ createValidator }",
         "lib/shapeYobta/index.js": "{ shapeYobta }",
         "lib/stringYobta/index.js": "{ stringYobta }",
         "lib/arrayYobta/index.js": "{ arrayYobta }",

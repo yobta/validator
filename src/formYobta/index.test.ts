@@ -3,10 +3,10 @@ import { createEvent } from '@testing-library/dom'
 
 import { createContext } from '../_internal/createContext'
 import { fromEntries } from '../_internal/fromEntries'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { formDataMessage, formYobta } from './'
 
-const validate = yobta(formYobta())
+const validate = createValidator(formYobta())
 
 it('accepts form instance', () => {
   const input = document.createElement('form')
@@ -33,7 +33,7 @@ it('rejects invalid input', () => {
 })
 
 it('has custom error messages', () => {
-  const attempt = (): any => yobta(formYobta('yobta!'))(null)
+  const attempt = (): any => createValidator(formYobta('yobta!'))(null)
   expect(attempt).toThrow('yobta!')
 })
 

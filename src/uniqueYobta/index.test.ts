@@ -1,12 +1,16 @@
 /* eslint-disable import/extensions */
 import { arrayYobta } from '../arrayYobta'
 import { requiredYobta } from '../requiredYobta'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { uniqueYobta } from './'
 
 const customMesage = 'yobta'
 
-const validate = yobta(arrayYobta(), requiredYobta(), uniqueYobta(customMesage))
+const validate = createValidator(
+  arrayYobta(),
+  requiredYobta(),
+  uniqueYobta(customMesage),
+)
 
 it('accepts empty array', () => {
   const result = validate([])
@@ -24,7 +28,11 @@ it('rejects duplicate items', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = yobta(arrayYobta(), requiredYobta(), uniqueYobta())
+  const validateDefault = createValidator(
+    arrayYobta(),
+    requiredYobta(),
+    uniqueYobta(),
+  )
   const attempt = (): any => validateDefault(['', '2', '2'])
   expect(attempt).toThrow('It should contain unique items')
 })

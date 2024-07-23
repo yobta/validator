@@ -1,10 +1,10 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { maxDateYobta } from './'
 
 const maxDate = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`
-const validate = yobta(maxDateYobta(maxDate, customMessage))
+const validate = createValidator(maxDateYobta(maxDate, customMessage))
 
 it('accepts exact date', () => {
   const result = validate(maxDate)
@@ -25,7 +25,7 @@ it('regects longer date lenght', () => {
 
 it('has default error message', () => {
   const longerDate = new Date('15 Jun 2017 00:00:00 PDT')
-  const attempt = (): any => yobta(maxDateYobta(maxDate))(longerDate)
+  const attempt = (): any => createValidator(maxDateYobta(maxDate))(longerDate)
 
   expect(attempt).toThrow('It should be within Wed, 14 Jun 2017 07:00:00 GMT')
 })

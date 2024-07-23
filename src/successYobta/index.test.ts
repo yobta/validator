@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { stringMessage, stringYobta, yobta } from '../'
+import { stringMessage, stringYobta, createValidator } from '../'
 import type { SyncValidatorYobta } from '../_types/SyncValidatorYobta'
 import { successYobta } from './'
 
 function mockValidate(spy: Function): SyncValidatorYobta<any, any> {
-  return yobta(
+  return createValidator(
     stringYobta(),
     successYobta((data, context) => {
       spy(data, context)

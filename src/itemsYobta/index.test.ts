@@ -3,10 +3,10 @@ import { arrayYobta } from '../arrayYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { itemsYobta } from './'
 
-const validate = yobta(
+const validate = createValidator(
   arrayYobta(),
   requiredYobta(),
   itemsYobta(stringYobta(), requiredYobta(), minCharactersYobta(5)),

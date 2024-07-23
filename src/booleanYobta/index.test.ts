@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { yobta } from '../yobta'
+import { createValidator } from '../createValidator/createValidator'
 import { booleanMessage, booleanYobta } from './'
 
 const customMessage = 'yobta!'
-const validate = yobta(booleanYobta(customMessage))
+const validate = createValidator(booleanYobta(customMessage))
 
 it('accepts truthy', () => {
   const variants = ['yes', 'true', 'Yes', 'tRue', true, 1, '1']
@@ -41,7 +41,7 @@ it('rejects invalid', () => {
 
 it('has default error message', () => {
   const rule = booleanYobta()
-  const validateDefault = yobta(rule)
+  const validateDefault = createValidator(rule)
   const attemt = (): any => validateDefault('')
   expect(attemt).toThrow(booleanMessage)
 })
