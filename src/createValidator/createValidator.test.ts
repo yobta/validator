@@ -42,16 +42,12 @@ it('rejects invalid', () => {
 const validateSearch = createValidator(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: createValidator(
-      safe(
-        'tab-1',
-        enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
-        requiredYobta(),
-      ),
+    currentTab: safe(
+      'tab-1',
+      enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
+      requiredYobta(),
     ),
-    myModalIsOpen: createValidator(
-      safe(false, booleanYobta(), requiredYobta()),
-    ),
+    myModalIsOpen: safe(false, booleanYobta(), requiredYobta()),
   }),
 )
 

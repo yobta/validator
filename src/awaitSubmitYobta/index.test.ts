@@ -3,8 +3,8 @@ import { jest } from '@jest/globals'
 
 import {
   createAsyncValidator,
-  createValidator,
   formYobta,
+  pipe,
   requiredYobta,
   shapeYobta,
   stringYobta,
@@ -19,7 +19,7 @@ function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
     formYobta(),
     shapeYobta({
-      name: createValidator(requiredYobta(), stringYobta()),
+      name: pipe(requiredYobta(), stringYobta()),
     }),
     awaitSubmitYobta(async (data, context) => {
       spy(data, context)

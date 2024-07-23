@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constYobta, createValidator, effectYobta } from '..'
+import { constYobta, effectYobta } from '..'
 import { createContext } from '../_internal/createContext'
 import { booleanYobta } from '../booleanYobta'
 import { enumYobta } from '../enumYobta'
@@ -21,16 +21,12 @@ const validate = createAsyncValidator(numberYobta('yobta!'))
 const validateSearch = createAsyncValidator(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: createValidator(
-      safe(
-        'tab-1',
-        enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
-        requiredYobta(),
-      ),
+    currentTab: safe(
+      'tab-1',
+      enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
+      requiredYobta(),
     ),
-    myModalIsOpen: createValidator(
-      safe(false, booleanYobta(), requiredYobta()),
-    ),
+    myModalIsOpen: safe(false, booleanYobta(), requiredYobta()),
   }),
 )
 
@@ -135,11 +131,9 @@ it('preserves yobta error', async () => {
   })
   const result = await createAsyncValidator(
     shapeYobta({
-      name: createValidator(
-        effectYobta<any>(() => {
-          throw yobtaError
-        }),
-      ),
+      name: effectYobta<any>(() => {
+        throw yobtaError
+      }),
     }),
     requiredYobta(),
   )({})

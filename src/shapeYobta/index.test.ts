@@ -1,5 +1,11 @@
 /* eslint-disable import/extensions */
-import { defaultYobta, differentYobta, effectYobta, identicalYobta } from '../'
+import {
+  defaultYobta,
+  differentYobta,
+  effectYobta,
+  identicalYobta,
+  pipe,
+} from '../'
 import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta/'
 import { stringMessage, stringYobta } from '../stringYobta/'
@@ -8,7 +14,7 @@ import { shapeMessage, shapeYobta } from './'
 
 const validate = createValidator(
   shapeYobta({
-    name: createValidator(requiredYobta(), stringYobta()),
+    name: pipe(requiredYobta(), stringYobta()),
   }),
 )
 
@@ -43,7 +49,7 @@ it('has custom error messages', () => {
     createValidator(
       shapeYobta(
         {
-          name: createValidator(stringYobta()),
+          name: stringYobta(),
         },
         'yobta!',
       ),
@@ -68,11 +74,9 @@ it('preserves yobta error', () => {
   const attempt = (): any =>
     createValidator(
       shapeYobta({
-        name: createValidator(
-          effectYobta(() => {
-            throw yobtaError
-          }),
-        ),
+        name: effectYobta(() => {
+          throw yobtaError
+        }),
       }),
     )({
       name: 'yobta',
@@ -89,9 +93,9 @@ it('should replace context.data', () => {
   const attempt = createValidator(
     defaultYobta(replaced),
     shapeYobta({
-      newPassword: createValidator(differentYobta(['password'])),
-      password: createValidator(stringYobta()),
-      retypePassword: createValidator(identicalYobta(['newPassword'])),
+      newPassword: differentYobta(['password']),
+      password: stringYobta(),
+      retypePassword: identicalYobta(['newPassword']),
     }),
   )
   const result = attempt(undefined)

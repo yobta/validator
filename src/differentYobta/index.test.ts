@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
+import { createValidator } from '../createValidator/createValidator'
 import { numberYobta } from '../numberYobta'
 import { shapeYobta } from '../shapeYobta'
-import { createValidator } from '../createValidator/createValidator'
 import { differentMessage, differentYobta } from './'
 
 const customMessage = (): string => 'yobta!'
@@ -9,8 +9,8 @@ const customMessage = (): string => 'yobta!'
 it('accepts when different', () => {
   const validate = createValidator(
     shapeYobta({
-      a: createValidator(numberYobta()),
-      b: createValidator(differentYobta(['a'])),
+      a: numberYobta(),
+      b: differentYobta(['a']),
     }),
   )
   const result = validate({ a: 1, b: 2 })
@@ -20,8 +20,8 @@ it('accepts when different', () => {
 it('accepts when different and undefined', () => {
   const validate = createValidator(
     shapeYobta({
-      a: createValidator(numberYobta()),
-      b: createValidator(differentYobta(['a'])),
+      a: numberYobta(),
+      b: differentYobta(['a']),
     }),
   )
   const result = validate({ a: 1 })
@@ -31,8 +31,8 @@ it('accepts when different and undefined', () => {
 it('regects when not different', () => {
   const validate = createValidator(
     shapeYobta({
-      a: createValidator(numberYobta()),
-      b: createValidator(differentYobta(['a'], customMessage)),
+      a: numberYobta(),
+      b: differentYobta(['a'], customMessage),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
@@ -42,8 +42,8 @@ it('regects when not different', () => {
 it('has default error mesage', () => {
   const validate = createValidator(
     shapeYobta({
-      a: createValidator(numberYobta()),
-      b: createValidator(differentYobta(['a'])),
+      a: numberYobta(),
+      b: differentYobta(['a']),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
