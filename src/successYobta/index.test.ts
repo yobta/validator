@@ -2,10 +2,10 @@
 import { jest } from '@jest/globals'
 
 import { stringMessage, stringYobta, createValidator } from '../'
-import type { SyncValidatorYobta } from '../_types/SyncValidatorYobta'
+import type { YobtaValidator } from '../_types/YobtaValidator'
 import { successYobta } from './'
 
-function mockValidate(spy: Function): SyncValidatorYobta<any, any> {
+function mockValidate(spy: Function): YobtaValidator<any, any> {
   return createValidator(
     stringYobta(),
     successYobta((data, context) => {

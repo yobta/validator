@@ -1,11 +1,11 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import type { SyncValidatorYobta } from '../_types/SyncValidatorYobta.js'
+import type { YobtaValidator } from '../_types/YobtaValidator.js'
 import type { YobtaPretty } from '../_types/YobtaPretty.js'
 import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-type SyncRulesRecord = Record<PropertyKey, SyncValidatorYobta<any, any>>
+type SyncRulesRecord = Record<PropertyKey, YobtaValidator<any, any>>
 
 type ShapeConfigYobta<Record extends SyncRulesRecord> = {
   [Validator in keyof Record]: Record[Validator]
