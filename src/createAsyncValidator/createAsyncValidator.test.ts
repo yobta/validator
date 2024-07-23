@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constYobta, effectYobta, createValidator } from '../'
+import { constYobta, createValidator, effectYobta } from '..'
 import { createContext } from '../_internal/createContext'
 import { booleanYobta } from '../booleanYobta'
 import { catchYobta } from '../catchYobta'
@@ -14,11 +14,11 @@ import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
-import { asyncYobta } from './'
+import { createAsyncValidator } from './createAsyncValidator'
 
-const validate = asyncYobta(numberYobta('yobta!'))
+const validate = createAsyncValidator(numberYobta('yobta!'))
 
-const validateSearch = asyncYobta(
+const validateSearch = createAsyncValidator(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: createValidator(
@@ -40,7 +40,7 @@ it('accepts valid', async () => {
 })
 
 it('can pipe rules', async () => {
-  const validateMultiple = asyncYobta(
+  const validateMultiple = createAsyncValidator(
     stringYobta(),
     requiredYobta(),
     minCharactersYobta(5),
@@ -92,10 +92,13 @@ it('captures context errors', async () => {
     name: 'error',
     path: [],
   }
-  const validateContext = asyncYobta(({ pushError }) => (item: any) => {
-    if (typeof item !== 'string') pushError(error)
-    return item
-  })
+  const validateContext = createAsyncValidator(
+    ({ pushError }) =>
+      (item: any) => {
+        if (typeof item !== 'string') pushError(error)
+        return item
+      },
+  )
   const result = await validateContext(1)
   expect(result).toEqual([null, [error]])
 })
@@ -103,7 +106,7 @@ it('captures context errors', async () => {
 it('respects foreign context', async () => {
   const foreignContext = createContext({})
   jest.spyOn(foreignContext, 'pushError')
-  const validateConst = asyncYobta(constYobta(1))
+  const validateConst = createAsyncValidator(constYobta(1))
   await validateConst(2, foreignContext)
   expect(foreignContext.pushError).toHaveBeenCalledTimes(1)
 })
@@ -112,7 +115,7 @@ it("prevents form submit and doesn't prevent change", async () => {
   const form = document.createElement('form')
   const submitEvent = createEvent.submit(form)
   const changeEvent = createEvent.change(form)
-  const validateEvent = asyncYobta(requiredYobta())
+  const validateEvent = createAsyncValidator(requiredYobta())
 
   jest.spyOn(submitEvent, 'preventDefault')
   jest.spyOn(changeEvent, 'preventDefault')
@@ -130,7 +133,7 @@ it('preserves yobta error', async () => {
     message: 'yobta',
     path: [],
   })
-  const result = await asyncYobta(
+  const result = await createAsyncValidator(
     shapeYobta({
       name: createValidator(
         effectYobta<any>(() => {

@@ -3,15 +3,15 @@ import type { YobtaAnySyncRule, YobtaSyncRules } from '../../ruleYobta/index.js'
 export type SyncRulesPipeYobta<F extends YobtaSyncRules> = AsFactoryChain<F> & F
 
 type AsFactoryChain<
-  F extends YobtaSyncRules,
-  T extends YobtaAnySyncRule[] = Tail<F>,
+  Rules extends YobtaSyncRules,
+  RestRules extends YobtaAnySyncRule[] = Tail<Rules>,
 > = {
-  [K in keyof F]: (
-    arg: ArgType<FactoryProduct<F, T, K>>,
-  ) => FactoryProduct<F, T, K>
+  [K in keyof Rules]: (
+    arg: ArgType<FactoryProduct<Rules, RestRules, K>>,
+  ) => FactoryProduct<Rules, RestRules, K>
 }
 
-type FactoryProduct<
+export type FactoryProduct<
   F extends YobtaSyncRules,
   T extends YobtaAnySyncRule[],
   K extends keyof F,

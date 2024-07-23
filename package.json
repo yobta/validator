@@ -82,7 +82,7 @@
     {
       "name": "Async validator factory",
       "import": {
-        "lib/index.js": "{ asyncYobta }"
+        "lib/index.js": "{ createAsyncValidator }"
       },
       "limit": "387 B"
     },
@@ -379,7 +379,7 @@
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/formYobta/index.js": "{ formYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",
-        "lib/asyncYobta/index.js": "{ asyncYobta }",
+        "lib/createAsyncValidator/createAsyncValidator.js": "{ createAsyncValidator }",
         "lib/effectYobta/index.js": "{ effectYobta }",
         "lib/awaitShapeYobta/index.js": "{ awaitShapeYobta }",
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",

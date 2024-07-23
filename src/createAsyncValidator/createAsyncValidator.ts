@@ -1,12 +1,12 @@
 import { createContext } from '../_internal/createContext/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type { PipeFactoryResult } from '../_internal/pipe/index.js'
-import type { AsyncFactoryYobta } from '../_types/AsyncFactoryYobta.js'
-import type { YobtaAsyncValidatorResult } from '../_types/AsyncValidatorYobta.js'
+import type { YobtaAsyncValidatorResult } from '../_types/YobtaAsyncValidator.js'
+import type { YobtaAsyncValidatorFactory } from '../_types/YobtaAsyncValidatorFactory.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { SyncOrAsyncRules } from '../ruleYobta/index.js'
 
-export const asyncYobta: AsyncFactoryYobta =
+export const createAsyncValidator: YobtaAsyncValidatorFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (
     data: unknown,

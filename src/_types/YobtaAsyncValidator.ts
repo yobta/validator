@@ -2,7 +2,7 @@ import type { YobtaError } from '../YobtaError'
 import type { YobtaContext } from './YobtaContext'
 import type { YobtaPretty } from './YobtaPretty'
 
-export interface AsyncValidatorYobta<I, O> {
+export interface YobtaAsyncValidator<I, O> {
   (input: I, context?: YobtaContext): YobtaAsyncValidatorResult<O>
 }
 

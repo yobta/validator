@@ -3,11 +3,11 @@ import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
 import {
-  asyncYobta,
   constYobta,
+  createAsyncValidator,
+  createValidator,
   shapeMessage,
   shapeYobta,
-  createValidator,
   YobtaError,
 } from '../'
 import { createContext } from '../_internal/createContext'
@@ -90,7 +90,7 @@ it('throws when gets a non-event and has a custom error message', () => {
 
 it('reports validity for selects, inputs and textareas', async () => {
   const { checkbox, form, input, select, textarea } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       checkbox: createValidator(constYobta('yobta')),
@@ -136,7 +136,7 @@ it('reports validity for selects, inputs and textareas', async () => {
 
 it('reports validity on submit and restores on input', async () => {
   const { checkbox, form, input } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       checkbox: createValidator(constYobta('yobta')),
@@ -168,7 +168,7 @@ it('reports validity on submit and restores on input', async () => {
 
 it('does not report input events when validateAllFieldsOnChange is false', async () => {
   const { checkbox, form, input } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       checkbox: createValidator(constYobta('yobta')),
@@ -189,7 +189,7 @@ it('does not report input events when validateAllFieldsOnChange is false', async
 
 it('reports input events when validateAllFieldsOnChange is true', async () => {
   const { checkbox, form, input } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       checkbox: createValidator(constYobta('yobta')),
@@ -210,7 +210,7 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
 
 it('reports unhandled errors', async () => {
   const { form, input } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       inputIsNotInForm: createValidator(constYobta('yobta')),
@@ -243,7 +243,7 @@ it('reports unhandled errors', async () => {
 
 it('does not report readonly inputs', async () => {
   const { form, readonlyInput } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       readonly: createValidator(constYobta('readonly yobta')),
@@ -275,7 +275,7 @@ it('does not report readonly inputs', async () => {
 
 it('does not report hidden inputs', async () => {
   const { form, hiddenInput } = mockForm()
-  const validate = asyncYobta(
+  const validate = createAsyncValidator(
     formYobta(),
     shapeYobta({
       hidden: createValidator(constYobta('hidden yobta')),

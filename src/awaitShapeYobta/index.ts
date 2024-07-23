@@ -1,10 +1,10 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
-import type { AsyncValidatorYobta } from '../_types/AsyncValidatorYobta.js'
+import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator.js'
 import type { YobtaError } from '../index.js'
 import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-type AsyncRulesRecord = Record<PropertyKey, AsyncValidatorYobta<any, any>>
+type AsyncRulesRecord = Record<PropertyKey, YobtaAsyncValidator<any, any>>
 
 type AwaitShapeConfig<Record extends AsyncRulesRecord> = {
   [Validator in keyof Record]: Record[Validator]

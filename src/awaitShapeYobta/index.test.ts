@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
-import { jest } from '@jest/globals'
 
 import {
-  asyncYobta,
+  createAsyncValidator,
+  createValidator,
   defaultYobta,
   differentYobta,
   identicalYobta,
@@ -10,16 +10,15 @@ import {
   shapeYobta,
   stringMessage,
   stringYobta,
-  createValidator,
 } from '..'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
 import { asyncShapeMessage, awaitShapeYobta } from './'
 
-const validate = asyncYobta(
+const validate = createAsyncValidator(
   awaitShapeYobta({
-    age: asyncYobta(stringYobta()),
-    name: asyncYobta(stringYobta()),
+    age: createAsyncValidator(stringYobta()),
+    name: createAsyncValidator(stringYobta()),
   }),
 )
 
@@ -72,10 +71,10 @@ it('rejects invalid undefined input', async () => {
 
 it('has custom error messages', async () => {
   const attempt = (): any =>
-    asyncYobta(
+    createAsyncValidator(
       awaitShapeYobta(
         {
-          name: asyncYobta(requiredYobta()),
+          name: createAsyncValidator(requiredYobta()),
         },
         'yobta!',
       ),
@@ -123,7 +122,7 @@ it('returns errors for invalid keys', async () => {
 
   const attempt = (): any =>
     awaitShapeYobta({
-      name: asyncYobta(stringYobta()),
+      name: createAsyncValidator(stringYobta()),
     })(context)({
       name: {},
     })
@@ -137,7 +136,7 @@ it('should replace context.data', async () => {
     password: 'old yobta',
     retypePassword: 'new yobta',
   }
-  const attempt = asyncYobta(
+  const attempt = createAsyncValidator(
     defaultYobta(replaced),
     shapeYobta({
       newPassword: createValidator(differentYobta(['password'])),
@@ -150,11 +149,11 @@ it('should replace context.data', async () => {
 })
 
 it('has no racing condition', async () => {
-  const attempt = asyncYobta(
+  const attempt = createAsyncValidator(
     awaitShapeYobta({
-      address: asyncYobta(requiredYobta()),
-      description: asyncYobta(requiredYobta()),
-      title: asyncYobta(requiredYobta()),
+      address: createAsyncValidator(requiredYobta()),
+      description: createAsyncValidator(requiredYobta()),
+      title: createAsyncValidator(requiredYobta()),
     }),
   )
   const result = await attempt({})

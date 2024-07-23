@@ -2,21 +2,21 @@
 import { jest } from '@jest/globals'
 
 import {
-  asyncYobta,
+  createAsyncValidator,
+  createValidator,
   formYobta,
   requiredYobta,
   shapeYobta,
   stringYobta,
-  createValidator,
 } from '..'
 import { mockForm } from '../_internal/mockForm'
-import type { AsyncValidatorYobta } from '../_types/AsyncValidatorYobta'
+import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator'
 import type { YobtaContext } from '../_types/YobtaContext'
 import { YobtaError } from '../YobtaError'
 import { awaitSubmitYobta } from './'
 
-function mockValidate(spy: Function): AsyncValidatorYobta<any, any> {
-  return asyncYobta(
+function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
+  return createAsyncValidator(
     formYobta(),
     shapeYobta({
       name: createValidator(requiredYobta(), stringYobta()),
