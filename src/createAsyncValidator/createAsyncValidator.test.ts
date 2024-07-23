@@ -5,11 +5,11 @@ import { createEvent } from '@testing-library/dom'
 import { constYobta, createValidator, effectYobta } from '..'
 import { createContext } from '../_internal/createContext'
 import { booleanYobta } from '../booleanYobta'
-import { catchYobta } from '../catchYobta'
 import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
 import { requiredYobta } from '../requiredYobta'
+import { safe } from '../safe/safe'
 import { shapeYobta } from '../shapeYobta'
 import { stringYobta } from '../stringYobta'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
@@ -22,14 +22,14 @@ const validateSearch = createAsyncValidator(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: createValidator(
-      catchYobta(
+      safe(
         'tab-1',
         enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
     ),
     myModalIsOpen: createValidator(
-      catchYobta(false, booleanYobta(), requiredYobta()),
+      safe(false, booleanYobta(), requiredYobta()),
     ),
   }),
 )

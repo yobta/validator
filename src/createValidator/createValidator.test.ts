@@ -5,11 +5,11 @@ import { createEvent } from '@testing-library/dom'
 import type { YobtaContext } from '..'
 import {
   booleanYobta,
-  catchYobta,
   constYobta,
   enumYobta,
   numberYobta,
   requiredYobta,
+  safe,
   shapeYobta,
   stringYobta,
   urlSearchParamsYobta,
@@ -43,14 +43,14 @@ const validateSearch = createValidator(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: createValidator(
-      catchYobta(
+      safe(
         'tab-1',
         enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
         requiredYobta(),
       ),
     ),
     myModalIsOpen: createValidator(
-      catchYobta(false, booleanYobta(), requiredYobta()),
+      safe(false, booleanYobta(), requiredYobta()),
     ),
   }),
 )

@@ -31,6 +31,12 @@
 - stringYobta
 - urlSearchParamsYobta
 
+Renamed:
+
+- yobta => createValidator
+- asyncYobta => createAsyncValidator
+- catchYobta => safe
+
 Added:
 
 - transformYobta

@@ -1,17 +1,12 @@
 /* eslint-disable import/extensions */
+import { createValidator } from '../createValidator/createValidator'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { requiredYobta } from '../requiredYobta'
 import { stringYobta } from '../stringYobta'
-import { createValidator } from '../createValidator/createValidator'
-import { catchYobta } from './'
+import { safe } from './safe'
 
 const validate = createValidator(
-  catchYobta(
-    'catched yobta!',
-    stringYobta(),
-    requiredYobta(),
-    minCharactersYobta(5),
-  ),
+  safe('catched yobta!', stringYobta(), requiredYobta(), minCharactersYobta(5)),
 )
 
 it('does not catch when no errors', () => {

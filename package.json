@@ -234,9 +234,9 @@
       "limit": "136 B"
     },
     {
-      "name": "Catch rule",
+      "name": "Safe rule",
       "import": {
-        "lib/index.js": "{ catchYobta }"
+        "lib/index.js": "{ safe }"
       },
       "limit": "95 B"
     },
@@ -370,7 +370,7 @@
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
-        "lib/catchYobta/index.js": "{ catchYobta }",
+        "lib/safe/safe.js": "{ safe }",
         "lib/constYobta/index.js": "{ constYobta }",
         "lib/itemsYobta/index.js": "{ itemsYobta }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",

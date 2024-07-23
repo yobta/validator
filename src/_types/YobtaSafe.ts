@@ -1,4 +1,5 @@
 import type { SyncRulesPipeYobta } from '../_internal/pipe/index.js'
+import type { YobtaSyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
 import type {
   YobtaSyncChain1,
   YobtaSyncChain10,
@@ -12,10 +13,9 @@ import type {
   YobtaSyncChain7,
   YobtaSyncChain8,
   YobtaSyncChain9,
-} from '../_types/YobtaSyncChain.js'
-import type { YobtaSyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
+} from './YobtaSyncChain.js'
 
-export interface CatchYobta {
+export interface YobtaSafe {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(
     fallbackValue: R12,
     ...rules: YobtaSyncChain12<
