@@ -271,7 +271,7 @@
     {
       "name": "Different rule",
       "import": {
-        "lib/index.js": "{ differentYobta }"
+        "lib/index.js": "{ different }"
       },
       "limit": "153 B"
     },
@@ -391,7 +391,7 @@
         "lib/asyncPipe/asyncPipe.js": "{ asyncPipe }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
-        "lib/differentYobta/index.js": "{ differentYobta }",
+        "lib/different/different.js": "{ different }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
         "lib/formYobta/index.js": "{ formYobta }",
         "lib/enumYobta/index.js": "{ enumYobta }",

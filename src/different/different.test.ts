@@ -2,7 +2,7 @@
 import { createValidator } from '../createValidator/createValidator'
 import { numberYobta } from '../numberYobta'
 import { shape } from '../shape/shape'
-import { differentMessage, differentYobta } from './'
+import { different, differentMessage } from './different'
 
 const customMessage = (): string => 'yobta!'
 
@@ -10,7 +10,7 @@ it('accepts when different', () => {
   const validate = createValidator(
     shape({
       a: numberYobta(),
-      b: differentYobta(['a']),
+      b: different(() => ['a']),
     }),
   )
   const result = validate({ a: 1, b: 2 })
@@ -21,7 +21,7 @@ it('accepts when different and undefined', () => {
   const validate = createValidator(
     shape({
       a: numberYobta(),
-      b: differentYobta(['a']),
+      b: different(() => ['a']),
     }),
   )
   const result = validate({ a: 1 })
@@ -32,7 +32,7 @@ it('regects when not different', () => {
   const validate = createValidator(
     shape({
       a: numberYobta(),
-      b: differentYobta(['a'], customMessage),
+      b: different(() => ['a'], customMessage),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
@@ -43,9 +43,9 @@ it('has default error mesage', () => {
   const validate = createValidator(
     shape({
       a: numberYobta(),
-      b: differentYobta(['a']),
+      b: different(() => ['a']),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
-  expect(attempt).toThrow(differentMessage(['a']))
+  expect(attempt).toThrow(differentMessage('b', ['a']))
 })

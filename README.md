@@ -24,12 +24,15 @@ npm i @yobta/validator
 
 ### Sync Rules
 
+- `array(errorMessage)` - creates a array rule, coercing unknown value to array
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule
   - [+] minimum date
   - [+] maximum date
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
+- shape todo
+  - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
 
 ### Async Rules
 
@@ -67,10 +70,8 @@ npm i @yobta/validator
 ### Flow Utilities
 
 - [+] required
-- [+] default
 - [+] catch
 - [+] identical
-- [+] different
 - [+] URLSearchParams
 - [+] side effect
 - [+] errorsYobta

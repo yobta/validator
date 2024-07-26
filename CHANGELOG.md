@@ -6,7 +6,6 @@
 
 - isPlainObject
 - shapeYobta
-- differentYobta
 - identicalYobta
 - itemsYobta
 - maximumYobta
@@ -39,6 +38,7 @@ Renamed:
 - defaultYobta => fallback
 - itemsYobta => items
 - shapeYobta => shape
+  - differentYobta => different
 
 Added:
 

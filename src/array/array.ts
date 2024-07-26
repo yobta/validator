@@ -3,7 +3,7 @@ import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
 export const array = (): YobtaSyncRule<unknown, unknown[]> =>
-  ruleYobta<unknown, unknown[]>((input = []): any[] => {
+  ruleYobta<unknown, unknown[]>((input = []): unknown[] => {
     if (isIterable(input)) {
       return Array.from(input)
     }
