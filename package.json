@@ -306,7 +306,7 @@
     {
       "name": "Async shape rule",
       "import": {
-        "lib/index.js": "{ awaitShapeYobta }"
+        "lib/index.js": "{ asyncShape }"
       },
       "limit": "533 B"
     },
@@ -397,7 +397,7 @@
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/createAsyncValidator/createAsyncValidator.js": "{ createAsyncValidator }",
         "lib/effectYobta/index.js": "{ effectYobta }",
-        "lib/awaitShapeYobta/index.js": "{ awaitShapeYobta }",
+        "lib/asyncShape/asyncShape.js": "{ asyncShape }",
         "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
         "lib/errorsYobta/index.js": "{ errorsYobta }",
         "lib/validityYobta/index.js": "{ validityYobta }",

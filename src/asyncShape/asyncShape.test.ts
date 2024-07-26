@@ -12,10 +12,10 @@ import {
 } from '..'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
-import { asyncShapeMessage, awaitShapeYobta } from './'
+import { asyncShapeMessage, asyncShape } from './asyncShape'
 
 const validate = createAsyncValidator(
-  awaitShapeYobta({
+  asyncShape({
     age: createAsyncValidator(stringYobta()),
     name: createAsyncValidator(stringYobta()),
   }),
@@ -71,7 +71,7 @@ it('rejects invalid undefined input', async () => {
 it('has custom error messages', async () => {
   const attempt = (): any =>
     createAsyncValidator(
-      awaitShapeYobta(
+      asyncShape(
         {
           name: createAsyncValidator(requiredYobta()),
         },
@@ -120,7 +120,7 @@ it('returns errors for invalid keys', async () => {
   // jest.spyOn(context, 'pushError')
 
   const attempt = (): any =>
-    awaitShapeYobta({
+    asyncShape({
       name: createAsyncValidator(stringYobta()),
     })(context)({
       name: {},
@@ -149,7 +149,7 @@ it('should replace context.data', async () => {
 
 it('has no racing condition', async () => {
   const attempt = createAsyncValidator(
-    awaitShapeYobta({
+    asyncShape({
       address: createAsyncValidator(requiredYobta()),
       description: createAsyncValidator(requiredYobta()),
       title: createAsyncValidator(requiredYobta()),

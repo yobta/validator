@@ -8,7 +8,7 @@ export * from './_types/YobtaRequiredValue.js'
 
 export * from './array/array.js'
 export * from './asyncPipe/asyncPipe.js'
-export * from './awaitShapeYobta/index.js'
+export * from './asyncShape/asyncShape.js'
 export * from './awaitSubmitYobta/index.js'
 export * from './booleanYobta/index.js'
 export * from './constYobta/index.js'

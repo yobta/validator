@@ -5,7 +5,6 @@
 -Refactored
 
 - isPlainObject
-- awaitShapeYobta
 - shapeYobta
 - defaultYobta
 - differentYobta
@@ -35,6 +34,7 @@ Renamed:
 - yobta => createValidator
 - asyncYobta => createAsyncValidator
 - arrayYobta => array
+- awaitShapeYobta => asyncShape
 - catchYobta => safe
 - itemsYobta => items
 - shapeYobta => shape
@@ -46,7 +46,6 @@ Added:
 - asyncPipe
 
 Todo pipes:
-awaitShapeYobta
 optionalYobta
 requiredYobta should use context value
 

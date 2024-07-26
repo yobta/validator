@@ -16,7 +16,7 @@ type ValidAsyncShapeYobta<Record extends AsyncRulesRecord> = {
 
 export const asyncShapeMessage = 'Invalid shape'
 
-export const awaitShapeYobta = <I, Record extends AsyncRulesRecord>(
+export const asyncShape = <I, Record extends AsyncRulesRecord>(
   rulesSet: AwaitShapeConfig<Record>,
   validationMessage: string = asyncShapeMessage,
 ): YobtaSyncRule<I, Promise<ValidAsyncShapeYobta<Record>>> =>

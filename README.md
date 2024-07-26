@@ -10,7 +10,70 @@ A promising and ridiculously small es6 validator that tree-shakes well and respe
 npm i @yobta/validator
 ```
 
-## General Plan
+## Validators
+
+- `createValidator(...rules)` – returns sync validator
+- `createAsyncValidator(...syncOrAsyncRules)` – returns aync validator
+
+## Rules
+
+### Pipes
+
+- `pipe(...rules)` – combines several rules to one
+- `asyncPipe(...syncOrAsyncRules)` – combines several rules to one
+
+### Sync Rules
+
+### Async Rules
+
+- `asyncShape({ field: syncOrAsyncRule() })` – resolves valid shape
+
+### Types
+
+- [+] Shape validator
+
+- [+] Enum validator (one of)
+- [-] Array validator
+  - [+] items
+  - [-] contains (do later)
+  - [+] unique
+  - [+] minimum items
+  - [+] maximum items
+- [-] String validator
+  - [+] minimum characters
+  - [+] maximum characters
+  - [+] email
+  - [-] href (do later)
+  - [-] credit card number (do later)
+  - [-] phone number (do later)
+  - [-] base64 (do later)
+- [+] Number validator
+  - [+] int
+  - [+] minimum
+  - [+] maximum
+- [+] Boolean validator
+- [+] Const validator
+- [+] Date validator
+  - [+] minimum date
+  - [+] maximum date
+- [+] RegExp test
+- [+] FormData
+
+### Flow Utilities
+
+- [+] required
+- [+] default
+- [+] catch
+- [+] identical
+- [+] different
+- [+] URLSearchParams
+- [+] side effect
+- [+] awaitSubmitYobta
+- [+] errorsYobta
+- [+] validityYobta
+- [+] successYobta
+- [+] transformYobta
+- [-] anyOf
 
 We want to fulfill the front-end needs and create functional promise-based validator which is fun to work with.
 
@@ -65,7 +128,7 @@ async function confirmPassword (password) (
 const validate = asyncYobta(
   effectYobta(toggleFormLock),
   formYobta()
-  awaitShapeYobta({
+  asyncShape({
     password: [
       stringYobta(),
       requiredYobta(),
@@ -104,55 +167,6 @@ requiredYobta(
   'Required error message',
 )
 ```
-
-### Types
-
-- [+] Async validator
-- [+] Sync validator
-- [+] Shape validator
-- [+] Async Shape validator
-- [+] Enum validator (one of)
-- [-] Array validator
-  - [+] items
-  - [-] contains (do later)
-  - [+] unique
-  - [+] minimum items
-  - [+] maximum items
-- [-] String validator
-  - [+] minimum characters
-  - [+] maximum characters
-  - [+] email
-  - [-] href (do later)
-  - [-] credit card number (do later)
-  - [-] phone number (do later)
-  - [-] base64 (do later)
-- [+] Number validator
-  - [+] int
-  - [+] minimum
-  - [+] maximum
-- [+] Boolean validator
-- [+] Const validator
-- [+] Date validator
-  - [+] minimum date
-  - [+] maximum date
-- [+] RegExp test
-- [+] FormData
-
-### Flow Utilities
-
-- [+] required
-- [+] default
-- [+] catch
-- [+] identical
-- [+] different
-- [+] URLSearchParams
-- [+] side effect
-- [+] awaitSubmitYobta
-- [+] errorsYobta
-- [+] validityYobta
-- [+] successYobta
-- [+] transformYobta
-- [-] anyOf
 
 ### Docs
 
