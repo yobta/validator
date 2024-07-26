@@ -35,6 +35,7 @@ Renamed:
 - asyncYobta => createAsyncValidator
 - arrayYobta => array
 - awaitShapeYobta => asyncShape
+- awaitSunbmitYobta => asyncSubmit
 - catchYobta => safe
 - itemsYobta => items
 - shapeYobta => shape

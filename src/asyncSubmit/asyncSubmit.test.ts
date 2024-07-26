@@ -13,7 +13,7 @@ import { mockForm } from '../_internal/mockForm'
 import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator'
 import type { YobtaContext } from '../_types/YobtaContext'
 import { YobtaError } from '../YobtaError'
-import { awaitSubmitYobta } from './'
+import { asyncSubmit } from './asyncSubmit'
 
 function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
@@ -21,7 +21,7 @@ function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
     shape({
       name: pipe(requiredYobta(), stringYobta()),
     }),
-    awaitSubmitYobta(async (data, context) => {
+    asyncSubmit(async (data, context) => {
       spy(data, context)
     }),
   )
@@ -127,7 +127,7 @@ it('catches submit error and pushes it to errors', async () => {
     path: [],
     pushError: pushErrorMock,
   }
-  const rule = awaitSubmitYobta(async () => {
+  const rule = asyncSubmit(async () => {
     throw new Error('Submit error')
   })
   await rule(context)(null)

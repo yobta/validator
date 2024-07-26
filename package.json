@@ -325,9 +325,9 @@
       "limit": "74 B"
     },
     {
-      "name": "Await submit utility",
+      "name": "Async submit utility",
       "import": {
-        "lib/index.js": "{ awaitSubmitYobta }"
+        "lib/index.js": "{ asyncSubmit }"
       },
       "limit": "236 B"
     },
@@ -398,7 +398,7 @@
         "lib/createAsyncValidator/createAsyncValidator.js": "{ createAsyncValidator }",
         "lib/effectYobta/index.js": "{ effectYobta }",
         "lib/asyncShape/asyncShape.js": "{ asyncShape }",
-        "lib/awaitSubmitYobta/index.js": "{ awaitSubmitYobta }",
+        "lib/asyncSubmit/asyncSubmit.js": "{ asyncSubmit }",
         "lib/errorsYobta/index.js": "{ errorsYobta }",
         "lib/validityYobta/index.js": "{ validityYobta }",
         "lib/successYobta/index.js": "{ successYobta }",
