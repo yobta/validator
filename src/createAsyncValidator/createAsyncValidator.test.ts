@@ -11,7 +11,7 @@ import { numberYobta } from '../numberYobta'
 import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
 import { createAsyncValidator } from './createAsyncValidator'
@@ -37,7 +37,7 @@ it('accepts valid', async () => {
 
 it('can pipe rules', async () => {
   const validateMultiple = createAsyncValidator(
-    stringYobta(),
+    string(),
     requiredYobta(),
     minCharactersYobta(5),
   )

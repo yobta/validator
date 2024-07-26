@@ -5,7 +5,7 @@ import { createContext } from '../_internal/createContext'
 import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule'
 import { numberYobta } from '../numberYobta'
 import type { YobtaSyncRule } from '../ruleYobta'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string/string'
 import { asyncPipe } from './asyncPipe'
 
 const ctx = createContext({})
@@ -20,7 +20,7 @@ const raiseError: YobtaSyncRule<number, never> = () => () => {
 }
 
 it('pipes', async () => {
-  const rule = asyncPipe(numberYobta(), addAsync, add, addAsync, stringYobta())
+  const rule = asyncPipe(numberYobta(), addAsync, add, addAsync, string())
   const result = await rule(ctx)('1')
   expect(result).toBe('4')
 })

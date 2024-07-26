@@ -103,7 +103,7 @@
     {
       "name": "String rule",
       "import": {
-        "lib/index.js": "{ stringYobta }"
+        "lib/index.js": "{ string }"
       },
       "limit": "145 B"
     },
@@ -367,51 +367,9 @@
       "limit": "72 B"
     },
     {
-      "name": "All",
+      "name": "*",
       "import": {
-        "lib/ruleYobta/index.js": "{ ruleYobta }",
-        "lib/createValidator/createValidator.js": "{ createValidator }",
-        "lib/shape/shape.js": "{ shape }",
-        "lib/stringYobta/index.js": "{ stringYobta }",
-        "lib/array/array.js": "{ array }",
-        "lib/numberYobta/index.js": "{ numberYobta }",
-        "lib/integerYobta/index.js": "{ integerYobta }",
-        "lib/date/date.js": "{ date }",
-        "lib/boolean/boolean.js": "{ boolean }",
-        "lib/minItemsYobta/index.js": "{ minItemsYobta }",
-        "lib/maxItemsYobta/index.js": "{ maxItemsYobta }",
-        "lib/minCharactersYobta/index.js": "{ minCharactersYobta }",
-        "lib/maxCharactersYobta/index.js": "{ maxCharactersYobta }",
-        "lib/minimumYobta/index.js": "{ minimumYobta }",
-        "lib/maximumYobta/index.js": "{ maximumYobta }",
-        "lib/minDateYobta/index.js": "{ minDateYobta }",
-        "lib/maxDateYobta/index.js": "{ maxDateYobta }",
-        "lib/testYobta/index.js": "{ testYobta }",
-        "lib/transformYobta/index.js": "{ transformYobta }",
-        "lib/email/index.js": "{ email }",
-        "lib/requiredYobta/index.js": "{ requiredYobta }",
-        "lib/fallback/fallback.js": "{ fallback }",
-        "lib/safe/safe.js": "{ safe }",
-        "lib/constant/constant.js": "{ constant }",
-        "lib/array/items/items.js": "{ items }",
-        "lib/pipe/pipe.js": "{ pipe }",
-        "lib/asyncPipe/asyncPipe.js": "{ asyncPipe }",
-        "lib/uniqueYobta/index.js": "{ uniqueYobta }",
-        "lib/identicalYobta/index.js": "{ identicalYobta }",
-        "lib/different/different.js": "{ different }",
-        "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
-        "lib/form/form.js": "{ form }",
-        "lib/enumYobta/index.js": "{ enumYobta }",
-        "lib/createAsyncValidator/createAsyncValidator.js": "{ createAsyncValidator }",
-        "lib/effect/effect.js": "{ effect }",
-        "lib/asyncShape/asyncShape.js": "{ asyncShape }",
-        "lib/asyncSubmit/asyncSubmit.js": "{ asyncSubmit }",
-        "lib/errorsYobta/index.js": "{ errorsYobta }",
-        "lib/validityYobta/index.js": "{ validityYobta }",
-        "lib/successYobta/index.js": "{ successYobta }",
-        "lib/YobtaError/index.js": "{ YobtaError }",
-        "lib/email/reEmail.js": "{ reEmail }",
-        "lib/_patterns/reSlugYobta.js": "{ reSlugYobta }"
+        "lib/index.js": "*"
       },
       "limit": "2484 B"
     }

@@ -2,11 +2,11 @@
 import { transformYobta } from '.'
 import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string'
 
 it('creates params from string', () => {
   const validate = createValidator(
-    stringYobta(),
+    string(),
     requiredYobta(),
     transformYobta((input, ctx) => [input, ctx]),
   )

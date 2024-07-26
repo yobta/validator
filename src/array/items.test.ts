@@ -1,15 +1,15 @@
 /* eslint-disable import/extensions */
-import { array } from '../../array/array'
-import { createValidator } from '../../createValidator/createValidator'
-import { minCharactersYobta } from '../../minCharactersYobta'
-import { requiredYobta } from '../../requiredYobta'
-import { stringYobta } from '../../stringYobta'
+import { createValidator } from '../createValidator/createValidator'
+import { minCharactersYobta } from '../minCharactersYobta'
+import { requiredYobta } from '../requiredYobta'
+import { string } from '../string/string'
+import { array } from './array'
 import { items } from './items'
 
 const validate = createValidator(
   requiredYobta(),
   array(),
-  items(requiredYobta(), stringYobta(), minCharactersYobta(5)),
+  items(requiredYobta(), string(), minCharactersYobta(5)),
 )
 
 it('accepts empty array', () => {

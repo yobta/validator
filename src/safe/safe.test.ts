@@ -2,11 +2,11 @@
 import { createValidator } from '../createValidator/createValidator'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { requiredYobta } from '../requiredYobta'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string'
 import { safe } from './safe'
 
 const validate = createValidator(
-  safe('catched yobta!', stringYobta(), requiredYobta(), minCharactersYobta(5)),
+  safe('catched yobta!', string(), requiredYobta(), minCharactersYobta(5)),
 )
 
 it('does not catch when no errors', () => {

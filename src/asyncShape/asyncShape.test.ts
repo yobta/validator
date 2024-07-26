@@ -7,8 +7,8 @@ import {
   identicalYobta,
   requiredYobta,
   shape,
+  string,
   stringMessage,
-  stringYobta,
 } from '..'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
@@ -16,8 +16,8 @@ import { asyncShape, asyncShapeMessage } from './asyncShape'
 
 const validate = createAsyncValidator(
   asyncShape({
-    age: createAsyncValidator(stringYobta()),
-    name: createAsyncValidator(stringYobta()),
+    age: createAsyncValidator(string()),
+    name: createAsyncValidator(string()),
   }),
 )
 
@@ -121,7 +121,7 @@ it('returns errors for invalid keys', async () => {
 
   const attempt = (): any =>
     asyncShape({
-      name: createAsyncValidator(stringYobta()),
+      name: createAsyncValidator(string()),
     })(context)({
       name: {},
     })
@@ -139,7 +139,7 @@ it('should replace context.data', async () => {
     fallback(() => replaced),
     shape({
       newPassword: different(() => ['password']),
-      password: stringYobta(),
+      password: string(),
       retypePassword: identicalYobta(['newPassword']),
     }),
   )

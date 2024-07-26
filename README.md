@@ -25,7 +25,7 @@ npm i @yobta/validator
 ### Sync Rules
 
 - `array(errorMessage)` - creates a array rule, coercing unknown value to array
-  - `items(...rules)` –
+  - `items(...rules)` – validates every array item against rules
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule
@@ -145,12 +145,12 @@ const validate = asyncYobta(
   formYobta()
   asyncShape({
     password: [
-      stringYobta(),
+      string(),
       requiredYobta(),
       asyncSubmit(verifyPassword),
     ],
     new: [
-      stringYobta(),
+      string(),
       requiredYobta(),
       minYobta(6),
       maxYobta(16),
@@ -177,10 +177,7 @@ const [formData, errors] = await validate(myForm)
 Due to typescript design [limitation](https://github.com/microsoft/TypeScript/issues/25256) the `required` rule needs an explicit type when chained (`requiredYobta<string>('My error')`). To avoid manual errors I decided to chose the wrapping approach:
 
 ```js
-requiredYobta(
-  stringYobta('String type error message'),
-  'Required error message',
-)
+requiredYobta(string('String type error message'), 'Required error message')
 ```
 
 ### Docs

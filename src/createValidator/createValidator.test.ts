@@ -11,7 +11,7 @@ import {
   requiredYobta,
   safe,
   shape,
-  stringYobta,
+  string,
   urlSearchParamsYobta,
   YobtaError,
 } from '..'
@@ -26,7 +26,7 @@ it('accepts valid', () => {
 
 it('can pipe rules', () => {
   const validateMultiple = createValidator(
-    stringYobta(),
+    string(),
     requiredYobta(),
     // minCharactersYobta(5),
   )

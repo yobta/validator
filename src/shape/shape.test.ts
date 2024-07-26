@@ -2,13 +2,13 @@
 import { different, effect, fallback, identicalYobta, pipe } from '..'
 import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta'
-import { stringMessage, stringYobta } from '../stringYobta'
+import { string, stringMessage } from '../string'
 import { YobtaError } from '../YobtaError'
 import { shape, shapeMessage } from './shape'
 
 const validate = createValidator(
   shape({
-    name: pipe(requiredYobta(), stringYobta()),
+    name: pipe(requiredYobta(), string()),
   }),
 )
 
@@ -43,7 +43,7 @@ it('has custom error messages', () => {
     createValidator(
       shape(
         {
-          name: stringYobta(),
+          name: string(),
         },
         'yobta!',
       ),
@@ -88,7 +88,7 @@ it('should replace context.data', () => {
     fallback(() => replaced),
     shape({
       newPassword: different(() => ['password']),
-      password: stringYobta(),
+      password: string(),
       retypePassword: identicalYobta(['newPassword']),
     }),
   )

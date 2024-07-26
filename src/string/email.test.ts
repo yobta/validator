@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 
 import { createValidator } from '../createValidator/createValidator'
-import { stringYobta } from '../stringYobta'
 import { YobtaError } from '../YobtaError'
 import { email, emailMessage } from './email'
+import { string } from './string'
 
 const customMessage = 'yobta!'
-const validate = createValidator(stringYobta(), email(customMessage))
+const validate = createValidator(string(), email(customMessage))
 
 it(`accepts valid emails`, async () => {
   const result = validate('user-@example.org')

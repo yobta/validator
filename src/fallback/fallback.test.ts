@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string'
 import { fallback } from './fallback'
 
 const validate = createValidator(fallback(() => 'yobta'))
@@ -35,7 +35,7 @@ values.forEach(value => {
 it('pipes', () => {
   const validateMultiple = createValidator(
     fallback(() => 'yobta'),
-    stringYobta(),
+    string(),
   )
   const result = validateMultiple(null)
   expect(result).toEqual('yobta')

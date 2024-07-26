@@ -21,7 +21,6 @@
 - integerYobta
 - numberYobta
 - shapeYobta
-- stringYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -42,6 +41,7 @@ Renamed:
 - formYobta => form
 - shapeYobta => shape
   - differentYobta => different
+- stringYobta => string
 
 Added:
 

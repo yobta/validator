@@ -1,16 +1,13 @@
 /* eslint-disable import/extensions */
 
 import { createValidator } from '../createValidator/createValidator'
-import { stringYobta } from '../stringYobta'
+import { string } from '../string'
 import { testMessage, testYobta } from './'
 
 const regExp = /fo*/
 
 const customMessage = 'yobta!'
-const validate = createValidator(
-  stringYobta(),
-  testYobta(regExp, customMessage),
-)
+const validate = createValidator(string(), testYobta(regExp, customMessage))
 
 it('accepts if mathed', () => {
   const result = validate('table football')
@@ -33,7 +30,7 @@ it('regects if not matched', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(stringYobta(), testYobta(regExp))
+  const validateDefault = createValidator(string(), testYobta(regExp))
   const attempt = (): any => validateDefault('yobta')
   expect(attempt).toThrow(testMessage)
 })
