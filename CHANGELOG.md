@@ -39,6 +39,7 @@ Renamed:
 - defaultYobta => fallback
 - effectYobta => effect
 - emailYobta => email
+- formYobta => form
 - shapeYobta => shape
   - differentYobta => different
 
@@ -48,9 +49,13 @@ Added:
 - pipe
 - asyncPipe
 
-Todo pipes:
+Todo:
 optionalYobta
-requiredYobta should use context value
+
+form
+
+- move form-related logic to form createContext
+- add support for accepting FormData as input
 
 ## 0.1.6
 

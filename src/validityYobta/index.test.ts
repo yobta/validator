@@ -5,12 +5,12 @@ import { createEvent } from '@testing-library/dom'
 import {
   constant,
   createAsyncValidator,
+  form,
   shape,
   shapeMessage,
   YobtaError,
 } from '../'
 import { createContext } from '../_internal/createContext'
-import { formYobta } from '../formYobta'
 import { validityMessage, validityYobta } from './'
 
 interface FormMock {
@@ -25,32 +25,32 @@ interface FormMock {
   }
 }
 const mockForm: FormMock = () => {
-  const form = document.createElement('form')
+  const formNode = document.createElement('form')
 
   const checkbox = document.createElement('input')
   checkbox.setAttribute('type', 'checkbox')
   checkbox.setAttribute('name', 'checkbox')
-  form.appendChild(checkbox)
+  formNode.appendChild(checkbox)
 
   const hiddenInput = document.createElement('input')
   hiddenInput.setAttribute('type', 'hidden')
   hiddenInput.setAttribute('name', 'hidden')
-  form.appendChild(hiddenInput)
+  formNode.appendChild(hiddenInput)
 
   const input = document.createElement('input')
   input.setAttribute('type', 'text')
   input.setAttribute('name', 'text')
-  form.appendChild(input)
+  formNode.appendChild(input)
 
   const readonlyInput = document.createElement('input')
   readonlyInput.setAttribute('type', 'text')
   readonlyInput.setAttribute('name', 'readonly')
   readonlyInput.setAttribute('readonly', 'readonly')
-  form.appendChild(readonlyInput)
+  formNode.appendChild(readonlyInput)
 
   const select = document.createElement('select')
   select.setAttribute('name', 'select')
-  form.appendChild(select)
+  formNode.appendChild(select)
 
   const option1 = document.createElement('option')
   option1.setAttribute('value', 'option1')
@@ -62,9 +62,17 @@ const mockForm: FormMock = () => {
 
   const textarea = document.createElement('textarea')
   textarea.setAttribute('name', 'textarea')
-  form.appendChild(textarea)
+  formNode.appendChild(textarea)
 
-  return { checkbox, form, hiddenInput, input, readonlyInput, select, textarea }
+  return {
+    checkbox,
+    form: formNode,
+    hiddenInput,
+    input,
+    readonlyInput,
+    select,
+    textarea,
+  }
 }
 
 const errorHandlerMock = jest.fn()
@@ -88,9 +96,9 @@ it('throws when gets a non-event and has a custom error message', () => {
 })
 
 it('reports validity for selects, inputs and textareas', async () => {
-  const { checkbox, form, input, select, textarea } = mockForm()
+  const { checkbox, form: formNode, input, select, textarea } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       checkbox: constant('yobta'),
       select: constant('option2'),
@@ -99,9 +107,9 @@ it('reports validity for selects, inputs and textareas', async () => {
     }),
     validityYobta(errorHandlerMock),
   )
-  const submitEvent = createEvent.submit(form)
-  Object.defineProperty(submitEvent, 'currentTarget', { value: form })
-  Object.defineProperty(submitEvent, 'target', { value: form })
+  const submitEvent = createEvent.submit(formNode)
+  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
+  Object.defineProperty(submitEvent, 'target', { value: formNode })
 
   expect(checkbox.checkValidity()).toBe(true)
   expect(input.checkValidity()).toBe(true)
@@ -134,17 +142,17 @@ it('reports validity for selects, inputs and textareas', async () => {
 })
 
 it('reports validity on submit and restores on input', async () => {
-  const { checkbox, form, input } = mockForm()
+  const { checkbox, form: formNode, input } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       checkbox: constant('yobta'),
       text: constant('yobta'),
     }),
     validityYobta(errorHandlerMock),
   )
-  const submitEvent = createEvent.submit(form)
-  Object.defineProperty(submitEvent, 'currentTarget', { value: form })
+  const submitEvent = createEvent.submit(formNode)
+  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(submitEvent, 'target', { value: form })
 
   expect(input.checkValidity()).toBe(true)
@@ -156,8 +164,8 @@ it('reports validity on submit and restores on input', async () => {
   expect(checkbox.checkValidity()).toBe(false)
 
   input.setAttribute('value', 'yobta')
-  const changeEvent = createEvent.change(form)
-  Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+  const changeEvent = createEvent.change(formNode)
+  Object.defineProperty(changeEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(changeEvent, 'target', { value: input })
   await validate(changeEvent)
 
@@ -166,9 +174,9 @@ it('reports validity on submit and restores on input', async () => {
 })
 
 it('does not report input events when validateAllFieldsOnChange is false', async () => {
-  const { checkbox, form, input } = mockForm()
+  const { checkbox, form: formNode, input } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       checkbox: constant('yobta'),
       text: constant('yobta'),
@@ -176,7 +184,7 @@ it('does not report input events when validateAllFieldsOnChange is false', async
     validityYobta(errorHandlerMock, { validateAllFieldsOnChange: false }),
   )
   const changeEvent = createEvent.change(input)
-  Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+  Object.defineProperty(changeEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(changeEvent, 'target', { value: input })
   expect(input.checkValidity()).toBe(true)
   expect(checkbox.checkValidity()).toBe(true)
@@ -187,9 +195,9 @@ it('does not report input events when validateAllFieldsOnChange is false', async
 })
 
 it('reports input events when validateAllFieldsOnChange is true', async () => {
-  const { checkbox, form, input } = mockForm()
+  const { checkbox, form: formNode, input } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       checkbox: constant('yobta'),
       text: constant('yobta'),
@@ -197,7 +205,7 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
     validityYobta(errorHandlerMock, { validateAllFieldsOnChange: true }),
   )
   const changeEvent = createEvent.change(input)
-  Object.defineProperty(changeEvent, 'currentTarget', { value: form })
+  Object.defineProperty(changeEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(changeEvent, 'target', { value: input })
   expect(input.checkValidity()).toBe(true)
   expect(checkbox.checkValidity()).toBe(true)
@@ -208,9 +216,9 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
 })
 
 it('reports unhandled errors', async () => {
-  const { form, input } = mockForm()
+  const { form: formNode, input } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       inputIsNotInForm: constant('yobta'),
       text: constant('yobta'),
@@ -220,9 +228,9 @@ it('reports unhandled errors', async () => {
 
   expect(input.checkValidity()).toBe(true)
 
-  const submitEvent = createEvent.submit(form)
-  Object.defineProperty(submitEvent, 'currentTarget', { value: form })
-  Object.defineProperty(submitEvent, 'target', { value: form })
+  const submitEvent = createEvent.submit(formNode)
+  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
+  Object.defineProperty(submitEvent, 'target', { value: formNode })
 
   await validate(submitEvent)
 
@@ -241,9 +249,9 @@ it('reports unhandled errors', async () => {
 })
 
 it('does not report readonly inputs', async () => {
-  const { form, readonlyInput } = mockForm()
+  const { form: formNode, readonlyInput } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       readonly: constant('readonly yobta'),
     }),
@@ -252,9 +260,9 @@ it('does not report readonly inputs', async () => {
 
   expect(readonlyInput.checkValidity()).toBe(true)
 
-  const submitEvent = createEvent.submit(form)
-  Object.defineProperty(submitEvent, 'currentTarget', { value: form })
-  Object.defineProperty(submitEvent, 'target', { value: form })
+  const submitEvent = createEvent.submit(formNode)
+  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
+  Object.defineProperty(submitEvent, 'target', { value: formNode })
 
   await validate(submitEvent)
 
@@ -273,9 +281,9 @@ it('does not report readonly inputs', async () => {
 })
 
 it('does not report hidden inputs', async () => {
-  const { form, hiddenInput } = mockForm()
+  const { form: formNode, hiddenInput } = mockForm()
   const validate = createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       hidden: constant('hidden yobta'),
     }),
@@ -284,9 +292,9 @@ it('does not report hidden inputs', async () => {
 
   expect(hiddenInput.checkValidity()).toBe(true)
 
-  const submitEvent = createEvent.submit(form)
-  Object.defineProperty(submitEvent, 'currentTarget', { value: form })
-  Object.defineProperty(submitEvent, 'target', { value: form })
+  const submitEvent = createEvent.submit(formNode)
+  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
+  Object.defineProperty(submitEvent, 'target', { value: formNode })
 
   await validate(submitEvent)
 

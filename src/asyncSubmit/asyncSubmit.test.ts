@@ -3,7 +3,7 @@ import { jest } from '@jest/globals'
 
 import {
   createAsyncValidator,
-  formYobta,
+  form,
   pipe,
   requiredYobta,
   shape,
@@ -17,7 +17,7 @@ import { asyncSubmit } from './asyncSubmit'
 
 function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
-    formYobta(),
+    form(),
     shape({
       name: pipe(requiredYobta(), stringYobta()),
     }),
@@ -53,12 +53,12 @@ it('submits when it is valid and context has submit event', async () => {
 it('submits when it is valid and context has synthetic submit event', async () => {
   const spy = jest.fn()
   const validate = mockValidate(spy)
-  const form = document.createElement('form')
-  form.innerHTML = '<input type="text" name="name" value="yobta" />'
+  const formNode = document.createElement('form')
+  formNode.innerHTML = '<input type="text" name="name" value="yobta" />'
 
   const syntheticEvent = {
-    currentTarget: form,
-    target: form,
+    currentTarget: formNode,
+    target: formNode,
     type: 'submit',
   }
 

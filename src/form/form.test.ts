@@ -4,9 +4,9 @@ import { createEvent } from '@testing-library/dom'
 import { createContext } from '../_internal/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 import { createValidator } from '../createValidator/createValidator'
-import { formDataMessage, formYobta } from './'
+import { form, formMessage } from './form'
 
-const validate = createValidator(formYobta())
+const validate = createValidator(form())
 
 it('accepts form instance', () => {
   const input = document.createElement('form')
@@ -15,37 +15,37 @@ it('accepts form instance', () => {
 })
 
 it('accepts event', () => {
-  const form = document.createElement('form')
-  const event = createEvent.submit(form)
-  Object.defineProperty(event, 'currentTarget', { value: form })
+  const formNode = document.createElement('form')
+  const event = createEvent.submit(formNode)
+  Object.defineProperty(event, 'currentTarget', { value: formNode })
   const result = validate(event)
   expect(result).toEqual({})
 })
 
 it('rejects undefined', () => {
   const attempt = (): any => validate(undefined)
-  expect(attempt).toThrow(formDataMessage)
+  expect(attempt).toThrow(formMessage)
 })
 
 it('rejects invalid input', () => {
   const attempt = (): any => validate([])
-  expect(attempt).toThrow(formDataMessage)
+  expect(attempt).toThrow(formMessage)
 })
 
 it('has custom error messages', () => {
-  const attempt = (): any => createValidator(formYobta('yobta!'))(null)
+  const attempt = (): any => createValidator(form('yobta!'))(null)
   expect(attempt).toThrow('yobta!')
 })
 
 it('takes form from context', () => {
-  const form = document.createElement('form')
-  form.innerHTML = `<input type="text" value="yobta" />`
+  const formNode = document.createElement('form')
+  formNode.innerHTML = `<input type="text" value="yobta" />`
 
-  const event = createEvent.submit(form)
-  Object.defineProperty(event, 'currentTarget', { value: form })
+  const event = createEvent.submit(formNode)
+  Object.defineProperty(event, 'currentTarget', { value: formNode })
   const context = createContext(event)
-  const result = formYobta()(context)(event)
-  const formData = new FormData(form)
+  const result = form()(context)(event)
+  const formData = new FormData(formNode)
   const plainObject = fromEntries(formData)
 
   expect(result).toEqual(plainObject)

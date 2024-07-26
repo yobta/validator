@@ -44,6 +44,10 @@ npm i @yobta/validator
 - `asyncSubmit(callback)` – executes a callback for a valid form submit
 - `effect(callback)` – executes a callback, returns input value
 
+### Transforms
+
+- `form(errorMessage)` - transforms formData to `unknowd` record, that can be validated with `shape` or `asyncShape`
+
 ### Types
 
 - [+] Shape validator

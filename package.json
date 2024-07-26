@@ -292,7 +292,7 @@
     {
       "name": "Form rule",
       "import": {
-        "lib/index.js": "{ formYobta }"
+        "lib/index.js": "{ form }"
       },
       "limit": "211 B"
     },
@@ -400,7 +400,7 @@
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/different/different.js": "{ different }",
         "lib/urlSearchParamsYobta/index.js": "{ urlSearchParamsYobta }",
-        "lib/formYobta/index.js": "{ formYobta }",
+        "lib/form/form.js": "{ form }",
         "lib/enumYobta/index.js": "{ enumYobta }",
         "lib/createAsyncValidator/createAsyncValidator.js": "{ createAsyncValidator }",
         "lib/effect/effect.js": "{ effect }",
