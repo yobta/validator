@@ -311,35 +311,35 @@
       "limit": "37 B"
     },
     {
-      "name": "Async shape rule",
+      "name": "asyncShape",
       "import": {
         "lib/index.js": "{ asyncShape }"
       },
       "limit": "533 B"
     },
     {
-      "name": "Pipe rule",
+      "name": "pipe",
       "import": {
         "lib/index.js": "{ pipe }"
       },
       "limit": "69 B"
     },
     {
-      "name": "Async pipe rule",
+      "name": "asyncPipe",
       "import": {
         "lib/index.js": "{ asyncPipe }"
       },
       "limit": "74 B"
     },
     {
-      "name": "Async submit utility",
+      "name": "asyncSubmit",
       "import": {
         "lib/index.js": "{ asyncSubmit }"
       },
       "limit": "236 B"
     },
     {
-      "name": "Errors utility",
+      "name": "errorsYobta",
       "import": {
         "lib/index.js": "{ errorsYobta }"
       },
