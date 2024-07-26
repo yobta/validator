@@ -29,6 +29,7 @@ Renamed:
 - yobta => createValidator
 - asyncYobta => createAsyncValidator
 - arrayYobta => array
+  - itemsYobta => items
 - awaitShapeYobta => asyncShape
 - awaitSunbmitYobta => asyncSubmit
 - booleanYobta => boolean
@@ -36,7 +37,7 @@ Renamed:
 - constYobta => constant
 - dateYobta => date
 - defaultYobta => fallback
-- itemsYobta => items
+- effecttYobta => effect
 - shapeYobta => shape
   - differentYobta => different
 

@@ -2,11 +2,11 @@
 import { jest } from '@jest/globals'
 
 import { createValidator } from '../createValidator/createValidator'
-import { effectYobta } from './'
+import { effect } from './effect'
 
 it('calls effect and returns data unmodified', () => {
   const spy = jest.fn()
-  const validate = createValidator(effectYobta(spy))
+  const validate = createValidator(effect(spy))
   const data = {}
   const result = validate(data)
   expect(result).toBe(result)

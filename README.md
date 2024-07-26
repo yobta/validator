@@ -37,7 +37,11 @@ npm i @yobta/validator
 ### Async Rules
 
 - `asyncShape({ field: syncOrAsyncRule() }, errorMessage)` – resolves valid shape
+
+### Effects
+
 - `asyncSubmit(callback)` – executes a callback for a valid form submit
+- `effect(callback)` – executes a callback, returns input value
 
 ### Types
 
@@ -131,7 +135,7 @@ async function confirmPassword (password) (
 )
 
 const validate = asyncYobta(
-  effectYobta(toggleFormLock),
+  effect(toggleFormLock),
   formYobta()
   asyncShape({
     password: [
@@ -154,7 +158,7 @@ const validate = asyncYobta(
   asyncSubmit(sendMyFormAsJSON),
   errorsYobta(),
   validityYobta(console.error), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
-  effectYobta(toggleFormLock),
+  effect(toggleFormLock),
 )
 
 const myForm = window.getElementByID('myForm')

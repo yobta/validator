@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { different, effectYobta, fallback, identicalYobta, pipe } from '..'
+import { different, effect, fallback, identicalYobta, pipe } from '..'
 import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta'
 import { stringMessage, stringYobta } from '../stringYobta'
@@ -68,7 +68,7 @@ it('preserves yobta error', () => {
   const attempt = (): any =>
     createValidator(
       shape({
-        name: effectYobta(() => {
+        name: effect(() => {
           throw yobtaError
         }),
       }),

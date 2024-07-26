@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constant, effectYobta } from '..'
+import { constant, effect } from '..'
 import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
 import { enumYobta } from '../enumYobta'
@@ -131,7 +131,7 @@ it('preserves yobta error', async () => {
   })
   const result = await createAsyncValidator(
     shape({
-      name: effectYobta<any>(() => {
+      name: effect(() => {
         throw yobtaError
       }),
     }),
