@@ -339,9 +339,9 @@
       "limit": "236 B"
     },
     {
-      "name": "errorsYobta",
+      "name": "errors",
       "import": {
-        "lib/index.js": "{ errorsYobta }"
+        "lib/index.js": "{ errors }"
       },
       "limit": "56 B"
     },

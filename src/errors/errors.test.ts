@@ -1,17 +1,14 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { createAsyncValidator, shape, string } from '../'
+import { createAsyncValidator, shape, string } from '..'
 import { YobtaError } from '../YobtaError'
-import { errorsYobta } from './'
+import { errors } from './errors'
 
 it('calls reporter when validation fails', async () => {
   const spy = jest.fn()
 
-  const validate = createAsyncValidator(
-    shape({ yobta: string() }),
-    errorsYobta(spy),
-  )
+  const validate = createAsyncValidator(shape({ yobta: string() }), errors(spy))
 
   const result = await validate({ yobta: [] })
 
@@ -34,10 +31,7 @@ it('calls reporter when validation fails', async () => {
 
 it('does not call reporter when validation succeeds', async () => {
   const spy = jest.fn()
-  const validate = createAsyncValidator(
-    shape({ name: string() }),
-    errorsYobta(spy),
-  )
+  const validate = createAsyncValidator(shape({ name: string() }), errors(spy))
   const result = await validate({})
 
   expect(result).toEqual([{ name: '' }, null])

@@ -50,6 +50,7 @@ npm i @yobta/validator
 
 - `asyncSubmit(callback)` – executes a callback for a valid form submit
 - `effect(callback)` – executes a callback, returns input value
+- `errors(callback)` – calls back with `YobtaError`
 
 ### Transforms
 
@@ -89,7 +90,6 @@ npm i @yobta/validator
 - [+] identical
 - [+] URLSearchParams
 - [+] side effect
-- [+] errorsYobta
 - [+] validityYobta
 - [+] successYobta
 - [+] transformYobta
@@ -167,7 +167,7 @@ const validate = asyncYobta(
     ],
   }),
   asyncSubmit(sendMyFormAsJSON),
-  errorsYobta(),
+  errors(),
   validityYobta(console.error), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
   effect(toggleFormLock),
 )

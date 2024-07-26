@@ -30,6 +30,7 @@ Renamed:
 - effectYobta => effect
 - emailYobta => email
 - enumYobta => oneOf
+- errorsYobta => errors
 - integerYobta => integer
 - numberYobta => number
 - maximumYobta => max

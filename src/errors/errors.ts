@@ -2,17 +2,14 @@ import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { YobtaSyncRule } from '../ruleYobta/index.js'
 import { ruleYobta } from '../ruleYobta/index.js'
 
-export interface YobtaErrorReporter {
+export interface YobtaErrorsCallback {
   (errors: YobtaContext['errors'], context: YobtaContext): void
 }
 
-export const errorsYobta = <I>(
-  report: YobtaErrorReporter,
-): YobtaSyncRule<I, I> =>
-  ruleYobta((input: I, context) => {
-    const { errors } = context
-    if (errors.length) {
-      report(errors, context)
+export const errors = <I>(cb: YobtaErrorsCallback): YobtaSyncRule<I, I> =>
+  ruleYobta((input: I, ctx) => {
+    if (ctx.errors.length) {
+      cb(ctx.errors, ctx)
     }
     return input
   })
