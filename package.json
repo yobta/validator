@@ -241,9 +241,9 @@
       "limit": "95 B"
     },
     {
-      "name": "Const rule",
+      "name": "Constant rule",
       "import": {
-        "lib/index.js": "{ constYobta }"
+        "lib/index.js": "{ constant }"
       },
       "limit": "96 B"
     },
@@ -385,7 +385,7 @@
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/defaultYobta/index.js": "{ defaultYobta }",
         "lib/safe/safe.js": "{ safe }",
-        "lib/constYobta/index.js": "{ constYobta }",
+        "lib/constant/constant.js": "{ constant }",
         "lib/items/items.js": "{ items }",
         "lib/pipe/pipe.js": "{ pipe }",
         "lib/asyncPipe/asyncPipe.js": "{ asyncPipe }",

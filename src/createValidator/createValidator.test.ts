@@ -5,7 +5,7 @@ import { createEvent } from '@testing-library/dom'
 import type { YobtaContext } from '..'
 import {
   boolean,
-  constYobta,
+  constant,
   enumYobta,
   numberYobta,
   requiredYobta,
@@ -91,7 +91,7 @@ it('takes external context', () => {
     path: ['yobta'],
     pushError,
   }
-  const validateWithContext = createValidator(constYobta(1))
+  const validateWithContext = createValidator(constant(1))
 
   try {
     validateWithContext(2, context)

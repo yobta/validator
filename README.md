@@ -24,7 +24,8 @@ npm i @yobta/validator
 
 ### Sync Rules
 
-- [+] `boolean(errorMessage)` - creates a boolean validator
+- `boolean(errorMessage)` - creates a boolean rule
+- `constant(value, errorMessage)` - creates a strict equality rule
 
 ### Async Rules
 
@@ -51,10 +52,11 @@ npm i @yobta/validator
   - [-] phone number (do later)
   - [-] base64 (do later)
 - [+] Number validator
+
   - [+] int
   - [+] minimum
   - [+] maximum
-- [+] Const validator
+
 - [+] Date validator
   - [+] minimum date
   - [+] maximum date

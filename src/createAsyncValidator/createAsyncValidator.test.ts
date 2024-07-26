@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constYobta, effectYobta } from '..'
+import { constant, effectYobta } from '..'
 import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
 import { enumYobta } from '../enumYobta'
@@ -102,7 +102,7 @@ it('captures context errors', async () => {
 it('respects foreign context', async () => {
   const foreignContext = createContext({})
   jest.spyOn(foreignContext, 'pushError')
-  const validateConst = createAsyncValidator(constYobta(1))
+  const validateConst = createAsyncValidator(constant(1))
   await validateConst(2, foreignContext)
   expect(foreignContext.pushError).toHaveBeenCalledTimes(1)
 })

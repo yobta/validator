@@ -37,6 +37,7 @@ Renamed:
 - awaitSunbmitYobta => asyncSubmit
 - booleanYobta => boolean
 - catchYobta => safe
+- constYobta => constant
 - itemsYobta => items
 - shapeYobta => shape
 
