@@ -7,5 +7,5 @@ export interface YobtaAsyncValidator<I, O> {
 }
 
 export type YobtaAsyncValidatorResult<O> = Promise<
-  [null, YobtaError[]] | [YobtaPretty<O>, null]
+  [null, YobtaError[]] | [YobtaPretty<Awaited<O>>, null]
 >

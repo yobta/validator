@@ -13,11 +13,11 @@ import type {
   YobtaAsyncChain8,
   YobtaAsyncChain9,
 } from './YobtaAsyncChain.js'
+import type { YobtaAsyncRule } from './YobtaAsyncRule.js'
 import type { YobtaAsyncRulesPipe } from './YobtaAsyncRulesPipe.js'
-import type { YobtaAsyncValidator } from './YobtaAsyncValidator.js'
 import type { PipeFactoryResult } from './YobtaPipe.js'
 
-export interface YobtaAsyncValidatorFactory {
+export interface YobtaAsyncPipeFactory {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(
     ...rules: YobtaAsyncChain12<
       R1,
@@ -33,49 +33,47 @@ export interface YobtaAsyncValidatorFactory {
       R11,
       R12
     >
-  ): YobtaAsyncValidator<unknown, R12>
+  ): YobtaAsyncRule<any, R12>
 
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11>(
     ...rules: YobtaAsyncChain11<R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11>
-  ): YobtaAsyncValidator<unknown, R11>
+  ): YobtaAsyncRule<any, R11>
 
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10>(
     ...rules: YobtaAsyncChain10<R1, R2, R3, R4, R5, R6, R7, R8, R9, R10>
-  ): YobtaAsyncValidator<unknown, R10>
+  ): YobtaAsyncRule<any, R10>
 
   <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
     ...rules: YobtaAsyncChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
-  ): YobtaAsyncValidator<unknown, R9>
+  ): YobtaAsyncRule<any, R9>
 
   <R1, R2, R3, R4, R5, R6, R7, R8>(
     ...rules: YobtaAsyncChain8<R1, R2, R3, R4, R5, R6, R7, R8>
-  ): YobtaAsyncValidator<unknown, R8>
+  ): YobtaAsyncRule<any, R8>
 
   <R1, R2, R3, R4, R5, R6, R7>(
     ...rules: YobtaAsyncChain7<R1, R2, R3, R4, R5, R6, R7>
-  ): YobtaAsyncValidator<unknown, R7>
+  ): YobtaAsyncRule<any, R7>
 
   <R1, R2, R3, R4, R5, R6>(
     ...rules: YobtaAsyncChain6<R1, R2, R3, R4, R5, R6>
-  ): YobtaAsyncValidator<unknown, R6>
+  ): YobtaAsyncRule<any, R6>
 
   <R1, R2, R3, R4, R5>(
     ...rules: YobtaAsyncChain5<R1, R2, R3, R4, R5>
-  ): YobtaAsyncValidator<unknown, R5>
+  ): YobtaAsyncRule<any, R5>
 
   <R1, R2, R3, R4>(
     ...rules: YobtaAsyncChain4<R1, R2, R3, R4>
-  ): YobtaAsyncValidator<unknown, R4>
+  ): YobtaAsyncRule<any, R4>
 
-  <R1, R2, R3>(
-    ...rules: YobtaAsyncChain3<R1, R2, R3>
-  ): YobtaAsyncValidator<unknown, R3>
+  <R1, R2, R3>(...rules: YobtaAsyncChain3<R1, R2, R3>): YobtaAsyncRule<any, R3>
 
-  <R1, R2>(...rules: YobtaAsyncChain2<R1, R2>): YobtaAsyncValidator<unknown, R2>
+  <R1, R2>(...rules: YobtaAsyncChain2<R1, R2>): YobtaAsyncRule<any, R2>
 
-  <R1>(...rules: YobtaAsyncChain1<R1>): YobtaAsyncValidator<unknown, R1>
+  <R1>(...rules: YobtaAsyncChain1<R1>): YobtaAsyncRule<any, R1>
 
   <R extends SyncOrAsyncRules>(
     ...rules: YobtaAsyncRulesPipe<R>
-  ): YobtaAsyncValidator<unknown, PipeFactoryResult<R>>
+  ): YobtaAsyncRule<any, PipeFactoryResult<R>>
 }

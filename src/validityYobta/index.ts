@@ -4,16 +4,6 @@ import type { YobtaError } from '../YobtaError/index.js'
 
 type YontaErrorHandler = (error: YobtaError) => void
 
-interface ValidityFactory {
-  <I>(
-    onUnhandledError: YontaErrorHandler,
-    props?: {
-      missingFormMessage?: string
-      validateAllFieldsOnChange?: boolean
-    },
-  ): YobtaSyncRule<I, I>
-}
-
 export const validityMessage = 'Validity expects a form event'
 
 type InputElement = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -26,14 +16,14 @@ const updateValidity = (element: InputElement, message: string = ''): void => {
   element.reportValidity()
 }
 
-export const validityYobta: ValidityFactory = (
-  onUnhandledError,
+export const validityYobta = <I>(
+  onUnhandledError: YontaErrorHandler,
   {
     missingFormMessage = validityMessage,
     validateAllFieldsOnChange = false,
   } = {},
-) =>
-  ruleYobta((currentData, { errors, event, form, input }) => {
+): YobtaSyncRule<I, I> =>
+  ruleYobta((currentData: I, { errors, event, form, input }) => {
     if (!form) {
       throw new Error(missingFormMessage)
     }

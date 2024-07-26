@@ -1,6 +1,7 @@
-import type { YobtaAsyncResult } from '../_types/YobtaAsyncResult'
 import type { YobtaPretty } from '../_types/YobtaPretty'
+import type { YobtaSyncRule } from '../ruleYobta'
 
-export type YobtaAsyncRule<I, O> = (
-  input: I,
-) => YobtaAsyncResult<YobtaPretty<O>>
+export type YobtaAsyncRule<I, O> = YobtaSyncRule<
+  any | I,
+  Promise<YobtaPretty<O>>
+>

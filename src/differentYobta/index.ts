@@ -6,14 +6,13 @@ import { ruleYobta } from '../ruleYobta/index.js'
 export const differentMessage = (path: YobtaPath): string =>
   `It should be different from "${path.join('.')}"`
 
-export function differentYobta<I>(
+export const differentYobta = <I>(
   path: YobtaPath,
   message = differentMessage,
-): YobtaSyncRule<I, I> {
-  return ruleYobta((input, { data }) => {
+): YobtaSyncRule<I, I> =>
+  ruleYobta<I, I>((input, { data }) => {
     if (input === getIn(data, path)) {
       throw new Error(message(path))
     }
     return input
   })
-}

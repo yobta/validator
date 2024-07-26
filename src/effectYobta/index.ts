@@ -5,12 +5,9 @@ import { ruleYobta } from '../ruleYobta/index.js'
 interface Effect<I> {
   (input: I, context: YobtaContext): void
 }
-export interface EffectYobta {
-  <I extends any>(effect: Effect<I>): YobtaSyncRule<I, I>
-}
 
-export const effectYobta: EffectYobta = effect =>
-  ruleYobta((input, context) => {
+export const effectYobta = <I>(effect: Effect<I>): YobtaSyncRule<I, I> =>
+  ruleYobta((input: I, context: YobtaContext) => {
     effect(input, context)
     return input
   })

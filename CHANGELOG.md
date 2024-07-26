@@ -20,7 +20,6 @@
 - patterns
 - testYobta
 - uniqueYobta
-- arrayYobta
 - booleanYobta
 - constYobta
 - dateYobta
@@ -35,6 +34,7 @@ Renamed:
 
 - yobta => createValidator
 - asyncYobta => createAsyncValidator
+- arrayYobta => array
 - catchYobta => safe
 - itemsYobta => items
 - shapeYobta => shape
@@ -43,6 +43,7 @@ Added:
 
 - transformYobta
 - pipe
+- asyncPipe
 
 Todo pipes:
 awaitShapeYobta

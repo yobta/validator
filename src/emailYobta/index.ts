@@ -6,12 +6,10 @@ export const emailMessage = 'It should be an email'
 
 export type YobtaEmail = { __email__: void } & string
 
-interface EmailFactory {
-  <I extends string>(message?: string): YobtaSyncRule<I, YobtaEmail>
-}
-
-export const emailYobta: EmailFactory = (message = emailMessage) =>
-  ruleYobta(value => {
+export const emailYobta = <I extends string>(
+  message = emailMessage,
+): YobtaSyncRule<I, YobtaEmail> =>
+  ruleYobta((value: I) => {
     const trimmed = value.trim()
     if (reEmailYobta.test(trimmed)) {
       return trimmed as YobtaEmail

@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { arrayYobta } from '../arrayYobta'
+import { array } from '../array/array'
 import { createValidator } from '../createValidator/createValidator'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { requiredYobta } from '../requiredYobta'
@@ -8,7 +8,7 @@ import { items } from './items'
 
 const validate = createValidator(
   requiredYobta(),
-  arrayYobta(),
+  array(),
   items(requiredYobta(), stringYobta(), minCharactersYobta(5)),
 )
 

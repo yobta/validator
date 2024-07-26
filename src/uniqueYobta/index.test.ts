@@ -1,13 +1,13 @@
 /* eslint-disable import/extensions */
-import { arrayYobta } from '../arrayYobta'
-import { requiredYobta } from '../requiredYobta'
+import { array } from '../array/array'
 import { createValidator } from '../createValidator/createValidator'
+import { requiredYobta } from '../requiredYobta'
 import { uniqueYobta } from './'
 
 const customMesage = 'yobta'
 
 const validate = createValidator(
-  arrayYobta(),
+  array(),
   requiredYobta(),
   uniqueYobta(customMesage),
 )
@@ -29,7 +29,7 @@ it('rejects duplicate items', () => {
 
 it('has default error message', () => {
   const validateDefault = createValidator(
-    arrayYobta(),
+    array(),
     requiredYobta(),
     uniqueYobta(),
   )

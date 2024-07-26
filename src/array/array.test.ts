@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { arrayYobta } from './'
+import { array } from './array'
 
-const validate = createValidator(arrayYobta())
+const validate = createValidator(array())
 
 it('accepts array', () => {
   const result = validate(['yobta'])

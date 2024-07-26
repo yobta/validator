@@ -6,12 +6,10 @@ export interface YobtaErrorReporter {
   (errors: YobtaContext['errors'], context: YobtaContext): void
 }
 
-interface ErrorsYobtaFactory {
-  <I>(report: YobtaErrorReporter): YobtaSyncRule<I, I>
-}
-
-export const errorsYobta: ErrorsYobtaFactory = report =>
-  ruleYobta((input, context) => {
+export const errorsYobta = <I>(
+  report: YobtaErrorReporter,
+): YobtaSyncRule<I, I> =>
+  ruleYobta((input: I, context) => {
     const { errors } = context
     if (errors.length) {
       report(errors, context)

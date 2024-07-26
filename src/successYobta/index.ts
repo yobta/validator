@@ -6,12 +6,8 @@ interface Handler<I> {
   (input: I, context: YobtaContext): void
 }
 
-interface SuccessFactory {
-  <I>(handle: Handler<I>): YobtaSyncRule<I, I>
-}
-
-export const successYobta: SuccessFactory = handle =>
-  ruleYobta((input, context) => {
+export const successYobta = <I>(handle: Handler<I>): YobtaSyncRule<I, I> =>
+  ruleYobta((input: I, context) => {
     if (!context.errors.length) {
       handle(input, context)
     }

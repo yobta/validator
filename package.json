@@ -110,7 +110,7 @@
     {
       "name": "Array rule",
       "import": {
-        "lib/index.js": "{ arrayYobta }"
+        "lib/index.js": "{ array }"
       },
       "limit": "157 B"
     },
@@ -318,6 +318,13 @@
       "limit": "69 B"
     },
     {
+      "name": "Async pipe rule",
+      "import": {
+        "lib/index.js": "{ asyncPipe }"
+      },
+      "limit": "74 B"
+    },
+    {
       "name": "Await submit utility",
       "import": {
         "lib/index.js": "{ awaitSubmitYobta }"
@@ -359,7 +366,7 @@
         "lib/createValidator/createValidator.js": "{ createValidator }",
         "lib/shape/shape.js": "{ shape }",
         "lib/stringYobta/index.js": "{ stringYobta }",
-        "lib/arrayYobta/index.js": "{ arrayYobta }",
+        "lib/array/array.js": "{ array }",
         "lib/numberYobta/index.js": "{ numberYobta }",
         "lib/integerYobta/index.js": "{ integerYobta }",
         "lib/dateYobta/index.js": "{ dateYobta }",
@@ -381,6 +388,7 @@
         "lib/constYobta/index.js": "{ constYobta }",
         "lib/items/items.js": "{ items }",
         "lib/pipe/pipe.js": "{ pipe }",
+        "lib/asyncPipe/asyncPipe.js": "{ asyncPipe }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
         "lib/identicalYobta/index.js": "{ identicalYobta }",
         "lib/differentYobta/index.js": "{ differentYobta }",
