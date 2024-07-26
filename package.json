@@ -215,7 +215,14 @@
     {
       "name": "Email rule",
       "import": {
-        "lib/index.js": "{ emailYobta }"
+        "lib/index.js": "{ email }"
+      },
+      "limit": "181 B"
+    },
+    {
+      "name": "Email regex",
+      "import": {
+        "lib/index.js": "{ reEmail }"
       },
       "limit": "181 B"
     },
@@ -381,7 +388,7 @@
         "lib/maxDateYobta/index.js": "{ maxDateYobta }",
         "lib/testYobta/index.js": "{ testYobta }",
         "lib/transformYobta/index.js": "{ transformYobta }",
-        "lib/emailYobta/index.js": "{ emailYobta }",
+        "lib/email/index.js": "{ email }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
         "lib/fallback/fallback.js": "{ fallback }",
         "lib/safe/safe.js": "{ safe }",
@@ -403,7 +410,7 @@
         "lib/validityYobta/index.js": "{ validityYobta }",
         "lib/successYobta/index.js": "{ successYobta }",
         "lib/YobtaError/index.js": "{ YobtaError }",
-        "lib/_patterns/reEmailYobta.js": "{ reEmailYobta }",
+        "lib/email/reEmail.js": "{ reEmail }",
         "lib/_patterns/reSlugYobta.js": "{ reSlugYobta }"
       },
       "limit": "2484 B"

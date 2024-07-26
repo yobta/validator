@@ -37,7 +37,8 @@ Renamed:
 - constYobta => constant
 - dateYobta => date
 - defaultYobta => fallback
-- effecttYobta => effect
+- effectYobta => effect
+- emailYobta => email
 - shapeYobta => shape
   - differentYobta => different
 

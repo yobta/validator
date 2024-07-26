@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { reEmailYobta } from './reEmailYobta'
+import { reEmail } from './reEmail'
 
 const validEmails = [
   'simple@example.com',
@@ -32,13 +32,13 @@ const invalidEmails = [
 ]
 validEmails.forEach(option => {
   it(`accepts ${option}`, async () => {
-    const result = reEmailYobta.test(option)
+    const result = reEmail.test(option)
     expect(result).toBe(true)
   })
 })
 invalidEmails.forEach(option => {
   it(`accepts ${option}`, async () => {
-    const result = reEmailYobta.test(option)
+    const result = reEmail.test(option)
     expect(result).toBe(false)
   })
 })

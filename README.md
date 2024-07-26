@@ -33,6 +33,7 @@ npm i @yobta/validator
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - shape todo
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
+- string todo
 
 ### Async Rules
 

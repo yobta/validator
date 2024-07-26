@@ -1,4 +1,3 @@
-export * from './_patterns/reEmailYobta.js'
 export * from './_patterns/reSlugYobta.js'
 
 export * from './_types/YobtaContext.js'
@@ -17,7 +16,7 @@ export * from './createValidator/createValidator.js'
 export * from './date/date.js'
 export * from './different/different.js'
 export * from './effect/effect.js'
-export * from './emailYobta/index.js'
+export * from './email/index.js'
 export * from './enumYobta/index.js'
 export * from './errorsYobta/index.js'
 export * from './fallback/fallback.js'
