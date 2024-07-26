@@ -9,7 +9,6 @@
 - maximumYobta
 - maxItemsYobta
 - minCharactersYobta
-- minDateYobta
 - minimumYobta
 - minItemsYobta
 - patterns
@@ -36,6 +35,7 @@ Renamed:
 - integerYobta => integer
 - numberYobta => number
 - maxCharactersYobta => maxCharacters
+- minDateYobta => minDate
 - formYobta => form
 - identicalYobta => identical
 - shapeYobta => shape

@@ -29,8 +29,8 @@ npm i @yobta/validator
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule
+  - `maxDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
   - [+] minimum date
-  - [+] maximum date
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
 - shape todo

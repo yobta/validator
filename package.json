@@ -192,9 +192,9 @@
       "limit": "112 B"
     },
     {
-      "name": "Maximum date rule",
+      "name": "maxDate",
       "import": {
-        "lib/index.js": "{ maxDateYobta }"
+        "lib/index.js": "{ maxDate }"
       },
       "limit": "112 B"
     },
