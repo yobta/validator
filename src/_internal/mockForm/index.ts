@@ -1,7 +1,7 @@
 import { createEvent } from '@testing-library/dom'
 
-import type { YobtaAsyncValidator } from '../../_types/YobtaAsyncValidator'
 import type { YobtaAsyncResult } from '../../_types/YobtaAsyncResult'
+import type { YobtaAsyncValidator } from '../../_types/YobtaAsyncValidator'
 
 interface MockFormFactory {
   (innerHtml: string): {

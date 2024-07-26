@@ -1,5 +1,5 @@
-import type { SyncRulesPipeYobta } from './YobtaPipe.js'
 import type { YobtaSyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
+import type { SyncRulesPipeYobta } from './YobtaPipe.js'
 import type {
   YobtaSyncChain1,
   YobtaSyncChain10,

@@ -20,8 +20,8 @@ test:
 
 check:
 	make typecheck
-	make test
 	make lint
+	make test
 
 bump:
 	npm version patch

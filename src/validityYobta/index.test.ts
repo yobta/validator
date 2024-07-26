@@ -5,8 +5,8 @@ import { createEvent } from '@testing-library/dom'
 import {
   constYobta,
   createAsyncValidator,
-  shapeMessage,
   shape,
+  shapeMessage,
   YobtaError,
 } from '../'
 import { createContext } from '../_internal/createContext'

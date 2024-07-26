@@ -1,5 +1,5 @@
-import type { ArgType, ExtractReturnTypes, Lookup, Tail } from './YobtaPipe'
 import type { AnySyncOrAsyncRule } from '../ruleYobta'
+import type { ArgType, ExtractReturnTypes, Lookup, Tail } from './YobtaPipe'
 
 export type YobtaAsyncRulesPipe<F extends AnySyncOrAsyncRule[]> = F &
   YobtaAsyncFactoryChain<F>

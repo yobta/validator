@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { numberYobta } from '../numberYobta'
 import { createValidator } from '../createValidator/createValidator'
+import { numberYobta } from '../numberYobta'
 import { minimumYobta, minimumYobtaMessage } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`

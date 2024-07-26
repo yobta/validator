@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
-import { stringYobta } from '../stringYobta'
 import { createValidator } from '../createValidator/createValidator'
+import { stringYobta } from '../stringYobta'
 import { maxCharactersMessage, maxCharactersYobta } from './'
 
 const customMessage = (limit: number): string => `${limit} yobta!`

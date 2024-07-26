@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 
-import { stringYobta } from '../stringYobta'
 import { createValidator } from '../createValidator/createValidator'
+import { stringYobta } from '../stringYobta'
 import { YobtaError } from '../YobtaError'
 import { emailMessage, emailYobta } from './'
 

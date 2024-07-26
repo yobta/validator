@@ -12,7 +12,7 @@ import {
 } from '..'
 import { createContext } from '../_internal/createContext'
 import { YobtaError } from '../YobtaError'
-import { asyncShapeMessage, asyncShape } from './asyncShape'
+import { asyncShape, asyncShapeMessage } from './asyncShape'
 
 const validate = createAsyncValidator(
   asyncShape({

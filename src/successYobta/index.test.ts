@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { stringMessage, stringYobta, createValidator } from '../'
+import { createValidator, stringMessage, stringYobta } from '../'
 import type { YobtaValidator } from '../_types/YobtaValidator'
 import { successYobta } from './'
 
