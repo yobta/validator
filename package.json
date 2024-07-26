@@ -122,9 +122,9 @@
       "limit": "175 B"
     },
     {
-      "name": "Integer rule",
+      "name": "integer",
       "import": {
-        "lib/index.js": "{ integerYobta }"
+        "lib/index.js": "{ integer }"
       },
       "limit": "81 B"
     },

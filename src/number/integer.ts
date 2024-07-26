@@ -8,7 +8,7 @@ interface IntegerFactory {
   (message?: string): YobtaSyncRule<number, Integer>
 }
 
-export const integerYobta: IntegerFactory = (message = integerMessage) =>
+export const integer: IntegerFactory = (message = integerMessage) =>
   ruleYobta(input => {
     if (Number.isInteger(input)) {
       return input as Integer

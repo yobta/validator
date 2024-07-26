@@ -16,7 +16,6 @@
 - testYobta
 - uniqueYobta
 - enumYobta
-- integerYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -34,6 +33,7 @@ Renamed:
 - defaultYobta => fallback
 - effectYobta => effect
 - emailYobta => email
+- integerYobta => integer
 - numberYobta => number
 - formYobta => form
 - identicalYobta => identical
