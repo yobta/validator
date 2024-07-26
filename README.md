@@ -25,7 +25,10 @@ npm i @yobta/validator
 ### Sync Rules
 
 - `array(errorMessage)` - creates a array rule, coercing unknown value to array
+
   - `items(...rules)` – validates every array item against rules
+  - `maxItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
+
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule
@@ -34,7 +37,7 @@ npm i @yobta/validator
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
   - `max(limit: () => Number, errorMessage)` – checks if a value within a limit
-- shape todo
+- `shape({ key: rule }, errorMessage)` – checks plain object shape
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
 - `string(errorMessage)` – coerses a simple value to string or throws
 

@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { maxItemsMessage, maxItemsYobta } from './'
+import { maxItems, maxItemsMessage } from './maxItems'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(maxItemsYobta(1, customMessage))
+const validate = createValidator(maxItems(() => 1, customMessage))
 
 it('accepts exact lenght', () => {
   const result = validate([1])
@@ -21,7 +21,7 @@ it('regects greater lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(maxItemsYobta(1))
+  const validateDefault = createValidator(maxItems(() => 1))
   const assign = (): any => validateDefault([1, 2])
   expect(assign).toThrow(maxItemsMessage(1))
 })

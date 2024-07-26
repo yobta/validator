@@ -150,9 +150,9 @@
       "limit": "125 B"
     },
     {
-      "name": "Maximum items rule",
+      "name": "maxItems",
       "import": {
-        "lib/index.js": "{ maxItemsYobta }"
+        "lib/index.js": "{ maxItems }"
       },
       "limit": "117 B"
     },
