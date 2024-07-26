@@ -1,11 +1,5 @@
 /* eslint-disable import/extensions */
-import {
-  defaultYobta,
-  differentYobta,
-  effectYobta,
-  identicalYobta,
-  pipe,
-} from '..'
+import { differentYobta, effectYobta, fallback, identicalYobta, pipe } from '..'
 import { createValidator } from '../createValidator/createValidator'
 import { requiredYobta } from '../requiredYobta'
 import { stringMessage, stringYobta } from '../stringYobta'
@@ -91,7 +85,7 @@ it('should replace context.data', () => {
     retypePassword: 'new yobta',
   }
   const attempt = createValidator(
-    defaultYobta(replaced),
+    fallback(() => replaced),
     shape({
       newPassword: differentYobta(['password']),
       password: stringYobta(),

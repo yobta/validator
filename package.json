@@ -227,9 +227,9 @@
       "limit": "138 B"
     },
     {
-      "name": "Default rule",
+      "name": "Fallback rule",
       "import": {
-        "lib/index.js": "{ defaultYobta }"
+        "lib/index.js": "{ fallback }"
       },
       "limit": "136 B"
     },
@@ -383,7 +383,7 @@
         "lib/transformYobta/index.js": "{ transformYobta }",
         "lib/emailYobta/index.js": "{ emailYobta }",
         "lib/requiredYobta/index.js": "{ requiredYobta }",
-        "lib/defaultYobta/index.js": "{ defaultYobta }",
+        "lib/fallback/fallback.js": "{ fallback }",
         "lib/safe/safe.js": "{ safe }",
         "lib/constant/constant.js": "{ constant }",
         "lib/items/items.js": "{ items }",

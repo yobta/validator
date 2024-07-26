@@ -29,6 +29,7 @@ npm i @yobta/validator
 - `date(errorMessage)` - creates a date rule
   - [+] minimum date
   - [+] maximum date
+- `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 
 ### Async Rules
 

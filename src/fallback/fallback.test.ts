@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
 import { stringYobta } from '../stringYobta'
-import { defaultYobta } from './'
+import { fallback } from './fallback'
 
-const validate = createValidator(defaultYobta('yobta'))
+const validate = createValidator(fallback(() => 'yobta'))
 
 test('undefined', () => {
   const result = validate(undefined)
@@ -33,7 +33,10 @@ values.forEach(value => {
 })
 
 it('pipes', () => {
-  const validateMultiple = createValidator(defaultYobta('yobta'), stringYobta())
+  const validateMultiple = createValidator(
+    fallback(() => 'yobta'),
+    stringYobta(),
+  )
   const result = validateMultiple(null)
   expect(result).toEqual('yobta')
 })

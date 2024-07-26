@@ -2,8 +2,8 @@
 
 import {
   createAsyncValidator,
-  defaultYobta,
   differentYobta,
+  fallback,
   identicalYobta,
   requiredYobta,
   shape,
@@ -136,7 +136,7 @@ it('should replace context.data', async () => {
     retypePassword: 'new yobta',
   }
   const attempt = createAsyncValidator(
-    defaultYobta(replaced),
+    fallback(() => replaced),
     shape({
       newPassword: differentYobta(['password']),
       password: stringYobta(),

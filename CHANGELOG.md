@@ -6,7 +6,6 @@
 
 - isPlainObject
 - shapeYobta
-- defaultYobta
 - differentYobta
 - identicalYobta
 - itemsYobta
@@ -37,6 +36,7 @@ Renamed:
 - catchYobta => safe
 - constYobta => constant
 - dateYobta => date
+- defaultYobta => fallback
 - itemsYobta => items
 - shapeYobta => shape
 
