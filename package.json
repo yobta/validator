@@ -271,7 +271,7 @@
     {
       "name": "Identical rule",
       "import": {
-        "lib/index.js": "{ identicalYobta }"
+        "lib/index.js": "{ identical }"
       },
       "limit": "155 B"
     },

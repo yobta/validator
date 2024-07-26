@@ -5,8 +5,6 @@
 -Refactored
 
 - isPlainObject
-- shapeYobta
-- identicalYobta
 - itemsYobta
 - maximumYobta
 - maxItemsYobta
@@ -20,7 +18,6 @@
 - enumYobta
 - integerYobta
 - numberYobta
-- shapeYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -39,6 +36,7 @@ Renamed:
 - effectYobta => effect
 - emailYobta => email
 - formYobta => form
+- identicalYobta => identical
 - shapeYobta => shape
   - differentYobta => different
 - stringYobta => string

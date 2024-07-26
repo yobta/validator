@@ -6,7 +6,7 @@ import { ruleYobta } from '../ruleYobta/index.js'
 export const identicalMessage = (path: YobtaPath): string =>
   `It should be identical to "${path.join('.')}"`
 
-export const identicalYobta = <I>(
+export const identical = <I>(
   path: YobtaPath,
   message = identicalMessage,
 ): YobtaSyncRule<I, I> =>
