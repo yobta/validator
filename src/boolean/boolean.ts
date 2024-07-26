@@ -10,7 +10,7 @@ interface BooleanFactory {
   (message?: string): YobtaSyncRule<unknown, boolean>
 }
 
-export const booleanYobta: BooleanFactory = message =>
+export const boolean: BooleanFactory = message =>
   ruleYobta<unknown, boolean>(input => {
     const lowerCasedInput = String(input).toLowerCase()
     if (falsySet.has(lowerCasedInput)) {

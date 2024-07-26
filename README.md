@@ -24,9 +24,11 @@ npm i @yobta/validator
 
 ### Sync Rules
 
+- [+] `boolean(errorMessage)` - creates a boolean validator
+
 ### Async Rules
 
-- `asyncShape({ field: syncOrAsyncRule() })` – resolves valid shape
+- `asyncShape({ field: syncOrAsyncRule() }, errorMessage)` – resolves valid shape
 - `asyncSubmit(callback)` – executes a callback for a valid form submit
 
 ### Types
@@ -52,7 +54,6 @@ npm i @yobta/validator
   - [+] int
   - [+] minimum
   - [+] maximum
-- [+] Boolean validator
 - [+] Const validator
 - [+] Date validator
   - [+] minimum date
@@ -103,7 +104,7 @@ const getInitialState = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [catchYobta('tab-1', enumYobta(['tab-1', 'tab-2', 'tab-3']))],
-    myModalIsOpen: [catchYobta(false, booleanYobta(), requiredYobta())],
+    myModalIsOpen: [catchYobta(false, boolean(), requiredYobta())],
   }),
 )
 

@@ -19,7 +19,6 @@
 - patterns
 - testYobta
 - uniqueYobta
-- booleanYobta
 - constYobta
 - dateYobta
 - enumYobta
@@ -36,6 +35,7 @@ Renamed:
 - arrayYobta => array
 - awaitShapeYobta => asyncShape
 - awaitSunbmitYobta => asyncSubmit
+- booleanYobta => boolean
 - catchYobta => safe
 - itemsYobta => items
 - shapeYobta => shape

@@ -138,7 +138,7 @@
     {
       "name": "Boolean rule",
       "import": {
-        "lib/index.js": "{ booleanYobta }"
+        "lib/index.js": "{ boolean }"
       },
       "limit": "145 B"
     },
@@ -370,7 +370,7 @@
         "lib/numberYobta/index.js": "{ numberYobta }",
         "lib/integerYobta/index.js": "{ integerYobta }",
         "lib/dateYobta/index.js": "{ dateYobta }",
-        "lib/booleanYobta/index.js": "{ booleanYobta }",
+        "lib/boolean/boolean.js": "{ boolean }",
         "lib/minItemsYobta/index.js": "{ minItemsYobta }",
         "lib/maxItemsYobta/index.js": "{ maxItemsYobta }",
         "lib/minCharactersYobta/index.js": "{ minCharactersYobta }",

@@ -4,7 +4,7 @@ import { createEvent } from '@testing-library/dom'
 
 import type { YobtaContext } from '..'
 import {
-  booleanYobta,
+  boolean,
   constYobta,
   enumYobta,
   numberYobta,
@@ -47,7 +47,7 @@ const validateSearch = createValidator(
       enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
       requiredYobta(),
     ),
-    myModalIsOpen: safe(false, booleanYobta(), requiredYobta()),
+    myModalIsOpen: safe(false, boolean(), requiredYobta()),
   }),
 )
 

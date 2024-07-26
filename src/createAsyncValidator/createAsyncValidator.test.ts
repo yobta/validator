@@ -4,7 +4,7 @@ import { createEvent } from '@testing-library/dom'
 
 import { constYobta, effectYobta } from '..'
 import { createContext } from '../_internal/createContext'
-import { booleanYobta } from '../booleanYobta'
+import { boolean } from '../boolean/boolean'
 import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { numberYobta } from '../numberYobta'
@@ -26,7 +26,7 @@ const validateSearch = createAsyncValidator(
       enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
       requiredYobta(),
     ),
-    myModalIsOpen: safe(false, booleanYobta(), requiredYobta()),
+    myModalIsOpen: safe(false, boolean(), requiredYobta()),
   }),
 )
 
