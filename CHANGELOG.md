@@ -35,6 +35,7 @@ Renamed:
 - emailYobta => email
 - integerYobta => integer
 - numberYobta => number
+- maxCharactersYobta => maxCharacters
 - formYobta => form
 - identicalYobta => identical
 - shapeYobta => shape

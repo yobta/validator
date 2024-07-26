@@ -5,7 +5,7 @@ import { ruleYobta } from '../ruleYobta/index.js'
 export const maxCharactersMessage = (limit: number): string =>
   `It should be within ${pluralizeEn(limit, 'character')}`
 
-export const maxCharactersYobta = (
+export const maxCharacters = (
   limit: number,
   message = maxCharactersMessage,
 ): YobtaSyncRule<string, string> =>

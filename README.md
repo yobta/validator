@@ -35,7 +35,7 @@ npm i @yobta/validator
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
 - shape todo
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
-- string todo
+- `string(errorMessage)` – coerses a simple value to string or throws
 
 ### Async Rules
 

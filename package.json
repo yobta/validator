@@ -164,9 +164,9 @@
       "limit": "122 B"
     },
     {
-      "name": "Maximum characters rule",
+      "name": "maxCharacters",
       "import": {
-        "lib/index.js": "{ maxCharactersYobta }"
+        "lib/index.js": "{ maxCharacters }"
       },
       "limit": "117 B"
     },
