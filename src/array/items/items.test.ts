@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
-import { array } from '../array/array'
-import { createValidator } from '../createValidator/createValidator'
-import { minCharactersYobta } from '../minCharactersYobta'
-import { requiredYobta } from '../requiredYobta'
-import { stringYobta } from '../stringYobta'
+import { array } from '../../array/array'
+import { createValidator } from '../../createValidator/createValidator'
+import { minCharactersYobta } from '../../minCharactersYobta'
+import { requiredYobta } from '../../requiredYobta'
+import { stringYobta } from '../../stringYobta'
 import { items } from './items'
 
 const validate = createValidator(

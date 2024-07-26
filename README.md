@@ -25,6 +25,7 @@ npm i @yobta/validator
 ### Sync Rules
 
 - `array(errorMessage)` - creates a array rule, coercing unknown value to array
+  - `items(...rules)` –
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule

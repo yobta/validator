@@ -393,7 +393,7 @@
         "lib/fallback/fallback.js": "{ fallback }",
         "lib/safe/safe.js": "{ safe }",
         "lib/constant/constant.js": "{ constant }",
-        "lib/items/items.js": "{ items }",
+        "lib/array/items/items.js": "{ items }",
         "lib/pipe/pipe.js": "{ pipe }",
         "lib/asyncPipe/asyncPipe.js": "{ asyncPipe }",
         "lib/uniqueYobta/index.js": "{ uniqueYobta }",
