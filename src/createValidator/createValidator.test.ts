@@ -28,7 +28,7 @@ it('can pipe rules', () => {
   const validateMultiple = createValidator(
     string(),
     requiredYobta(),
-    // minCharactersYobta(5),
+    // minCharacters(5),
   )
   const result = validateMultiple('yobta')
   expect(result).toBe('yobta')

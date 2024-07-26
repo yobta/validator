@@ -6,12 +6,13 @@ export const maxCharactersMessage = (limit: number): string =>
   `It should be within ${pluralizeEn(limit, 'character')}`
 
 export const maxCharacters = (
-  limit: number,
+  limit: () => number,
   message = maxCharactersMessage,
 ): YobtaSyncRule<string, string> =>
   ruleYobta<string, string>(input => {
-    if (input.length > limit) {
-      throw new Error(message(limit))
+    const l = limit()
+    if (input.length > l) {
+      throw new Error(message(l))
     }
     return input
   })

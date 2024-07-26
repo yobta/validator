@@ -157,9 +157,9 @@
       "limit": "117 B"
     },
     {
-      "name": "Minimum characters rule",
+      "name": "minCharacters",
       "import": {
-        "lib/index.js": "{ minCharactersYobta }"
+        "lib/index.js": "{ minCharacters }"
       },
       "limit": "122 B"
     },

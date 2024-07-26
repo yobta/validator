@@ -5,13 +5,13 @@ import { createEvent } from '@testing-library/dom'
 import { constant, effect } from '..'
 import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
-import { minCharactersYobta } from '../minCharactersYobta'
 import { number } from '../number'
 import { oneOf } from '../oneOf/oneOf'
 import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
 import { string } from '../string'
+import { minCharacters } from '../string/minCharacters'
 import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
 import { createAsyncValidator } from './createAsyncValidator'
@@ -39,7 +39,7 @@ it('can pipe rules', async () => {
   const validateMultiple = createAsyncValidator(
     string(),
     requiredYobta(),
-    minCharactersYobta(5),
+    minCharacters(() => 5),
   )
   const result = await validateMultiple('yobta')
   expect(result).toEqual(['yobta', null])
