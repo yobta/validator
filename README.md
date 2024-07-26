@@ -32,6 +32,7 @@ npm i @yobta/validator
   - [+] minimum date
   - [+] maximum date
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
+- `number(errorMessage)` - converts a value to a finite `Number` or throws
 - shape todo
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
 - string todo

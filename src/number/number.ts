@@ -7,12 +7,12 @@ interface NumberFactory {
   (message?: string): YobtaSyncRule<unknown, number>
 }
 
-export const numberYobta: NumberFactory = (message = numberMessage) =>
+export const number: NumberFactory = (message = numberMessage) =>
   ruleYobta<unknown, number>(value => {
     try {
-      const number = Number(value ?? 0)
-      if (Number.isFinite(number)) {
-        return number
+      const n = Number(value ?? 0)
+      if (Number.isFinite(n)) {
+        return n
       }
     } catch {}
     throw new Error(message)

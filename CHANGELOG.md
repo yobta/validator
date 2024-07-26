@@ -17,7 +17,6 @@
 - uniqueYobta
 - enumYobta
 - integerYobta
-- numberYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -35,6 +34,7 @@ Renamed:
 - defaultYobta => fallback
 - effectYobta => effect
 - emailYobta => email
+- numberYobta => number
 - formYobta => form
 - identicalYobta => identical
 - shapeYobta => shape

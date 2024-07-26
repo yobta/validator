@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { numberYobta } from '../numberYobta'
+import { number } from '../number'
 import { shape } from '../shape/shape'
 import { different, differentMessage } from './different'
 
@@ -9,7 +9,7 @@ const customMessage = (): string => 'yobta!'
 it('accepts when different', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: different(() => ['a']),
     }),
   )
@@ -20,7 +20,7 @@ it('accepts when different', () => {
 it('accepts when different and undefined', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: different(() => ['a']),
     }),
   )
@@ -31,7 +31,7 @@ it('accepts when different and undefined', () => {
 it('regects when not different', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: different(() => ['a'], customMessage),
     }),
   )
@@ -42,7 +42,7 @@ it('regects when not different', () => {
 it('has default error mesage', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: different(() => ['a']),
     }),
   )

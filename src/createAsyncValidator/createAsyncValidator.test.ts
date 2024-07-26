@@ -7,7 +7,7 @@ import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
 import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
-import { numberYobta } from '../numberYobta'
+import { number } from '../number'
 import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
@@ -16,7 +16,7 @@ import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
 import { createAsyncValidator } from './createAsyncValidator'
 
-const validate = createAsyncValidator(numberYobta('yobta!'))
+const validate = createAsyncValidator(number('yobta!'))
 
 const validateSearch = createAsyncValidator(
   urlSearchParamsYobta(),

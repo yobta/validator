@@ -7,7 +7,7 @@ import {
   boolean,
   constant,
   enumYobta,
-  numberYobta,
+  number,
   requiredYobta,
   safe,
   shape,
@@ -17,7 +17,7 @@ import {
 } from '..'
 import { createValidator } from './createValidator'
 
-const validate = createValidator(numberYobta('yobta!'))
+const validate = createValidator(number('yobta!'))
 
 it('accepts valid', () => {
   const result = validate(1)

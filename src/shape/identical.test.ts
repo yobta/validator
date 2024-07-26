@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { numberYobta } from '../numberYobta'
+import { number } from '../number'
 import { identical, identicalMessage } from './identical'
 import { shape } from './shape'
 
@@ -9,7 +9,7 @@ const customMessage = (): string => 'yobta!'
 it('accepts when identical', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: identical(['a']),
     }),
   )
@@ -20,7 +20,7 @@ it('accepts when identical', () => {
 it('rejects when not identical', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: identical(['a'], customMessage),
     }),
   )
@@ -31,7 +31,7 @@ it('rejects when not identical', () => {
 it('has default error mesage', () => {
   const validate = createValidator(
     shape({
-      a: numberYobta(),
+      a: number(),
       b: identical(['a']),
     }),
   )

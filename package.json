@@ -115,9 +115,9 @@
       "limit": "157 B"
     },
     {
-      "name": "Number rule",
+      "name": "number",
       "import": {
-        "lib/index.js": "{ numberYobta }"
+        "lib/index.js": "{ number }"
       },
       "limit": "175 B"
     },
