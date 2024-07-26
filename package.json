@@ -297,9 +297,9 @@
       "limit": "211 B"
     },
     {
-      "name": "Enum rule",
+      "name": "oneOf",
       "import": {
-        "lib/index.js": "{ enumYobta }"
+        "lib/index.js": "{ oneOf }"
       },
       "limit": "114 B"
     },

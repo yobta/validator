@@ -37,6 +37,7 @@ npm i @yobta/validator
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
   - `max(limit: () => Number, errorMessage)` – checks if a value within a limit
+- `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
 - `string(errorMessage)` – coerses a simple value to string or throws
@@ -58,7 +59,6 @@ npm i @yobta/validator
 
 - [+] Shape validator
 
-- [+] Enum validator (one of)
 - [-] Array validator
   - [+] items
   - [-] contains (do later)
@@ -122,8 +122,8 @@ object.
 const getInitialState = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: [catchYobta('tab-1', enumYobta(['tab-1', 'tab-2', 'tab-3']))],
-    myModalIsOpen: [catchYobta(false, boolean(), requiredYobta())],
+    currentTab: [safe('tab-1', oneOf(()= new Set(['tab-1', 'tab-2', 'tab-3'])))],
+    myModalIsOpen: [safe(false, boolean(), requiredYobta())],
   }),
 )
 

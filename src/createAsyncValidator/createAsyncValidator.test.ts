@@ -5,9 +5,9 @@ import { createEvent } from '@testing-library/dom'
 import { constant, effect } from '..'
 import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
-import { enumYobta } from '../enumYobta'
 import { minCharactersYobta } from '../minCharactersYobta'
 import { number } from '../number'
+import { oneOf } from '../oneOf/oneOf'
 import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
@@ -23,7 +23,7 @@ const validateSearch = createAsyncValidator(
   shape({
     currentTab: safe(
       'tab-1',
-      enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
+      oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
       requiredYobta(),
     ),
     myModalIsOpen: safe(false, boolean(), requiredYobta()),

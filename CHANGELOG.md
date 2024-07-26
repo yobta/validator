@@ -12,7 +12,6 @@
 - patterns
 - testYobta
 - uniqueYobta
-- enumYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -30,6 +29,7 @@ Renamed:
 - defaultYobta => fallback
 - effectYobta => effect
 - emailYobta => email
+- enumYobta => oneOf
 - integerYobta => integer
 - numberYobta => number
 - maximumYobta => max

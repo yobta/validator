@@ -6,8 +6,8 @@ import type { YobtaContext } from '..'
 import {
   boolean,
   constant,
-  enumYobta,
   number,
+  oneOf,
   requiredYobta,
   safe,
   shape,
@@ -44,7 +44,7 @@ const validateSearch = createValidator(
   shape({
     currentTab: safe(
       'tab-1',
-      enumYobta(new Set(['tab-1', 'tab-2', 'tab-3'])),
+      oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
       requiredYobta(),
     ),
     myModalIsOpen: safe(false, boolean(), requiredYobta()),
