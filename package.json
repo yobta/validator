@@ -178,9 +178,9 @@
       "limit": "88 B"
     },
     {
-      "name": "Maximum rule",
+      "name": "max",
       "import": {
-        "lib/index.js": "{ maximumYobta }"
+        "lib/index.js": "{ max }"
       },
       "limit": "87 B"
     },

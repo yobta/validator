@@ -6,7 +6,6 @@
 
 - isPlainObject
 - itemsYobta
-- maximumYobta
 - maxItemsYobta
 - minCharactersYobta
 - minimumYobta
@@ -34,6 +33,7 @@ Renamed:
 - emailYobta => email
 - integerYobta => integer
 - numberYobta => number
+- maximumYobta => max
 - maxCharactersYobta => maxCharacters
 - minDateYobta => minDate
 - formYobta => form
