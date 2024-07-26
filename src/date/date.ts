@@ -3,9 +3,7 @@ import { ruleYobta } from '../ruleYobta/index.js'
 
 export const dateMessage = 'It should be a date'
 
-export const dateYobta = (
-  message = dateMessage,
-): YobtaSyncRule<unknown, Date> =>
+export const date = (message = dateMessage): YobtaSyncRule<unknown, Date> =>
   ruleYobta(input => {
     const value = new Date(input as string)
 

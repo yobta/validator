@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { dateMessage, dateYobta } from './'
+import { date, dateMessage } from './date'
 
 const customMessage = 'yobta!'
-const validate = createValidator(dateYobta(customMessage))
+const validate = createValidator(date(customMessage))
 
 it('accepts valid dates', () => {
-  const date = new Date()
-  const result = validate(date)
-  expect(result).toEqual(date)
+  const someDate = new Date()
+  const result = validate(someDate)
+  expect(result).toEqual(someDate)
 })
 
 it('accepts timestamps', () => {
@@ -32,6 +32,6 @@ it('rejects invalid dates', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = (): any => createValidator(dateYobta())(null)
+  const validateDefault = (): any => createValidator(date())(null)
   expect(validateDefault).toThrow(dateMessage)
 })

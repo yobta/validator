@@ -26,6 +26,9 @@ npm i @yobta/validator
 
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
+- `date(errorMessage)` - creates a date rule
+  - [+] minimum date
+  - [+] maximum date
 
 ### Async Rules
 
@@ -57,9 +60,6 @@ npm i @yobta/validator
   - [+] minimum
   - [+] maximum
 
-- [+] Date validator
-  - [+] minimum date
-  - [+] maximum date
 - [+] RegExp test
 - [+] FormData
 

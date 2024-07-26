@@ -131,7 +131,7 @@
     {
       "name": "Date rule",
       "import": {
-        "lib/index.js": "{ dateYobta }"
+        "lib/index.js": "{ date }"
       },
       "limit": "107 B"
     },
@@ -369,7 +369,7 @@
         "lib/array/array.js": "{ array }",
         "lib/numberYobta/index.js": "{ numberYobta }",
         "lib/integerYobta/index.js": "{ integerYobta }",
-        "lib/dateYobta/index.js": "{ dateYobta }",
+        "lib/date/date.js": "{ date }",
         "lib/boolean/boolean.js": "{ boolean }",
         "lib/minItemsYobta/index.js": "{ minItemsYobta }",
         "lib/maxItemsYobta/index.js": "{ maxItemsYobta }",

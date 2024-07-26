@@ -19,8 +19,6 @@
 - patterns
 - testYobta
 - uniqueYobta
-- constYobta
-- dateYobta
 - enumYobta
 - integerYobta
 - numberYobta
@@ -38,6 +36,7 @@ Renamed:
 - booleanYobta => boolean
 - catchYobta => safe
 - constYobta => constant
+- dateYobta => date
 - itemsYobta => items
 - shapeYobta => shape
 
