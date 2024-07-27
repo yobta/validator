@@ -33,7 +33,7 @@ npm i @yobta/validator
 - `constant(value, errorMessage)` - creates a strict equality rule
 - `date(errorMessage)` - creates a date rule
   - `maxDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
-  - [+] minimum date
+  - `minDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
   - `max(limit: () => Number, errorMessage)` – checks if a value within a limit

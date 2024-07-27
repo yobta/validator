@@ -4,13 +4,14 @@ import { ruleYobta } from '../ruleYobta/index.js'
 export const minDateMessage = (limit: Date): string =>
   `It should be at least ${limit.toUTCString()}`
 
-export const minDateYobta = (
-  limit: Date,
+export const minDate = (
+  limit: () => Date,
   message = minDateMessage,
 ): YobtaSyncRule<Date, Date> =>
   ruleYobta((input: Date) => {
-    if (input.getTime() < limit.getTime()) {
-      throw new Error(message(limit))
+    const l = limit()
+    if (input.getTime() < l.getTime()) {
+      throw new Error(message(l))
     }
 
     return input

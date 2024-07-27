@@ -32,6 +32,7 @@ Renamed:
 - errorsYobta => errors
 - integerYobta => integer
 - numberYobta => number
+- maxDateYobta => maxDate
 - maximumYobta => max
 - maxItemsYobta => maxItems
 - maxCharactersYobta => maxCharacters

@@ -185,9 +185,9 @@
       "limit": "87 B"
     },
     {
-      "name": "Minimum date rule",
+      "name": "minDate",
       "import": {
-        "lib/index.js": "{ minDateYobta }"
+        "lib/index.js": "{ minDate }"
       },
       "limit": "112 B"
     },

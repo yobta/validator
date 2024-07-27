@@ -1,14 +1,14 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { minDateMessage, minDateYobta } from './'
+import { minDate, minDateMessage } from './minDate'
 
-const minDate = new Date('14 Jun 2017 00:00:00 PDT')
+const date = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (limit: Date): string => `${limit.toUTCString()} yobta!`
-const validate = createValidator(minDateYobta(minDate, customMessage))
+const validate = createValidator(minDate(() => date, customMessage))
 
 it('accepts exact date', () => {
-  const result = validate(minDate)
-  expect(result).toEqual(minDate)
+  const result = validate(date)
+  expect(result).toEqual(date)
 })
 
 it('accepts longer date', () => {
@@ -20,12 +20,12 @@ it('accepts longer date', () => {
 it('regects shorter date lenght', () => {
   const shorterDate = new Date('13 Jun 2017 00:00:00 PDT')
   const attempt = (): any => validate(shorterDate)
-  expect(attempt).toThrow(customMessage(minDate))
+  expect(attempt).toThrow(customMessage(date))
 })
 
 it('has default error message', () => {
   const shorterDate = new Date('13 Jun 2017 00:00:00 PDT')
-  const validateDefault = createValidator(minDateYobta(minDate))
+  const validateDefault = createValidator(minDate(() => date))
   const attempt = (): any => validateDefault(shorterDate)
-  expect(attempt).toThrow(minDateMessage(minDate))
+  expect(attempt).toThrow(minDateMessage(date))
 })
