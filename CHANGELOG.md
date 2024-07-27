@@ -5,7 +5,6 @@
 -Refactored
 
 - isPlainObject
-- itemsYobta
 - minItemsYobta
 - patterns
 - testYobta
@@ -37,6 +36,7 @@ Renamed:
 - maxCharactersYobta => maxCharacters
 - minCharactersYobta => minCharacters
 - minDateYobta => minDate
+- minItemsYobta => minItems
 - minimumYobta => minNumber
 - formYobta => form
 - identicalYobta => identical

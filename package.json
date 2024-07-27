@@ -143,9 +143,9 @@
       "limit": "145 B"
     },
     {
-      "name": "Minimum items rule",
+      "name": "minItems",
       "import": {
-        "lib/index.js": "{ minItemsYobta }"
+        "lib/index.js": "{ minItems }"
       },
       "limit": "125 B"
     },

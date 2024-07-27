@@ -5,13 +5,13 @@ import { ruleYobta } from '../ruleYobta/index.js'
 export const minItemsMessage = (limit: number): string =>
   `It should have at least ${pluralizeEn(limit, 'item')}`
 
-export const minItemsYobta = <I extends unknown[]>(
-  limit: number,
+export const minItems = <I extends unknown[]>(
+  limit: () => number,
   message = minItemsMessage,
 ): YobtaSyncRule<I, I> =>
   ruleYobta<I, I>(input => {
-    if (input.length < limit) {
-      throw new Error(message(limit))
+    if (input.length < limit()) {
+      throw new Error(message(limit()))
     }
 
     return input

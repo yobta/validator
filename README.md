@@ -28,6 +28,7 @@ npm i @yobta/validator
 
   - `items(...rules)` – validates every array item against rules
   - `maxItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
+  - `minItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
 
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
