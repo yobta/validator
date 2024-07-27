@@ -14,7 +14,7 @@
     "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest src --coverage",
-    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/validityYobta",
+    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/validity",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },
@@ -318,9 +318,9 @@
       "limit": "56 B"
     },
     {
-      "name": "Validity utility",
+      "name": "validity",
       "import": {
-        "lib/index.js": "{ validityYobta }"
+        "lib/index.js": "{ validity }"
       },
       "limit": "330 B"
     },

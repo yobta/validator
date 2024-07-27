@@ -9,9 +9,9 @@ import {
   shape,
   shapeMessage,
   YobtaError,
-} from '../'
+} from '..'
 import { createContext } from '../_internal/createContext'
-import { validityMessage, validityYobta } from './'
+import { validity, validityMessage } from './validity'
 
 interface FormMock {
   (): {
@@ -81,17 +81,13 @@ it('throws when gets a non-form event', () => {
   const input = document.createElement('input')
   const data = { currentTarget: input }
   const context = createContext(data)
-  expect(() => validityYobta(errorHandlerMock)(context)({})).toThrow(
-    validityMessage,
-  )
+  expect(() => validity(errorHandlerMock)(context)({})).toThrow(validityMessage)
 })
 
 it('throws when gets a non-event and has a custom error message', () => {
   const context = createContext('yobta')
   expect(() =>
-    validityYobta(errorHandlerMock, { missingFormMessage: 'yobta!' })(context)(
-      {},
-    ),
+    validity(errorHandlerMock, { missingFormMessage: 'yobta!' })(context)({}),
   ).toThrow('yobta!')
 })
 
@@ -105,7 +101,7 @@ it('reports validity for selects, inputs and textareas', async () => {
       text: constant('yobta'),
       textarea: constant('yobta'),
     }),
-    validityYobta(errorHandlerMock),
+    validity(errorHandlerMock),
   )
   const submitEvent = createEvent.submit(formNode)
   Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
@@ -149,7 +145,7 @@ it('reports validity on submit and restores on input', async () => {
       checkbox: constant('yobta'),
       text: constant('yobta'),
     }),
-    validityYobta(errorHandlerMock),
+    validity(errorHandlerMock),
   )
   const submitEvent = createEvent.submit(formNode)
   Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
@@ -181,7 +177,7 @@ it('does not report input events when validateAllFieldsOnChange is false', async
       checkbox: constant('yobta'),
       text: constant('yobta'),
     }),
-    validityYobta(errorHandlerMock, { validateAllFieldsOnChange: false }),
+    validity(errorHandlerMock, { validateAllFieldsOnChange: false }),
   )
   const changeEvent = createEvent.change(input)
   Object.defineProperty(changeEvent, 'currentTarget', { value: formNode })
@@ -202,7 +198,7 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
       checkbox: constant('yobta'),
       text: constant('yobta'),
     }),
-    validityYobta(errorHandlerMock, { validateAllFieldsOnChange: true }),
+    validity(errorHandlerMock, { validateAllFieldsOnChange: true }),
   )
   const changeEvent = createEvent.change(input)
   Object.defineProperty(changeEvent, 'currentTarget', { value: formNode })
@@ -223,7 +219,7 @@ it('reports unhandled errors', async () => {
       inputIsNotInForm: constant('yobta'),
       text: constant('yobta'),
     }),
-    validityYobta(errorHandlerMock),
+    validity(errorHandlerMock),
   )
 
   expect(input.checkValidity()).toBe(true)
@@ -255,7 +251,7 @@ it('does not report readonly inputs', async () => {
     shape({
       readonly: constant('readonly yobta'),
     }),
-    validityYobta(errorHandlerMock),
+    validity(errorHandlerMock),
   )
 
   expect(readonlyInput.checkValidity()).toBe(true)
@@ -287,7 +283,7 @@ it('does not report hidden inputs', async () => {
     shape({
       hidden: constant('hidden yobta'),
     }),
-    validityYobta(errorHandlerMock),
+    validity(errorHandlerMock),
   )
 
   expect(hiddenInput.checkValidity()).toBe(true)

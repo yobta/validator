@@ -58,6 +58,7 @@ npm i @yobta/validator
 - `effect(callback)` – executes a callback, returns input value
 - `errors(callback)` – calls back with `YobtaError`
 - `success(callback)` – executes a callback whenever the current step have no errors
+- `validity(callback)` – maps validation errors to the form inputs, or sends current error to the callback when can't map
 
 ### Transforms
 
@@ -170,7 +171,7 @@ const validate = asyncYobta(
   }),
   asyncSubmit(sendMyFormAsJSON),
   errors(),
-  validityYobta(console.error), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
+  validity(console.error), // https://developer.mozilla.org/en-US/docs/Web/API/HTMLObjectElement/setCustomValidity#examples
   effect(toggleFormLock),
 )
 

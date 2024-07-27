@@ -43,6 +43,7 @@ Renamed:
 - stringYobta => string
 - successYobta => success
 - uniqueYobta => unique
+- validityYobta => validity
 
 Added:
 

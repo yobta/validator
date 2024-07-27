@@ -16,7 +16,7 @@ const updateValidity = (element: InputElement, message: string = ''): void => {
   element.reportValidity()
 }
 
-export const validityYobta = <I>(
+export const validity = <I>(
   onUnhandledError: YontaErrorHandler,
   {
     missingFormMessage = validityMessage,
