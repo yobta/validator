@@ -171,16 +171,16 @@
       "limit": "117 B"
     },
     {
-      "name": "min",
+      "name": "minNumber",
       "import": {
-        "lib/index.js": "{ min }"
+        "lib/index.js": "{ minNumber }"
       },
       "limit": "88 B"
     },
     {
-      "name": "max",
+      "name": "maxNumber",
       "import": {
-        "lib/index.js": "{ max }"
+        "lib/index.js": "{ maxNumber }"
       },
       "limit": "87 B"
     },

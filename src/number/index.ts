@@ -1,4 +1,4 @@
 export * from './integer.js'
-export * from './max.js'
-export * from './min.js'
+export * from './maxNumber.js'
+export * from './minNumber.js'
 export * from './number.js'

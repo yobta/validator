@@ -32,12 +32,12 @@ Renamed:
 - integerYobta => integer
 - numberYobta => number
 - maxDateYobta => maxDate
-- maximumYobta => max
+- maximumYobta => maxNumber
 - maxItemsYobta => maxItems
 - maxCharactersYobta => maxCharacters
 - minCharactersYobta => minCharacters
 - minDateYobta => minDate
-- minimumYobta => min
+- minimumYobta => minNumber
 - formYobta => form
 - identicalYobta => identical
 - shapeYobta => shape

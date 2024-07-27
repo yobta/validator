@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 import { number } from '.'
 import { createValidator } from '../createValidator/createValidator'
-import { max, maxMessage } from './max'
+import { maxNumber, maxNumberMessage } from './maxNumber'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = createValidator(
   number(),
-  max(() => 1, customMessage),
+  maxNumber(() => 1, customMessage),
 )
 
 it('accepts exact number', () => {
@@ -27,8 +27,8 @@ it('regects greater number', () => {
 it('has default error message', () => {
   const validateDefault = createValidator(
     number(),
-    max(() => 1),
+    maxNumber(() => 1),
   )
   const attempt = (): any => validateDefault(2)
-  expect(attempt).toThrow(maxMessage(1))
+  expect(attempt).toThrow(maxNumberMessage(1))
 })
