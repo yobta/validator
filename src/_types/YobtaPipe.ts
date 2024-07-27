@@ -1,4 +1,7 @@
-import type { YobtaAnySyncRule, YobtaSyncRules } from '../ruleYobta/index.js'
+import type {
+  YobtaAnySyncRule,
+  YobtaSyncRules,
+} from '../createRule/createRule.js'
 
 export type SyncRulesPipeYobta<F extends YobtaSyncRules> = AsFactoryChain<F> & F
 

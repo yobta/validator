@@ -26,6 +26,6 @@ interface RuleFactory {
   <I, O>(validate: Validate<I, O>): YobtaSyncRule<I, O>
 }
 
-export const ruleYobta: RuleFactory = validate => context => input =>
+export const createRule: RuleFactory = validate => context => input =>
   // @ts-ignore
   validate(input, context)

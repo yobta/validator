@@ -1,4 +1,4 @@
-import type { SyncOrAsyncRules } from '../ruleYobta/index.js'
+import type { SyncOrAsyncRules } from '../createRule/createRule.js'
 import type {
   YobtaAsyncChain1,
   YobtaAsyncChain10,

@@ -1,8 +1,8 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 import type { YobtaError } from '../index.js'
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
 
 type AsyncRulesRecord = Record<PropertyKey, YobtaAsyncValidator<any, any>>
 
@@ -20,7 +20,7 @@ export const asyncShape = <I, Record extends AsyncRulesRecord>(
   rulesSet: AwaitShapeConfig<Record>,
   validationMessage: string = asyncShapeMessage,
 ): YobtaSyncRule<I, Promise<ValidAsyncShapeYobta<Record>>> =>
-  ruleYobta<I, Promise<ValidAsyncShapeYobta<Record>>>(
+  createRule<I, Promise<ValidAsyncShapeYobta<Record>>>(
     async (value, context) => {
       if (!isPlainObject(value)) {
         throw new Error(validationMessage)

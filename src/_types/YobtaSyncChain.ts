@@ -1,4 +1,4 @@
-import type { YobtaSyncRule } from '../ruleYobta'
+import type { YobtaSyncRule } from '../createRule/createRule'
 
 export type YobtaSyncChain1<R1> = [YobtaSyncRule<unknown, R1>]
 

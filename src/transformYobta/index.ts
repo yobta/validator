@@ -1,7 +1,7 @@
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { YobtaPretty } from '../_types/YobtaPretty.js'
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 type Transformer<I, O> = (
   input: I,
@@ -13,4 +13,4 @@ interface TransformYobtaRule {
 }
 
 export const transformYobta: TransformYobtaRule = transform =>
-  ruleYobta(transform)
+  createRule(transform)

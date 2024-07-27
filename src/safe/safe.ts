@@ -1,12 +1,12 @@
 import type { YobtaSafe } from '../_types/YobtaSafe.js'
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 export const safe: YobtaSafe = (
   fallbackValue: any,
   ...rules: YobtaSyncRule<any, any>[]
 ) => {
-  return ruleYobta((input, context) => {
+  return createRule((input, context) => {
     try {
       for (const rule of rules) {
         input = rule(context)(input)

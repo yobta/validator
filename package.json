@@ -73,21 +73,21 @@
   },
   "size-limit": [
     {
-      "name": "Rule factory",
+      "name": "createRule",
       "import": {
-        "lib/index.js": "{ ruleYobta }"
+        "lib/index.js": "{ createRule }"
       },
       "limit": "16 B"
     },
     {
-      "name": "Async validator factory",
+      "name": "createAsyncValidator",
       "import": {
         "lib/index.js": "{ createAsyncValidator }"
       },
       "limit": "387 B"
     },
     {
-      "name": "Sync validator factory",
+      "name": "createValidator",
       "import": {
         "lib/index.js": "{ createValidator }"
       },

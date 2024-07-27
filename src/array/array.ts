@@ -1,9 +1,9 @@
 import { isIterable } from '../_internal/isIterable/index.js'
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 export const array = (): YobtaSyncRule<unknown, unknown[]> =>
-  ruleYobta<unknown, unknown[]>((input = []): unknown[] => {
+  createRule<unknown, unknown[]>((input = []): unknown[] => {
     if (isIterable(input)) {
       return Array.from(input)
     }

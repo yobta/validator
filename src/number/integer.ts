@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 export const integerMessage = 'It should be an integer'
 
@@ -9,7 +9,7 @@ interface IntegerFactory {
 }
 
 export const integer: IntegerFactory = (message = integerMessage) =>
-  ruleYobta(input => {
+  createRule(input => {
     if (Number.isInteger(input)) {
       return input as Integer
     }

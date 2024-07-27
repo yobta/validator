@@ -40,6 +40,7 @@ Renamed:
 - minimumYobta => minNumber
 - formYobta => form
 - identicalYobta => identical
+- ruleYobta => createRule
 - shapeYobta => shape
   - differentYobta => different
 - stringYobta => string

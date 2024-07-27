@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 export type OneOfMessage<T> = (items: Set<T>) => string
 
@@ -10,7 +10,7 @@ export const oneOf = <T>(
   items: () => Set<T>,
   message: OneOfMessage<T> = oneOfMessage,
 ): YobtaSyncRule<any, T> =>
-  ruleYobta((input: T) => {
+  createRule((input: T) => {
     const s = items()
     if (s.has(input)) {
       return input

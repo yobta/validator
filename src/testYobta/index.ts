@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../ruleYobta/index.js'
-import { ruleYobta } from '../ruleYobta/index.js'
+import type { YobtaSyncRule } from '../createRule/createRule.js'
+import { createRule } from '../createRule/createRule.js'
 
 export const testMessage = 'Invalid format'
 
@@ -11,7 +11,7 @@ export const testYobta: TestFactory = (
   expression: RegExp,
   message = testMessage,
 ) =>
-  ruleYobta<string, string>(input => {
+  createRule<string, string>(input => {
     if (expression.test(input)) {
       return input
     }
