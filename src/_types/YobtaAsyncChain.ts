@@ -1,4 +1,4 @@
-import type { SyncOrAsyncRule } from '../createRule/createRule'
+import type { SyncOrAsyncRule } from '../rule/rule'
 
 export type YobtaAsyncChain1<R1> = [SyncOrAsyncRule<unknown, R1>]
 

@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 
 export const numberMessage = 'It should be a number'
 
@@ -8,7 +8,7 @@ interface NumberFactory {
 }
 
 export const number: NumberFactory = (message = numberMessage) =>
-  createRule<unknown, number>(value => {
+  rule<unknown, number>(value => {
     try {
       const n = Number(value ?? 0)
       if (Number.isFinite(n)) {

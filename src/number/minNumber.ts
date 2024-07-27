@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 
 export const minNumberMessage = (limit: number): string =>
   `It should be at least ${limit}`
@@ -8,7 +8,7 @@ export const minNumber = (
   limit: () => number,
   message = minNumberMessage,
 ): YobtaSyncRule<number, number> =>
-  createRule<number, number>(input => {
+  rule<number, number>(input => {
     if (input < limit()) {
       throw new Error(message(limit()))
     }

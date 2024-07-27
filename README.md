@@ -96,7 +96,6 @@ npm i @yobta/validator
 - [+] URLSearchParams
 - [+] side effect
 - [+] validityYobta
-- [+] transformYobta
 - [-] anyOf
 
 We want to fulfill the front-end needs and create functional promise-based validator which is fun to work with.

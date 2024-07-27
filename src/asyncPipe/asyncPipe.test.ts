@@ -3,8 +3,8 @@ import { jest } from '@jest/globals'
 
 import { createContext } from '../_internal/createContext'
 import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule'
-import type { YobtaSyncRule } from '../createRule/createRule'
 import { number } from '../number'
+import type { YobtaSyncRule } from '../rule/rule'
 import { string } from '../string/string'
 import { asyncPipe } from './asyncPipe'
 

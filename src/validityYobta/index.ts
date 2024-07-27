@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 import type { YobtaError } from '../YobtaError/index.js'
 
 type YontaErrorHandler = (error: YobtaError) => void
@@ -23,7 +23,7 @@ export const validityYobta = <I>(
     validateAllFieldsOnChange = false,
   } = {},
 ): YobtaSyncRule<I, I> =>
-  createRule((currentData: I, { errors, event, form, input }) => {
+  rule((currentData: I, { errors, event, form, input }) => {
     if (!form) {
       throw new Error(missingFormMessage)
     }

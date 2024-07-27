@@ -1,4 +1,4 @@
-import type { YobtaSyncRules } from '../createRule/createRule.js'
+import type { YobtaSyncRules } from '../rule/rule.js'
 import type { PipeFactoryResult, SyncRulesPipeYobta } from './YobtaPipe.js'
 import type {
   YobtaSyncChain1,

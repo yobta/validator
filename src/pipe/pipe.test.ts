@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 
 import { createContext } from '../_internal/createContext'
-import type { YobtaSyncRule } from '../createRule/createRule'
+import type { YobtaSyncRule } from '../rule/rule'
 import { pipe } from './pipe'
 
 const ctx = createContext({})

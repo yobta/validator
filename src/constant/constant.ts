@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 
 export const constantMessage = <I>(value: I): string =>
   `Should be identical to "${String(value)}"`
@@ -8,7 +8,7 @@ export function constant<I>(
   value: I,
   message?: string,
 ): YobtaSyncRule<unknown, I> {
-  return createRule(input => {
+  return rule(input => {
     if (input === value) {
       return input as I
     }

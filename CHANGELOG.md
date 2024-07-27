@@ -39,7 +39,7 @@ Renamed:
 - minimumYobta => minNumber
 - formYobta => form
 - identicalYobta => identical
-- ruleYobta => createRule
+- ruleYobta => rule
 - shapeYobta => shape
   - differentYobta => different
 - stringYobta => string
@@ -47,9 +47,13 @@ Renamed:
 
 Added:
 
-- transformYobta
 - pipe
 - asyncPipe
+
+Removed:
+
+- requiredYobta
+- testYobta
 
 Todo:
 optionalYobta

@@ -1,6 +1,6 @@
 import { fromEntries } from '../_internal/fromEntries/index.js'
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 
 export const formMessage = 'It should be HTMLFormElement or a form Event'
 
@@ -9,7 +9,7 @@ export const formMessage = 'It should be HTMLFormElement or a form Event'
 export const form = (
   message: string = formMessage,
 ): YobtaSyncRule<unknown, Record<string, unknown>> =>
-  createRule((input, ctx) => {
+  rule((input, ctx) => {
     const node = ctx.form || input
 
     if (node instanceof HTMLFormElement) {

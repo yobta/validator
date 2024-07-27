@@ -4,7 +4,7 @@ import type { YobtaAsyncValidatorResult } from '../_types/YobtaAsyncValidator.js
 import type { YobtaAsyncValidatorFactory } from '../_types/YobtaAsyncValidatorFactory.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { PipeFactoryResult } from '../_types/YobtaPipe.js'
-import type { SyncOrAsyncRules } from '../createRule/createRule.js'
+import type { SyncOrAsyncRules } from '../rule/rule.js'
 
 export const createAsyncValidator: YobtaAsyncValidatorFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>

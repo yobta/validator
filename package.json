@@ -73,9 +73,9 @@
   },
   "size-limit": [
     {
-      "name": "createRule",
+      "name": "rule",
       "import": {
-        "lib/index.js": "{ createRule }"
+        "lib/index.js": "{ rule }"
       },
       "limit": "16 B"
     },
@@ -197,13 +197,6 @@
         "lib/index.js": "{ maxDate }"
       },
       "limit": "112 B"
-    },
-    {
-      "name": "Transform rule",
-      "import": {
-        "lib/index.js": "{ transformYobta }"
-      },
-      "limit": "76 B"
     },
     {
       "name": "Email rule",

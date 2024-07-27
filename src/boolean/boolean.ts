@@ -1,5 +1,5 @@
-import type { YobtaSyncRule } from '../createRule/createRule.js'
-import { createRule } from '../createRule/createRule.js'
+import type { YobtaSyncRule } from '../rule/rule.js'
+import { rule } from '../rule/rule.js'
 
 const truthySet = new Set(['1', 'yes', 'true'])
 const falsySet = new Set(['0', 'no', 'false', 'null'])
@@ -11,7 +11,7 @@ interface BooleanFactory {
 }
 
 export const boolean: BooleanFactory = message =>
-  createRule<unknown, boolean>(input => {
+  rule<unknown, boolean>(input => {
     const lowerCasedInput = String(input).toLowerCase()
     if (falsySet.has(lowerCasedInput)) {
       return false
