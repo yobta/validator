@@ -3,7 +3,7 @@ import { rule } from '../rule/rule.js'
 
 export const uniqueMessage = 'It should contain unique items'
 
-export function uniqueYobta(
+export function unique(
   message = uniqueMessage,
 ): YobtaSyncRule<unknown[], unknown[]> {
   return rule((input: unknown[]) => {

@@ -7,7 +7,6 @@
 - isPlainObject
 - minItemsYobta
 - patterns
-- uniqueYobta
 - urlSearchParamsYobta
 
 Renamed:
@@ -44,6 +43,7 @@ Renamed:
   - differentYobta => different
 - stringYobta => string
 - successYobta => success
+- uniqueYobta => unique
 
 Added:
 

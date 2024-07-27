@@ -241,9 +241,9 @@
       "limit": "241 B"
     },
     {
-      "name": "Unique rule",
+      "name": "unique",
       "import": {
-        "lib/index.js": "{ uniqueYobta }"
+        "lib/index.js": "{ unique }"
       },
       "limit": "89 B"
     },

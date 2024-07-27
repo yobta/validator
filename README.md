@@ -29,6 +29,7 @@ npm i @yobta/validator
   - `items(...rules)` – validates every array item against rules
   - `maxItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
   - `minItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
+  - `unique(errorMessage)` – requires array to have unique values
 
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
@@ -61,6 +62,7 @@ npm i @yobta/validator
 ### Transforms
 
 - `form(errorMessage)` - transforms formData to `unknowd` record, that can be validated with `shape` or `asyncShape`
+- `rule(Number)` – transforms any to number
 
 ### Types
 
