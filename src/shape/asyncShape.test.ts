@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
 
 import {
+  constant,
   createAsyncValidator,
   different,
   fallback,
   identical,
-  requiredYobta,
   shape,
   string,
   stringMessage,
@@ -73,7 +73,7 @@ it('has custom error messages', async () => {
     createAsyncValidator(
       asyncShape(
         {
-          name: createAsyncValidator(requiredYobta()),
+          name: createAsyncValidator(constant('yobta')),
         },
         'yobta!',
       ),
@@ -150,9 +150,9 @@ it('should replace context.data', async () => {
 it('has no racing condition', async () => {
   const attempt = createAsyncValidator(
     asyncShape({
-      address: createAsyncValidator(requiredYobta()),
-      description: createAsyncValidator(requiredYobta()),
-      title: createAsyncValidator(requiredYobta()),
+      address: createAsyncValidator(constant('yobta')),
+      description: createAsyncValidator(constant('yobta')),
+      title: createAsyncValidator(constant('yobta')),
     }),
   )
   const result = await attempt({})
@@ -161,17 +161,17 @@ it('has no racing condition', async () => {
     [
       new YobtaError({
         field: 'title',
-        message: 'Required',
+        message: 'Should be identical to "yobta"',
         path: ['title'],
       }),
       new YobtaError({
         field: 'address',
-        message: 'Required',
+        message: 'Should be identical to "yobta"',
         path: ['address'],
       }),
       new YobtaError({
         field: 'description',
-        message: 'Required',
+        message: 'Should be identical to "yobta"',
         path: ['description'],
       }),
       new YobtaError({

@@ -1,13 +1,11 @@
 /* eslint-disable import/extensions */
 import { transformYobta } from '.'
 import { createValidator } from '../createValidator/createValidator'
-import { requiredYobta } from '../requiredYobta'
 import { string } from '../string'
 
 it('creates params from string', () => {
   const validate = createValidator(
     string(),
-    requiredYobta(),
     transformYobta((input, ctx) => [input, ctx]),
   )
 

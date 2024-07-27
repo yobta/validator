@@ -87,7 +87,6 @@ npm i @yobta/validator
 
 ### Flow Utilities
 
-- [+] required
 - [+] catch
 - [+] identical
 - [+] URLSearchParams
@@ -125,7 +124,7 @@ const getInitialState = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
     currentTab: [safe('tab-1', oneOf(()= new Set(['tab-1', 'tab-2', 'tab-3'])))],
-    myModalIsOpen: [safe(false, boolean(), requiredYobta())],
+    myModalIsOpen: [safe(false, boolean())],
   }),
 )
 
@@ -153,18 +152,15 @@ const validate = asyncYobta(
   asyncShape({
     password: [
       string(),
-      requiredYobta(),
       asyncSubmit(verifyPassword),
     ],
     new: [
       string(),
-      requiredYobta(),
       minYobta(6),
       maxYobta(16),
       matchYobta(passwordRegExp), // make your own RegExp
     ],
     repeat: [
-      requiredYobta(),
       identicalYobta('new')
     ],
   }),
@@ -177,14 +173,6 @@ const validate = asyncYobta(
 const myForm = window.getElementByID('myForm')
 
 const [formData, errors] = await validate(myForm)
-```
-
-## Problems and Limitations
-
-Due to typescript design [limitation](https://github.com/microsoft/TypeScript/issues/25256) the `required` rule needs an explicit type when chained (`requiredYobta<string>('My error')`). To avoid manual errors I decided to chose the wrapping approach:
-
-```js
-requiredYobta(string('String type error message'), 'Required error message')
 ```
 
 ### Docs

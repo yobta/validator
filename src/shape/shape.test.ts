@@ -1,14 +1,13 @@
 /* eslint-disable import/extensions */
 import { different, effect, fallback, identical, pipe } from '..'
 import { createValidator } from '../createValidator/createValidator'
-import { requiredYobta } from '../requiredYobta'
 import { string, stringMessage } from '../string'
 import { YobtaError } from '../YobtaError'
 import { shape, shapeMessage } from './shape'
 
 const validate = createValidator(
   shape({
-    name: pipe(requiredYobta(), string()),
+    name: pipe(string()),
   }),
 )
 

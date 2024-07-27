@@ -6,9 +6,9 @@ import type { YobtaContext } from '..'
 import {
   boolean,
   constant,
+  fallback,
   number,
   oneOf,
-  requiredYobta,
   safe,
   shape,
   string,
@@ -27,7 +27,6 @@ it('accepts valid', () => {
 it('can pipe rules', () => {
   const validateMultiple = createValidator(
     string(),
-    requiredYobta(),
     // minCharacters(5),
   )
   const result = validateMultiple('yobta')
@@ -45,9 +44,8 @@ const validateSearch = createValidator(
     currentTab: safe(
       'tab-1',
       oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
-      requiredYobta(),
     ),
-    myModalIsOpen: safe(false, boolean(), requiredYobta()),
+    myModalIsOpen: safe(false, boolean()),
   }),
 )
 
@@ -69,7 +67,7 @@ it("prevents form submit and doesn't prevent change", () => {
   const form = document.createElement('form')
   const submitEvent = createEvent.submit(form)
   const changeEvent = createEvent.change(form)
-  const validateEvent = createValidator(requiredYobta())
+  const validateEvent = createValidator(fallback(() => 0))
 
   jest.spyOn(submitEvent, 'preventDefault')
   jest.spyOn(changeEvent, 'preventDefault')

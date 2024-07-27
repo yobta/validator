@@ -227,13 +227,6 @@
       "limit": "181 B"
     },
     {
-      "name": "Required rule",
-      "import": {
-        "lib/index.js": "{ requiredYobta }"
-      },
-      "limit": "138 B"
-    },
-    {
       "name": "Fallback rule",
       "import": {
         "lib/index.js": "{ fallback }"

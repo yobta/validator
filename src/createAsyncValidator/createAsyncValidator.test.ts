@@ -7,7 +7,6 @@ import { createContext } from '../_internal/createContext'
 import { boolean } from '../boolean/boolean'
 import { number } from '../number'
 import { oneOf } from '../oneOf/oneOf'
-import { requiredYobta } from '../requiredYobta'
 import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
 import { string } from '../string'
@@ -24,9 +23,8 @@ const validateSearch = createAsyncValidator(
     currentTab: safe(
       'tab-1',
       oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
-      requiredYobta(),
     ),
-    myModalIsOpen: safe(false, boolean(), requiredYobta()),
+    myModalIsOpen: safe(false, boolean()),
   }),
 )
 
@@ -38,7 +36,6 @@ it('accepts valid', async () => {
 it('can pipe rules', async () => {
   const validateMultiple = createAsyncValidator(
     string(),
-    requiredYobta(),
     minCharacters(() => 5),
   )
   const result = await validateMultiple('yobta')
@@ -111,7 +108,7 @@ it("prevents form submit and doesn't prevent change", async () => {
   const form = document.createElement('form')
   const submitEvent = createEvent.submit(form)
   const changeEvent = createEvent.change(form)
-  const validateEvent = createAsyncValidator(requiredYobta())
+  const validateEvent = createAsyncValidator(constant('yobta'))
 
   jest.spyOn(submitEvent, 'preventDefault')
   jest.spyOn(changeEvent, 'preventDefault')
@@ -135,7 +132,6 @@ it('preserves yobta error', async () => {
         throw yobtaError
       }),
     }),
-    requiredYobta(),
   )({})
   expect(result).toEqual([
     null,

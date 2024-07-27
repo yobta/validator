@@ -1,14 +1,7 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import {
-  createAsyncValidator,
-  form,
-  pipe,
-  requiredYobta,
-  shape,
-  string,
-} from '..'
+import { createAsyncValidator, form, pipe, shape, string } from '..'
 import { mockForm } from '../_internal/mockForm'
 import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator'
 import type { YobtaContext } from '../_types/YobtaContext'
@@ -19,7 +12,7 @@ function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
     form(),
     shape({
-      name: pipe(requiredYobta(), string()),
+      name: pipe(string()),
     }),
     asyncSubmit(async (data, context) => {
       spy(data, context)
@@ -93,16 +86,17 @@ it('does not submit data when it is valid but the event type is not submit', asy
 it('does not fire when it is not valid and event type is submit', async () => {
   const spy = jest.fn()
   const validate = mockValidate(spy)
-  const result = await mockForm('<input name="unknown" type="text" />').submit(
-    validate,
-  )
+  const result = await mockForm(`
+    <input name="name" type="text" value="1" />
+    <input name="name" type="text" value="2" />
+    `).submit(validate)
 
   expect(result).toEqual([
     null,
     [
       new YobtaError({
         field: 'name',
-        message: 'Required',
+        message: 'It should be a string',
         path: ['name'],
       }),
       new YobtaError({
