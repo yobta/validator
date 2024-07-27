@@ -14,6 +14,7 @@ describe('createContext', () => {
       field: '@',
       path: [],
       pushError: expect.any(Function),
+      value: null,
     })
   })
 
@@ -34,6 +35,7 @@ describe('createContext', () => {
       form,
       path: [],
       pushError: expect.any(Function),
+      value: event,
     })
   })
 
@@ -57,6 +59,7 @@ describe('createContext', () => {
       input,
       path: [],
       pushError: expect.any(Function),
+      value: event,
     })
   })
 
@@ -81,6 +84,7 @@ describe('createContext', () => {
       form,
       path: [],
       pushError: expect.any(Function),
+      value: event,
     })
   })
 })

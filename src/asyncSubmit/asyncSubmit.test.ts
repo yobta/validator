@@ -39,6 +39,7 @@ it('submits when it is valid and context has submit event', async () => {
       form: expect.any(HTMLFormElement),
       path: [],
       pushError: expect.any(Function),
+      value: expect.any(Event),
     },
   )
 })
@@ -49,11 +50,9 @@ it('submits when it is valid and context has synthetic submit event', async () =
   const formNode = document.createElement('form')
   formNode.innerHTML = '<input type="text" name="name" value="yobta" />'
 
-  const syntheticEvent = {
-    currentTarget: formNode,
-    target: formNode,
-    type: 'submit',
-  }
+  const syntheticEvent = new CustomEvent('submit')
+  Object.defineProperty(syntheticEvent, 'currentTarget', { value: formNode })
+  Object.defineProperty(syntheticEvent, 'target', { value: formNode })
 
   const result = await validate(syntheticEvent)
 
@@ -68,6 +67,7 @@ it('submits when it is valid and context has synthetic submit event', async () =
       form: expect.any(HTMLFormElement),
       path: [],
       pushError: expect.any(Function),
+      value: syntheticEvent,
     },
   )
 })
@@ -114,12 +114,11 @@ it('catches submit error and pushes it to errors', async () => {
   const context: YobtaContext = {
     data: null,
     errors: [],
-    event: {
-      type: 'submit',
-    },
+    event: new CustomEvent('submit'),
     field: '@',
     path: [],
     pushError: pushErrorMock,
+    value: null,
   }
   const rule = asyncSubmit(async () => {
     throw new Error('Submit error')

@@ -40,6 +40,7 @@ npm i @yobta/validator
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
   - `max(limit: () => Number, errorMessage)` – checks if a value within a limit
   - `min(limit: () => Number, errorMessage)` – checks if a value within a limit
+- `optional()` - returns null if the validation started with `undefined`, `null` or empty string
 - `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key

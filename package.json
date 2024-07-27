@@ -14,7 +14,7 @@
     "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest src --coverage",
-    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/validity",
+    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/shape/asyncShape.test.ts",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },
@@ -321,6 +321,13 @@
       "name": "validity",
       "import": {
         "lib/index.js": "{ validity }"
+      },
+      "limit": "330 B"
+    },
+    {
+      "name": "optional",
+      "import": {
+        "lib/index.js": "{ optional }"
       },
       "limit": "330 B"
     },

@@ -8,18 +8,18 @@ import type { YobtaError } from '../YobtaError/index.js'
 
 export const createValidator: YobtaValidatorFactory =
   <Rules extends YobtaSyncRules>(...rules: Rules) =>
-  (data: unknown, context?: YobtaContext) => {
+  (event: unknown, context?: YobtaContext) => {
     const ctx = context || {
-      ...createContext(data),
+      ...createContext(event),
       pushError(error: YobtaError) {
         throw error
       },
     }
     try {
       for (const rule of rules) {
-        data = rule(ctx)(data)
+        event = rule(ctx)(event)
       }
-      return data as PipeFactoryResult<Rules>
+      return event as PipeFactoryResult<Rules>
     } catch (error) {
       throw handleUnknownError({
         error,

@@ -29,7 +29,8 @@ export const validity = <I>(
     }
 
     const shouldReport: boolean =
-      event.type === 'submit' || validateAllFieldsOnChange
+      (event instanceof Event && event.type === 'submit') ||
+      validateAllFieldsOnChange
 
     if (shouldReport) {
       const reversedElements = [...form.elements]

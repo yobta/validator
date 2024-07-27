@@ -36,5 +36,5 @@ it('has default error mesage', () => {
     }),
   )
   const attempt = (): any => validate({ a: '1', b: 1 })
-  expect(attempt).toThrow(identicalMessage(['a']))
+  expect(attempt).toThrow(identicalMessage('b', ['a']))
 })

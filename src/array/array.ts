@@ -4,7 +4,7 @@ import { rule } from '../rule/rule.js'
 
 export const array = (): YobtaSyncRule<unknown, unknown[]> =>
   rule<unknown, unknown[]>((input = []): unknown[] => {
-    if (isIterable(input)) {
+    if (isIterable(input) && typeof input !== 'string') {
       return Array.from(input)
     }
 

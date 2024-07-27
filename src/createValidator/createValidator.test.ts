@@ -90,6 +90,7 @@ it('takes external context', () => {
     field: 'yobta',
     path: ['yobta'],
     pushError,
+    value: 'yobta',
   }
   const validateWithContext = createValidator(constant(1))
 

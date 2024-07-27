@@ -1,17 +1,16 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
-import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator.js'
-import type { YobtaError } from '../index.js'
-import type { YobtaSyncRule } from '../rule/rule.js'
+import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type { SyncOrAsyncRule, YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
-type AsyncRulesRecord = Record<PropertyKey, YobtaAsyncValidator<any, any>>
+type AsyncRulesRecord = Record<PropertyKey, SyncOrAsyncRule<any, any>>
 
 type AwaitShapeConfig<Record extends AsyncRulesRecord> = {
-  [Validator in keyof Record]: Record[Validator]
+  [Rule in keyof Record]: Record[Rule]
 }
 
 type ValidAsyncShapeYobta<Record extends AsyncRulesRecord> = {
-  [Validator in keyof Record]: Awaited<Record[Validator]>
+  [Rule in keyof Record]: Awaited<Record[Rule]>
 }
 
 export const asyncShapeMessage = 'Invalid shape'
@@ -26,27 +25,30 @@ export const asyncShape = <I, Record extends AsyncRulesRecord>(
     }
 
     const result = { ...value } as ValidAsyncShapeYobta<Record>
-    const errors: YobtaError[] = []
+    let isInvalid = false
 
     for await (const field of Object.keys(rulesSet)) {
       const path = [...context.path, field]
       const validate = rulesSet[field]
-      const [valid, errs] = await validate(value[field as keyof I], {
-        ...context,
-        data: value,
-        field,
-        path,
-      })
+      const next = value[field as keyof I]
 
-      if (errs) {
-        errors.push(...errs)
+      try {
+        const valid = await validate({
+          ...context,
+          data: value,
+          field,
+          path,
+          value: next,
+        })(next)
+        // @ts-ignore
+        result[field] = valid
+      } catch (error) {
+        isInvalid = true
+        context.pushError(handleUnknownError({ error, field, path }))
       }
-
-      // @ts-ignore
-      result[field] = valid
     }
 
-    if (errors.length) {
+    if (isInvalid) {
       throw new Error(validationMessage)
     }
 

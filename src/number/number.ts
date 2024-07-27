@@ -8,9 +8,9 @@ interface NumberFactory {
 }
 
 export const number: NumberFactory = (message = numberMessage) =>
-  rule<unknown, number>(value => {
+  rule<unknown, number>((value = '') => {
     try {
-      const n = Number(value ?? 0)
+      const n = Number(value)
       if (Number.isFinite(n)) {
         return n
       }

@@ -21,6 +21,7 @@ it('calls effect and returns data unmodified', () => {
       input: undefined,
       path: [],
       pushError: expect.any(Function),
+      value: {},
     },
   )
 })

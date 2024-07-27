@@ -2,12 +2,13 @@ import type { YobtaError } from '../YobtaError'
 import type { YobtaPath } from './YobtaPath'
 
 export type YobtaContext = {
-  data: any
+  data: unknown
   errors: YobtaError[]
-  event: any
+  event: unknown
   field: string
   form?: HTMLFormElement
   input?: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
   path: YobtaPath
   pushError(error: YobtaError): void
+  value: unknown
 }

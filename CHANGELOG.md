@@ -47,8 +47,9 @@ Renamed:
 
 Added:
 
-- pipe
 - asyncPipe
+- pipe
+- optional
 
 Removed:
 
@@ -57,7 +58,6 @@ Removed:
 - urlSearchParamsYobta
 
 Todo:
-optionalYobta
 
 form
 

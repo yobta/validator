@@ -16,8 +16,8 @@ import { asyncShape, asyncShapeMessage } from './asyncShape'
 
 const validate = createAsyncValidator(
   asyncShape({
-    age: createAsyncValidator(string()),
-    name: createAsyncValidator(string()),
+    age: string(),
+    name: string(),
   }),
 )
 
@@ -73,7 +73,7 @@ it('has custom error messages', async () => {
     createAsyncValidator(
       asyncShape(
         {
-          name: createAsyncValidator(constant('yobta')),
+          name: constant('yobta'),
         },
         'yobta!',
       ),
@@ -121,7 +121,7 @@ it('returns errors for invalid keys', async () => {
 
   const attempt = (): any =>
     asyncShape({
-      name: createAsyncValidator(string()),
+      name: string(),
     })(context)({
       name: {},
     })
@@ -150,9 +150,9 @@ it('should replace context.data', async () => {
 it('has no racing condition', async () => {
   const attempt = createAsyncValidator(
     asyncShape({
-      address: createAsyncValidator(constant('yobta')),
-      description: createAsyncValidator(constant('yobta')),
-      title: createAsyncValidator(constant('yobta')),
+      address: constant('yobta'),
+      description: constant('yobta'),
+      title: constant('yobta'),
     }),
   )
   const result = await attempt({})

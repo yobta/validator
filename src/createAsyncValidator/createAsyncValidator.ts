@@ -9,12 +9,12 @@ import type { SyncOrAsyncRules } from '../rule/rule.js'
 export const createAsyncValidator: YobtaAsyncValidatorFactory =
   <R extends SyncOrAsyncRules>(...rules: R) =>
   async (
-    data: unknown,
+    event: unknown,
     context?: YobtaContext,
   ): YobtaAsyncValidatorResult<PipeFactoryResult<R>> => {
-    const ctx = context || createContext(data)
+    const ctx = context || createContext(event)
 
-    let result = data as PipeFactoryResult<R>
+    let result = event as PipeFactoryResult<R>
 
     for await (const rule of rules) {
       try {

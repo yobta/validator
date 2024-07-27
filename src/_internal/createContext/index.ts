@@ -1,11 +1,7 @@
 import type { YobtaContext } from '../../_types/YobtaContext.js'
 import type { YobtaError } from '../../YobtaError/index.js'
 
-interface YobtaContextFactory {
-  (data: any): YobtaContext
-}
-
-export const createContext: YobtaContextFactory = event => {
+export const createContext = (event: any): YobtaContext => {
   if (event?.type === 'submit' && event.preventDefault) {
     event.preventDefault()
   }
@@ -26,5 +22,6 @@ export const createContext: YobtaContextFactory = event => {
     pushError(error) {
       errors.push(error)
     },
+    value: event,
   }
 }

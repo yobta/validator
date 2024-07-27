@@ -27,6 +27,7 @@ it('fires when it is valid', async () => {
     field: '@',
     path: [],
     pushError: expect.any(Function),
+    value: 'yobta',
   })
 })
 

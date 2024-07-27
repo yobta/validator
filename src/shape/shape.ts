@@ -35,13 +35,14 @@ export const shape = <I, F extends SyncRulesRecord>(
 
       try {
         // @ts-ignore
+        const next = value[field]
         result[field] = validate({
           ...context,
           data: value,
           field,
           path,
-          // @ts-ignore
-        })(value[field])
+          value: next,
+        })(next)
       } catch (error) {
         context.pushError(handleUnknownError({ error, field, path }))
       }
