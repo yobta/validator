@@ -262,13 +262,6 @@
       "limit": "153 B"
     },
     {
-      "name": "UrlSearchParams rule",
-      "import": {
-        "lib/index.js": "{ urlSearchParamsYobta }"
-      },
-      "limit": "143 B"
-    },
-    {
       "name": "Form rule",
       "import": {
         "lib/index.js": "{ form }"

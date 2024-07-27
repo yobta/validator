@@ -9,12 +9,13 @@ import {
   fallback,
   number,
   oneOf,
+  rule,
   safe,
   shape,
   string,
-  urlSearchParamsYobta,
   YobtaError,
 } from '..'
+import { fromEntries } from '../_internal/fromEntries'
 import { createValidator } from './createValidator'
 
 const validate = createValidator(number('yobta!'))
@@ -39,7 +40,8 @@ it('rejects invalid', () => {
 })
 
 const validateSearch = createValidator(
-  urlSearchParamsYobta(),
+  rule((value: any) => new URLSearchParams(value)),
+  rule(fromEntries),
   shape({
     currentTab: safe(
       'tab-1',

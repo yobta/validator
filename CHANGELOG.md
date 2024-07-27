@@ -7,7 +7,6 @@
 - isPlainObject
 - minItemsYobta
 - patterns
-- urlSearchParamsYobta
 
 Renamed:
 
@@ -54,6 +53,7 @@ Removed:
 
 - requiredYobta
 - testYobta
+- urlSearchParamsYobta
 
 Todo:
 optionalYobta

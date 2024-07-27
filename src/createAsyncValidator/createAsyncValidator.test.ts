@@ -2,8 +2,9 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constant, effect } from '..'
+import { constant, effect, rule } from '..'
 import { createContext } from '../_internal/createContext'
+import { fromEntries } from '../_internal/fromEntries'
 import { boolean } from '../boolean/boolean'
 import { number } from '../number'
 import { oneOf } from '../oneOf/oneOf'
@@ -11,14 +12,14 @@ import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
 import { string } from '../string'
 import { minCharacters } from '../string/minCharacters'
-import { urlSearchParamsYobta } from '../urlSearchParamsYobta'
 import { YobtaError } from '../YobtaError'
 import { createAsyncValidator } from './createAsyncValidator'
 
 const validate = createAsyncValidator(number('yobta!'))
 
 const validateSearch = createAsyncValidator(
-  urlSearchParamsYobta(),
+  rule((value: any) => new URLSearchParams(value)),
+  rule(fromEntries),
   shape({
     currentTab: safe(
       'tab-1',
