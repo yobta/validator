@@ -44,6 +44,7 @@ Renamed:
 - shapeYobta => shape
   - differentYobta => different
 - stringYobta => string
+- successYobta => success
 
 Added:
 

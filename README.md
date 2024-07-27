@@ -55,6 +55,7 @@ npm i @yobta/validator
 - `asyncSubmit(callback)` – executes a callback for a valid form submit
 - `effect(callback)` – executes a callback, returns input value
 - `errors(callback)` – calls back with `YobtaError`
+- `success(callback)` – executes a callback whenever the current step have no errors
 
 ### Transforms
 
@@ -94,7 +95,6 @@ npm i @yobta/validator
 - [+] URLSearchParams
 - [+] side effect
 - [+] validityYobta
-- [+] successYobta
 - [+] transformYobta
 - [-] anyOf
 

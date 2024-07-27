@@ -346,9 +346,9 @@
       "limit": "330 B"
     },
     {
-      "name": "Success utility",
+      "name": "success",
       "import": {
-        "lib/index.js": "{ successYobta }"
+        "lib/index.js": "{ success }"
       },
       "limit": "51 B"
     },
