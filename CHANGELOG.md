@@ -7,7 +7,6 @@
 - isPlainObject
 - minItemsYobta
 - patterns
-- testYobta
 - uniqueYobta
 - urlSearchParamsYobta
 

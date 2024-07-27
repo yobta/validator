@@ -199,13 +199,6 @@
       "limit": "112 B"
     },
     {
-      "name": "RegExp test rule",
-      "import": {
-        "lib/index.js": "{ testYobta }"
-      },
-      "limit": "76 B"
-    },
-    {
       "name": "Transform rule",
       "import": {
         "lib/index.js": "{ transformYobta }"

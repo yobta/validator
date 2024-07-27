@@ -43,6 +43,7 @@ npm i @yobta/validator
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
 - `string(errorMessage)` – coerses a simple value to string or throws
+  - `email(errorMessage)` – checks if a string value is email
   - `maxCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
   - `minCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
 
