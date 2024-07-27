@@ -9,9 +9,8 @@ export const minDate = (
   message = minDateMessage,
 ): YobtaSyncRule<Date, Date> =>
   ruleYobta((input: Date) => {
-    const l = limit()
-    if (input.getTime() < l.getTime()) {
-      throw new Error(message(l))
+    if (input.getTime() < limit().getTime()) {
+      throw new Error(message(limit()))
     }
 
     return input

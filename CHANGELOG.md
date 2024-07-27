@@ -6,7 +6,6 @@
 
 - isPlainObject
 - itemsYobta
-- minimumYobta
 - minItemsYobta
 - patterns
 - testYobta
@@ -38,6 +37,7 @@ Renamed:
 - maxCharactersYobta => maxCharacters
 - minCharactersYobta => minCharacters
 - minDateYobta => minDate
+- minimumYobta => min
 - formYobta => form
 - identicalYobta => identical
 - shapeYobta => shape

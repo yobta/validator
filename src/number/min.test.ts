@@ -1,10 +1,13 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
 import { number } from '../number'
-import { minimumYobta, minimumYobtaMessage } from './'
+import { min, minMessage } from './min'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(number(), minimumYobta(1, customMessage))
+const validate = createValidator(
+  number(),
+  min(() => 1, customMessage),
+)
 
 it('accepts exact lenght', () => {
   const result = validate(1)
@@ -22,7 +25,10 @@ it('regects insufficient lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(number(), minimumYobta(1))
+  const validateDefault = createValidator(
+    number(),
+    min(() => 1),
+  )
   const assign = (): any => validateDefault(0)
-  expect(assign).toThrow(minimumYobtaMessage(1))
+  expect(assign).toThrow(minMessage(1))
 })

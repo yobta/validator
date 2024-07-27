@@ -37,6 +37,7 @@ npm i @yobta/validator
 - `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
   - `max(limit: () => Number, errorMessage)` – checks if a value within a limit
+  - `min(limit: () => Number, errorMessage)` – checks if a value within a limit
 - `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key

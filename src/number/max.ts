@@ -9,9 +9,8 @@ export const max = (
   message = maxMessage,
 ): YobtaSyncRule<number, number> =>
   ruleYobta<number, number>(input => {
-    const l = limit()
-    if (input > l) {
-      throw new Error(message(l))
+    if (input > limit()) {
+      throw new Error(message(limit()))
     }
     return input
   })

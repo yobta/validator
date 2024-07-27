@@ -10,9 +10,8 @@ export const maxCharacters = (
   message = maxCharactersMessage,
 ): YobtaSyncRule<string, string> =>
   ruleYobta<string, string>(input => {
-    const l = limit()
-    if (input.length > l) {
-      throw new Error(message(l))
+    if (input.length > limit()) {
+      throw new Error(message(limit()))
     }
     return input
   })
