@@ -52,7 +52,7 @@ describe('async filled', () => {
   }
 })
 
-describe('shapes optional', () => {
+describe('shape optional', () => {
   const validate = createValidator(shape({ name: optional() }))
   for (const value of opt) {
     it(`accepts ${value}`, () => {
@@ -61,7 +61,7 @@ describe('shapes optional', () => {
   }
 })
 
-describe('shapes filled', () => {
+describe('shape filled', () => {
   const validate = createValidator(shape({ name: optional() }))
   for (const value of req) {
     it(`accepts ${value}`, () => {
@@ -70,7 +70,7 @@ describe('shapes filled', () => {
   }
 })
 
-describe('nested shapes optional', () => {
+describe('nested shape optional', () => {
   const validate = createValidator(
     shape({ name: shape({ value: optional() }) }),
   )
@@ -83,7 +83,7 @@ describe('nested shapes optional', () => {
   }
 })
 
-describe('nested shapes filled', () => {
+describe('nested shape filled', () => {
   const validate = createValidator(
     shape({ name: shape({ value: optional() }) }),
   )
@@ -94,7 +94,7 @@ describe('nested shapes filled', () => {
   }
 })
 
-describe('async shapes optional', () => {
+describe('async shape optional', () => {
   const validate = createAsyncValidator(asyncShape({ name: optional() }))
   for (const value of opt) {
     it(`accepts ${value}`, async () => {
@@ -106,7 +106,7 @@ describe('async shapes optional', () => {
   }
 })
 
-describe('async shapes filled', () => {
+describe('async shape filled', () => {
   const validate = createAsyncValidator(asyncShape({ name: optional() }))
   for (const value of req) {
     it(`accepts ${value}`, async () => {
@@ -115,7 +115,7 @@ describe('async shapes filled', () => {
   }
 })
 
-describe('async nested shapes optional', () => {
+describe('async nested shape optional', () => {
   const validate = createAsyncValidator(
     asyncShape({ name: asyncShape({ value: optional() }) }),
   )
@@ -129,7 +129,7 @@ describe('async nested shapes optional', () => {
   }
 })
 
-describe('async nested shapes filled', () => {
+describe('async nested shape filled', () => {
   const validate = createAsyncValidator(
     asyncShape({ name: asyncShape({ value: optional() }) }),
   )

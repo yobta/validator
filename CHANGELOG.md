@@ -37,6 +37,7 @@ Renamed:
 - minimumYobta => minNumber
 - formYobta => form
 - identicalYobta => identical
+- requiredYobta => required
 - ruleYobta => rule
 - shapeYobta => shape
   - differentYobta => different
@@ -53,7 +54,6 @@ Added:
 
 Removed:
 
-- requiredYobta
 - testYobta
 - urlSearchParamsYobta
 
