@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
 import { YobtaError } from '../YobtaError'
 import { email, emailMessage } from './email'
 import { string } from './string'
@@ -13,10 +14,16 @@ it(`accepts valid emails`, async () => {
   expect(result).toBe('user-@example.org')
 })
 
-it('rejects undefined', () => {
+it('rejects undefined when not optional', () => {
   const attempts = (): any => validate(undefined)
   const error = new YobtaError({ field: '@', message: customMessage, path: [] })
   expect(attempts).toThrow(error)
+})
+
+it('accepts undefined when optional', () => {
+  const validateOptional = createValidator(string(), optional(), email())
+  const result = validateOptional(undefined)
+  expect(result).toBeUndefined()
 })
 
 it('trims whitespace', () => {
