@@ -53,19 +53,11 @@ it('rejects invalid input', async () => {
   ])
 })
 
-it('rejects invalid undefined input', async () => {
-  const attempt = async (): Promise<any> => await validate(undefined)
+it('coerces undefined', async () => {
+  const validateUndefined = createAsyncValidator(asyncShape({}))
+  const attempt = async (): Promise<any> => await validateUndefined(undefined)
   const result = await attempt()
-  expect(result).toEqual([
-    null,
-    [
-      new YobtaError({
-        field: '@',
-        message: asyncShapeMessage,
-        path: [],
-      }),
-    ],
-  ])
+  expect(result).toEqual([{}, null])
 })
 
 it('has custom error messages', async () => {
