@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import { number } from '.'
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
 import { maxNumber, maxNumberMessage } from './maxNumber'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
@@ -31,4 +32,17 @@ it('has default error message', () => {
   )
   const attempt = (): any => validateDefault(2)
   expect(attempt).toThrow(maxNumberMessage(1))
+})
+
+it('accepts when undefined', () => {
+  const validateUndefined = createValidator(
+    number(),
+    optional(),
+    maxNumber(() => 1),
+  )
+  const result1 = validateUndefined(undefined)
+  expect(result1).toBeUndefined()
+
+  const result2 = validateUndefined(1)
+  expect(result2).toBe(1)
 })
