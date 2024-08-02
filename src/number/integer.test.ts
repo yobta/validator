@@ -1,6 +1,8 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
 import { integer, integerMessage } from './integer'
+import { number } from './number'
 
 const customMessage = 'yobta!'
 const validate = createValidator(integer(customMessage))
@@ -25,9 +27,10 @@ it('rejects Infinity', () => {
   expect(attempt).toThrow(customMessage)
 })
 
-it('rejects undefined', () => {
-  const attempt = (): any => validate(undefined)
-  expect(attempt).toThrow(customMessage)
+it('returns undefined for undefined', () => {
+  const validateUndefined = createValidator(number(), optional(), integer())
+  const result = validateUndefined(undefined)
+  expect(result).toBeUndefined()
 })
 
 it('has default error message', () => {
