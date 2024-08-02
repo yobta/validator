@@ -24,7 +24,7 @@ it('accepts stringified dates', () => {
 })
 
 it('rejects invalid dates', () => {
-  const variants = [undefined, null, 'yobta', [], {}, new Set(), new Map()]
+  const variants = ['', null, 'yobta', [], {}, new Set(), new Map()]
   variants.forEach(variant => {
     const attempt = (): any => validate(variant)
     expect(attempt).toThrow(customMessage)
@@ -34,4 +34,9 @@ it('rejects invalid dates', () => {
 it('has default error message', () => {
   const validateDefault = (): any => createValidator(date())(null)
   expect(validateDefault).toThrow(dateMessage)
+})
+
+it('returns new date for undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeInstanceOf(Date)
 })

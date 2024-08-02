@@ -4,7 +4,7 @@ import { rule } from '../rule/rule.js'
 export const dateMessage = 'It should be a date'
 
 export const date = (message = dateMessage): YobtaSyncRule<unknown, Date> =>
-  rule(input => {
+  rule((input = new Date()) => {
     const value = new Date(input as string)
 
     if (!Number(value)) {

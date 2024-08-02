@@ -1,10 +1,17 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
+import { date } from './date'
 import { maxDate } from './maxDate'
 
 const limit = new Date('14 Jun 2017 00:00:00 PDT')
 const customMessage = (max: Date): string => `${max.toUTCString()} yobta!`
-const validate = createValidator(maxDate(() => limit, customMessage))
+
+const validate = createValidator(
+  date(),
+  optional(),
+  maxDate(() => limit, customMessage),
+)
 
 it('accepts exact date', () => {
   const result = validate(limit)
@@ -28,4 +35,9 @@ it('has default error message', () => {
   const attempt = (): any => createValidator(maxDate(() => limit))(longerDate)
 
   expect(attempt).toThrow('It should be within Wed, 14 Jun 2017 07:00:00 GMT')
+})
+
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
 })
