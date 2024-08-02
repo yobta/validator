@@ -1,9 +1,15 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
+import { array } from './array'
 import { minItems, minItemsMessage } from './minItems'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(minItems(() => 1, customMessage))
+const validate = createValidator(
+  array(),
+  optional(),
+  minItems(() => 1, customMessage),
+)
 
 it('accepts exact lenght', () => {
   const result = validate([1])
@@ -24,4 +30,9 @@ it('has default error message', () => {
   const validateDefault = createValidator(minItems(() => 1))
   const attempt = (): any => validateDefault([])
   expect(attempt).toThrow(minItemsMessage(1))
+})
+
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
 })

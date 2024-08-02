@@ -1,5 +1,6 @@
 import type { YobtaSyncRule, YobtaSyncRules } from '../rule/rule.js'
 import type { YobtaMaybe } from './YobtaMaybe.js'
+import type { YobtaOptionaUnknownArray } from './YobtaOptionaUnknownArray.js'
 import type { PipeFactoryResult, SyncRulesPipeYobta } from './YobtaPipe.js'
 import type {
   YobtaSyncChain1,
@@ -15,8 +16,6 @@ import type {
   YobtaSyncChain8,
   YobtaSyncChain9,
 } from './YobtaSyncChain.js'
-
-export type YobtaOptionaUnknownArray = undefined | unknown[]
 
 export interface YobtaItems {
   <

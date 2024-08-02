@@ -34,5 +34,5 @@ it('has default error message', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toBe(undefined)
+  expect(result).toBeUndefined()
 })

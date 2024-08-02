@@ -1,6 +1,6 @@
 import { pluralizeEn } from '../_internal/pluralizeEn/index.js'
-import type { YobtaOptionaUnknownArray } from '../_types/YobtaItems.js'
 import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
+import type { YobtaOptionaUnknownArray } from '../_types/YobtaOptionaUnknownArray.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
