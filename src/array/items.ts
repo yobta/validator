@@ -1,5 +1,8 @@
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
-import type { YobtaItems, YobtaItemsInput } from '../_types/YobtaItems.js'
+import type {
+  YobtaItems,
+  YobtaOptionaUnknownArray,
+} from '../_types/YobtaItems.js'
 import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { PipeFactoryResult } from '../_types/YobtaPipe.js'
 import type { YobtaSyncRule, YobtaSyncRules } from '../rule/rule.js'
@@ -7,7 +10,7 @@ import { rule } from '../rule/rule.js'
 
 export const items: YobtaItems = <
   R extends YobtaSyncRules,
-  I extends YobtaItemsInput = YobtaItemsInput,
+  I extends YobtaOptionaUnknownArray = YobtaOptionaUnknownArray,
 >(
   ...rules: R
 ) => {
