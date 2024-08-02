@@ -1,15 +1,16 @@
+import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
 export const minDateMessage = (limit: Date): string =>
   `It should be at least ${limit.toUTCString()}`
 
-export const minDate = (
+export const minDate = <D extends Date | undefined>(
   limit: () => Date,
   message = minDateMessage,
-): YobtaSyncRule<Date, Date> =>
-  rule((input: Date) => {
-    if (input.getTime() < limit().getTime()) {
+): YobtaSyncRule<D, YobtaMaybe<D, D>> =>
+  rule((input: D) => {
+    if (input && input.getTime() < limit().getTime()) {
       throw new Error(message(limit()))
     }
 

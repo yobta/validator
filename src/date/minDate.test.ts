@@ -29,3 +29,8 @@ it('has default error message', () => {
   const attempt = (): any => validateDefault(shorterDate)
   expect(attempt).toThrow(minDateMessage(date))
 })
+
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
+})
