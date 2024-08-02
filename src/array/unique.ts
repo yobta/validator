@@ -1,13 +1,15 @@
+import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
+import type { YobtaOptionaUnknownArray } from '../_types/YobtaOptionaUnknownArray.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
 export const uniqueMessage = 'It should contain unique items'
 
-export function unique(
+export function unique<I extends YobtaOptionaUnknownArray>(
   message = uniqueMessage,
-): YobtaSyncRule<unknown[], unknown[]> {
-  return rule((input: unknown[]) => {
-    if (new Set(input).size === input.length) {
+): YobtaSyncRule<I, YobtaMaybe<I, I>> {
+  return rule((input: I) => {
+    if (!input || new Set(input).size === input.length) {
       return input
     }
     throw new Error(message)
