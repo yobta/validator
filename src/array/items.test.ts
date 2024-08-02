@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
+import { optional } from '../optional/optional'
 import { minCharacters } from '../string/minCharacters'
 import { string } from '../string/string'
 import { array } from './array'
@@ -7,6 +8,7 @@ import { items } from './items'
 
 const validate = createValidator(
   array(),
+  optional(),
   items(
     string(),
     minCharacters(() => 5),
@@ -36,4 +38,9 @@ it('rejects array with empty string', () => {
 it('rejects array with invalid item', () => {
   const result = (): any => validate([['yobt']])
   expect(result).toThrow('It should be a string')
+})
+
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
 })

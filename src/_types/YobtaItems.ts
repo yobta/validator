@@ -1,4 +1,5 @@
 import type { YobtaSyncRule, YobtaSyncRules } from '../rule/rule.js'
+import type { YobtaMaybe } from './YobtaMaybe.js'
 import type { PipeFactoryResult, SyncRulesPipeYobta } from './YobtaPipe.js'
 import type {
   YobtaSyncChain1,
@@ -15,8 +16,24 @@ import type {
   YobtaSyncChain9,
 } from './YobtaSyncChain.js'
 
+export type YobtaItemsInput = undefined | unknown[]
+
 export interface YobtaItems {
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(
+  <
+    I extends YobtaItemsInput,
+    R1,
+    R2,
+    R3,
+    R4,
+    R5,
+    R6,
+    R7,
+    R8,
+    R9,
+    R10,
+    R11,
+    R12,
+  >(
     ...rules: YobtaSyncChain12<
       R1,
       R2,
@@ -31,49 +48,53 @@ export interface YobtaItems {
       R11,
       R12
     >
-  ): YobtaSyncRule<unknown[], R12[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R12[]>>
 
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11>(
     ...rules: YobtaSyncChain11<R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11>
-  ): YobtaSyncRule<unknown[], R11[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R11[]>>
 
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10>(
     ...rules: YobtaSyncChain10<R1, R2, R3, R4, R5, R6, R7, R8, R9, R10>
-  ): YobtaSyncRule<unknown[], R10[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R10[]>>
 
-  <R1, R2, R3, R4, R5, R6, R7, R8, R9>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6, R7, R8, R9>(
     ...rules: YobtaSyncChain9<R1, R2, R3, R4, R5, R6, R7, R8, R9>
-  ): YobtaSyncRule<unknown[], R9[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R9[]>>
 
-  <R1, R2, R3, R4, R5, R6, R7, R8>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6, R7, R8>(
     ...rules: YobtaSyncChain8<R1, R2, R3, R4, R5, R6, R7, R8>
-  ): YobtaSyncRule<unknown[], R8[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R8[]>>
 
-  <R1, R2, R3, R4, R5, R6, R7>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6, R7>(
     ...rules: YobtaSyncChain7<R1, R2, R3, R4, R5, R6, R7>
-  ): YobtaSyncRule<unknown[], R7[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R7[]>>
 
-  <R1, R2, R3, R4, R5, R6>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5, R6>(
     ...rules: YobtaSyncChain6<R1, R2, R3, R4, R5, R6>
-  ): YobtaSyncRule<unknown[], R6[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R6[]>>
 
-  <R1, R2, R3, R4, R5>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4, R5>(
     ...rules: YobtaSyncChain5<R1, R2, R3, R4, R5>
-  ): YobtaSyncRule<any, R5[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R5[]>>
 
-  <R1, R2, R3, R4>(
+  <I extends YobtaItemsInput, R1, R2, R3, R4>(
     ...rules: YobtaSyncChain4<R1, R2, R3, R4>
-  ): YobtaSyncRule<unknown[], R4[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R4[]>>
 
-  <R1, R2, R3>(
+  <I extends YobtaItemsInput, R1, R2, R3>(
     ...rules: YobtaSyncChain3<R1, R2, R3>
-  ): YobtaSyncRule<unknown[], R3[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R3[]>>
 
-  <R1, R2>(...rules: YobtaSyncChain2<R1, R2>): YobtaSyncRule<unknown[], R2[]>
+  <I extends YobtaItemsInput, R1, R2>(
+    ...rules: YobtaSyncChain2<R1, R2>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R2[]>>
 
-  <R1>(...rules: YobtaSyncChain1<R1>): YobtaSyncRule<unknown[], R1[]>
+  <I extends YobtaItemsInput, R1>(
+    ...rules: YobtaSyncChain1<R1>
+  ): YobtaSyncRule<I, YobtaMaybe<I, R1[]>>
 
-  <F extends YobtaSyncRules>(
+  <I extends YobtaItemsInput, F extends YobtaSyncRules>(
     ...rules: SyncRulesPipeYobta<F>
-  ): YobtaSyncRule<unknown[], PipeFactoryResult<F>[]>
+  ): YobtaSyncRule<I, YobtaMaybe<I, PipeFactoryResult<F>[]>>
 }
