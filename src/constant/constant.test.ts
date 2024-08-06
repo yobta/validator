@@ -13,6 +13,12 @@ it('accepts when identical', () => {
   expect(result).toEqual({ a: 'a' })
 })
 
+it('accepts when undefined', () => {
+  const validate = createValidator(constant('a'))
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
+})
+
 it('rejects when not identical', () => {
   const validate = createValidator(
     shape({
@@ -20,16 +26,6 @@ it('rejects when not identical', () => {
     }),
   )
   const attempt = (): any => validate({ a: 'a' })
-  expect(attempt).toThrow('yobta')
-})
-
-it('rejects when not undefined', () => {
-  const validate = createValidator(
-    shape({
-      a: constant('b', 'yobta'),
-    }),
-  )
-  const attempt = (): any => validate({})
   expect(attempt).toThrow('yobta')
 })
 

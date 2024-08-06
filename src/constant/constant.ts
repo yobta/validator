@@ -1,17 +1,23 @@
+import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
 export const constantMessage = <I>(value: I): string =>
   `Should be identical to "${String(value)}"`
 
-export function constant<I>(
-  value: I,
+export function constant<I, O>(
+  value: O,
   message?: string,
-): YobtaSyncRule<unknown, I> {
-  return rule(input => {
-    if (input === value) {
-      return input as I
+): YobtaSyncRule<I, YobtaMaybe<I, O>> {
+  return rule((input: I) => {
+    if (input === undefined) {
+      return input as YobtaMaybe<I, O>
     }
+
+    if (input === value) {
+      return input as YobtaMaybe<I, O>
+    }
+
     throw new Error(message ?? constantMessage(value))
   })
 }

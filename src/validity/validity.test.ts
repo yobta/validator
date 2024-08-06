@@ -6,6 +6,8 @@ import {
   constant,
   createAsyncValidator,
   form,
+  pipe,
+  required,
   shape,
   shapeMessage,
   YobtaError,
@@ -96,10 +98,10 @@ it('reports validity for selects, inputs and textareas', async () => {
   const validate = createAsyncValidator(
     form(),
     shape({
-      checkbox: constant('yobta'),
-      select: constant('option2'),
-      text: constant('yobta'),
-      textarea: constant('yobta'),
+      checkbox: pipe(constant('yobta'), required()),
+      select: pipe(constant('option2'), required()),
+      text: pipe(constant('yobta'), required()),
+      textarea: pipe(constant('yobta'), required()),
     }),
     validity(errorHandlerMock),
   )
@@ -142,8 +144,8 @@ it('reports validity on submit and restores on input', async () => {
   const validate = createAsyncValidator(
     form(),
     shape({
-      checkbox: constant('yobta'),
-      text: constant('yobta'),
+      checkbox: pipe(constant('yobta'), required()),
+      text: pipe(constant('yobta'), required()),
     }),
     validity(errorHandlerMock),
   )
@@ -195,8 +197,8 @@ it('reports input events when validateAllFieldsOnChange is true', async () => {
   const validate = createAsyncValidator(
     form(),
     shape({
-      checkbox: constant('yobta'),
-      text: constant('yobta'),
+      checkbox: pipe(constant('yobta'), required()),
+      text: pipe(constant('yobta'), required()),
     }),
     validity(errorHandlerMock, { validateAllFieldsOnChange: true }),
   )
@@ -231,15 +233,8 @@ it('reports unhandled errors', async () => {
   await validate(submitEvent)
 
   expect(input.checkValidity()).toBe(false)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
   expect(errorHandlerMock.mock.calls).toEqual([
-    [
-      new YobtaError({
-        field: 'inputIsNotInForm',
-        message: 'Should be identical to "yobta"',
-        path: ['inputIsNotInForm'],
-      }),
-    ],
     [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
   ])
 })

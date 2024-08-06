@@ -6,6 +6,8 @@ import {
   different,
   fallback,
   identical,
+  pipe,
+  required,
   shape,
   string,
   stringMessage,
@@ -142,9 +144,9 @@ it('should replace context.data', async () => {
 it('has no racing condition', async () => {
   const attempt = createAsyncValidator(
     asyncShape({
-      address: constant('yobta'),
-      description: constant('yobta'),
-      title: constant('yobta'),
+      address: pipe(constant('yobta'), required()),
+      description: pipe(constant('yobta'), required()),
+      title: pipe(constant('yobta'), required()),
     }),
   )
   const result = await attempt({})
@@ -153,17 +155,17 @@ it('has no racing condition', async () => {
     [
       new YobtaError({
         field: 'title',
-        message: 'Should be identical to "yobta"',
+        message: 'Required',
         path: ['title'],
       }),
       new YobtaError({
         field: 'address',
-        message: 'Should be identical to "yobta"',
+        message: 'Required',
         path: ['address'],
       }),
       new YobtaError({
         field: 'description',
-        message: 'Should be identical to "yobta"',
+        message: 'Required',
         path: ['description'],
       }),
       new YobtaError({
