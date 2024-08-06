@@ -1,3 +1,4 @@
+import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
@@ -6,18 +7,21 @@ const falsySet = new Set(['0', 'no', 'false', 'null'])
 
 export const booleanMessage = 'It should be a boolean'
 
-interface BooleanFactory {
-  (message?: string): YobtaSyncRule<unknown, boolean>
-}
+export const boolean = <I>(
+  message = booleanMessage,
+): YobtaSyncRule<I, YobtaMaybe<I, boolean>> =>
+  rule((input: I) => {
+    if (input === undefined) {
+      return input as YobtaMaybe<I, boolean>
+    }
 
-export const boolean: BooleanFactory = message =>
-  rule<unknown, boolean>(input => {
     const lowerCasedInput = String(input).toLowerCase()
+
     if (falsySet.has(lowerCasedInput)) {
       return false
     } else if (truthySet.has(lowerCasedInput)) {
       return true
     }
 
-    throw new Error(message || booleanMessage)
+    throw new Error(message)
   })

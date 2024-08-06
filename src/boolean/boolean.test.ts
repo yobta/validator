@@ -21,9 +21,13 @@ it('accepts falsy', () => {
   })
 })
 
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
+})
+
 it('rejects invalid', () => {
   const variants = [
-    undefined,
     [],
     {},
     new Date(),

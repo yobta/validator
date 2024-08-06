@@ -63,7 +63,7 @@ it("creates default state when can't extract it from url", async () => {
   expect(result).toEqual([
     {
       currentTab: 'tab-1',
-      myModalIsOpen: false,
+      myModalIsOpen: undefined,
     },
     null,
   ])

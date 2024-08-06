@@ -47,7 +47,11 @@ const validateSearch = createValidator(
       'tab-1',
       oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
     ),
-    myModalIsOpen: safe(false, boolean()),
+    myModalIsOpen: safe(
+      false,
+      boolean(),
+      fallback(() => false),
+    ),
   }),
 )
 
