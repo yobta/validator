@@ -10,7 +10,7 @@ it('accepts when identical', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: identical(['a']),
+      b: identical(() => 'a'),
     }),
   )
   const result = validate({ a: 1, b: 1 })
@@ -21,7 +21,7 @@ it('rejects when not identical', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: identical(['a'], customMessage),
+      b: identical(() => 'a', customMessage),
     }),
   )
   const attempt = (): any => validate({ a: '2', b: 1 })
@@ -32,9 +32,9 @@ it('has default error mesage', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: identical(['a']),
+      b: identical(() => 'a'),
     }),
   )
   const attempt = (): any => validate({ a: '1', b: 1 })
-  expect(attempt).toThrow(identicalMessage('b', ['a']))
+  expect(attempt).toThrow(identicalMessage('b', 'a'))
 })

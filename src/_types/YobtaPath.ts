@@ -1,1 +1,3 @@
-export type YobtaPath = (number | string)[]
+export type YobtaPathSegment = number | string
+
+export type YobtaPath = YobtaPathSegment[]

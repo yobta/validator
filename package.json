@@ -77,98 +77,98 @@
       "import": {
         "lib/index.js": "{ rule }"
       },
-      "limit": "16 B"
+      "limit": "23 B"
     },
     {
       "name": "createAsyncValidator",
       "import": {
         "lib/index.js": "{ createAsyncValidator }"
       },
-      "limit": "387 B"
+      "limit": "357 B"
     },
     {
       "name": "createValidator",
       "import": {
         "lib/index.js": "{ createValidator }"
       },
-      "limit": "363 B"
+      "limit": "329 B"
     },
     {
-      "name": "Shape rule",
+      "name": "shape",
       "import": {
         "lib/index.js": "{ shape }"
       },
-      "limit": "506 B"
+      "limit": "470 B"
     },
     {
-      "name": "String rule",
+      "name": "string",
       "import": {
         "lib/index.js": "{ string }"
       },
-      "limit": "145 B"
+      "limit": "124 B"
     },
     {
-      "name": "Array rule",
+      "name": "array",
       "import": {
         "lib/index.js": "{ array }"
       },
-      "limit": "157 B"
+      "limit": "100 B"
     },
     {
       "name": "number",
       "import": {
         "lib/index.js": "{ number }"
       },
-      "limit": "175 B"
+      "limit": "110 B"
     },
     {
       "name": "integer",
       "import": {
         "lib/index.js": "{ integer }"
       },
-      "limit": "81 B"
+      "limit": "89 B"
     },
     {
-      "name": "Date rule",
+      "name": "date",
       "import": {
         "lib/index.js": "{ date }"
       },
-      "limit": "107 B"
+      "limit": "84 B"
     },
     {
-      "name": "Boolean rule",
+      "name": "boolean",
       "import": {
         "lib/index.js": "{ boolean }"
       },
-      "limit": "145 B"
+      "limit": "134 B"
     },
     {
       "name": "minItems",
       "import": {
         "lib/index.js": "{ minItems }"
       },
-      "limit": "125 B"
+      "limit": "128 B"
     },
     {
       "name": "maxItems",
       "import": {
         "lib/index.js": "{ maxItems }"
       },
-      "limit": "117 B"
+      "limit": "122 B"
     },
     {
       "name": "minCharacters",
       "import": {
         "lib/index.js": "{ minCharacters }"
       },
-      "limit": "122 B"
+      "limit": "133 B"
     },
     {
       "name": "maxCharacters",
       "import": {
         "lib/index.js": "{ maxCharacters }"
       },
-      "limit": "117 B"
+      "limit": "130 B"
     },
     {
       "name": "minNumber",
@@ -182,101 +182,101 @@
       "import": {
         "lib/index.js": "{ maxNumber }"
       },
-      "limit": "87 B"
+      "limit": "93 B"
     },
     {
       "name": "minDate",
       "import": {
         "lib/index.js": "{ minDate }"
       },
-      "limit": "112 B"
+      "limit": "115 B"
     },
     {
       "name": "maxDate",
       "import": {
         "lib/index.js": "{ maxDate }"
       },
-      "limit": "112 B"
+      "limit": "114 B"
     },
     {
-      "name": "Email rule",
+      "name": "email",
       "import": {
         "lib/index.js": "{ email }"
       },
-      "limit": "181 B"
+      "limit": "162 B"
     },
     {
-      "name": "Email regex",
+      "name": "reEmail",
       "import": {
         "lib/index.js": "{ reEmail }"
       },
-      "limit": "181 B"
+      "limit": "92 B"
     },
     {
-      "name": "Fallback rule",
+      "name": "fallback",
       "import": {
         "lib/index.js": "{ fallback }"
       },
-      "limit": "136 B"
+      "limit": "40 B"
     },
     {
-      "name": "Safe rule",
+      "name": "safe",
       "import": {
         "lib/index.js": "{ safe }"
       },
-      "limit": "95 B"
+      "limit": "66 B"
     },
     {
-      "name": "Constant rule",
+      "name": "constant",
       "import": {
         "lib/index.js": "{ constant }"
       },
       "limit": "96 B"
     },
     {
-      "name": "Items rule",
+      "name": "items",
       "import": {
         "lib/index.js": "{ items }"
       },
-      "limit": "241 B"
+      "limit": "233 B"
     },
     {
       "name": "unique",
       "import": {
         "lib/index.js": "{ unique }"
       },
-      "limit": "89 B"
+      "limit": "90 B"
     },
     {
-      "name": "Identical rule",
+      "name": "identical",
       "import": {
         "lib/index.js": "{ identical }"
       },
-      "limit": "155 B"
+      "limit": "105 B"
     },
     {
-      "name": "Different rule",
+      "name": "different",
       "import": {
         "lib/index.js": "{ different }"
       },
-      "limit": "153 B"
+      "limit": "106 B"
     },
     {
-      "name": "Form rule",
+      "name": "form",
       "import": {
         "lib/index.js": "{ form }"
       },
-      "limit": "211 B"
+      "limit": "192 B"
     },
     {
       "name": "oneOf",
       "import": {
         "lib/index.js": "{ oneOf }"
       },
-      "limit": "114 B"
+      "limit": "95 B"
     },
     {
-      "name": "Effect rule",
+      "name": "effect",
       "import": {
         "lib/index.js": "{ effect }"
       },
@@ -287,7 +287,7 @@
       "import": {
         "lib/index.js": "{ asyncShape }"
       },
-      "limit": "533 B"
+      "limit": "491 B"
     },
     {
       "name": "pipe",
@@ -301,42 +301,42 @@
       "import": {
         "lib/index.js": "{ asyncPipe }"
       },
-      "limit": "74 B"
+      "limit": "70 B"
     },
     {
       "name": "asyncSubmit",
       "import": {
         "lib/index.js": "{ asyncSubmit }"
       },
-      "limit": "236 B"
+      "limit": "249 B"
     },
     {
       "name": "errors",
       "import": {
         "lib/index.js": "{ errors }"
       },
-      "limit": "56 B"
+      "limit": "55 B"
     },
     {
       "name": "validity",
       "import": {
         "lib/index.js": "{ validity }"
       },
-      "limit": "330 B"
+      "limit": "338 B"
     },
     {
       "name": "optional",
       "import": {
         "lib/index.js": "{ optional }"
       },
-      "limit": "330 B"
+      "limit": "54 B"
     },
     {
       "name": "required",
       "import": {
         "lib/index.js": "{ required }"
       },
-      "limit": "330 B"
+      "limit": "73 B"
     },
     {
       "name": "success",
@@ -346,7 +346,14 @@
       "limit": "51 B"
     },
     {
-      "name": "Yobta error class",
+      "name": "slug",
+      "import": {
+        "lib/index.js": "{ slug }"
+      },
+      "limit": "104 B"
+    },
+    {
+      "name": "YobtaError",
       "import": {
         "lib/index.js": "{ YobtaError }"
       },
@@ -357,7 +364,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2484 B"
+      "limit": "2714 B"
     }
   ]
 }

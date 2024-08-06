@@ -86,9 +86,9 @@ it('should replace context.data', () => {
   const attempt = createValidator(
     fallback(() => replaced),
     shape({
-      newPassword: different(() => ['password']),
+      newPassword: different(() => 'password'),
       password: string(),
-      retypePassword: identical(['newPassword']),
+      retypePassword: identical(() => 'newPassword'),
     }),
   )
   const result = attempt(undefined)

@@ -3,15 +3,15 @@
 import { createValidator } from '../createValidator/createValidator'
 import { optional } from '../optional/optional'
 import { YobtaError } from '../YobtaError'
-import { email, emailMessage } from './email'
+import { slug, slugMessage } from './slug'
 import { string } from './string'
 
 const customMessage = 'yobta!'
-const validate = createValidator(string(), email(customMessage))
+const validate = createValidator(string(), slug(customMessage))
 
-it(`accepts valid emails`, async () => {
-  const result = validate('user-@example.org')
-  expect(result).toBe('user-@example.org')
+it(`accepts valid slug`, async () => {
+  const result = validate('user')
+  expect(result).toBe('user')
 })
 
 it('rejects undefined when not optional', () => {
@@ -21,7 +21,7 @@ it('rejects undefined when not optional', () => {
 })
 
 it('accepts undefined when optional', () => {
-  const validateOptional = createValidator(string(), optional(), email())
+  const validateOptional = createValidator(string(), optional(), slug())
   const result = validateOptional(undefined)
   expect(result).toBeUndefined()
 })
@@ -32,8 +32,7 @@ it(`rejects invalid email`, () => {
 })
 
 it('has default error message', () => {
-  const rule = email()
-  const validateDefault = createValidator(rule)
-  const attempt = (): any => validateDefault('yobta')
-  expect(attempt).toThrow(emailMessage)
+  const validateDefault = createValidator(slug())
+  const attempt = (): any => validateDefault('y o b t a')
+  expect(attempt).toThrow(slugMessage)
 })

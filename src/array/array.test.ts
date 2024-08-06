@@ -11,7 +11,7 @@ it('accepts array', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toEqual([])
+  expect(result).toBeUndefined()
 })
 
 it('accepts strings', () => {

@@ -1,5 +1,3 @@
-export * from './_patterns/reSlugYobta.js'
-
 export * from './_types/YobtaContext.js'
 export * from './_types/YobtaPath.js'
 export * from './_types/YobtaPretty.js'
