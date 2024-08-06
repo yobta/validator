@@ -53,12 +53,12 @@ it('accepts maps', () => {
   expect(result).toEqual([['key', 1]])
 })
 
-it('accepts null', () => {
+it('casts null to undefined', () => {
   const result = validate(null)
-  expect(result).toEqual([null])
+  expect(result).toBeUndefined()
 })
 
-it('accepts NaN', () => {
+it('casts NaN to undefined', () => {
   const result = validate(NaN)
-  expect(result).toEqual([NaN])
+  expect(result).toBeUndefined()
 })
