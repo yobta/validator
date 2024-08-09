@@ -23,24 +23,24 @@ it('accepts stringified dates', () => {
   expect(result).toEqual(new Date(string))
 })
 
-it('rejects invalid dates', () => {
-  const variants = ['yobta', [], {}, new Set(), new Map()]
-  variants.forEach(variant => {
-    const attempt = (): any => validate(variant)
-    expect(attempt).toThrow(customMessage)
-  })
-})
-
 it('has default error message', () => {
   const validateDefault = (): any => createValidator(date())({})
   expect(validateDefault).toThrow(dateMessage)
 })
 
 it('casts empty values to undefined', () => {
-  const variants = ['', null, NaN, undefined]
+  const variants = ['', undefined]
 
   variants.forEach(variant => {
     const result = validate(variant)
     expect(result).toBeUndefined()
+  })
+})
+
+it('rejects non-date values', () => {
+  const variants = [null, NaN, [], {}, 'yobta', new Set(), new Map()]
+
+  variants.forEach(variant => {
+    expect(() => validate(variant)).toThrow(customMessage)
   })
 })
