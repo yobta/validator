@@ -26,6 +26,11 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
+it('casts empty string to undefined', () => {
+  const result = validate('')
+  expect(result).toBeUndefined()
+})
+
 it('rejects invalid', () => {
   const variants = [
     [],
@@ -46,6 +51,6 @@ it('rejects invalid', () => {
 it('has default error message', () => {
   const rule = boolean()
   const validateDefault = createValidator(rule)
-  const attemt = (): any => validateDefault('')
+  const attemt = (): any => validateDefault({})
   expect(attemt).toThrow(booleanMessage)
 })

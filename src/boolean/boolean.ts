@@ -10,9 +10,9 @@ export const booleanMessage = 'It should be a boolean'
 export const boolean = <I>(
   message = booleanMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, boolean>> =>
-  rule((input: I) => {
-    if (input === undefined) {
-      return input as YobtaMaybe<I, boolean>
+  rule((input: I = '' as I) => {
+    if (input === '') {
+      return undefined as YobtaMaybe<I, boolean>
     }
 
     const lowerCasedInput = String(input).toLowerCase()
