@@ -1,4 +1,4 @@
-import { createContext } from '../_internal/createContext/index.js'
+import { createContext } from '../_internal/createContext/createContext.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type { YobtaAsyncValidatorResult } from '../_types/YobtaAsyncValidator.js'
 import type { YobtaAsyncValidatorFactory } from '../_types/YobtaAsyncValidatorFactory.js'

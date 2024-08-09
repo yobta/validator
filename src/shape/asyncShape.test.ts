@@ -12,7 +12,7 @@ import {
   string,
   stringMessage,
 } from '..'
-import { createContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext/createContext'
 import { YobtaError } from '../YobtaError'
 import { asyncShape, asyncShapeMessage } from './asyncShape'
 

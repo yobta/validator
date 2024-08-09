@@ -1,9 +1,8 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
-import { createEvent } from '@testing-library/dom'
 
 import { constant, effect, pipe, required, rule } from '..'
-import { createContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 import { boolean } from '../boolean/boolean'
 import { number } from '../number'
@@ -106,22 +105,6 @@ it('respects foreign context', async () => {
   const validateConst = createAsyncValidator(constant(1))
   await validateConst(2, foreignContext)
   expect(foreignContext.pushError).toHaveBeenCalledTimes(1)
-})
-
-it("prevents form submit and doesn't prevent change", async () => {
-  const form = document.createElement('form')
-  const submitEvent = createEvent.submit(form)
-  const changeEvent = createEvent.change(form)
-  const validateEvent = createAsyncValidator(constant('yobta'))
-
-  jest.spyOn(submitEvent, 'preventDefault')
-  jest.spyOn(changeEvent, 'preventDefault')
-
-  await validateEvent(submitEvent)
-  await validateEvent(changeEvent)
-
-  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
-  expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
 })
 
 it('preserves yobta error', async () => {

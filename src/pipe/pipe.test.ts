@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { createContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext/createContext'
 import type { YobtaSyncRule } from '../rule/rule'
 import { pipe } from './pipe'
 

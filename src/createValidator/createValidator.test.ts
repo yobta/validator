@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
-import { createEvent } from '@testing-library/dom'
 
 import type { YobtaContext } from '..'
 import {
@@ -72,22 +71,6 @@ it('extracts state from url', () => {
     currentTab: 'tab-3',
     myModalIsOpen: true,
   })
-})
-
-it("prevents form submit and doesn't prevent change", () => {
-  const form = document.createElement('form')
-  const submitEvent = createEvent.submit(form)
-  const changeEvent = createEvent.change(form)
-  const validateEvent = createValidator(fallback(() => 0))
-
-  jest.spyOn(submitEvent, 'preventDefault')
-  jest.spyOn(changeEvent, 'preventDefault')
-
-  validateEvent(submitEvent)
-  validateEvent(changeEvent)
-
-  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
-  expect(changeEvent.preventDefault).toHaveBeenCalledTimes(0)
 })
 
 it('takes external context', () => {

@@ -7,9 +7,9 @@ export const requiredMessage = 'Required'
 export const required = <I>(
   message = requiredMessage,
 ): SyncOrAsyncRule<I, YobtaRequiredValue<I>> =>
-  rule((currentValue, { value }) => {
-    if ((value ?? '') === '') {
+  rule((value = '') => {
+    if (value === '') {
       throw new Error(message)
     }
-    return currentValue as YobtaRequiredValue<I>
+    return value as YobtaRequiredValue<I>
   })

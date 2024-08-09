@@ -8,10 +8,11 @@ import { required, requiredMessage } from './required'
 
 const customMessage = 'yobta!'
 
-const opt = [undefined, null, '']
+const opt = [undefined, '']
 const req = [
   'str',
   NaN,
+  null,
   0,
   new Date(),
   new Set(),

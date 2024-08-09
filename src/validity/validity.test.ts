@@ -8,11 +8,13 @@ import {
   form,
   pipe,
   required,
+  requiredMessage,
   shape,
   shapeMessage,
+  string,
   YobtaError,
 } from '..'
-import { createContext } from '../_internal/createContext'
+import { createContext } from '../_internal/createContext/createContext'
 import { validity, validityMessage } from './validity'
 
 interface FormMock {
@@ -176,8 +178,8 @@ it('does not report input events when validateAllFieldsOnChange is false', async
   const validate = createAsyncValidator(
     form(),
     shape({
-      checkbox: constant('yobta'),
-      text: constant('yobta'),
+      checkbox: required(),
+      text: required(),
     }),
     validity(errorHandlerMock, { validateAllFieldsOnChange: false }),
   )
@@ -218,8 +220,8 @@ it('reports unhandled errors', async () => {
   const validate = createAsyncValidator(
     form(),
     shape({
-      inputIsNotInForm: constant('yobta'),
-      text: constant('yobta'),
+      inputIsNotInForm: required(),
+      text: string(),
     }),
     validity(errorHandlerMock),
   )
@@ -232,9 +234,10 @@ it('reports unhandled errors', async () => {
 
   await validate(submitEvent)
 
-  expect(input.checkValidity()).toBe(false)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
+  expect(input.checkValidity()).toBe(true)
+  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
   expect(errorHandlerMock.mock.calls).toEqual([
+    [new YobtaError({ field: '@', message: requiredMessage, path: [] })],
     [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
   ])
 })
@@ -254,6 +257,8 @@ it('does not report readonly inputs', async () => {
   const submitEvent = createEvent.submit(formNode)
   Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(submitEvent, 'target', { value: formNode })
+
+  readonlyInput.value = 'bad input yobta'
 
   await validate(submitEvent)
 
@@ -286,6 +291,8 @@ it('does not report hidden inputs', async () => {
   const submitEvent = createEvent.submit(formNode)
   Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
   Object.defineProperty(submitEvent, 'target', { value: formNode })
+
+  hiddenInput.value = 'bad input yobta'
 
   await validate(submitEvent)
 

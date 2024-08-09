@@ -1,4 +1,4 @@
-import { createContext } from '../_internal/createContext/index.js'
+import { createContext } from '../_internal/createContext/createContext.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
 import type { YobtaContext } from '../_types/YobtaContext.js'
 import type { PipeFactoryResult } from '../_types/YobtaPipe.js'
