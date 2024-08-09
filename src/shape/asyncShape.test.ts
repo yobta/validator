@@ -55,11 +55,10 @@ it('rejects invalid input', async () => {
   ])
 })
 
-it('coerces undefined', async () => {
+it('accepts undefined', async () => {
   const validateUndefined = createAsyncValidator(asyncShape({}))
-  const attempt = async (): Promise<any> => await validateUndefined(undefined)
-  const result = await attempt()
-  expect(result).toEqual([{}, null])
+  const result = await validateUndefined(undefined)
+  expect(result).toEqual([undefined, null])
 })
 
 it('has custom error messages', async () => {

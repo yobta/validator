@@ -10,8 +10,8 @@ export const array = <I>(): YobtaSyncRule<I, YobtaMaybe<I, unknown[]>> =>
     }
 
     if (isIterable(input) && typeof input !== 'string') {
-      return Array.from(input)
+      return Array.from(input) as YobtaMaybe<I, unknown[]>
     }
 
-    return [input]
+    return [input] as YobtaMaybe<I, unknown[]>
   })

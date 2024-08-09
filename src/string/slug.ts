@@ -10,7 +10,7 @@ export const slug = <I extends string | undefined>(
 ): YobtaSyncRule<I, YobtaMaybe<I, string>> =>
   rule((value: I) => {
     if (value === undefined || reSlug.test(value)) {
-      return value as YobtaMaybe<I, string>
+      return value as unknown as YobtaMaybe<I, string>
     }
     throw new Error(message)
   })

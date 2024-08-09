@@ -10,9 +10,9 @@ it('accepts listed', () => {
   expect(result).toBe('yobta')
 })
 
-it('rejects undefined', () => {
-  const result = (): any => validate(undefined)
-  expect(result).toThrow(customMessage())
+it('accepts undefined', () => {
+  const result = validate(undefined)
+  expect(result).toBeUndefined()
 })
 
 it('rejects not listed', () => {

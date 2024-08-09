@@ -32,9 +32,9 @@ it('rejects invalid input', () => {
   expect(attempt).toThrow(shapeMessage)
 })
 
-it('coerces undefined', () => {
+it('accepts undefined', () => {
   const result = createValidator(shape({}))(undefined)
-  expect(result).toEqual({})
+  expect(result).toBeUndefined()
 })
 
 it('has custom error messages', () => {

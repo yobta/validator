@@ -14,5 +14,5 @@ export const minDate = <D extends Date | undefined>(
       throw new Error(message(limit()))
     }
 
-    return input
+    return input as YobtaMaybe<D, D>
   })

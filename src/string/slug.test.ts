@@ -2,25 +2,18 @@
 
 import { createValidator } from '../createValidator/createValidator'
 import { optional } from '../optional/optional'
-import { YobtaError } from '../YobtaError'
 import { slug, slugMessage } from './slug'
 import { string } from './string'
 
 const customMessage = 'yobta!'
-const validate = createValidator(string(), slug(customMessage))
+const validate = createValidator(slug(customMessage))
 
 it(`accepts valid slug`, async () => {
   const result = validate('user')
   expect(result).toBe('user')
 })
 
-it('rejects undefined when not optional', () => {
-  const attempts = (): any => validate(undefined)
-  const error = new YobtaError({ field: '@', message: customMessage, path: [] })
-  expect(attempts).toThrow(error)
-})
-
-it('accepts undefined when optional', () => {
+it('accepts undefined', () => {
   const validateOptional = createValidator(string(), optional(), slug())
   const result = validateOptional(undefined)
   expect(result).toBeUndefined()

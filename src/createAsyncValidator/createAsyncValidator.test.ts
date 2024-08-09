@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals'
 import { createEvent } from '@testing-library/dom'
 
-import { constant, effect, rule } from '..'
+import { constant, effect, pipe, required, rule } from '..'
 import { createContext } from '../_internal/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 import { boolean } from '../boolean/boolean'
@@ -23,7 +23,10 @@ const validateSearch = createAsyncValidator(
   shape({
     currentTab: safe(
       'tab-1',
-      oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
+      pipe(
+        required(),
+        oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
+      ),
     ),
     myModalIsOpen: safe(false, boolean()),
   }),

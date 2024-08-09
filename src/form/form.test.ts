@@ -22,9 +22,13 @@ it('accepts event', () => {
   expect(result).toEqual({})
 })
 
-it('rejects undefined', () => {
-  const attempt = (): any => validate(undefined)
-  expect(attempt).toThrow(formMessage)
+it('casts empty values to undefined', () => {
+  const variants = ['', null, NaN, undefined]
+
+  variants.forEach(variant => {
+    const result = validate(variant)
+    expect(result).toBeUndefined()
+  })
 })
 
 it('rejects invalid input', () => {
@@ -33,7 +37,7 @@ it('rejects invalid input', () => {
 })
 
 it('has custom error messages', () => {
-  const attempt = (): any => createValidator(form('yobta!'))(null)
+  const attempt = (): any => createValidator(form('yobta!'))([])
   expect(attempt).toThrow('yobta!')
 })
 

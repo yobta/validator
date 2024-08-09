@@ -10,7 +10,7 @@ export function unique<I extends YobtaOptionaUnknownArray>(
 ): YobtaSyncRule<I, YobtaMaybe<I, I>> {
   return rule((input: I) => {
     if (!input || new Set(input).size === input.length) {
-      return input
+      return input as YobtaMaybe<I, I>
     }
     throw new Error(message)
   })

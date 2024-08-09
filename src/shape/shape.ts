@@ -1,5 +1,6 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaPretty } from '../_types/YobtaPretty.js'
 import type { YobtaAnySyncRule, YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
@@ -19,8 +20,12 @@ export const shapeMessage = 'Ivalid shape'
 export const shape = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
-): YobtaSyncRule<I, YobtaPretty<ValidShapeYobta<F>>> =>
-  rule<I, ValidShapeYobta<F>>((value = {} as I, context) => {
+): YobtaSyncRule<I, YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>> =>
+  rule((value: I, context) => {
+    if (value === undefined) {
+      return value as YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>
+    }
+
     const err = new Error(validationMessage)
 
     if (!isPlainObject(value)) {
@@ -52,5 +57,5 @@ export const shape = <I, F extends SyncRulesRecord>(
       throw err
     }
 
-    return result
+    return result as YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>
   })

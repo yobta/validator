@@ -14,5 +14,5 @@ export const maxCharacters = <I extends string | undefined>(
     if (input !== undefined && input.length > limit()) {
       throw new Error(message(limit()))
     }
-    return input
-  }) as YobtaSyncRule<I, YobtaMaybe<I, string>>
+    return input as unknown as YobtaMaybe<I, string>
+  })

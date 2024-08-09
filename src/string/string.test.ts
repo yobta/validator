@@ -12,7 +12,7 @@ it('accepts strings', () => {
 
 it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toBe('')
+  expect(result).toBeUndefined()
 })
 
 it('coerces number', () => {

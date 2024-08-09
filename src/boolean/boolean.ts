@@ -18,9 +18,9 @@ export const boolean = <I>(
     const lowerCasedInput = String(input).toLowerCase()
 
     if (falsySet.has(lowerCasedInput)) {
-      return false
+      return false as YobtaMaybe<I, boolean>
     } else if (truthySet.has(lowerCasedInput)) {
-      return true
+      return true as YobtaMaybe<I, boolean>
     }
 
     throw new Error(message)

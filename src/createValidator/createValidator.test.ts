@@ -9,6 +9,8 @@ import {
   fallback,
   number,
   oneOf,
+  pipe,
+  required,
   rule,
   safe,
   shape,
@@ -45,7 +47,10 @@ const validateSearch = createValidator(
   shape({
     currentTab: safe(
       'tab-1',
-      oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
+      pipe(
+        required(),
+        oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
+      ),
     ),
     myModalIsOpen: safe(
       false,

@@ -10,11 +10,7 @@ export function constant<I, O>(
   message?: string,
 ): YobtaSyncRule<I, YobtaMaybe<I, O>> {
   return rule((input: I) => {
-    if (input === undefined) {
-      return input as YobtaMaybe<I, O>
-    }
-
-    if (input === value) {
+    if (input === undefined || input === value) {
       return input as YobtaMaybe<I, O>
     }
 

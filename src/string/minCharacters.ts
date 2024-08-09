@@ -15,5 +15,5 @@ export const minCharacters = <I extends string | undefined>(
       throw new Error(message(limit()))
     }
 
-    return input
-  }) as YobtaSyncRule<I, YobtaMaybe<I, string>>
+    return input as unknown as YobtaMaybe<I, string>
+  })

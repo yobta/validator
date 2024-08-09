@@ -11,7 +11,7 @@ export const integer = <I extends number | undefined>(
 ): YobtaSyncRule<I, YobtaMaybe<I, Integer>> =>
   rule((input: I) => {
     if (input === undefined || Number.isInteger(input)) {
-      return input as Integer
+      return input as unknown as YobtaMaybe<I, Integer>
     }
 
     throw new Error(message)

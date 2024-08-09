@@ -34,6 +34,6 @@ it('does not call reporter when validation succeeds', async () => {
   const validate = createAsyncValidator(shape({ name: string() }), errors(spy))
   const result = await validate({})
 
-  expect(result).toEqual([{ name: '' }, null])
+  expect(result).toEqual([{ name: undefined }, null])
   expect(spy).toHaveBeenCalledTimes(0)
 })

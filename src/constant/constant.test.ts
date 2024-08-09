@@ -1,16 +1,12 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { shape } from '../shape/shape'
+import { string } from '../string'
 import { constant, constantMessage } from './constant'
 
 it('accepts when identical', () => {
-  const validate = createValidator(
-    shape({
-      a: constant('a'),
-    }),
-  )
-  const result = validate({ a: 'a' })
-  expect(result).toEqual({ a: 'a' })
+  const validate = createValidator(string(), constant('a'))
+  const result = validate('a')
+  expect(result).toEqual('a')
 })
 
 it('accepts when undefined', () => {
@@ -20,21 +16,13 @@ it('accepts when undefined', () => {
 })
 
 it('rejects when not identical', () => {
-  const validate = createValidator(
-    shape({
-      a: constant('b', 'yobta'),
-    }),
-  )
-  const attempt = (): any => validate({ a: 'a' })
+  const validate = createValidator(constant('b', 'yobta'))
+  const attempt = (): any => validate('a')
   expect(attempt).toThrow('yobta')
 })
 
 it('has default error mesage', () => {
-  const validate = createValidator(
-    shape({
-      a: constant('b'),
-    }),
-  )
-  const attempt = (): any => validate({ a: 'a' })
+  const validate = createValidator(constant('b'))
+  const attempt = (): any => validate('a')
   expect(attempt).toThrow(constantMessage('b'))
 })

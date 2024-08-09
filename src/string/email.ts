@@ -12,7 +12,7 @@ export const email = <I extends string | undefined>(
 ): YobtaSyncRule<I, YobtaMaybe<I, YobtaEmail>> =>
   rule((value: I) => {
     if (value === undefined || reEmail.test(value)) {
-      return value as YobtaEmail
+      return value as unknown as YobtaMaybe<I, YobtaEmail>
     }
     throw new Error(message)
   })

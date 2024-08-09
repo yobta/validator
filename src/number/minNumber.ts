@@ -13,5 +13,5 @@ export const minNumber = <I extends number | undefined>(
     if (typeof input === 'number' && input < limit()) {
       throw new Error(message(limit()))
     }
-    return input
-  }) as YobtaSyncRule<I, YobtaMaybe<I, number>>
+    return input as unknown as YobtaMaybe<I, number>
+  })
