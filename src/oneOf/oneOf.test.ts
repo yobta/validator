@@ -10,14 +10,19 @@ it('accepts listed', () => {
   expect(result).toBe('yobta')
 })
 
+it('rejects not listed', () => {
+  const result = (): any => validate(null)
+  expect(result).toThrow(customMessage())
+})
+
 it('accepts undefined', () => {
   const result = validate(undefined)
   expect(result).toBeUndefined()
 })
 
-it('rejects not listed', () => {
-  const result = (): any => validate(null)
-  expect(result).toThrow(customMessage())
+it('casts empty string', () => {
+  const result = validate('')
+  expect(result).toBeUndefined()
 })
 
 it('has default error message', () => {
