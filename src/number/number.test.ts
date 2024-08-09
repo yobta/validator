@@ -16,32 +16,37 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
-it('coerces null', () => {
-  const result = validate(null)
-  expect(result).toBe(0)
-})
-
-it('coerces string', () => {
-  const result = validate('1')
-  expect(result).toBe(1)
-})
-
-it('coerces empty string', () => {
+it('casts empty string', () => {
   const result = validate('')
   expect(result).toBeUndefined()
 })
 
-it('coerces empty array', () => {
+it('casts null', () => {
+  const result = validate(null)
+  expect(result).toBe(0)
+})
+
+it('casts string', () => {
+  const result = validate('1')
+  expect(result).toBe(1)
+})
+
+it('casts empty string', () => {
+  const result = validate('')
+  expect(result).toBeUndefined()
+})
+
+it('casts empty array', () => {
   const result = validate([])
   expect(result).toBe(0)
 })
 
-it('coerces booelan', () => {
+it('casts booelan', () => {
   const result = validate(true)
   expect(result).toBe(1)
 })
 
-it('coerces date', () => {
+it('casts date', () => {
   const date = new Date(1)
   const result = validate(date)
   expect(result).toBe(1)
