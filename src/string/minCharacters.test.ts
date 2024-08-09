@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 import { string } from '.'
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { minCharacters, minCharactersMessage } from './minCharacters'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
@@ -28,7 +27,6 @@ it('regects insufficient lenght', () => {
 it('accepts undefined', () => {
   const validateUndefiend = createValidator(
     string(),
-    optional(),
     minCharacters(() => 1, customMessage),
   )
   const result = validateUndefiend(undefined)

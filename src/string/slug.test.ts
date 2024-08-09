@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { slug, slugMessage } from './slug'
 import { string } from './string'
 
@@ -14,7 +13,7 @@ it(`accepts valid slug`, async () => {
 })
 
 it('accepts undefined', () => {
-  const validateOptional = createValidator(string(), optional(), slug())
+  const validateOptional = createValidator(string(), slug())
   const result = validateOptional(undefined)
   expect(result).toBeUndefined()
 })

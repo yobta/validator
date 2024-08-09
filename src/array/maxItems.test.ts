@@ -1,13 +1,11 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { array } from './array'
 import { maxItems, maxItemsMessage } from './maxItems'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = createValidator(
   array(),
-  optional(),
   maxItems(() => 1, customMessage),
 )
 

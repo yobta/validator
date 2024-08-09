@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { date } from './date'
 import { maxDate } from './maxDate'
 
@@ -9,7 +8,6 @@ const customMessage = (max: Date): string => `${max.toUTCString()} yobta!`
 
 const validate = createValidator(
   date(),
-  optional(),
   maxDate(() => limit, customMessage),
 )
 

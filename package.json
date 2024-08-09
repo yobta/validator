@@ -325,13 +325,6 @@
       "limit": "338 B"
     },
     {
-      "name": "optional",
-      "import": {
-        "lib/index.js": "{ optional }"
-      },
-      "limit": "54 B"
-    },
-    {
       "name": "required",
       "import": {
         "lib/index.js": "{ required }"

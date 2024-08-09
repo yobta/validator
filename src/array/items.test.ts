@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { minCharacters } from '../string/minCharacters'
 import { string } from '../string/string'
 import { array } from './array'
@@ -8,7 +7,6 @@ import { items } from './items'
 
 const validate = createValidator(
   array(),
-  optional(),
   items(
     string(),
     minCharacters(() => 5),

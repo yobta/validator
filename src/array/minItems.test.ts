@@ -1,13 +1,11 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { array } from './array'
 import { minItems, minItemsMessage } from './minItems'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = createValidator(
   array(),
-  optional(),
   minItems(() => 1, customMessage),
 )
 

@@ -1,7 +1,6 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
 import { number } from '../number'
-import { optional } from '../optional/optional'
 import { pipe } from '../pipe/pipe'
 import { shape } from '../shape/shape'
 import { different, differentMessage } from './different'
@@ -25,7 +24,6 @@ it('accepts when different and undefined', () => {
       a: number(),
       b: pipe(
         number(),
-        optional(),
         different(() => 'a'),
       ),
     }),

@@ -50,7 +50,6 @@ Added:
 
 - asyncPipe
 - pipe
-- optional
 
 Removed:
 

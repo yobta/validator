@@ -1,12 +1,11 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { array } from './array'
 import { unique } from './unique'
 
 const customMesage = 'yobta'
 
-const validate = createValidator(array(), optional(), unique(customMesage))
+const validate = createValidator(array(), unique(customMesage))
 
 it('accepts empty array', () => {
   const result = validate([])

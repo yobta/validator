@@ -1,6 +1,5 @@
 /* eslint-disable import/extensions */
 import { createValidator } from '../createValidator/createValidator'
-import { optional } from '../optional/optional'
 import { integer, integerMessage } from './integer'
 import { number } from './number'
 
@@ -28,7 +27,7 @@ it('rejects Infinity', () => {
 })
 
 it('returns undefined for undefined', () => {
-  const validateUndefined = createValidator(number(), optional(), integer())
+  const validateUndefined = createValidator(number(), integer())
   const result = validateUndefined(undefined)
   expect(result).toBeUndefined()
 })

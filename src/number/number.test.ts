@@ -11,9 +11,9 @@ it('accepts numbers', () => {
   expect(result).toBe(1)
 })
 
-it('coerces undefined', () => {
+it('accepts undefined', () => {
   const result = validate(undefined)
-  expect(result).toBe(0)
+  expect(result).toBeUndefined()
 })
 
 it('coerces null', () => {
@@ -28,7 +28,7 @@ it('coerces string', () => {
 
 it('coerces empty string', () => {
   const result = validate('')
-  expect(result).toBe(0)
+  expect(result).toBeUndefined()
 })
 
 it('coerces empty array', () => {
