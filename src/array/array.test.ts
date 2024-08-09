@@ -14,6 +14,11 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
+it('casts empty string to undefined', () => {
+  const result = validate('')
+  expect(result).toBeUndefined()
+})
+
 it('accepts strings', () => {
   const result = validate('yobta')
   expect(result).toEqual(['yobta'])
@@ -53,12 +58,12 @@ it('accepts maps', () => {
   expect(result).toEqual([['key', 1]])
 })
 
-it('casts null to undefined', () => {
+it('casts null to array', () => {
   const result = validate(null)
-  expect(result).toBeUndefined()
+  expect(result).toEqual([null])
 })
 
-it('casts NaN to undefined', () => {
+it('casts NaN to array', () => {
   const result = validate(NaN)
-  expect(result).toBeUndefined()
+  expect(result).toEqual([NaN])
 })
