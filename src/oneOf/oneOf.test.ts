@@ -20,9 +20,21 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
+it('does not cast undefined if it is in set', () => {
+  const validateUndefined = createValidator(oneOf(() => new Set([undefined])))
+  // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+  expect(validateUndefined(undefined)).toBeUndefined()
+})
+
 it('casts empty string', () => {
   const result = validate('')
   expect(result).toBeUndefined()
+})
+
+it('does not cast empty string if it is in set', () => {
+  const validateEmpty = createValidator(oneOf(() => new Set([''])))
+  const result = validateEmpty('')
+  expect(result).toBe('')
 })
 
 it('has default error message', () => {
