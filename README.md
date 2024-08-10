@@ -47,7 +47,7 @@ npm i @yobta/validator
   - `maxNumber(limit: Number, errorMessage)` – checks if a value within a limit
   - `minNumber(limit: Number, errorMessage)` – checks if a value within a limit
 
-- `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
+- `oneOf(new Set([1])), errorMessage)` – checks if simple value in a set
 
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
 
@@ -60,9 +60,10 @@ npm i @yobta/validator
 
 - `string(errorMessage)` – coerses a simple value to string or throws
 
-  - `email(errorMessage)` – checks if a string value is email
-  - `maxCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
-  - `minCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
+  - `email(errorMessage)` – checks if a string value is an email
+  - `maxCharacters(limit: Number, errorMessage)` – checks if a value length within a limit
+  - `minCharacters(limit: Number, errorMessage)` – checks if a value length within a limit
+  - `slug(errorMessage)` – checks if a string value is a slug
 
 ### Async Rules
 

@@ -84,42 +84,42 @@
       "import": {
         "lib/index.js": "{ createAsyncValidator }"
       },
-      "limit": "357 B"
+      "limit": "279 B"
     },
     {
       "name": "createValidator",
       "import": {
         "lib/index.js": "{ createValidator }"
       },
-      "limit": "329 B"
+      "limit": "259 B"
     },
     {
       "name": "shape",
       "import": {
         "lib/index.js": "{ shape }"
       },
-      "limit": "470 B"
+      "limit": "477 B"
     },
     {
       "name": "string",
       "import": {
         "lib/index.js": "{ string }"
       },
-      "limit": "124 B"
+      "limit": "128 B"
     },
     {
       "name": "array",
       "import": {
         "lib/index.js": "{ array }"
       },
-      "limit": "100 B"
+      "limit": "107 B"
     },
     {
       "name": "number",
       "import": {
         "lib/index.js": "{ number }"
       },
-      "limit": "110 B"
+      "limit": "101 B"
     },
     {
       "name": "integer",
@@ -133,14 +133,14 @@
       "import": {
         "lib/index.js": "{ date }"
       },
-      "limit": "84 B"
+      "limit": "92 B"
     },
     {
       "name": "boolean",
       "import": {
         "lib/index.js": "{ boolean }"
       },
-      "limit": "134 B"
+      "limit": "147 B"
     },
     {
       "name": "minItems",
@@ -154,35 +154,35 @@
       "import": {
         "lib/index.js": "{ maxItems }"
       },
-      "limit": "122 B"
+      "limit": "120 B"
     },
     {
       "name": "minCharacters",
       "import": {
         "lib/index.js": "{ minCharacters }"
       },
-      "limit": "133 B"
+      "limit": "130 B"
     },
     {
       "name": "maxCharacters",
       "import": {
         "lib/index.js": "{ maxCharacters }"
       },
-      "limit": "130 B"
+      "limit": "128 B"
     },
     {
       "name": "minNumber",
       "import": {
         "lib/index.js": "{ minNumber }"
       },
-      "limit": "88 B"
+      "limit": "86 B"
     },
     {
       "name": "maxNumber",
       "import": {
         "lib/index.js": "{ maxNumber }"
       },
-      "limit": "93 B"
+      "limit": "90 B"
     },
     {
       "name": "minDate",
@@ -217,14 +217,14 @@
       "import": {
         "lib/index.js": "{ fallback }"
       },
-      "limit": "40 B"
+      "limit": "109 B"
     },
     {
       "name": "constant",
       "import": {
         "lib/index.js": "{ constant }"
       },
-      "limit": "96 B"
+      "limit": "98 B"
     },
     {
       "name": "items",
@@ -259,14 +259,14 @@
       "import": {
         "lib/index.js": "{ form }"
       },
-      "limit": "192 B"
+      "limit": "252 B"
     },
     {
       "name": "oneOf",
       "import": {
         "lib/index.js": "{ oneOf }"
       },
-      "limit": "95 B"
+      "limit": "110 B"
     },
     {
       "name": "effect",
@@ -280,7 +280,7 @@
       "import": {
         "lib/index.js": "{ asyncShape }"
       },
-      "limit": "491 B"
+      "limit": "496 B"
     },
     {
       "name": "pipe",
@@ -322,7 +322,7 @@
       "import": {
         "lib/index.js": "{ required }"
       },
-      "limit": "73 B"
+      "limit": "71 B"
     },
     {
       "name": "success",
@@ -350,7 +350,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2714 B"
+      "limit": "2682 B"
     }
   ]
 }
