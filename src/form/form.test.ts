@@ -43,38 +43,6 @@ it('rejects invalid input', () => {
   }
 })
 
-// it('has custom error messages', () => {
-//   const attempt = (): any => createValidator(form('yobta!'))([])
-//   expect(attempt).toThrow('yobta!')
-// })
-
-// it('takes form from context', () => {
-//   const formNode = document.createElement('form')
-//   formNode.innerHTML = `<input type="text" value="yobta" />`
-
-//   const event = createEvent.submit(formNode)
-//   Object.defineProperty(event, 'currentTarget', { value: formNode })
-//   const context = createContext(event)
-//   const result = form()(context)(event)
-//   const formData = new FormData(formNode)
-//   const plainObject = fromEntries(formData)
-
-//   expect(result).toEqual(plainObject)
-// })
-
-it('prevents submit event', async () => {
-  const formNode = document.createElement('form')
-  const submitEvent = createEvent.submit(formNode)
-
-  jest.spyOn(submitEvent, 'preventDefault')
-  Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
-
-  const result = validate(submitEvent)
-
-  expect(submitEvent.preventDefault).toHaveBeenCalledTimes(1)
-  expect(result).toEqual({})
-})
-
 it('des not prevent change event', () => {
   const formNode = document.createElement('form')
   const input = document.createElement('input')

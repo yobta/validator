@@ -9,10 +9,6 @@ export const form = <I>(
 ): YobtaSyncRule<I, Record<string, unknown>> =>
   rule((value, ctx) => {
     if (value instanceof Event && value.currentTarget) {
-      if (value.type === 'submit') {
-        value.preventDefault()
-      }
-
       const { currentTarget, target } = value
 
       if (currentTarget instanceof HTMLFormElement) {
