@@ -8,12 +8,12 @@ export const maxItemsMessage = (limit: number): string =>
   `It should be within ${pluralizeEn(limit, 'item')}`
 
 export const maxItems = <I extends YobtaOptionaUnknownArray>(
-  limit: () => number,
+  limit: number,
   message = maxItemsMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, I>> =>
   rule((input: I) => {
-    if (input && input.length > limit()) {
-      throw new Error(message(limit()))
+    if (input && input.length > limit) {
+      throw new Error(message(limit))
     }
 
     return input

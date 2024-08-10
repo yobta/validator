@@ -8,11 +8,11 @@ export const oneOfMessage: OneOfMessage<unknown> = items =>
   `It should be one of: ${items}`
 
 export const oneOf = <I, T>(
-  items: () => Set<T>,
+  items: Set<T>,
   message: OneOfMessage<T> = oneOfMessage,
 ): YobtaSyncRule<any, YobtaMaybe<I, T>> =>
   rule((input: T = '' as T) => {
-    if (items().has(input)) {
+    if (items.has(input)) {
       return input as YobtaMaybe<I, T>
     }
 
@@ -20,5 +20,5 @@ export const oneOf = <I, T>(
       return undefined as YobtaMaybe<I, T>
     }
 
-    throw new Error(message(items()))
+    throw new Error(message(items))
   })

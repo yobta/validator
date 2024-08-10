@@ -22,10 +22,7 @@ const validateSearch = createAsyncValidator(
   shape({
     currentTab: fallback(
       'tab-1',
-      pipe(
-        required(),
-        oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
-      ),
+      pipe(required(), oneOf(new Set(['tab-1', 'tab-2', 'tab-3']))),
     ),
     myModalIsOpen: fallback(false, boolean()),
   }),
@@ -37,10 +34,7 @@ it('accepts valid', async () => {
 })
 
 it('can pipe rules', async () => {
-  const validateMultiple = createAsyncValidator(
-    string(),
-    minCharacters(() => 5),
-  )
+  const validateMultiple = createAsyncValidator(string(), minCharacters(5))
   const result = await validateMultiple('yobta')
   expect(result).toEqual(['yobta', null])
 })

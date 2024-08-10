@@ -4,10 +4,7 @@ import { createValidator } from '../createValidator/createValidator'
 import { minNumber, minNumberMessage } from './minNumber'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(
-  number(),
-  minNumber(() => 1, customMessage),
-)
+const validate = createValidator(number(), minNumber(1, customMessage))
 
 it('accepts exact lenght', () => {
   const result = validate(1)
@@ -25,19 +22,13 @@ it('regects insufficient lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(
-    number(),
-    minNumber(() => 1),
-  )
+  const validateDefault = createValidator(number(), minNumber(1))
   const assign = (): any => validateDefault(0)
   expect(assign).toThrow(minNumberMessage(1))
 })
 
 it('accepts when undefined', () => {
-  const validateUndefined = createValidator(
-    number(),
-    minNumber(() => 1),
-  )
+  const validateUndefined = createValidator(number(), minNumber(1))
   const result1 = validateUndefined(undefined)
   expect(result1).toBeUndefined()
 

@@ -4,10 +4,7 @@ import { createValidator } from '../createValidator/createValidator'
 import { maxNumber, maxNumberMessage } from './maxNumber'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(
-  number(),
-  maxNumber(() => 1, customMessage),
-)
+const validate = createValidator(number(), maxNumber(1, customMessage))
 
 it('accepts exact number', () => {
   const result = validate(1)
@@ -25,19 +22,13 @@ it('regects greater number', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(
-    number(),
-    maxNumber(() => 1),
-  )
+  const validateDefault = createValidator(number(), maxNumber(1))
   const attempt = (): any => validateDefault(2)
   expect(attempt).toThrow(maxNumberMessage(1))
 })
 
 it('accepts when undefined', () => {
-  const validateUndefined = createValidator(
-    number(),
-    maxNumber(() => 1),
-  )
+  const validateUndefined = createValidator(number(), maxNumber(1))
   const result1 = validateUndefined(undefined)
   expect(result1).toBeUndefined()
 

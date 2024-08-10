@@ -27,8 +27,8 @@ npm i @yobta/validator
 - `array(errorMessage)` - creates a array rule, coercing unknown value to array
 
   - `items(...rules)` – validates every array item against rules
-  - `maxItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
-  - `minItems(limit: () => Number, errorMessage)` – checks if a array length within a limit
+  - `maxItems(limit: Number, errorMessage)` – checks if a array length within a limit
+  - `minItems(limit: Number, errorMessage)` – checks if a array length within a limit
   - `unique(errorMessage)` – requires array to have unique values
 
 - `boolean(errorMessage)` - creates a boolean rule
@@ -36,16 +36,16 @@ npm i @yobta/validator
 
 - `date(errorMessage)` - creates a date rule
 
-  - `maxDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
-  - `minDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
+  - `maxDate(limit: Date, errorMessage)` – checks if a value within a date limit
+  - `minDate(limit: Date, errorMessage)` – checks if a value within a date limit
 
 - `fallback(defaultValue, ...rules)` - returns a `defaultValue` if rules not satisfied, if no rules provided transforms '' or `undefined` value to a `defaultValue`
 
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
 
   - `integer(errorMessage)` – checks if a value is an integer
-  - `maxNumber(limit: () => Number, errorMessage)` – checks if a value within a limit
-  - `minNumber(limit: () => Number, errorMessage)` – checks if a value within a limit
+  - `maxNumber(limit: Number, errorMessage)` – checks if a value within a limit
+  - `minNumber(limit: Number, errorMessage)` – checks if a value within a limit
 
 - `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
 

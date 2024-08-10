@@ -4,10 +4,7 @@ import { createValidator } from '../createValidator/createValidator'
 import { maxCharacters, maxCharactersMessage } from './maxCharacters'
 
 const customMessage = (limit: number): string => `${limit} yobta!`
-const validate = createValidator(
-  string(),
-  maxCharacters(() => 2, customMessage),
-)
+const validate = createValidator(string(), maxCharacters(2, customMessage))
 
 it('accepts exact lenght', () => {
   const result = validate('a')
@@ -22,7 +19,7 @@ it('accepts smaller lenght', () => {
 it('accepts undefined', () => {
   const validateUndefiend = createValidator(
     string(),
-    maxCharacters(() => 1, customMessage),
+    maxCharacters(1, customMessage),
   )
   const result = validateUndefiend(undefined)
   expect(result).toBeUndefined()
@@ -34,10 +31,7 @@ it('regects greater lenght', () => {
 })
 
 it('has default error message', () => {
-  const validateDefault = createValidator(
-    string(),
-    maxCharacters(() => 1),
-  )
+  const validateDefault = createValidator(string(), maxCharacters(1))
   const attempt = (): any => validateDefault('ab')
   expect(attempt).toThrow(maxCharactersMessage(1))
 })

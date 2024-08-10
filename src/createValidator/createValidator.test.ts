@@ -45,10 +45,7 @@ const validateSearch = createValidator(
   shape({
     currentTab: fallback(
       'tab-1',
-      pipe(
-        required(),
-        oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
-      ),
+      pipe(required(), oneOf(new Set(['tab-1', 'tab-2', 'tab-3']))),
     ),
     myModalIsOpen: fallback(false, boolean(), fallback(false)),
   }),

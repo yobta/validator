@@ -6,11 +6,7 @@ import { fallback } from './fallback'
 
 describe('rules', () => {
   const validate = createValidator(
-    fallback(
-      'catched yobta!',
-      string(),
-      minCharacters(() => 5),
-    ),
+    fallback('catched yobta!', string(), minCharacters(5)),
   )
 
   it('does not catch when no errors', () => {

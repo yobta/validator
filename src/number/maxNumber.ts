@@ -6,12 +6,12 @@ export const maxNumberMessage = (limit: number): string =>
   `It should be within ${limit}`
 
 export const maxNumber = <I extends number | undefined>(
-  limit: () => number,
+  limit: number,
   message = maxNumberMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, number>> =>
   rule((input: I) => {
-    if (typeof input === 'number' && input > limit()) {
-      throw new Error(message(limit()))
+    if (typeof input === 'number' && input > limit) {
+      throw new Error(message(limit))
     }
     return input as unknown as YobtaMaybe<I, number>
   })

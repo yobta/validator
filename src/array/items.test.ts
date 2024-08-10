@@ -5,13 +5,7 @@ import { string } from '../string/string'
 import { array } from './array'
 import { items } from './items'
 
-const validate = createValidator(
-  array(),
-  items(
-    string(),
-    minCharacters(() => 5),
-  ),
-)
+const validate = createValidator(array(), items(string(), minCharacters(5)))
 
 it('accepts empty array', () => {
   const result = validate([])

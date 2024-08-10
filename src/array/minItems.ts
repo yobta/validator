@@ -8,12 +8,12 @@ export const minItemsMessage = (limit: number): string =>
   `It should have at least ${pluralizeEn(limit, 'item')}`
 
 export const minItems = <I extends YobtaOptionaUnknownArray>(
-  limit: () => number,
+  limit: number,
   message = minItemsMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, I>> =>
   rule((input: I) => {
-    if (input && input.length < limit()) {
-      throw new Error(message(limit()))
+    if (input && input.length < limit) {
+      throw new Error(message(limit))
     }
 
     return input
