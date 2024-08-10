@@ -19,7 +19,7 @@ describe('rules', () => {
   })
 
   it('catches when errors', () => {
-    const result = validate('')
+    const result = validate('a')
     expect(result).toEqual('catched yobta!')
   })
 })

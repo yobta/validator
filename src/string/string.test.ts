@@ -15,6 +15,11 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
+it('casts empty string to undefined', () => {
+  const result = validate('')
+  expect(result).toBeUndefined()
+})
+
 it('coerces number', () => {
   const result = validate(1)
   expect(result).toBe('1')

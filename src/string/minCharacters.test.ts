@@ -6,22 +6,22 @@ import { minCharacters, minCharactersMessage } from './minCharacters'
 const customMessage = (limit: number): string => `${limit} yobta!`
 const validate = createValidator(
   string(),
-  minCharacters(() => 1, customMessage),
+  minCharacters(() => 2, customMessage),
 )
 
 it('accepts exact lenght', () => {
-  const result = validate('a')
-  expect(result).toBe('a')
-})
-
-it('accepts greater lenght', () => {
   const result = validate('ab')
   expect(result).toBe('ab')
 })
 
-it('regects insufficient lenght', () => {
-  const attempt = (): any => validate('')
-  expect(attempt).toThrow(customMessage(1))
+it('accepts greater lenght', () => {
+  const result = validate('abc')
+  expect(result).toBe('abc')
+})
+
+it('rejects insufficient lenght', () => {
+  const attempt = (): any => validate('a')
+  expect(attempt).toThrow(customMessage(2))
 })
 
 it('accepts undefined', () => {
@@ -36,8 +36,8 @@ it('accepts undefined', () => {
 it('has default error message', () => {
   const validateDefault = createValidator(
     string(),
-    minCharacters(() => 1),
+    minCharacters(() => 2),
   )
-  const attempt = (): any => validateDefault('')
-  expect(attempt).toThrow(minCharactersMessage(1))
+  const attempt = (): any => validateDefault('a')
+  expect(attempt).toThrow(minCharactersMessage(2))
 })

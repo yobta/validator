@@ -9,9 +9,9 @@ export const stringMessage = 'It should be a string'
 export const string = <I>(
   message = stringMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, string>> =>
-  rule((value: I) => {
-    if (value === undefined) {
-      return value as YobtaMaybe<I, string>
+  rule((value: I = '' as I) => {
+    if (value === '') {
+      return undefined as YobtaMaybe<I, string>
     }
 
     if (value instanceof String || coercedTypes.has(typeof value)) {
