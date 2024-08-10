@@ -64,6 +64,7 @@ npm i @yobta/validator
   - `maxCharacters(limit: Number, errorMessage)` – checks if a value length within a limit
   - `minCharacters(limit: Number, errorMessage)` – checks if a value length within a limit
   - `slug(errorMessage)` – checks if a string value is a slug
+  - `test(regExp, errorMessage)` – checks if a value passing `regExp` test
 
 ### Async Rules
 

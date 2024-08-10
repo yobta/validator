@@ -24,6 +24,7 @@ const config = {
   },
   // restoreMocks: true,
   testEnvironment: 'jsdom',
+  testMatch: ['**/*.test.ts'],
   transform: {
     '^.+\\.(mt|t|cj|j)s$': [
       'ts-jest',

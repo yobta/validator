@@ -42,6 +42,7 @@ Renamed:
   - differentYobta => different
 - stringYobta => string
 - successYobta => success
+- testYobta => test
 - uniqueYobta => unique
 - validityYobta => validity
 
@@ -53,7 +54,6 @@ Added:
 Removed:
 
 - catchYobta
-- testYobta
 - urlSearchParamsYobta
 
 Todo:

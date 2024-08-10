@@ -1,6 +1,6 @@
 {
   "name": "@yobta/validator",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "Tree-shakable es6 validator",
   "keywords": [
     "validator",
@@ -13,7 +13,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest src --coverage",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest src",
     "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/form/form.test.ts",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
@@ -106,6 +106,13 @@
         "lib/index.js": "{ string }"
       },
       "limit": "128 B"
+    },
+    {
+      "name": "test",
+      "import": {
+        "lib/index.js": "{ test }"
+      },
+      "limit": "68 B"
     },
     {
       "name": "array",
@@ -350,7 +357,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2682 B"
+      "limit": "2703 B"
     }
   ]
 }
