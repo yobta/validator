@@ -16,7 +16,7 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
-it('casts empty string', () => {
+it('casts empty string to undefined', () => {
   const result = validate('')
   expect(result).toBeUndefined()
 })

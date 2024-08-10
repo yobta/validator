@@ -21,9 +21,9 @@ export const shape = <I, F extends SyncRulesRecord>(
   rulesMap: ShapeConfigYobta<F>,
   validationMessage = shapeMessage,
 ): YobtaSyncRule<I, YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>> =>
-  rule((value: I, context) => {
-    if (value === undefined) {
-      return value as YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>
+  rule((value: I = '' as I, context) => {
+    if (value === '') {
+      return undefined as YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>
     }
 
     const err = new Error(validationMessage)

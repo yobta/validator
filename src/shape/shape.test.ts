@@ -37,6 +37,11 @@ it('accepts undefined', () => {
   expect(result).toBeUndefined()
 })
 
+it('casts empty string to undefined', () => {
+  const result = createValidator(shape({}))(undefined)
+  expect(result).toBeUndefined()
+})
+
 it('has custom error messages', () => {
   const attempt = (): any =>
     createValidator(

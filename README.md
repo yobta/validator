@@ -48,9 +48,11 @@ npm i @yobta/validator
   - `minNumber(limit: () => Number, errorMessage)` – checks if a value within a limit
 
 - `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
+
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
 
-  - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
+  - `different('key', errorMessage)` – creates a rule to check if an object key is not equal to antoher key
+  - `identical('key', errorMessage)` – creates a rule to check if an object key is strictly equal to antoher key
 
 - `required(errorMessage)` — throws a message if a value is an empty string or `undefined`
 
