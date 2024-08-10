@@ -6,7 +6,7 @@ export const dateMessage = 'It should be a date'
 export const date = <I>(
   message = dateMessage,
 ): YobtaSyncRule<I, Date | undefined> =>
-  rule((input = '') => {
+  rule((input = '' as I) => {
     if (input === '') {
       return undefined
     }

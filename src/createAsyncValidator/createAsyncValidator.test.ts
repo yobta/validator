@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 import { jest } from '@jest/globals'
 
-import { constant, effect, pipe, required, rule } from '..'
+import { asyncShape, constant, effect, pipe, required, rule } from '..'
 import { createContext } from '../_internal/createContext/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 import { boolean } from '../boolean/boolean'
@@ -125,4 +125,46 @@ it('preserves yobta error', async () => {
       }),
     ],
   ])
+})
+
+it('supports effects', async () => {
+  const effectSpy1 = jest.fn()
+  const effectSpy2 = jest.fn()
+
+  const validateFx = createAsyncValidator(
+    effect(effectSpy1),
+    asyncShape({
+      code: pipe(string(), required()),
+    }),
+    required(),
+    effect(effectSpy2),
+  )
+
+  const result = await validateFx({ code: 'yobta' })
+
+  expect(result).toEqual([{ code: 'yobta' }, null])
+  expect(effectSpy1).toHaveBeenCalledWith(
+    { code: 'yobta' },
+    {
+      data: { code: 'yobta' },
+      errors: [],
+      event: { code: 'yobta' },
+      field: '@',
+      path: [],
+      pushError: expect.any(Function),
+      value: { code: 'yobta' },
+    },
+  )
+  expect(effectSpy2).toHaveBeenCalledWith(
+    { code: 'yobta' },
+    {
+      data: { code: 'yobta' },
+      errors: [],
+      event: { code: 'yobta' },
+      field: '@',
+      path: [],
+      pushError: expect.any(Function),
+      value: { code: 'yobta' },
+    },
+  )
 })

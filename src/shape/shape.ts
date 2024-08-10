@@ -12,7 +12,7 @@ type ShapeConfigYobta<Record extends SyncRulesRecord> = {
 }
 
 type ValidShapeYobta<Record extends SyncRulesRecord> = {
-  [Validator in keyof Record]: ReturnType<Record[Validator]>
+  [Validator in keyof Record]: ReturnType<ReturnType<Record[Validator]>>
 }
 
 export const shapeMessage = 'Ivalid shape'

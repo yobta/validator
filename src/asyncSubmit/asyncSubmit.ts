@@ -8,7 +8,7 @@ interface Submitter<I> {
 }
 
 export const asyncSubmit = <I>(submit: Submitter<I>): YobtaAsyncRule<I, I> =>
-  rule<I, Promise<I>>(async (input, context) => {
+  rule(async (input: I, context) => {
     const { errors, event, field, path, pushError } = context
     if (event instanceof Event && event.type === 'submit' && !errors.length) {
       try {

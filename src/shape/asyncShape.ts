@@ -1,7 +1,8 @@
 import { isPlainObject } from '../_internal/isPlainObject/index.js'
 import { handleUnknownError } from '../_internal/parseUnknownError/index.js'
+import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule.js'
 import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
-import type { SyncOrAsyncRule, YobtaSyncRule } from '../rule/rule.js'
+import type { SyncOrAsyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
 type AsyncRulesRecord = Record<PropertyKey, SyncOrAsyncRule<any, any>>
@@ -13,7 +14,7 @@ type AwaitShapeConfig<Record extends AsyncRulesRecord> = {
 type ValidAsyncShapeYobta<I, Record extends AsyncRulesRecord> = YobtaMaybe<
   I,
   {
-    [Rule in keyof Record]: Awaited<Record[Rule]>
+    [Rule in keyof Record]: Awaited<ReturnType<ReturnType<Record[Rule]>>>
   }
 >
 
@@ -22,7 +23,7 @@ export const asyncShapeMessage = 'Invalid shape'
 export const asyncShape = <I, Record extends AsyncRulesRecord>(
   rulesSet: AwaitShapeConfig<Record>,
   validationMessage: string = asyncShapeMessage,
-): YobtaSyncRule<I, Promise<ValidAsyncShapeYobta<I, Record>>> =>
+): YobtaAsyncRule<I, ValidAsyncShapeYobta<I, Record>> =>
   rule<I, Promise<ValidAsyncShapeYobta<I, Record>>>(
     async (value: I = '' as I, context) => {
       if (value === '') {

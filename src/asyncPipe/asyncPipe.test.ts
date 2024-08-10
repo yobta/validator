@@ -4,6 +4,7 @@ import { jest } from '@jest/globals'
 import { createContext } from '../_internal/createContext/createContext'
 import type { YobtaAsyncRule } from '../_types/YobtaAsyncRule'
 import { number } from '../number'
+import { required } from '../required/required'
 import type { YobtaSyncRule } from '../rule/rule'
 import { string } from '../string/string'
 import { asyncPipe } from './asyncPipe'
@@ -20,7 +21,14 @@ const raiseError: YobtaSyncRule<number, never> = () => () => {
 }
 
 it('pipes', async () => {
-  const rule = asyncPipe(number(), addAsync, add, addAsync, string())
+  const rule = asyncPipe(
+    number(),
+    required(),
+    addAsync,
+    add,
+    addAsync,
+    string(),
+  )
   const result = await rule(ctx)('1')
   expect(result).toBe('4')
 })
