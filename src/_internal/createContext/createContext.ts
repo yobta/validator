@@ -5,9 +5,7 @@ export const createContext = (event: any): YobtaContext => {
   const errors: YobtaError[] = []
 
   // NOTE: must be hoisted to context factory to deal with async validation
-  if (event instanceof Event && event.type === 'submit') {
-    event.preventDefault()
-  }
+  event?.type === 'submit' && event.preventDefault()
 
   return {
     data: event,

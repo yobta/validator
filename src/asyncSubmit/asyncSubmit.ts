@@ -10,7 +10,7 @@ interface Submitter<I> {
 export const asyncSubmit = <I>(submit: Submitter<I>): YobtaAsyncRule<I, I> =>
   rule(async (input: I, context) => {
     const { errors, event, field, path, pushError } = context
-    if (event instanceof Event && event.type === 'submit' && !errors.length) {
+    if ((event as Event | undefined)?.type === 'submit' && !errors.length) {
       try {
         await submit(input, context)
       } catch (error) {

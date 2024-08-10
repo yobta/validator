@@ -1,6 +1,6 @@
 {
   "name": "@yobta/validator",
-  "version": "1.0.4-alpha",
+  "version": "1.0.5-alpha",
   "description": "Tree-shakable es6 validator",
   "keywords": [
     "validator",
@@ -84,14 +84,14 @@
       "import": {
         "lib/index.js": "{ createAsyncValidator }"
       },
-      "limit": "301 B"
+      "limit": "297 B"
     },
     {
       "name": "createValidator",
       "import": {
         "lib/index.js": "{ createValidator }"
       },
-      "limit": "279 B"
+      "limit": "270 B"
     },
     {
       "name": "shape",
@@ -308,7 +308,7 @@
       "import": {
         "lib/index.js": "{ asyncSubmit }"
       },
-      "limit": "249 B"
+      "limit": "237 B"
     },
     {
       "name": "errors",
@@ -322,7 +322,7 @@
       "import": {
         "lib/index.js": "{ validity }"
       },
-      "limit": "338 B"
+      "limit": "330 B"
     },
     {
       "name": "required",
@@ -357,7 +357,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2700 B"
+      "limit": "2696 B"
     }
   ]
 }

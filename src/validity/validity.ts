@@ -29,7 +29,7 @@ export const validity = <I>(
     }
 
     const shouldReport: boolean =
-      (event instanceof Event && event.type === 'submit') ||
+      (event as Event | undefined)?.type === 'submit' ||
       validateAllFieldsOnChange
 
     if (shouldReport) {
