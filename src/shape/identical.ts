@@ -8,12 +8,12 @@ export const identicalMessage = (
 ): string => `"${field}" should be identical to "${path}"`
 
 export const identical = <I>(
-  path: () => YobtaPathSegment,
+  path: YobtaPathSegment,
   message = identicalMessage,
 ): YobtaSyncRule<I, I> =>
   rule((input: I, { data, field }) => {
-    if (input === (data as any)[path()]) {
+    if (input === (data as any)[path]) {
       return input
     }
-    throw new Error(message(field, path()))
+    throw new Error(message(field, path))
   })

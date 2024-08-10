@@ -8,12 +8,12 @@ export const differentMessage = (
 ): string => `"${field}" should be different from "${path}"`
 
 export const different = <I>(
-  path: () => YobtaPathSegment,
+  path: YobtaPathSegment,
   message = differentMessage,
 ): YobtaSyncRule<I, I> =>
   rule((input: I, { data, field }) => {
-    if (input === (data as any)[path()]) {
-      throw new Error(message(field, path()))
+    if (input === (data as any)[path]) {
+      throw new Error(message(field, path))
     }
     return input
   })

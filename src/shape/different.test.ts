@@ -11,7 +11,7 @@ it('accepts when different', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: different(() => 'a'),
+      b: different('a'),
     }),
   )
   const result = validate({ a: 1, b: 2 })
@@ -22,10 +22,7 @@ it('accepts when different and undefined', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: pipe(
-        number(),
-        different(() => 'a'),
-      ),
+      b: pipe(number(), different('a')),
     }),
   )
   const result = validate({ a: 1 })
@@ -36,7 +33,7 @@ it('regects when not different', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: different(() => 'a', customMessage),
+      b: different('a', customMessage),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
@@ -47,7 +44,7 @@ it('has default error mesage', () => {
   const validate = createValidator(
     shape({
       a: number(),
-      b: different(() => 'a'),
+      b: different('a'),
     }),
   )
   const attempt = (): any => validate({ a: 1, b: 1 })
