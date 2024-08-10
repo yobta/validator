@@ -1,3 +1,6 @@
+alpha: check
+	npm publish --tag alpha
+
 build:
 	npm run build
 
