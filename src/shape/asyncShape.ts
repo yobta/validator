@@ -24,9 +24,9 @@ export const asyncShape = <I, Record extends AsyncRulesRecord>(
   validationMessage: string = asyncShapeMessage,
 ): YobtaSyncRule<I, Promise<ValidAsyncShapeYobta<I, Record>>> =>
   rule<I, Promise<ValidAsyncShapeYobta<I, Record>>>(
-    async (value: I, context) => {
-      if (value === undefined) {
-        return value as ValidAsyncShapeYobta<I, Record>
+    async (value: I = '' as I, context) => {
+      if (value === '') {
+        return undefined as ValidAsyncShapeYobta<I, Record>
       }
 
       if (!isPlainObject(value)) {

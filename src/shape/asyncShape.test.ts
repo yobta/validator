@@ -61,6 +61,11 @@ it('accepts undefined', async () => {
   expect(result).toEqual([undefined, null])
 })
 
+it('casts empty string to undefined', async () => {
+  const result = await validate(undefined)
+  expect(result).toEqual([undefined, null])
+})
+
 it('has custom error messages', async () => {
   const attempt = (): any =>
     createAsyncValidator(
