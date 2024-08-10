@@ -1,5 +1,6 @@
 import type { YobtaSyncRule, YobtaSyncRules } from '../rule/rule.js'
 import type { SyncRulesPipeYobta } from './YobtaPipe.js'
+import type { YobtaRequiredValue } from './YobtaRequiredValue.js'
 import type {
   YobtaSyncChain1,
   YobtaSyncChain10,
@@ -94,5 +95,8 @@ export interface YobtaFallback {
     ...rules: SyncRulesPipeYobta<F>
   ): YobtaSyncRule<unknown, R>
 
-  <I, R>(fallbackValue: R, ...rules: never[]): YobtaSyncRule<I, I | R>
+  <I, R>(
+    fallbackValue: R,
+    ...rules: never[]
+  ): YobtaSyncRule<I, YobtaRequiredValue<I | R>>
 }
