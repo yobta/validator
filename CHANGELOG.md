@@ -17,7 +17,6 @@ Renamed:
 - awaitShapeYobta => asyncShape
 - awaitSunbmitYobta => asyncSubmit
 - booleanYobta => boolean
-- catchYobta => safe
 - constYobta => constant
 - dateYobta => date
 - defaultYobta => fallback
@@ -53,6 +52,7 @@ Added:
 
 Removed:
 
+- catchYobta
 - testYobta
 - urlSearchParamsYobta
 

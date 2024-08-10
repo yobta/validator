@@ -15,7 +15,7 @@ import type {
   YobtaSyncChain9,
 } from './YobtaSyncChain.js'
 
-export interface YobtaSafe {
+export interface YobtaFallback {
   <R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R12>(
     fallbackValue: R12,
     ...rules: YobtaSyncChain12<
@@ -93,4 +93,6 @@ export interface YobtaSafe {
     fallbackValue: R,
     ...rules: SyncRulesPipeYobta<F>
   ): YobtaSyncRule<unknown, R>
+
+  <I, R>(fallbackValue: R, ...rules: never[]): YobtaSyncRule<I, I | R>
 }

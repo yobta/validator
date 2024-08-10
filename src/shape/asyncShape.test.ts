@@ -129,7 +129,7 @@ it('should replace context.data', async () => {
     retypePassword: 'new yobta',
   }
   const attempt = createAsyncValidator(
-    fallback(() => replaced),
+    fallback(replaced),
     shape({
       newPassword: different(() => 'password'),
       password: string(),

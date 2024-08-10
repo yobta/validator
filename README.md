@@ -33,17 +33,31 @@ npm i @yobta/validator
 
 - `boolean(errorMessage)` - creates a boolean rule
 - `constant(value, errorMessage)` - creates a strict equality rule
+
 - `date(errorMessage)` - creates a date rule
+
   - `maxDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
   - `minDate(limit: () => Date, errorMessage)` – checks if a value within a date limit
-- `fallback(() => errorMessage)` - creates a rule to replace `string` or `null` with a value
+
+- `fallback(defaultValue, ...rules)` - returns a `defaultValue` if rules not satisfied, if no rules provided transforms '' or `undefined` value to a `defaultValue`
+
 - `number(errorMessage)` - converts a value to a finite `Number` or throws
-  - `max(limit: () => Number, errorMessage)` – checks if a value within a limit
-  - `min(limit: () => Number, errorMessage)` – checks if a value within a limit
+
+  - `integer(errorMessage)` – checks if a value is an integer
+  - `maxNumber(limit: () => Number, errorMessage)` – checks if a value within a limit
+  - `minNumber(limit: () => Number, errorMessage)` – checks if a value within a limit
+
 - `oneOf(()=> new Set([1])), errorMessage)` – checks if simple value in a set
 - `shape({ key: rule }, errorMessage)` – checks plain object shape
+
   - `different(() => ['path'], errorMessage)` – creates a rule to check if an onbject key is not equal to antoher key
+
+- `required(errorMessage)` — throws a message if a value is an empty string or `undefined`
+
+- `rule((value, ctx) => {...your custom rule, return value})` — allows creating custom validation rules
+
 - `string(errorMessage)` – coerses a simple value to string or throws
+
   - `email(errorMessage)` – checks if a string value is email
   - `maxCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
   - `minCharacters(limit: () => Number, errorMessage)` – checks if a value length within a limit
@@ -62,7 +76,7 @@ npm i @yobta/validator
 
 ### Transforms
 
-- `form(errorMessage)` - transforms formData to `unknowd` record, that can be validated with `shape` or `asyncShape`
+- `form(errorMessage)` - transforms `HTMLFormElement` or (form) `Event` to a plain object
 - `rule(Number)` – transforms any to number
 
 ### Types
@@ -128,8 +142,8 @@ object.
 const getInitialState = yobta(
   urlSearchParamsYobta(),
   shapeYobta({
-    currentTab: [safe('tab-1', oneOf(()= new Set(['tab-1', 'tab-2', 'tab-3'])))],
-    myModalIsOpen: [safe(false, boolean())],
+    currentTab: [fallback('tab-1', oneOf(()= new Set(['tab-1', 'tab-2', 'tab-3'])))],
+    myModalIsOpen: [fallback(false, boolean())],
   }),
 )
 

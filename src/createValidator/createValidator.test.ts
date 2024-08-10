@@ -11,7 +11,6 @@ import {
   pipe,
   required,
   rule,
-  safe,
   shape,
   string,
   YobtaError,
@@ -44,18 +43,14 @@ const validateSearch = createValidator(
   rule((value: any) => new URLSearchParams(value)),
   rule(fromEntries),
   shape({
-    currentTab: safe(
+    currentTab: fallback(
       'tab-1',
       pipe(
         required(),
         oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
       ),
     ),
-    myModalIsOpen: safe(
-      false,
-      boolean(),
-      fallback(() => false),
-    ),
+    myModalIsOpen: fallback(false, boolean(), fallback(false)),
   }),
 )
 

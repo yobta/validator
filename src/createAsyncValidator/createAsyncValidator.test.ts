@@ -5,9 +5,9 @@ import { constant, effect, pipe, required, rule } from '..'
 import { createContext } from '../_internal/createContext/createContext'
 import { fromEntries } from '../_internal/fromEntries'
 import { boolean } from '../boolean/boolean'
+import { fallback } from '../fallback/fallback'
 import { number } from '../number'
 import { oneOf } from '../oneOf/oneOf'
-import { safe } from '../safe/safe'
 import { shape } from '../shape/shape'
 import { string } from '../string'
 import { minCharacters } from '../string/minCharacters'
@@ -20,14 +20,14 @@ const validateSearch = createAsyncValidator(
   rule((value: any) => new URLSearchParams(value)),
   rule(fromEntries),
   shape({
-    currentTab: safe(
+    currentTab: fallback(
       'tab-1',
       pipe(
         required(),
         oneOf(() => new Set(['tab-1', 'tab-2', 'tab-3'])),
       ),
     ),
-    myModalIsOpen: safe(false, boolean()),
+    myModalIsOpen: fallback(false, boolean()),
   }),
 )
 

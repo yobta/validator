@@ -220,13 +220,6 @@
       "limit": "40 B"
     },
     {
-      "name": "safe",
-      "import": {
-        "lib/index.js": "{ safe }"
-      },
-      "limit": "66 B"
-    },
-    {
       "name": "constant",
       "import": {
         "lib/index.js": "{ constant }"
