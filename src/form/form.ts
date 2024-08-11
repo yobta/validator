@@ -8,8 +8,8 @@ export const form = <I>(
   message: string = formMessage,
 ): YobtaSyncRule<I, Record<string, unknown>> =>
   rule((value, ctx) => {
-    if (value instanceof Event && value.currentTarget) {
-      const { currentTarget, target } = value
+    if (value && (value as any).currentTarget) {
+      const { currentTarget, target } = value as any
 
       if (currentTarget instanceof HTMLFormElement) {
         ctx.form = currentTarget

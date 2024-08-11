@@ -15,7 +15,7 @@ import {
   YobtaError,
 } from '..'
 import { createContext } from '../_internal/createContext/createContext'
-import { validity, validityMessage } from './validity'
+import { validity } from './validity'
 
 interface FormMock {
   (): {
@@ -81,18 +81,28 @@ const mockForm: FormMock = () => {
 
 const errorHandlerMock = jest.fn()
 
-it('throws when gets a non-form event', () => {
-  const input = document.createElement('input')
-  const data = { currentTarget: input }
-  const context = createContext(data)
-  expect(() => validity(errorHandlerMock)(context)({})).toThrow(validityMessage)
+afterEach(() => {
+  jest.clearAllMocks()
 })
 
-it('throws when gets a non-event and has a custom error message', () => {
+it('groups errors by field and report', () => {
+  const context = createContext(null)
+
+  context.errors = [
+    new YobtaError({ field: '@', message: 'yobta 1', path: [] }),
+    new YobtaError({ field: '@', message: 'yobta 2', path: [] }),
+    new YobtaError({ field: 'field', message: 'yobta 3', path: [] }),
+  ]
+
+  validity(errorHandlerMock)(context)({})
+
+  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+})
+
+it('does not call error handler when has no errors', () => {
   const context = createContext('yobta')
-  expect(() =>
-    validity(errorHandlerMock, { missingFormMessage: 'yobta!' })(context)({}),
-  ).toThrow('yobta!')
+  validity(errorHandlerMock)(context)({})
+  expect(errorHandlerMock).not.toHaveBeenCalled()
 })
 
 it('reports validity for selects, inputs and textareas', async () => {
