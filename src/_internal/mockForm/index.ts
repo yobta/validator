@@ -17,6 +17,7 @@ export const mockForm: MockFormFactory = innerHtml => {
       form.innerHTML = innerHtml
       const event = createEvent.change(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
+      Object.defineProperty(event, 'target', { value: form })
 
       return validate(event)
     },
@@ -25,6 +26,7 @@ export const mockForm: MockFormFactory = innerHtml => {
       form.innerHTML = innerHtml
       const event = createEvent.submit(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
+      Object.defineProperty(event, 'target', { value: form })
 
       return validate(event)
     },

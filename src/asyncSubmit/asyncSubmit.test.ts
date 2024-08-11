@@ -37,7 +37,6 @@ it('submits when it is valid and context has submit event', async () => {
       event: expect.any(Event),
       field: '@',
       form: expect.any(HTMLFormElement),
-      input: null,
       path: [],
       pushError: expect.any(Function),
       value: expect.any(Event),

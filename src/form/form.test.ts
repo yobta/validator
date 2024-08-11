@@ -17,6 +17,7 @@ it('accepts event', () => {
   const formNode = document.createElement('form')
   const event = createEvent.submit(formNode)
   Object.defineProperty(event, 'currentTarget', { value: formNode })
+  Object.defineProperty(event, 'target', { value: formNode })
   const result = validate(event)
   expect(result).toEqual({})
 })
