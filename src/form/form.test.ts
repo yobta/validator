@@ -47,12 +47,13 @@ it('rejects invalid input', () => {
 it('des not prevent change event', () => {
   const formNode = document.createElement('form')
   const input = document.createElement('input')
+  formNode.appendChild(input)
+
   const event = createEvent.change(input)
+  jest.spyOn(event, 'preventDefault')
 
   Object.defineProperty(event, 'currentTarget', { value: formNode })
   Object.defineProperty(event, 'target', { value: input })
-
-  jest.spyOn(event, 'preventDefault')
 
   const result = validate(event)
 

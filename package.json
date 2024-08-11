@@ -1,6 +1,6 @@
 {
   "name": "@yobta/validator",
-  "version": "1.0.7-alpha",
+  "version": "1.0.8-alpha",
   "description": "Tree-shakable es6 validator",
   "keywords": [
     "validator",
@@ -266,7 +266,7 @@
       "import": {
         "lib/index.js": "{ form }"
       },
-      "limit": "242 B"
+      "limit": "249 B"
     },
     {
       "name": "oneOf",
@@ -357,7 +357,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2673 B"
+      "limit": "2658 B"
     }
   ]
 }

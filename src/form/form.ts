@@ -9,18 +9,16 @@ export const form = <I>(
 ): YobtaSyncRule<I, Record<string, unknown>> =>
   rule((value, ctx) => {
     if (value && (value as any).target) {
-      const { currentTarget, target } = value as any
+      const { target } = value as any
 
-      if (currentTarget instanceof HTMLFormElement) {
-        ctx.form = currentTarget
-      }
+      const formNode = target.closest('form') as HTMLFormElement | null
 
-      if (target instanceof HTMLFormElement) {
-        ctx.form = target
+      if (formNode) {
+        ctx.form = formNode
       }
 
       // NOTE: instanceof would not work for custom elements here:
-      if (ctx.form && target !== currentTarget) {
+      if (formNode && target !== formNode) {
         ctx.input = target as HTMLInputElement
       }
     }

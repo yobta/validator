@@ -163,7 +163,7 @@ it('reports validity on submit and restores on input', async () => {
   )
   const submitEvent = createEvent.submit(formNode)
   Object.defineProperty(submitEvent, 'currentTarget', { value: formNode })
-  Object.defineProperty(submitEvent, 'target', { value: form })
+  Object.defineProperty(submitEvent, 'target', { value: formNode })
 
   expect(input.checkValidity()).toBe(true)
   expect(checkbox.checkValidity()).toBe(true)
