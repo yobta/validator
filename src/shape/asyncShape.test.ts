@@ -90,11 +90,9 @@ it('has custom error messages', async () => {
 })
 
 it('captures errors from field validators', async () => {
-  const attempt = (): any =>
-    validate({
-      name: [],
-    })
-  const result = await attempt()
+  const result = await validate({
+    name: [],
+  })
 
   expect(result).toEqual([
     null,
@@ -104,27 +102,28 @@ it('captures errors from field validators', async () => {
         message: stringMessage,
         path: ['age'],
       }),
-      new YobtaError({
-        field: 'name',
-        message: asyncShapeMessage,
-        path: ['name'],
-      }),
     ],
   ])
 })
 
 it('returns errors for invalid keys', async () => {
   const context = createContext({})
-  // jest.spyOn(context, 'pushError')
 
-  const attempt = (): any =>
-    asyncShape({
-      name: string(),
-    })(context)({
-      name: {},
-    })
-  expect(attempt).rejects.toThrow(asyncShapeMessage)
-  // expect(pushErrorMock).toHaveBeenCalledWith(new Error(stringMessage))
+  const result = await asyncShape({
+    name: string(),
+  })(context)({
+    name: {},
+  })
+
+  expect(result).toEqual({ name: {} })
+
+  expect(context.errors).toEqual([
+    new YobtaError({
+      field: 'title',
+      message: 'It should be a string',
+      path: ['title'],
+    }),
+  ])
 })
 
 it('should replace context.data', async () => {
@@ -171,11 +170,6 @@ it('has no racing condition', async () => {
         field: 'description',
         message: 'Required',
         path: ['description'],
-      }),
-      new YobtaError({
-        field: '@',
-        message: asyncShapeMessage,
-        path: ['@'],
       }),
     ],
   ])

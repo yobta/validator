@@ -53,9 +53,5 @@ export const shape = <I, F extends SyncRulesRecord>(
       }
     }
 
-    if (context.errors.length) {
-      throw err
-    }
-
     return result as YobtaMaybe<I, YobtaPretty<ValidShapeYobta<F>>>
   })

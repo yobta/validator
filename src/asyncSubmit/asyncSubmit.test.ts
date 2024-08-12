@@ -99,11 +99,6 @@ it('does not fire when it is not valid and event type is submit', async () => {
         message: 'It should be a string',
         path: ['name'],
       }),
-      new YobtaError({
-        field: 'name',
-        message: 'Ivalid shape',
-        path: ['name'],
-      }),
     ],
   ])
   expect(spy).toHaveBeenCalledTimes(0)

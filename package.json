@@ -14,7 +14,7 @@
     "lint:fix": "eslint src --fix",
     "size-limit": "size-limit",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest src",
-    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/form/form.test.ts",
+    "tf": "NODE_OPTIONS=--experimental-vm-modules jest src/shape/asyncShape.test.ts",
     "typecheck": "tsc --noEmit",
     "ncu": "ncu -u"
   },
@@ -98,7 +98,7 @@
       "import": {
         "lib/index.js": "{ shape }"
       },
-      "limit": "477 B"
+      "limit": "468 B"
     },
     {
       "name": "string",
@@ -287,7 +287,7 @@
       "import": {
         "lib/index.js": "{ asyncShape }"
       },
-      "limit": "496 B"
+      "limit": "482 B"
     },
     {
       "name": "pipe",
@@ -357,7 +357,7 @@
       "import": {
         "lib/index.js": "*"
       },
-      "limit": "2658 B"
+      "limit": "2643 B"
     }
   ]
 }

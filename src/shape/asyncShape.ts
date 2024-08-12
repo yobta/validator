@@ -35,7 +35,6 @@ export const asyncShape = <I, Record extends AsyncRulesRecord>(
       }
 
       const result = { ...value } as ValidAsyncShapeYobta<I, Record>
-      let isInvalid = false
 
       for await (const field of Object.keys(rulesSet)) {
         const path = [...context.path, field]
@@ -53,13 +52,8 @@ export const asyncShape = <I, Record extends AsyncRulesRecord>(
           // @ts-ignore
           result[field] = valid
         } catch (error) {
-          isInvalid = true
           context.pushError(handleUnknownError({ error, field, path }))
         }
-      }
-
-      if (isInvalid) {
-        throw new Error(validationMessage)
       }
 
       return result

@@ -114,17 +114,7 @@ it('preserves yobta error', async () => {
       }),
     }),
   )({})
-  expect(result).toEqual([
-    null,
-    [
-      yobtaError,
-      new YobtaError({
-        field: 'yobta',
-        message: 'Ivalid shape',
-        path: [],
-      }),
-    ],
-  ])
+  expect(result).toEqual([null, [yobtaError]])
 })
 
 it('supports effects', async () => {

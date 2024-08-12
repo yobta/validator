@@ -20,11 +20,6 @@ it('calls reporter when validation fails', async () => {
         message: 'It should be a string',
         path: ['yobta'],
       }),
-      new YobtaError({
-        field: '@',
-        message: 'Ivalid shape',
-        path: ['@'],
-      }),
     ],
   ])
 })

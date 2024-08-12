@@ -10,7 +10,6 @@ import {
   required,
   requiredMessage,
   shape,
-  shapeMessage,
   string,
   YobtaError,
 } from '..'
@@ -128,9 +127,7 @@ it('reports validity for selects, inputs and textareas', async () => {
 
   await validate(submitEvent)
 
-  expect(errorHandlerMock).toHaveBeenCalledWith(
-    new YobtaError({ field: '@', message: shapeMessage, path: [] }),
-  )
+  expect(errorHandlerMock).not.toHaveBeenCalled()
 
   expect(checkbox.checkValidity()).toBe(false)
   expect(input.checkValidity()).toBe(false)
@@ -245,10 +242,9 @@ it('reports unhandled errors', async () => {
   await validate(submitEvent)
 
   expect(input.checkValidity()).toBe(true)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
   expect(errorHandlerMock.mock.calls).toEqual([
     [new YobtaError({ field: '@', message: requiredMessage, path: [] })],
-    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
   ])
 })
 
@@ -273,7 +269,7 @@ it('does not report readonly inputs', async () => {
   await validate(submitEvent)
 
   expect(readonlyInput.checkValidity()).toBe(true)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
   expect(errorHandlerMock.mock.calls).toEqual([
     [
       new YobtaError({
@@ -282,7 +278,6 @@ it('does not report readonly inputs', async () => {
         path: ['readonly'],
       }),
     ],
-    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
   ])
 })
 
@@ -307,7 +302,7 @@ it('does not report hidden inputs', async () => {
   await validate(submitEvent)
 
   expect(hiddenInput.checkValidity()).toBe(true)
-  expect(errorHandlerMock).toHaveBeenCalledTimes(2)
+  expect(errorHandlerMock).toHaveBeenCalledTimes(1)
   expect(errorHandlerMock.mock.calls).toEqual([
     [
       new YobtaError({
@@ -316,6 +311,5 @@ it('does not report hidden inputs', async () => {
         path: ['hidden'],
       }),
     ],
-    [new YobtaError({ field: '@', message: shapeMessage, path: [] })],
   ])
 })

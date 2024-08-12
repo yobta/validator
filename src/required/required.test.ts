@@ -104,10 +104,7 @@ describe('async shape optional', () => {
   for (const value of opt) {
     it(`rejects ${value}`, async () => {
       const result = await validate({ name: value })
-      expect(result).toEqual([
-        null,
-        [expect.any(YobtaError), expect.any(YobtaError)],
-      ])
+      expect(result).toEqual([null, [expect.any(YobtaError)]])
     })
   }
 })
@@ -129,14 +126,7 @@ describe('async nested shape optional', () => {
   for (const value of opt) {
     it(`rejects ${value}`, async () => {
       const result = await validate({ name: { value } })
-      expect(result).toEqual([
-        null,
-        [
-          expect.any(YobtaError),
-          expect.any(YobtaError),
-          expect.any(YobtaError),
-        ],
-      ])
+      expect(result).toEqual([null, [expect.any(YobtaError)]])
     })
   }
 })
