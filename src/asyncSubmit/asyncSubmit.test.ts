@@ -7,6 +7,7 @@ import type { YobtaAsyncValidator } from '../_types/YobtaAsyncValidator'
 import type { YobtaContext } from '../_types/YobtaContext'
 import { YobtaError } from '../YobtaError'
 import { asyncSubmit } from './asyncSubmit'
+import { createContext } from '../_internal/createContext/createContext'
 
 function mockValidate(spy: Function): YobtaAsyncValidator<any, any> {
   return createAsyncValidator(
@@ -128,4 +129,14 @@ it('catches submit error and pushes it to errors', async () => {
       }),
     ],
   ])
+})
+
+it('accepts sync submitter', () => {
+  const event = new CustomEvent('submit')
+  const context = createContext(event)
+  const submit = jest.fn() as VoidFunction
+  const rule = asyncSubmit(submit)
+  rule(context)(null)
+
+  expect(submit).toHaveBeenCalledWith(null, context)
 })

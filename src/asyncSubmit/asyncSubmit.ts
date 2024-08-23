@@ -4,7 +4,7 @@ import type { YobtaContext } from '../_types/YobtaContext.js'
 import { rule } from '../rule/rule.js'
 
 interface Submitter<I> {
-  (input: I, context: YobtaContext): Promise<void>
+  (input: I, context: YobtaContext): Promise<void> | void
 }
 
 export const asyncSubmit = <I>(submit: Submitter<I>): YobtaAsyncRule<I, I> =>
