@@ -28,6 +28,7 @@ export const form = <I>(
     }
 
     if (ctx.form) {
+      // eslint-disable-next-line n/no-unsupported-features/node-builtins
       const output = new FormData(ctx.form)
       return fromEntries(output) as Record<string, unknown>
     }

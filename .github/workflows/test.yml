@@ -37,8 +37,8 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18
-          - 16
+          - 21
+          - 22
 
     name: Node.js ${{ matrix.node-version }} Quick
     steps:
