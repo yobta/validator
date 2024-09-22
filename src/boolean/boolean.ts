@@ -2,8 +2,8 @@ import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
-const truthySet = new Set(['1', 'yes', 'true'])
-const falsySet = new Set(['0', 'no', 'false', 'null'])
+const truthySet = new Set(['1', 'true', 'yes'])
+const falsySet = new Set(['0', 'false', 'no', 'null'])
 
 export const booleanMessage = 'It should be a boolean'
 

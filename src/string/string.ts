@@ -2,7 +2,7 @@ import type { YobtaMaybe } from '../_types/YobtaMaybe.js'
 import type { YobtaSyncRule } from '../rule/rule.js'
 import { rule } from '../rule/rule.js'
 
-const coercedTypes = new Set(['number', 'boolean', 'string'])
+const coercedTypes = new Set(['boolean', 'number', 'string'])
 
 export const stringMessage = 'It should be a string'
 

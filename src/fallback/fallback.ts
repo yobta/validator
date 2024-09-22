@@ -20,7 +20,7 @@ export const fallback: YobtaFallback = (
         input = test(context)(input)
       }
       return input
-    } catch (error) {
+    } catch {
       return fallbackValue
     }
   })
