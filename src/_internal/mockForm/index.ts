@@ -1,11 +1,12 @@
 import { createEvent } from '@testing-library/dom'
 
-import type { AsyncResultYobta, AsyncRuleYobta } from '../../index.js'
+import type { YobtaAsyncResult } from '../../_types/YobtaAsyncResult'
+import type { YobtaAsyncValidator } from '../../_types/YobtaAsyncValidator'
 
 interface MockFormFactory {
   (innerHtml: string): {
-    change<V>(validate: AsyncRuleYobta<unknown, V>): AsyncResultYobta<V>
-    submit<V>(validate: AsyncRuleYobta<unknown, V>): AsyncResultYobta<V>
+    change<V>(validate: YobtaAsyncValidator<unknown, V>): YobtaAsyncResult<V>
+    submit<V>(validate: YobtaAsyncValidator<unknown, V>): YobtaAsyncResult<V>
   }
 }
 
@@ -16,6 +17,7 @@ export const mockForm: MockFormFactory = innerHtml => {
       form.innerHTML = innerHtml
       const event = createEvent.change(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
+      Object.defineProperty(event, 'target', { value: form })
 
       return validate(event)
     },
@@ -24,6 +26,7 @@ export const mockForm: MockFormFactory = innerHtml => {
       form.innerHTML = innerHtml
       const event = createEvent.submit(form)
       Object.defineProperty(event, 'currentTarget', { value: form })
+      Object.defineProperty(event, 'target', { value: form })
 
       return validate(event)
     },

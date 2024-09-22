@@ -1,3 +1,6 @@
+alpha: check
+	npm publish --tag alpha
+
 build:
 	npm run build
 
@@ -20,8 +23,8 @@ test:
 
 check:
 	make typecheck
-	make test
 	make lint
+	make test
 
 bump:
 	npm version patch

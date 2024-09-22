@@ -1,5 +1,68 @@
 # Change Log
 
+## 0.1.7
+
+-Refactored
+
+- isPlainObject
+- minItemsYobta
+- patterns
+
+Renamed:
+
+- yobta => createValidator
+- asyncYobta => createAsyncValidator
+- arrayYobta => array
+  - itemsYobta => items
+- awaitShapeYobta => asyncShape
+- awaitSunbmitYobta => asyncSubmit
+- booleanYobta => boolean
+- constYobta => constant
+- dateYobta => date
+- defaultYobta => fallback
+- effectYobta => effect
+- emailYobta => email
+- enumYobta => oneOf
+- errorsYobta => errors
+- integerYobta => integer
+- numberYobta => number
+- maxDateYobta => maxDate
+- maximumYobta => maxNumber
+- maxItemsYobta => maxItems
+- maxCharactersYobta => maxCharacters
+- minCharactersYobta => minCharacters
+- minDateYobta => minDate
+- minItemsYobta => minItems
+- minimumYobta => minNumber
+- formYobta => form
+- identicalYobta => identical
+- requiredYobta => required
+- ruleYobta => rule
+- shapeYobta => shape
+  - differentYobta => different
+- stringYobta => string
+- successYobta => success
+- testYobta => test
+- uniqueYobta => unique
+- validityYobta => validity
+
+Added:
+
+- asyncPipe
+- pipe
+
+Removed:
+
+- catchYobta
+- urlSearchParamsYobta
+
+Todo:
+
+form
+
+- move form-related logic to form createContext
+- add support for accepting FormData as input
+
 ## 0.1.6
 
 - Slightly refactiored typings
